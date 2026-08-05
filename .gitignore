@@ -1,0 +1,5 @@
+.gradle/
+**/build/
+.watch-tracker/
+.idea/
+**/.env

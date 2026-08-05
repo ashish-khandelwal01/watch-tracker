@@ -1,0 +1,3 @@
+rootProject.name = 'watch-tracker'
+
+include 'watch-tracker-core', 'watch-tracker-cli', 'watch-tracker-testdata', 'watch-tracker-web'

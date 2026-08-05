@@ -1,0 +1,180 @@
+package com.watchtracker.metadata;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.watchtracker.model.ShowType;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+/** TMDb v3 provider using the official API Read Access Token bearer authentication. */
+public final class TmdbMetadataProvider implements MetadataProvider {
+    private static final String API_ROOT = "https://api.themoviedb.org/3";
+    private final HttpClient client;
+    private final String token;
+    private final ObjectMapper mapper;
+
+    /**
+     * Creates a provider using Java's standard HTTP client.
+     *
+     * @param apiReadAccessToken TMDb API Read Access Token
+     */
+    public TmdbMetadataProvider(String apiReadAccessToken) {
+        this(HttpClient.newHttpClient(), apiReadAccessToken, new ObjectMapper());
+    }
+
+    /**
+     * Creates a provider with injectable collaborators for deterministic integration tests.
+     *
+     * @param client HTTP client used for TMDb requests
+     * @param apiReadAccessToken TMDb API Read Access Token
+     * @param mapper JSON mapper used to decode TMDb responses
+     */
+    TmdbMetadataProvider(HttpClient client, String apiReadAccessToken, ObjectMapper mapper) {
+        this.client = Objects.requireNonNull(client, "client must not be null");
+        this.token = requireToken(apiReadAccessToken);
+        this.mapper = Objects.requireNonNull(mapper, "mapper must not be null");
+    }
+
+    /**
+     * Searches TV and movie results, then retrieves the selected result's full details.
+     *
+     * @param title canonical title to search
+     * @return TMDb metadata for the first TV or movie result
+     */
+    @Override
+    public Optional<ShowMetadata> findByTitle(String title) {
+        JsonNode results = request("/search/multi?include_adult=false&language=en-US&query=" + encode(title))
+                .path("results");
+        for (JsonNode result : results) {
+            String mediaType = result.path("media_type").asText();
+            if ("tv".equals(mediaType) || "movie".equals(mediaType)) {
+                long id = result.path("id").asLong();
+                if (id > 0) {
+                    return Optional.of(toMetadata(request('/' + mediaType + '/' + id), mediaType));
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Resolves a named Netflix episode against TMDb's episode guide for the specified season.
+     *
+     * @param showTitle canonical show title
+     * @param season Netflix part or season number
+     * @param episodeTitle Netflix episode title
+     * @return canonical TMDb episode position when its title matches
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
+        JsonNode results = request("/search/tv?include_adult=false&language=en-US&query=" + encode(showTitle))
+                .path("results");
+        if (results.isEmpty()) {
+            return Optional.empty();
+        }
+        long seriesId = results.get(0).path("id").asLong();
+        if (seriesId < 1) {
+            return Optional.empty();
+        }
+        for (JsonNode episode : request("/tv/" + seriesId + "/season/" + season).path("episodes")) {
+            if (sameTitle(episode.path("name").asText(), episodeTitle)) {
+                int episodeNumber = episode.path("episode_number").asInt();
+                return episodeNumber > 0 ? Optional.of(new WatchProgress(season, episodeNumber, "TMDB")) : Optional.empty();
+            }
+        }
+        return Optional.empty();
+    }
+
+    /** Executes an authenticated TMDb request. */
+    private JsonNode request(String endpoint) {
+        HttpRequest request = HttpRequest.newBuilder(URI.create(API_ROOT + endpoint))
+                .header("Accept", "application/json")
+                .header("Authorization", "Bearer " + token)
+                .GET()
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() < 200 || response.statusCode() >= 300) {
+                throw new IllegalStateException("TMDb request failed with HTTP " + response.statusCode());
+            }
+            return mapper.readTree(response.body());
+        } catch (IOException exception) {
+            throw new IllegalStateException("Unable to call TMDb", exception);
+        } catch (InterruptedException exception) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("TMDb request was interrupted", exception);
+        }
+    }
+
+    /** Maps a TMDb details document to the provider-neutral metadata model. */
+    private static ShowMetadata toMetadata(JsonNode details, String mediaType) {
+        List<String> genres = new ArrayList<>();
+        details.path("genres").forEach(genre -> genres.add(genre.path("name").asText()));
+        String title = "tv".equals(mediaType)
+                ? details.path("name").asText()
+                : details.path("title").asText();
+        String date = "tv".equals(mediaType)
+                ? details.path("first_air_date").asText()
+                : details.path("release_date").asText();
+        return new ShowMetadata(
+                "TMDB",
+                details.path("id").asLong(),
+                title,
+                "tv".equals(mediaType) ? ShowType.SERIES : ShowType.MOVIE,
+                genres,
+                nullable(details, "overview"),
+                nullable(details, "poster_path"),
+                date(date));
+    }
+
+    /** Encodes one value for a TMDb query string. */
+    private static String encode(String value) {
+        return URLEncoder.encode(value, StandardCharsets.UTF_8);
+    }
+
+    /** Validates and trims an API token. */
+    private static String requireToken(String value) {
+        if (value == null || value.isBlank()) {
+            throw new IllegalArgumentException("TMDb API Read Access Token must not be blank");
+        }
+        return value.trim();
+    }
+
+    /** Extracts an optional string field. */
+    private static String nullable(JsonNode node, String field) {
+        return node.path(field).isNull() ? null : node.path(field).asText(null);
+    }
+
+    /** Compares episode titles while tolerating case and punctuation differences. */
+    private static boolean sameTitle(String first, String second) {
+        return normalizeTitle(first).equals(normalizeTitle(second));
+    }
+
+    /** Produces a comparison key for external episode titles. */
+    private static String normalizeTitle(String title) {
+        return title == null ? "" : title.toLowerCase(java.util.Locale.ROOT).replaceAll("[^\\p{Alnum}]", "");
+    }
+
+    /** Parses a provider date while treating absent or invalid data as unavailable. */
+    private static LocalDate date(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            return LocalDate.parse(value);
+        } catch (DateTimeParseException exception) {
+            return null;
+        }
+    }
+}

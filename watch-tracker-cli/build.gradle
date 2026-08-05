@@ -1,0 +1,12 @@
+plugins { id 'application' }
+
+dependencies {
+    implementation project(':watch-tracker-core')
+    implementation libs.slf4j.simple
+}
+
+application { mainClass = 'com.watchtracker.cli.WatchTrackerApplication' }
+
+tasks.named('run') {
+    workingDir rootProject.projectDir
+}

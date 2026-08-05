@@ -1,0 +1,23 @@
+[versions]
+commonsCsv = "1.13.0"
+jackson = "2.18.2"
+junit = "5.11.4"
+assertj = "3.27.3"
+slf4j = "2.0.16"
+spotless = "7.0.2"
+checkstyle = "10.21.1"
+jacoco = "0.8.12"
+
+[libraries]
+commons-csv = { module = "org.apache.commons:commons-csv", version.ref = "commonsCsv" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jackson-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+
+[plugins]
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
