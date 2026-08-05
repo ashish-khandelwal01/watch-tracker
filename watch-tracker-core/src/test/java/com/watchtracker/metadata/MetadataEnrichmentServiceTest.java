@@ -5,14 +5,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.watchtracker.exporter.WatchHistoryExporter;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.ShowType;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 
-/** Tests enrichment without requiring network access or an API token. */
+/**
+ * Tests enrichment without requiring network access or an API token.
+ */
 class MetadataEnrichmentServiceTest {
     @Test
     void retainsProviderMetadataSeparatelyFromWatchHistory() {
@@ -52,7 +56,7 @@ class MetadataEnrichmentServiceTest {
         EnrichedShow enriched = new EnrichedShow(
                 show,
                 Optional.of(
-                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)));
+                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)), Optional.of(new WatchProgress(1, 1, "TMDB")));
         java.nio.file.Path output = java.nio.file.Files.createTempFile("watch-tracker", ".json");
 
         new WatchHistoryExporter().exportEnrichedJson(List.of(enriched), output);
