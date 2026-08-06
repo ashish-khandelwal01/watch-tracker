@@ -53,3 +53,92 @@ To force TVMaze only:
 Successful matches are cached under `.watch-tracker/metadata-cache`. Use
 `--cache path/to/cache` to choose another directory. Enriched exports contain a `show`
 object for imported history and an optional `metadata` object with provider data.
+
+## Diagnostics
+
+The importer can generate detailed diagnostics showing the processing pipeline for each show.
+This is useful for debugging why a show wasn't parsed correctly or why metadata enrichment failed.
+
+Enable diagnostics with the `--diagnostics` flag:
+
+```bash
+./gradlew :watch-tracker-cli:run --args="history.csv shows.json --diagnostics"
+```
+
+Diagnostics are written to `build/diagnostics/` by default, with one JSON file per show:
+
+```bash
+build/diagnostics/
+  Money Heist.json
+  Dark.json
+  The Cleaning Lady.json
+```
+
+To specify a custom diagnostics directory:
+
+```bash
+./gradlew :watch-tracker-cli:run --args="history.csv shows.json --diagnostics /path/to/diags"
+```
+
+Each diagnostics file shows the complete processing journey through the pipeline stages:
+- `CSV_PARSER`: Raw title and watch date from Netflix export
+- `TITLE_NORMALIZER`: Extracted season/episode from title pattern matching
+- `SHOW_BUILDER`: Highest season and episode seen in watch history
+- `METADATA_PROVIDER`: External provider matches (TMDb, TVMaze)
+- `EPISODE_RESOLVER`: Resolution of episode titles to provider episodes
+- `PROGRESS_BUILDER`: Highest resolved episode position
+- `EXPORTER`: Export success/failure with file paths
+
+Diagnostics can be combined with other flags (metadata enrichment, cache directory):
+
+```bash
+./gradlew :watch-tracker-cli:run --args="history.csv shows.json --metadata --cache .cache --diagnostics"
+```
+
+Example diagnostics output for a show:
+
+```json
+{
+  "show": "Money Heist",
+  "stages": [
+    {
+      "stage": "CSV_PARSER",
+      "output": {
+        "title": "Money Heist: Part 3: Episode 5",
+        "date": [2024, 2, 2, 0, 0]
+      }
+    },
+    {
+      "stage": "TITLE_NORMALIZER",
+      "input": "Money Heist: Part 3: Episode 5",
+      "output": {
+        "season": 3,
+        "episode": 5
+      }
+    },
+    {
+      "stage": "SHOW_BUILDER",
+      "output": {
+        "highestSeasonSeen": 3,
+        "highestEpisodeSeen": 5
+      }
+    },
+    {
+      "stage": "METADATA_PROVIDER",
+      "message": "Matched metadata",
+      "output": {
+        "provider": "TMDB",
+        "id": 71446
+      }
+    },
+    {
+      "stage": "PROGRESS_BUILDER",
+      "message": "Highest numbered episode",
+      "output": {
+        "season": 3,
+        "episode": 5
+      }
+    }
+  ]
+}
+```
