@@ -102,13 +102,7 @@ public final class MetadataEnrichmentService {
                 .max(WatchProgress::compareTo);
 
         Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
-                .map(named -> provider.resolveEpisode(
-                                show.title(),
-                                named.season(),
-                                named.episodeTitle())
-                        .or(() -> provider.resolveEpisodeAnySeason(
-                                show.title(),
-                                named.episodeTitle())))
+                .map(named -> provider.resolveEpisode(show.title(), named.season(), named.episodeTitle()))
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);
 
