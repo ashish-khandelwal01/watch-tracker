@@ -59,6 +59,8 @@ public final class FallbackMetadataProvider implements MetadataProvider {
             return fallbackResult;
         }
         Optional<WatchProgress> primaryAnySeason = primary.resolveEpisodeAnySeason(showTitle, episodeTitle);
-        return primaryAnySeason.isPresent() ? primaryAnySeason : fallback.resolveEpisodeAnySeason(showTitle, episodeTitle);
+        return primaryAnySeason.isPresent()
+                ? primaryAnySeason
+                : fallback.resolveEpisodeAnySeason(showTitle, episodeTitle);
     }
 }

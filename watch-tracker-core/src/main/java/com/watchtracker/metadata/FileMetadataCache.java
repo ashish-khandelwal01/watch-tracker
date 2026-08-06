@@ -93,7 +93,8 @@ public final class FileMetadataCache {
         try {
             Files.createDirectories(directory);
             mapper.writerWithDefaultPrettyPrinter()
-                    .writeValue(entry(episodeKey(showTitle, season, episodeTitle)).toFile(), progress);
+                    .writeValue(
+                            entry(episodeKey(showTitle, season, episodeTitle)).toFile(), progress);
         } catch (IOException exception) {
             throw new IllegalStateException("Unable to write metadata cache", exception);
         }

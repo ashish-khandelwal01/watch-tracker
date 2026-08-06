@@ -92,8 +92,7 @@ class MetadataEnrichmentServiceTest {
         WatchProgress previousProgress = new WatchProgress(1, 2, "TVMAZE");
         EnrichedShow previousResult =
                 new EnrichedShow(previousShow, Optional.of(previousMetadata), Optional.of(previousProgress));
-        PreviousEnrichmentSnapshot previous =
-                id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
         RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
 
         EnrichedShow result = new MetadataEnrichmentService(provider)
@@ -133,12 +132,12 @@ class MetadataEnrichmentServiceTest {
                 3);
         EnrichedShow previousResult = new EnrichedShow(
                 previousShow,
-                Optional.of(new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)),
+                Optional.of(
+                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)),
                 Optional.of(new WatchProgress(1, 3, "TVMAZE")));
-        PreviousEnrichmentSnapshot previous =
-                id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
-        ShowMetadata freshMetadata = new ShowMetadata(
-                "TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama", "Mystery"), null, null, null);
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+        ShowMetadata freshMetadata =
+                new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama", "Mystery"), null, null, null);
         RecordingProvider provider = new RecordingProvider(Optional.of(freshMetadata), Optional.empty());
         WatchEvent numberedEvent = new WatchEvent(
                 UUID.randomUUID(),
@@ -187,9 +186,9 @@ class MetadataEnrichmentServiceTest {
                 2);
         EnrichedShow previousResult = new EnrichedShow(
                 previousShow,
-                Optional.of(new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)));
-        PreviousEnrichmentSnapshot previous =
-                id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+                Optional.of(
+                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)));
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
         RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
 
         new MetadataEnrichmentService(provider).enrich(List.of(currentShow), List.of(), previous);

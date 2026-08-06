@@ -42,8 +42,7 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
                 .registerModule(new Jdk8Module())
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         try {
-            List<EnrichedShow> previous =
-                    mapper.readValue(output.toFile(), new TypeReference<List<EnrichedShow>>() {});
+            List<EnrichedShow> previous = mapper.readValue(output.toFile(), new TypeReference<List<EnrichedShow>>() {});
             Map<UUID, EnrichedShow> byShowId = HashMap.newHashMap(previous.size());
             for (EnrichedShow enrichedShow : previous) {
                 byShowId.put(enrichedShow.show().id(), enrichedShow);

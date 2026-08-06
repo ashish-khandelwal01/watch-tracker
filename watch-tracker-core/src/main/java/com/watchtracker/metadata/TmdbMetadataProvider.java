@@ -94,7 +94,9 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         for (JsonNode episode : episodesForSeason(seriesId, season)) {
             if (sameTitle(episode.path("name").asText(), episodeTitle)) {
                 int episodeNumber = episode.path("episode_number").asInt();
-                return episodeNumber > 0 ? Optional.of(new WatchProgress(season, episodeNumber, "TMDB")) : Optional.empty();
+                return episodeNumber > 0
+                        ? Optional.of(new WatchProgress(season, episodeNumber, "TMDB"))
+                        : Optional.empty();
             }
         }
         return Optional.empty();

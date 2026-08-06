@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.DiagnosticsStage;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.metadata.EnrichedShow;
 import com.watchtracker.model.Show;
 import java.io.IOException;
@@ -18,6 +21,15 @@ import org.apache.commons.csv.CSVPrinter;
 public final class WatchHistoryExporter {
     private final ObjectMapper mapper =
             new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
+    private final DiagnosticsCollector diagnostics;
+
+    public WatchHistoryExporter() {
+        this(new NoOpDiagnosticsCollector());
+    }
+
+    public WatchHistoryExporter(DiagnosticsCollector diagnostics) {
+        this.diagnostics = Objects.requireNonNull(diagnostics, "diagnostics must not be null");
+    }
 
     /**
      * Writes aggregates as a JSON array.
@@ -30,7 +42,15 @@ public final class WatchHistoryExporter {
         Objects.requireNonNull(output, "output must not be null");
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(output.toFile(), shows);
+            diagnostics.success(
+                    DiagnosticsStage.EXPORTER,
+                    "Export",
+                    "JSON export successful",
+                    null,
+                    java.util.Map.of("count", shows.size(), "path", output.toString()));
         } catch (IOException exception) {
+            diagnostics.failure(
+                    DiagnosticsStage.EXPORTER, "Export", "Failed to export JSON: " + exception.getMessage());
             throw new IllegalStateException("Unable to export JSON to " + output, exception);
         }
     }
@@ -60,7 +80,15 @@ public final class WatchHistoryExporter {
         Objects.requireNonNull(output, "output must not be null");
         try {
             mapper.writerWithDefaultPrettyPrinter().writeValue(output.toFile(), shows);
+            diagnostics.success(
+                    DiagnosticsStage.EXPORTER,
+                    "Export",
+                    "Enriched JSON export successful",
+                    null,
+                    java.util.Map.of("count", shows.size(), "path", output.toString()));
         } catch (IOException exception) {
+            diagnostics.failure(
+                    DiagnosticsStage.EXPORTER, "Export", "Failed to export enriched JSON: " + exception.getMessage());
             throw new IllegalStateException("Unable to export enriched JSON to " + output, exception);
         }
     }
@@ -95,7 +123,14 @@ public final class WatchHistoryExporter {
                         show.highestEpisodeSeen(),
                         show.watchCount());
             }
+            diagnostics.success(
+                    DiagnosticsStage.EXPORTER,
+                    "Export",
+                    "CSV export successful",
+                    null,
+                    java.util.Map.of("count", shows.size(), "path", output.toString()));
         } catch (IOException exception) {
+            diagnostics.failure(DiagnosticsStage.EXPORTER, "Export", "Failed to export CSV: " + exception.getMessage());
             throw new IllegalStateException("Unable to export CSV to " + output, exception);
         }
     }

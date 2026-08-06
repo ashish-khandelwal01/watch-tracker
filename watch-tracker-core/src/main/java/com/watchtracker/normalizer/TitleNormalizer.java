@@ -1,5 +1,8 @@
 package com.watchtracker.normalizer;
 
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.DiagnosticsStage;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.model.WatchEvent;
 import java.util.Locale;
 import java.util.Objects;
@@ -8,6 +11,16 @@ import java.util.regex.Pattern;
 
 /** Extracts generic series metadata while preserving unknown title formats losslessly. */
 public final class TitleNormalizer {
+    private final DiagnosticsCollector diagnostics;
+
+    public TitleNormalizer() {
+        this(new NoOpDiagnosticsCollector());
+    }
+
+    public TitleNormalizer(DiagnosticsCollector diagnostics) {
+        this.diagnostics = Objects.requireNonNull(diagnostics, "diagnostics must not be null");
+    }
+
     // The inner clause accepts "episode" or "chapter" as an episode marker, so a bare "Chapter N"
     // with nothing further numbered after it resolves to an episode. When "chapter" (or another
     // season word) appears before this clause instead, it is still captured as the outer season,
@@ -31,6 +44,17 @@ public final class TitleNormalizer {
     public WatchEvent normalize(WatchEvent event) {
         Objects.requireNonNull(event, "event must not be null");
         NormalizedTitle title = normalize(event.rawTitle());
+
+        java.util.Map<String, Object> output = new java.util.LinkedHashMap<>();
+        if (title.season() != null) {
+            output.put("season", title.season());
+        }
+        if (title.episode() != null) {
+            output.put("episode", title.episode());
+        }
+
+        diagnostics.success(DiagnosticsStage.TITLE_NORMALIZER, title.canonicalShow(), event.rawTitle(), output);
+
         return event.normalized(title.canonicalShow(), title.season(), title.episode(), title.episodeTitle());
     }
 

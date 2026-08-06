@@ -1,5 +1,8 @@
 package com.watchtracker.metadata;
 
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.DiagnosticsStage;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.WatchEvent;
 import java.util.LinkedHashSet;
@@ -12,6 +15,7 @@ import java.util.stream.Stream;
 /** Enriches already-grouped shows without changing raw import data. */
 public final class MetadataEnrichmentService {
     private final MetadataProvider provider;
+    private final DiagnosticsCollector diagnostics;
 
     /**
      * Creates a service using the supplied metadata provider.
@@ -19,7 +23,18 @@ public final class MetadataEnrichmentService {
      * @param provider provider used to retrieve metadata
      */
     public MetadataEnrichmentService(MetadataProvider provider) {
+        this(provider, new NoOpDiagnosticsCollector());
+    }
+
+    /**
+     * Creates a service using the supplied metadata provider and diagnostics collector.
+     *
+     * @param provider provider used to retrieve metadata
+     * @param diagnostics diagnostics collector for recording resolution steps
+     */
+    public MetadataEnrichmentService(MetadataProvider provider, DiagnosticsCollector diagnostics) {
         this.provider = Objects.requireNonNull(provider, "provider must not be null");
+        this.diagnostics = Objects.requireNonNull(diagnostics, "diagnostics must not be null");
     }
 
     /**
@@ -74,7 +89,28 @@ public final class MetadataEnrichmentService {
         return previous.find(show.id())
                 .filter(prior -> unchangedSincePrevious(show, prior.show()))
                 .map(prior -> new EnrichedShow(show, prior.metadata(), prior.progress()))
-                .orElseGet(() -> new EnrichedShow(show, provider.findByTitle(show.title()), highestProgress(show, events)));
+                .orElseGet(() -> {
+                    Optional<ShowMetadata> metadata = provider.findByTitle(show.title());
+
+                    if (metadata.isPresent()) {
+                        diagnostics.success(
+                                DiagnosticsStage.METADATA_PROVIDER,
+                                show.title(),
+                                "Matched metadata",
+                                null,
+                                java.util.Map.of(
+                                        "provider",
+                                        metadata.get().provider(),
+                                        "id",
+                                        metadata.get().providerId()));
+                    } else {
+                        diagnostics.failure(
+                                DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
+                    }
+
+                    Optional<WatchProgress> progress = highestProgress(show, events);
+                    return new EnrichedShow(show, metadata, progress);
+                });
     }
 
     /** True when nothing that could affect provider resolution has changed since the previous run. */
@@ -93,15 +129,53 @@ public final class MetadataEnrichmentService {
      * lookup per distinct (season, episode title) pair before any provider call is made.
      */
     private Optional<WatchProgress> highestProgress(Show show, List<WatchEvent> events) {
-        List<WatchEvent> showEvents =
-                events.stream().filter(event -> show.title().equals(event.canonicalShow())).toList();
+        List<WatchEvent> showEvents = events.stream()
+                .filter(event -> show.title().equals(event.canonicalShow()))
+                .toList();
 
         Optional<WatchProgress> bestNumbered = showEvents.stream()
                 .filter(event -> event.season() != null && event.episode() != null)
                 .map(event -> new WatchProgress(event.season(), event.episode(), "NETFLIX"))
                 .max(WatchProgress::compareTo);
 
+        if (bestNumbered.isPresent()) {
+            diagnostics.success(
+                    DiagnosticsStage.PROGRESS_BUILDER,
+                    show.title(),
+                    "Highest numbered episode",
+                    null,
+                    java.util.Map.of(
+                            "season",
+                            bestNumbered.get().season(),
+                            "episode",
+                            bestNumbered.get().episode()));
+        }
+
         Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
+                .peek(named -> {
+                    Optional<WatchProgress> resolved =
+                            provider.resolveEpisode(show.title(), named.season(), named.episodeTitle());
+                    if (resolved.isPresent()) {
+                        diagnostics.success(
+                                DiagnosticsStage.EPISODE_RESOLVER,
+                                show.title(),
+                                "Episode title resolved",
+                                java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle()),
+                                java.util.Map.of(
+                                        "season",
+                                        resolved.get().season(),
+                                        "episode",
+                                        resolved.get().episode(),
+                                        "provider",
+                                        resolved.get().provider()));
+                    } else {
+                        diagnostics.failure(
+                                DiagnosticsStage.EPISODE_RESOLVER,
+                                show.title(),
+                                "Episode title not found",
+                                java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle()));
+                    }
+                })
                 .map(named -> provider.resolveEpisode(show.title(), named.season(), named.episodeTitle()))
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);

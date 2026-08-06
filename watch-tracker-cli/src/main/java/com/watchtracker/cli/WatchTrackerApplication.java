@@ -1,6 +1,9 @@
 package com.watchtracker.cli;
 
 import com.watchtracker.config.MetadataProperties;
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.JsonDiagnosticsCollector;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.exporter.WatchHistoryExporter;
 import com.watchtracker.metadata.CachingMetadataProvider;
 import com.watchtracker.metadata.EnrichedShow;
@@ -32,15 +35,20 @@ public final class WatchTrackerApplication {
             System.exit(2);
         }
         Arguments parsedArguments = Arguments.parse(arguments);
+
+        DiagnosticsCollector diagnostics = parsedArguments.diagnosticsFile() != null
+                ? new JsonDiagnosticsCollector()
+                : new NoOpDiagnosticsCollector();
+
         List<WatchEvent> events = new NetflixCsvParser()
                 .parse(parsedArguments.input()).stream()
-                        .map(new TitleNormalizer()::normalize)
+                        .map(new TitleNormalizer(diagnostics)::normalize)
                         .toList();
-        List<Show> shows = new ShowBuilderService().build(events);
+        List<Show> shows = new ShowBuilderService(diagnostics).build(events);
         System.out.printf("Imported %d watch events across %d shows.%n", events.size(), shows.size());
         if (parsedArguments.output() != null) {
             Path output = parsedArguments.output();
-            WatchHistoryExporter exporter = new WatchHistoryExporter();
+            WatchHistoryExporter exporter = new WatchHistoryExporter(diagnostics);
             if (output.getFileName()
                     .toString()
                     .toLowerCase(java.util.Locale.ROOT)
@@ -50,7 +58,7 @@ public final class WatchTrackerApplication {
                 if (parsedArguments.useMetadata()) {
                     PreviousEnrichmentSnapshot previous = JsonEnrichedShowSnapshot.load(output);
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
-                                    metadataProvider(parsedArguments.cacheDirectory()))
+                                    metadataProvider(parsedArguments.cacheDirectory()), diagnostics)
                             .enrich(shows, events, previous);
 
                     exporter.exportEnrichedJson(enriched, output);
@@ -59,6 +67,11 @@ public final class WatchTrackerApplication {
                     exporter.exportJson(shows, output);
                 }
             }
+        }
+
+        if (diagnostics instanceof JsonDiagnosticsCollector jsonCollector) {
+            jsonCollector.write(parsedArguments.diagnosticsFile());
+            System.out.printf("Diagnostics written to %s.%n", parsedArguments.diagnosticsFile());
         }
     }
 
@@ -71,12 +84,13 @@ public final class WatchTrackerApplication {
     /** Prints the command-line usage contract to standard error. */
     private static void usage() {
         System.err.println(
-                "Usage: watch-tracker <netflix.csv> [shows.json|shows.csv] [--metadata] [--cache <directory>]");
+                "Usage: watch-tracker <netflix.csv> [shows.json|shows.csv] [--metadata] [--cache <directory>] [--diagnostics [<directory>]]");
     }
 
     /** Immutable parsing result for the command-line interface. */
-    private record Arguments(Path input, Path output, boolean useMetadata, Path cacheDirectory) {
+    private record Arguments(Path input, Path output, boolean useMetadata, Path cacheDirectory, Path diagnosticsFile) {
         private static final Path DEFAULT_CACHE = Path.of(".watch-tracker", "metadata-cache");
+        private static final Path DEFAULT_DIAGNOSTICS = Path.of("build", "diagnostics");
 
         /** Parses validated positional arguments and supported options. */
         static Arguments parse(String[] values) {
@@ -84,9 +98,16 @@ public final class WatchTrackerApplication {
             Path output = null;
             boolean metadata = false;
             Path cache = DEFAULT_CACHE;
+            Path diagnostics = null;
             for (int index = 1; index < values.length; index++) {
                 switch (values[index]) {
                     case "--metadata", "--tmdb" -> metadata = true;
+                    case "--diagnostics" -> {
+                        diagnostics = DEFAULT_DIAGNOSTICS;
+                        if (index + 1 < values.length && !values[index + 1].startsWith("--")) {
+                            diagnostics = Path.of(values[++index]);
+                        }
+                    }
                     case "--cache" -> {
                         if (++index == values.length) {
                             throw new IllegalArgumentException("--cache requires a directory");
@@ -109,7 +130,7 @@ public final class WatchTrackerApplication {
                             .endsWith(".csv")) {
                 throw new IllegalArgumentException("Metadata enrichment is available only for JSON output");
             }
-            return new Arguments(input, output, metadata, cache);
+            return new Arguments(input, output, metadata, cache, diagnostics);
         }
     }
 }

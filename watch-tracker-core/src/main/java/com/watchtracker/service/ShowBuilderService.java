@@ -1,5 +1,8 @@
 package com.watchtracker.service;
 
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.DiagnosticsStage;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.ShowType;
 import com.watchtracker.model.WatchEvent;
@@ -16,6 +19,16 @@ import java.util.stream.Collectors;
 
 /** Builds non-speculative show aggregates from normalized watch events. */
 public final class ShowBuilderService {
+    private final DiagnosticsCollector diagnostics;
+
+    public ShowBuilderService() {
+        this(new NoOpDiagnosticsCollector());
+    }
+
+    public ShowBuilderService(DiagnosticsCollector diagnostics) {
+        this.diagnostics = Objects.requireNonNull(diagnostics, "diagnostics must not be null");
+    }
+
     /**
      * Groups events into one show for each canonical title.
      *
@@ -35,7 +48,7 @@ public final class ShowBuilderService {
     }
 
     /** Produces one aggregate from events known to share a canonical title. */
-    private static Show aggregate(String title, List<WatchEvent> events) {
+    private Show aggregate(String title, List<WatchEvent> events) {
         LocalDateTime first = events.stream()
                 .map(WatchEvent::watchedAt)
                 .min(Comparator.naturalOrder())
@@ -45,6 +58,19 @@ public final class ShowBuilderService {
                 .max(Comparator.naturalOrder())
                 .orElseThrow();
         Set<String> aliases = events.stream().map(WatchEvent::rawTitle).collect(Collectors.toUnmodifiableSet());
+        Integer highestSeason = highest(events, WatchEvent::season);
+        Integer highestEpisode = highest(events, WatchEvent::episode);
+
+        Map<String, Object> output = new java.util.LinkedHashMap<>();
+        if (highestSeason != null) {
+            output.put("highestSeasonSeen", highestSeason);
+        }
+        if (highestEpisode != null) {
+            output.put("highestEpisodeSeen", highestEpisode);
+        }
+
+        diagnostics.success(DiagnosticsStage.SHOW_BUILDER, title, null, output);
+
         return new Show(
                 UUID.nameUUIDFromBytes(title.getBytes(StandardCharsets.UTF_8)),
                 title,
@@ -52,8 +78,8 @@ public final class ShowBuilderService {
                 ShowType.UNKNOWN,
                 first,
                 last,
-                highest(events, WatchEvent::season),
-                highest(events, WatchEvent::episode),
+                highestSeason,
+                highestEpisode,
                 events.size());
     }
 
