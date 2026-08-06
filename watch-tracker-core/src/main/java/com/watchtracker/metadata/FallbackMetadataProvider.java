@@ -32,16 +32,33 @@ public final class FallbackMetadataProvider implements MetadataProvider {
     }
 
     /**
-     * Resolves through the primary provider and consults the fallback only on a miss.
+     * Resolves an episode through a four-tier cascade: the primary provider's own season, the
+     * fallback provider's own season, then — only once both agree the episode is not in that
+     * season — the primary provider searched without a season restriction, then the fallback
+     * provider searched the same way.
+     *
+     * <p>The season-agnostic tiers exist for providers whose season boundaries disagree with the
+     * source platform's numbering (for example, a platform's five numbered containers merged into
+     * three provider seasons), which otherwise leaves an episode that legitimately exists
+     * permanently unresolved. They are tried last because they are more expensive and, in the rare
+     * case of a duplicated episode title across seasons, less precise than a season-scoped match.
      *
      * @param showTitle canonical show title
      * @param season Netflix container number
      * @param episodeTitle title to resolve
-     * @return a provider-resolved episode position
+     * @return the first match found across the four-tier cascade
      */
     @Override
     public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
         Optional<WatchProgress> primaryResult = primary.resolveEpisode(showTitle, season, episodeTitle);
-        return primaryResult.isPresent() ? primaryResult : fallback.resolveEpisode(showTitle, season, episodeTitle);
+        if (primaryResult.isPresent()) {
+            return primaryResult;
+        }
+        Optional<WatchProgress> fallbackResult = fallback.resolveEpisode(showTitle, season, episodeTitle);
+        if (fallbackResult.isPresent()) {
+            return fallbackResult;
+        }
+        Optional<WatchProgress> primaryAnySeason = primary.resolveEpisodeAnySeason(showTitle, episodeTitle);
+        return primaryAnySeason.isPresent() ? primaryAnySeason : fallback.resolveEpisodeAnySeason(showTitle, episodeTitle);
     }
 }

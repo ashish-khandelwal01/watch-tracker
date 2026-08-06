@@ -31,6 +31,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     // HTTP calls for every episode title being resolved.
     private final Map<String, Long> seriesIdByTitle = new ConcurrentHashMap<>();
     private final Map<String, List<JsonNode>> episodesBySeasonKey = new ConcurrentHashMap<>();
+    private final Map<Long, Integer> seasonCountBySeriesId = new ConcurrentHashMap<>();
 
     /**
      * Creates a provider using Java's standard HTTP client.
@@ -87,11 +88,6 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     @Override
     public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
         long seriesId = seriesId(showTitle);
-        if(showTitle.equals("Family Reunion"))
-        {
-            System.out.println(showTitle);
-        }
-
         if (seriesId < 1) {
             return Optional.empty();
         }
@@ -115,14 +111,47 @@ public final class TmdbMetadataProvider implements MetadataProvider {
 
     /** Resolves and caches one season's episode list, fetching it at most once per show and season. */
     private List<JsonNode> episodesForSeason(long seriesId, int season) {
-        if(seriesId == 213609){
-            System.out.println("Did");
-        }
         return episodesBySeasonKey.computeIfAbsent(seriesId + ":" + season, key -> {
             List<JsonNode> episodes = new ArrayList<>();
             request("/tv/" + seriesId + "/season/" + season).path("episodes").forEach(episodes::add);
             return episodes;
         });
+    }
+
+    /**
+     * Resolves a named Netflix episode anywhere in TMDb's episode guide, ignoring season
+     * boundaries. Only attempted as a last resort after season-scoped resolution has failed on
+     * every configured provider, since a mismatched season count means the two providers'
+     * season/episode groupings are known to disagree for this show.
+     *
+     * @param showTitle canonical show title
+     * @param episodeTitle Netflix episode title
+     * @return canonical TMDb episode position when its title is found in any season
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
+        long seriesId = seriesId(showTitle);
+        if (seriesId < 1) {
+            return Optional.empty();
+        }
+        for (int season = 1; season <= seasonCount(seriesId); season++) {
+            for (JsonNode episode : episodesForSeason(seriesId, season)) {
+                if (sameTitle(episode.path("name").asText(), episodeTitle)) {
+                    int resolvedSeason = episode.path("season_number").asInt();
+                    int episodeNumber = episode.path("episode_number").asInt();
+                    if (resolvedSeason > 0 && episodeNumber > 0) {
+                        return Optional.of(new WatchProgress(resolvedSeason, episodeNumber, "TMDB"));
+                    }
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    /** Resolves and caches a series' season count, fetching series details at most once per series. */
+    private int seasonCount(long seriesId) {
+        return seasonCountBySeriesId.computeIfAbsent(
+                seriesId, id -> request("/tv/" + id).path("number_of_seasons").asInt());
     }
 
     /** Executes an authenticated TMDb request. */
@@ -134,6 +163,14 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 404) {
+                // A missing season or series is an expected outcome, not a failure: providers
+                // sometimes group a source platform's containers differently (for example, five
+                // Netflix "Parts" merged into three TMDb seasons), so season 4 or 5 legitimately
+                // does not exist here. Treat it like TVMaze's empty-array response so the caller
+                // sees an ordinary miss and the provider fallback chain can proceed.
+                return mapper.createArrayNode();
+            }
             if (response.statusCode() < 200 || response.statusCode() >= 300) {
                 throw new IllegalStateException("TMDb request failed with HTTP " + response.statusCode());
             }

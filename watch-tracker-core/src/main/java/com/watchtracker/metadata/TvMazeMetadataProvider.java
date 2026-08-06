@@ -76,10 +76,40 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         if (showId < 1) {
             return Optional.empty();
         }
-        for (JsonNode episode : episodesForShow(showId)) {
-            if (episode.path("season").asInt() == season && sameTitle(episode.path("name").asText(), episodeTitle)) {
+        List<JsonNode> inSeason = episodesForShow(showId).stream()
+                .filter(episode -> episode.path("season").asInt() == season)
+                .toList();
+        return matchByTitle(inSeason, episodeTitle);
+    }
+
+    /**
+     * Resolves a named Netflix episode anywhere in TVMaze's episode guide, ignoring season
+     * boundaries. Only attempted as a last resort after season-scoped resolution has failed on
+     * every configured provider, since a mismatched season count means the two providers'
+     * season/episode groupings are known to disagree for this show.
+     *
+     * @param showTitle canonical show title
+     * @param episodeTitle Netflix episode title
+     * @return canonical TVMaze episode position when its title is found in any season
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
+        long showId = showId(showTitle);
+        if (showId < 1) {
+            return Optional.empty();
+        }
+        return matchByTitle(episodesForShow(showId), episodeTitle);
+    }
+
+    /** Finds the first episode among the candidates whose title matches, using its own position. */
+    private static Optional<WatchProgress> matchByTitle(List<JsonNode> candidates, String episodeTitle) {
+        for (JsonNode episode : candidates) {
+            if (sameTitle(episode.path("name").asText(), episodeTitle)) {
+                int season = episode.path("season").asInt();
                 int episodeNumber = episode.path("number").asInt();
-                return episodeNumber > 0 ? Optional.of(new WatchProgress(season, episodeNumber, "TVMAZE")) : Optional.empty();
+                if (season > 0 && episodeNumber > 0) {
+                    return Optional.of(new WatchProgress(season, episodeNumber, "TVMAZE"));
+                }
             }
         }
         return Optional.empty();

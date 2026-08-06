@@ -26,6 +26,23 @@ public interface MetadataProvider {
     }
 
     /**
+     * Resolves a named episode without restricting the search to one season.
+     *
+     * <p>A provider's own season boundaries can disagree with the source platform's numbering —
+     * for example, a platform's five numbered containers merged into three provider seasons —
+     * which otherwise leaves an episode that legitimately exists permanently unresolved. This is a
+     * more expensive, best-effort search and is only attempted after season-scoped resolution has
+     * failed on every configured provider.
+     *
+     * @param showTitle canonical show title
+     * @param episodeTitle title to resolve
+     * @return resolved provider position when the episode title is found anywhere in the show
+     */
+    default Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
+        return Optional.empty();
+    }
+
+    /**
      * Creates the provider selected by metadata configuration.
      *
      * @param properties provider configuration
