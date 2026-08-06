@@ -37,15 +37,23 @@ public final class CachingMetadataProvider implements MetadataProvider {
     }
 
     /**
-     * Delegates episode matching; providers cache their episode guides during an enrichment run.
+     * Finds an episode position from the cache or its delegated provider. Providers also cache
+     * their episode guides in memory during a single run, but this persists the resolved result so
+     * a later run against the same history never repeats the provider lookup at all.
      *
      * @param showTitle canonical show title
      * @param season Netflix container number
      * @param episodeTitle title to resolve
-     * @return a provider-resolved episode position
+     * @return a cached or freshly resolved episode position
      */
     @Override
     public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
-        return delegate.resolveEpisode(showTitle, season, episodeTitle);
+        Optional<WatchProgress> cached = cache.getEpisode(showTitle, season, episodeTitle);
+        if (cached.isPresent()) {
+            return cached;
+        }
+        Optional<WatchProgress> resolved = delegate.resolveEpisode(showTitle, season, episodeTitle);
+        resolved.ifPresent(progress -> cache.putEpisode(showTitle, season, episodeTitle, progress));
+        return resolved;
     }
 }

@@ -14,8 +14,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 /** TMDb v3 provider using the official API Read Access Token bearer authentication. */
 public final class TmdbMetadataProvider implements MetadataProvider {
@@ -23,6 +25,12 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     private final HttpClient client;
     private final String token;
     private final ObjectMapper mapper;
+
+    // Per-instance lookup caches so a run resolving many named episodes for the same show/season
+    // only performs one series search and one per-season episode fetch, instead of repeating both
+    // HTTP calls for every episode title being resolved.
+    private final Map<String, Long> seriesIdByTitle = new ConcurrentHashMap<>();
+    private final Map<String, List<JsonNode>> episodesBySeasonKey = new ConcurrentHashMap<>();
 
     /**
      * Creates a provider using Java's standard HTTP client.
@@ -78,22 +86,43 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      */
     @Override
     public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
-        JsonNode results = request("/search/tv?include_adult=false&language=en-US&query=" + encode(showTitle))
-                .path("results");
-        if (results.isEmpty()) {
-            return Optional.empty();
+        long seriesId = seriesId(showTitle);
+        if(showTitle.equals("Family Reunion"))
+        {
+            System.out.println(showTitle);
         }
-        long seriesId = results.get(0).path("id").asLong();
+
         if (seriesId < 1) {
             return Optional.empty();
         }
-        for (JsonNode episode : request("/tv/" + seriesId + "/season/" + season).path("episodes")) {
+        for (JsonNode episode : episodesForSeason(seriesId, season)) {
             if (sameTitle(episode.path("name").asText(), episodeTitle)) {
                 int episodeNumber = episode.path("episode_number").asInt();
                 return episodeNumber > 0 ? Optional.of(new WatchProgress(season, episodeNumber, "TMDB")) : Optional.empty();
             }
         }
         return Optional.empty();
+    }
+
+    /** Resolves and caches the TMDb series id for a title, fetching it at most once per title. */
+    private long seriesId(String showTitle) {
+        return seriesIdByTitle.computeIfAbsent(showTitle, title -> {
+            JsonNode results = request("/search/tv?include_adult=false&language=en-US&query=" + encode(title))
+                    .path("results");
+            return results.isEmpty() ? -1L : results.get(0).path("id").asLong();
+        });
+    }
+
+    /** Resolves and caches one season's episode list, fetching it at most once per show and season. */
+    private List<JsonNode> episodesForSeason(long seriesId, int season) {
+        if(seriesId == 213609){
+            System.out.println("Did");
+        }
+        return episodesBySeasonKey.computeIfAbsent(seriesId + ":" + season, key -> {
+            List<JsonNode> episodes = new ArrayList<>();
+            request("/tv/" + seriesId + "/season/" + season).path("episodes").forEach(episodes::add);
+            return episodes;
+        });
     }
 
     /** Executes an authenticated TMDb request. */

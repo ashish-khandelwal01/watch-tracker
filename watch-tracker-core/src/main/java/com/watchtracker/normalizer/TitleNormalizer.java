@@ -8,12 +8,19 @@ import java.util.regex.Pattern;
 
 /** Extracts generic series metadata while preserving unknown title formats losslessly. */
 public final class TitleNormalizer {
+    // The inner clause accepts "episode" or "chapter" as an episode marker, so a bare "Chapter N"
+    // with nothing further numbered after it resolves to an episode. When "chapter" (or another
+    // season word) appears before this clause instead, it is still captured as the outer season,
+    // e.g. "Part 2: Chapter 12" or "Chapter 2: Episode 8" both resolve chapter/part as the season.
     private static final Pattern NUMBERED = Pattern.compile(
-            "(?i)^(?<show>.+?):\\s*(?:(?:season|series|part|book|chapter|volume)\\s+(?<season>[0-9]+|[ivxlcdm]+)\\s*:\\s*)?(?:episodes?)\\s+(?<episode>[0-9]+|[ivxlcdm]+)(?:\\s*:\\s*(?<title>.+))?$");
+            "(?i)^(?<show>.+?):\\s*(?:(?:season|series|part|book|chapter|volume)\\s+(?<season>[0-9]+|[ivxlcdm]+)\\s*:\\s*)?(?:episodes?|chapters?)\\s+(?<episode>[0-9]+|[ivxlcdm]+)(?:\\s*:\\s*(?<title>.+))?$");
     private static final Pattern SEASON_EPISODE = Pattern.compile(
             "(?i)^(?<show>.+?):\\s*(?:season|series)\\s+(?<season>[0-9]+|[ivxlcdm]+)\\s*:\\s*(?:episodes?)\\s+(?<episode>[0-9]+|[ivxlcdm]+)(?:\\s*:\\s*(?<title>.+))?$");
+    // "chapter" is deliberately absent here: any "Chapter N: Title" is already resolved by NUMBERED
+    // above (as an episode when bare, or as a season when a nested episode/chapter marker follows),
+    // so this clause would never actually be reached for it.
     private static final Pattern CONTAINER_TITLE = Pattern.compile(
-            "(?i)^(?<show>.+?):\\s*(?:season|series|part|book|chapter|volume)\\s+(?<season>[0-9]+|[ivxlcdm]+)\\s*:\\s*(?<title>.+)$");
+            "(?i)^(?<show>.+?):\\s*(?:season|series|part|book|volume)\\s+(?<season>[0-9]+|[ivxlcdm]+)\\s*:\\s*(?<title>.+)$");
 
     /**
      * Normalizes a source event without changing its identifier or watch timestamp.

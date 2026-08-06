@@ -2,9 +2,12 @@ package com.watchtracker.metadata;
 
 import com.watchtracker.model.Show;
 import com.watchtracker.model.WatchEvent;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
 
 /** Enriches already-grouped shows without changing raw import data. */
 public final class MetadataEnrichmentService {
@@ -42,32 +45,81 @@ public final class MetadataEnrichmentService {
      * @return enrichment results with optional highest resolved progress
      */
     public List<EnrichedShow> enrich(List<Show> shows, List<WatchEvent> events) {
+        return enrich(shows, events, PreviousEnrichmentSnapshot.EMPTY);
+    }
+
+    /**
+     * Looks up metadata and resolves the highest episode position, reusing a previous run's
+     * result for any show whose imported data has not changed since that run.
+     *
+     * <p>A show is considered unchanged when its watch count, highest known season, highest known
+     * episode, and set of raw title aliases all match the previous result. Any discrepancy in
+     * those fields means new watch history could shift the resolved episode position or the
+     * matched provider title, so the show is resolved fresh.
+     *
+     * @param shows show aggregates to enrich
+     * @param events normalized source watch events
+     * @param previous a previous run's results, consulted before any provider call
+     * @return enrichment results with optional highest resolved progress
+     */
+    public List<EnrichedShow> enrich(List<Show> shows, List<WatchEvent> events, PreviousEnrichmentSnapshot previous) {
         Objects.requireNonNull(shows, "shows must not be null");
         Objects.requireNonNull(events, "events must not be null");
-        return shows.stream()
-                .map(show -> new EnrichedShow(show, provider.findByTitle(show.title()), highestProgress(show, events)))
-                .toList();
+        Objects.requireNonNull(previous, "previous must not be null");
+        return shows.stream().map(show -> enrichOne(show, events, previous)).toList();
     }
 
-    /** Determines the highest known provider or Netflix episode position for one show. */
+    /** Reuses a previous result when nothing that could affect it has changed, else resolves fresh. */
+    private EnrichedShow enrichOne(Show show, List<WatchEvent> events, PreviousEnrichmentSnapshot previous) {
+        return previous.find(show.id())
+                .filter(prior -> unchangedSincePrevious(show, prior.show()))
+                .map(prior -> new EnrichedShow(show, prior.metadata(), prior.progress()))
+                .orElseGet(() -> new EnrichedShow(show, provider.findByTitle(show.title()), highestProgress(show, events)));
+    }
+
+    /** True when nothing that could affect provider resolution has changed since the previous run. */
+    private static boolean unchangedSincePrevious(Show current, Show previous) {
+        return current.watchCount() == previous.watchCount()
+                && Objects.equals(current.highestSeasonSeen(), previous.highestSeasonSeen())
+                && Objects.equals(current.highestEpisodeSeen(), previous.highestEpisodeSeen())
+                && current.aliases().equals(previous.aliases());
+    }
+
+    /**
+     * Determines the highest known provider or Netflix episode position for one show.
+     *
+     * <p>Netflix-numbered events resolve for free from the imported data. Named episodes require a
+     * provider lookup, so duplicate rows (rewatches, autoplay re-entries, etc.) are collapsed to one
+     * lookup per distinct (season, episode title) pair before any provider call is made.
+     */
     private Optional<WatchProgress> highestProgress(Show show, List<WatchEvent> events) {
-        return events.stream()
-                .filter(event -> show.title().equals(event.canonicalShow()))
-                .map(event -> resolve(event, show.title()))
+        List<WatchEvent> showEvents =
+                events.stream().filter(event -> show.title().equals(event.canonicalShow())).toList();
+
+        Optional<WatchProgress> bestNumbered = showEvents.stream()
+                .filter(event -> event.season() != null && event.episode() != null)
+                .map(event -> new WatchProgress(event.season(), event.episode(), "NETFLIX"))
+                .max(WatchProgress::compareTo);
+
+        Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
+                .map(named -> provider.resolveEpisode(show.title(), named.season(), named.episodeTitle()))
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);
+
+        return Stream.of(bestNumbered, bestNamed).flatMap(Optional::stream).max(WatchProgress::compareTo);
     }
 
-    /** Resolves one normalized watch event without inferring a number that cannot be verified. */
-    private Optional<WatchProgress> resolve(WatchEvent event, String showTitle) {
-        if (event.season() == null) {
-            return Optional.empty();
+    /** Collapses events sharing a season and episode title so each is only resolved once. */
+    private static Set<NamedEpisode> uniqueNamedEpisodes(List<WatchEvent> showEvents) {
+        Set<NamedEpisode> unique = new LinkedHashSet<>();
+        for (WatchEvent event : showEvents) {
+            if (event.season() != null && event.episode() == null && event.episodeTitle() != null) {
+                unique.add(new NamedEpisode(event.season(), event.episodeTitle()));
+            }
         }
-        if (event.episode() != null) {
-            return Optional.of(new WatchProgress(event.season(), event.episode(), "NETFLIX"));
-        }
-        return event.episodeTitle() == null
-                ? Optional.empty()
-                : provider.resolveEpisode(showTitle, event.season(), event.episodeTitle());
+        return unique;
     }
+
+    /** A distinct season and named-episode-title pair awaiting provider resolution. */
+    private record NamedEpisode(int season, String episodeTitle) {}
 }

@@ -5,8 +5,10 @@ import com.watchtracker.exporter.WatchHistoryExporter;
 import com.watchtracker.metadata.CachingMetadataProvider;
 import com.watchtracker.metadata.EnrichedShow;
 import com.watchtracker.metadata.FileMetadataCache;
+import com.watchtracker.metadata.JsonEnrichedShowSnapshot;
 import com.watchtracker.metadata.MetadataEnrichmentService;
 import com.watchtracker.metadata.MetadataProvider;
+import com.watchtracker.metadata.PreviousEnrichmentSnapshot;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.WatchEvent;
 import com.watchtracker.normalizer.TitleNormalizer;
@@ -46,10 +48,10 @@ public final class WatchTrackerApplication {
                 exporter.exportCsv(shows, output);
             } else {
                 if (parsedArguments.useMetadata()) {
-                    //fix this taking too long
+                    PreviousEnrichmentSnapshot previous = JsonEnrichedShowSnapshot.load(output);
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
                                     metadataProvider(parsedArguments.cacheDirectory()))
-                            .enrich(shows, events);
+                            .enrich(shows, events, previous);
 
                     exporter.exportEnrichedJson(enriched, output);
                     System.out.printf("Enriched JSON written to %s.%n", output);

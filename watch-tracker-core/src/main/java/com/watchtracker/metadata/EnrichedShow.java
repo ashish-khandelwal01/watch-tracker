@@ -18,4 +18,14 @@ public record EnrichedShow(Show show, Optional<ShowMetadata> metadata, Optional<
         metadata = metadata == null ? Optional.empty() : metadata;
         progress = progress == null ? Optional.empty() : progress;
     }
+
+    /**
+     * Creates an enrichment result with no resolved episode progress.
+     *
+     * @param show imported show aggregate
+     * @param metadata metadata supplied by an external provider
+     */
+    public EnrichedShow(Show show, Optional<ShowMetadata> metadata) {
+        this(show, metadata, Optional.empty());
+    }
 }

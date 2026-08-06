@@ -14,14 +14,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 /** TVMaze provider for TV-series metadata; it uses TVMaze's public search API. */
 public final class TvMazeMetadataProvider implements MetadataProvider {
     private static final String API_ROOT = "https://api.tvmaze.com";
     private final HttpClient client;
     private final ObjectMapper mapper;
+
+    // Per-instance lookup caches so a run resolving many named episodes for the same show only
+    // performs one show search and one per-season episode-guide fetch, instead of repeating both
+    // HTTP calls for every episode title being resolved.
+    private final Map<String, Long> showIdByTitle = new ConcurrentHashMap<>();
+    private final Map<Long, List<JsonNode>> episodesByShowId = new ConcurrentHashMap<>();
 
     /** Creates a provider using Java's standard HTTP client. */
     public TvMazeMetadataProvider() {
@@ -64,22 +72,36 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
      */
     @Override
     public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
-        JsonNode results = request("/search/shows?q=" + encode(showTitle));
-        if (!results.isArray() || results.isEmpty()) {
-            return Optional.empty();
-        }
-        long showId = results.get(0).path("show").path("id").asLong();
+        long showId = showId(showTitle);
         if (showId < 1) {
             return Optional.empty();
         }
-        JsonNode episodes = request("/shows/" + showId + "/episodes");
-        for (JsonNode episode : episodes) {
+        for (JsonNode episode : episodesForShow(showId)) {
             if (episode.path("season").asInt() == season && sameTitle(episode.path("name").asText(), episodeTitle)) {
                 int episodeNumber = episode.path("number").asInt();
                 return episodeNumber > 0 ? Optional.of(new WatchProgress(season, episodeNumber, "TVMAZE")) : Optional.empty();
             }
         }
         return Optional.empty();
+    }
+
+    /** Resolves and caches the TVMaze show id for a title, fetching it at most once per title. */
+    private long showId(String showTitle) {
+        return showIdByTitle.computeIfAbsent(showTitle, title -> {
+            JsonNode results = request("/search/shows?q=" + encode(title));
+            return results.isArray() && !results.isEmpty()
+                    ? results.get(0).path("show").path("id").asLong()
+                    : -1L;
+        });
+    }
+
+    /** Resolves and caches a show's complete episode guide, fetching it at most once per show. */
+    private List<JsonNode> episodesForShow(long showId) {
+        return episodesByShowId.computeIfAbsent(showId, id -> {
+            List<JsonNode> all = new ArrayList<>();
+            request("/shows/" + id + "/episodes").forEach(all::add);
+            return all;
+        });
     }
 
     /** Executes a TVMaze search request. */

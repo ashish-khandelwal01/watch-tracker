@@ -20,6 +20,15 @@ class TitleNormalizerTest {
     }
 
     @ParameterizedTest
+    @MethodSource("numberedTitlesWithEpisodeTitle")
+    void extractsNumberedMetadataAlongsideAnEpisodeTitle(
+            String raw, String show, Integer season, Integer episode, String episodeTitle) {
+        NormalizedTitle result = normalizer.normalize(raw);
+
+        assertThat(result).isEqualTo(new NormalizedTitle(show, season, episode, episodeTitle));
+    }
+
+    @ParameterizedTest
     @MethodSource("episodeTitles")
     void preservesUnnumberedEpisodeTitles(String raw, String show, Integer season, String episodeTitle) {
         NormalizedTitle result = normalizer.normalize(raw);
@@ -32,7 +41,23 @@ class TitleNormalizerTest {
                 Arguments.of("Money Heist: Part 3: Episode 5", "Money Heist", 3, 5),
                 Arguments.of("Business Proposal: Episode 6", "Business Proposal", null, 6),
                 Arguments.of("Saga: Book IV: Episode IX", "Saga", 4, 9),
-                Arguments.of("Saga: Chapter 2: Episode 8", "Saga", 2, 8));
+                Arguments.of("Saga: Chapter 2: Episode 8", "Saga", 2, 8),
+                Arguments.of("Dark: Chapter 3", "Dark", null, 3),
+                Arguments.of("Money Heist: Part 2: Chapter 12", "Money Heist", 2, 12));
+    }
+
+    private static Stream<Arguments> numberedTitlesWithEpisodeTitle() {
+        return Stream.of(
+                // A bare chapter marker with no nested season word resolves to an episode, not a
+                // season, even though "Chapter" alone can also introduce a season (see
+                // "Saga: Chapter 2: Episode 8" above) when a further numbered marker follows it.
+                Arguments.of("Dark: Chapter 3: Adam and Eva", "Dark", null, 3, "Adam and Eva"),
+                Arguments.of(
+                        "Money Heist: Part 2: Chapter 12: Between Dogs and Wolves",
+                        "Money Heist",
+                        2,
+                        12,
+                        "Between Dogs and Wolves"));
     }
 
     private static Stream<Arguments> episodeTitles() {

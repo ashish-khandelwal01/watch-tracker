@@ -61,7 +61,50 @@ public final class FileMetadataCache {
         }
     }
 
-    /** Resolves the safe cache-file path for a title. */
+    /**
+     * Returns a cached episode position for a show, season, and episode title, when present.
+     *
+     * @param showTitle canonical show title
+     * @param season Netflix container number
+     * @param episodeTitle Netflix episode title
+     * @return cached episode position, if present
+     */
+    public Optional<WatchProgress> getEpisode(String showTitle, int season, String episodeTitle) {
+        Path entry = entry(episodeKey(showTitle, season, episodeTitle));
+        if (!Files.isRegularFile(entry)) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(mapper.readValue(entry.toFile(), WatchProgress.class));
+        } catch (IOException exception) {
+            throw new IllegalStateException("Unable to read metadata cache entry " + entry, exception);
+        }
+    }
+
+    /**
+     * Persists a resolved episode position for a show, season, and episode title.
+     *
+     * @param showTitle canonical show title
+     * @param season Netflix container number
+     * @param episodeTitle Netflix episode title
+     * @param progress resolved episode position to persist
+     */
+    public void putEpisode(String showTitle, int season, String episodeTitle, WatchProgress progress) {
+        try {
+            Files.createDirectories(directory);
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(entry(episodeKey(showTitle, season, episodeTitle)).toFile(), progress);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Unable to write metadata cache", exception);
+        }
+    }
+
+    /** Builds a stable composite key distinguishing episode entries from title entries. */
+    private static String episodeKey(String showTitle, int season, String episodeTitle) {
+        return "episode::" + showTitle + "::" + season + "::" + episodeTitle;
+    }
+
+    /** Resolves the safe cache-file path for a title or composite key. */
     private Path entry(String title) {
         return directory.resolve(hash(title) + ".json");
     }
