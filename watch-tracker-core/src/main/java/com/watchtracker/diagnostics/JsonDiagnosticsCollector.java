@@ -3,6 +3,7 @@ package com.watchtracker.diagnostics;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,7 +16,8 @@ public class JsonDiagnosticsCollector implements DiagnosticsCollector {
 
     private final List<DiagnosticsEntry> entries = new ArrayList<>();
     private final ObjectMapper mapper =
-            new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
+            new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module())
+                    .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     @Override
     public void record(DiagnosticsEntry entry) {

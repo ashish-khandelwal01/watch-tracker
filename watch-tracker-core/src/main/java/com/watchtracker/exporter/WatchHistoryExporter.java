@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.watchtracker.diagnostics.DiagnosticsCollector;
 import com.watchtracker.diagnostics.DiagnosticsStage;
 import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
@@ -20,7 +21,8 @@ import org.apache.commons.csv.CSVPrinter;
 /** Exports show aggregates as portable JSON. */
 public final class WatchHistoryExporter {
     private final ObjectMapper mapper =
-            new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module());
+            new ObjectMapper().registerModule(new JavaTimeModule()).registerModule(new Jdk8Module())
+                    .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     private final DiagnosticsCollector diagnostics;
 
     public WatchHistoryExporter() {

@@ -2,6 +2,8 @@ package com.watchtracker.metadata;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.watchtracker.model.ShowType;
 import java.io.IOException;
 import java.net.URI;
@@ -39,7 +41,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      * @param apiReadAccessToken TMDb API Read Access Token
      */
     public TmdbMetadataProvider(String apiReadAccessToken) {
-        this(HttpClient.newHttpClient(), apiReadAccessToken, new ObjectMapper());
+        this(HttpClient.newHttpClient(), apiReadAccessToken, new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
     }
 
     /**

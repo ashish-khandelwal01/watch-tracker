@@ -4,12 +4,15 @@ import com.watchtracker.diagnostics.DiagnosticsCollector;
 import com.watchtracker.diagnostics.DiagnosticsStage;
 import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.model.Show;
+import com.watchtracker.model.ShowType;
 import com.watchtracker.model.WatchEvent;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 /** Enriches already-grouped shows without changing raw import data. */
@@ -86,31 +89,173 @@ public final class MetadataEnrichmentService {
 
     /** Reuses a previous result when nothing that could affect it has changed, else resolves fresh. */
     private EnrichedShow enrichOne(Show show, List<WatchEvent> events, PreviousEnrichmentSnapshot previous) {
-        return previous.find(show.id())
-                .filter(prior -> unchangedSincePrevious(show, prior.show()))
-                .map(prior -> new EnrichedShow(show, prior.metadata(), prior.progress()))
-                .orElseGet(() -> {
-                    Optional<ShowMetadata> metadata = provider.findByTitle(show.title());
-
-                    if (metadata.isPresent()) {
+        Optional<EnrichedShow> priorOpt = previous.find(show.id());
+        if (priorOpt.isPresent()) {
+            EnrichedShow prior = priorOpt.get();
+            if (unchangedSincePrevious(show, prior.show())) {
+                // If the prior snapshot contains no metadata AND no resolved progress, resolve fresh.
+                if (prior.metadata().isEmpty() && prior.progress().isEmpty()) {
+                    diagnostics.info(
+                            DiagnosticsStage.METADATA_PROVIDER,
+                            show.title(),
+                            "Previous snapshot present and unchanged but missing metadata and progress; resolving fresh");
+                } else {
+                    // Emit diagnostics for cached metadata so diagnostics output reflects reused data.
+                    if (prior.metadata().isPresent()) {
+                        ShowMetadata md = prior.metadata().get();
                         diagnostics.success(
                                 DiagnosticsStage.METADATA_PROVIDER,
                                 show.title(),
-                                "Matched metadata",
+                                "Reused cached metadata",
                                 null,
-                                java.util.Map.of(
-                                        "provider",
-                                        metadata.get().provider(),
-                                        "id",
-                                        metadata.get().providerId()));
+                                java.util.Map.of("provider", md.provider(), "id", md.providerId()));
                     } else {
-                        diagnostics.failure(
-                                DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
+                        diagnostics.failure(DiagnosticsStage.METADATA_PROVIDER, show.title(), "No cached metadata");
                     }
 
-                    Optional<WatchProgress> progress = highestProgress(show, events);
-                    return new EnrichedShow(show, metadata, progress);
-                });
+                    // Emit diagnostics for cached resolved progress when present.
+                    if (prior.progress().isPresent()) {
+                        WatchProgress wp = prior.progress().get();
+                        diagnostics.success(
+                                DiagnosticsStage.PROGRESS_BUILDER,
+                                show.title(),
+                                "Reused cached highest resolved progress",
+                                null,
+                                java.util.Map.of(
+                                        "season", wp.season(), "episode", wp.episode(), "provider", wp.provider()));
+                    }
+
+                    return new EnrichedShow(show, prior.metadata(), prior.progress());
+                }
+            } else {
+                // Explain why the prior snapshot was not reused for easier debugging.
+                diagnostics.info(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Previous snapshot present but show data changed; resolving fresh");
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Previous vs current",
+                        java.util.Map.of(
+                                "previousHighestSeason",
+                                prior.show().highestSeasonSeen(),
+                                "previousHighestEpisode",
+                                prior.show().highestEpisodeSeen(),
+                                "previousWatchCount",
+                                prior.show().watchCount(),
+                                "previousAliases",
+                                prior.show().aliases()),
+                        java.util.Map.of(
+                                "currentHighestSeason",
+                                show.highestSeasonSeen(),
+                                "currentHighestEpisode",
+                                show.highestEpisodeSeen(),
+                                "currentWatchCount",
+                                show.watchCount(),
+                                "currentAliases",
+                                show.aliases()));
+            }
+        }
+
+        // Fall through to fresh resolution when no prior snapshot or it differed.
+        String originalTitle = show.title();
+        boolean matchedAfterStrip = false;
+        Optional<ShowMetadata> metadata = Optional.empty();
+
+        // First, consult the persistent cache only (if available) for the original and stripped titles.
+        if (provider instanceof CachingMetadataProvider cmp) {
+            metadata = cmp.getFromCache(originalTitle);
+            if (metadata.isEmpty() && originalTitle.toLowerCase(Locale.ROOT).contains("limited series")) {
+                String cleaned = stripLimitedSeries(originalTitle);
+                if (!cleaned.isBlank() && !cleaned.equals(originalTitle)) {
+                    metadata = cmp.getFromCache(cleaned);
+                    if (metadata.isPresent()) {
+                        matchedAfterStrip = true;
+                    }
+                }
+            }
+        }
+
+        // If the cache had no entry, fall back to the provider which will consult cache and delegate.
+        if (metadata.isEmpty()) {
+            metadata = provider.findByTitle(originalTitle);
+            if (metadata.isEmpty() && originalTitle.toLowerCase(Locale.ROOT).contains("limited series")) {
+                String cleaned = stripLimitedSeries(originalTitle);
+                if (!cleaned.isBlank() && !cleaned.equals(originalTitle)) {
+                    metadata = provider.findByTitle(cleaned);
+                    matchedAfterStrip = metadata.isPresent();
+                }
+            }
+        }
+
+        if (metadata.isPresent()) {
+            if (matchedAfterStrip) {
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Matched metadata after stripping 'Limited Series'",
+                        null,
+                        java.util.Map.of(
+                                "provider",
+                                metadata.get().provider(),
+                                "id",
+                                metadata.get().providerId(),
+                                "searchedTitle",
+                                stripLimitedSeries(originalTitle)));
+            } else {
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Matched metadata",
+                        null,
+                        java.util.Map.of(
+                                "provider",
+                                metadata.get().provider(),
+                                "id",
+                                metadata.get().providerId()));
+            }
+        } else {
+            diagnostics.failure(DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
+        }
+
+        Optional<WatchProgress> progress = highestProgress(show, events);
+        // If metadata present, prefer provider type; if provider marks as SERIES but title/aliases
+        // contain 'Limited Series', treat it as LIMITED_SERIES.
+        Show finalShow = show;
+        if (metadata.isPresent()) {
+            ShowMetadata md = metadata.get();
+            ShowType mdType = md.type();
+            boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
+                    || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
+            boolean hasDocumentaryGenre = md.genres().stream()
+                        .filter(g -> g != null)
+                        .anyMatch(g -> g.toLowerCase(Locale.ROOT).contains("documentary"));
+            if (hasDocumentaryGenre) {
+                mdType = ShowType.DOCUMENTARY;
+            } else if (mdType == ShowType.SERIES && hasLimited) {
+                mdType = ShowType.LIMITED_SERIES;
+            }
+            finalShow = new Show(
+                    show.id(),
+                    show.title(),
+                    show.aliases(),
+                    mdType,
+                    show.firstWatched(),
+                    show.lastWatched(),
+                    show.highestSeasonSeen(),
+                    show.highestEpisodeSeen(),
+                    show.watchCount());
+        }
+        return new EnrichedShow(finalShow, metadata, progress);
+
+    }
+
+    private static final Pattern LIMITED_SERIES_TRAILING = Pattern.compile("(?i)\\s*:?\\s*limited series\\b\\s*$");
+
+    private static String stripLimitedSeries(String title) {
+        if (title == null) return null;
+        return LIMITED_SERIES_TRAILING.matcher(title).replaceAll("").trim();
     }
 
     /** True when nothing that could affect provider resolution has changed since the previous run. */
@@ -134,8 +279,11 @@ public final class MetadataEnrichmentService {
                 .toList();
 
         Optional<WatchProgress> bestNumbered = showEvents.stream()
-                .filter(event -> event.season() != null && event.episode() != null)
-                .map(event -> new WatchProgress(event.season(), event.episode(), "NETFLIX"))
+                .filter(event -> event.episode() != null)
+                .map(event -> {
+                    int season = event.season() != null ? event.season() : 1;
+                    return new WatchProgress(season, event.episode(), "NETFLIX");
+                })
                 .max(WatchProgress::compareTo);
 
         if (bestNumbered.isPresent()) {

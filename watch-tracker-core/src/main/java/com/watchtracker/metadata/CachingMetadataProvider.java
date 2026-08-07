@@ -37,6 +37,18 @@ public final class CachingMetadataProvider implements MetadataProvider {
     }
 
     /**
+     * Returns cached metadata for a title without calling the delegate provider.
+     * This allows callers to consult the persistent cache for multiple candidate keys
+     * before triggering any external lookup.
+     *
+     * @param title canonical title used as the cache key
+     * @return cached metadata, if present
+     */
+    public Optional<ShowMetadata> getFromCache(String title) {
+        return cache.get(title);
+    }
+
+    /**
      * Finds an episode position from the cache or its delegated provider. Providers also cache
      * their episode guides in memory during a single run, but this persists the resolved result so
      * a later run against the same history never repeats the provider lookup at all.

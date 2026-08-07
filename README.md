@@ -105,7 +105,7 @@ Example diagnostics output for a show:
       "stage": "CSV_PARSER",
       "output": {
         "title": "Money Heist: Part 3: Episode 5",
-        "date": [2024, 2, 2, 0, 0]
+        "date": "2024-02-02T00:00:00"
       }
     },
     {

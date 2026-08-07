@@ -2,6 +2,8 @@ package com.watchtracker.metadata;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.watchtracker.model.ShowType;
 import java.io.IOException;
 import java.net.URI;
@@ -33,7 +35,7 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
 
     /** Creates a provider using Java's standard HTTP client. */
     public TvMazeMetadataProvider() {
-        this(HttpClient.newHttpClient(), new ObjectMapper());
+        this(HttpClient.newHttpClient(), new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
     }
 
     /**
