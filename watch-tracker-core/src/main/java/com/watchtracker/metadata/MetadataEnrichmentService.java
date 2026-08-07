@@ -229,8 +229,8 @@ public final class MetadataEnrichmentService {
             boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
                     || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
             boolean hasDocumentaryGenre = md.genres().stream()
-                        .filter(g -> g != null)
-                        .anyMatch(g -> g.toLowerCase(Locale.ROOT).contains("documentary"));
+                    .filter(g -> g != null)
+                    .anyMatch(g -> g.toLowerCase(Locale.ROOT).contains("documentary"));
             if (hasDocumentaryGenre) {
                 mdType = ShowType.DOCUMENTARY;
             } else if (mdType == ShowType.SERIES && hasLimited) {
@@ -300,15 +300,20 @@ public final class MetadataEnrichmentService {
         }
 
         Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
-                .peek(named -> {
-                    Optional<WatchProgress> resolved =
-                            provider.resolveEpisode(show.title(), named.season(), named.episodeTitle());
+                .map(named -> {
+                    Optional<WatchProgress> resolved = named.season() != null
+                            ? provider.resolveEpisode(show.title(), named.season(), named.episodeTitle())
+                            : provider.resolveEpisodeAnySeason(show.title(), named.episodeTitle());
+                    java.util.Map<String, Object> searched = named.season() != null
+                            ? java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle())
+                            : java.util.Map.of(
+                            "season", "any", "episodeTitle", named.episodeTitle());
                     if (resolved.isPresent()) {
                         diagnostics.success(
                                 DiagnosticsStage.EPISODE_RESOLVER,
                                 show.title(),
                                 "Episode title resolved",
-                                java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle()),
+                                searched,
                                 java.util.Map.of(
                                         "season",
                                         resolved.get().season(),
@@ -318,30 +323,32 @@ public final class MetadataEnrichmentService {
                                         resolved.get().provider()));
                     } else {
                         diagnostics.failure(
-                                DiagnosticsStage.EPISODE_RESOLVER,
-                                show.title(),
-                                "Episode title not found",
-                                java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle()));
+                                DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
                     }
+                    return resolved;
                 })
-                .map(named -> provider.resolveEpisode(show.title(), named.season(), named.episodeTitle()))
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);
 
         return Stream.of(bestNumbered, bestNamed).flatMap(Optional::stream).max(WatchProgress::compareTo);
     }
 
-    /** Collapses events sharing a season and episode title so each is only resolved once. */
+    /**
+     * Collapses events sharing an episode title so each is only resolved once. Events whose
+     * season could not be normalized (the source title carried no season or container marker) are
+     * still included with a {@code null} season, so they are resolved via {@link
+     * MetadataProvider#resolveEpisodeAnySeason} instead of being silently dropped.
+     */
     private static Set<NamedEpisode> uniqueNamedEpisodes(List<WatchEvent> showEvents) {
         Set<NamedEpisode> unique = new LinkedHashSet<>();
         for (WatchEvent event : showEvents) {
-            if (event.season() != null && event.episode() == null && event.episodeTitle() != null) {
+            if (event.episode() == null && event.episodeTitle() != null) {
                 unique.add(new NamedEpisode(event.season(), event.episodeTitle()));
             }
         }
         return unique;
     }
 
-    /** A distinct season and named-episode-title pair awaiting provider resolution. */
-    private record NamedEpisode(int season, String episodeTitle) {}
+    /** A distinct named-episode-title pair awaiting provider resolution, with an optional season. */
+    private record NamedEpisode(Integer season, String episodeTitle) {}
 }

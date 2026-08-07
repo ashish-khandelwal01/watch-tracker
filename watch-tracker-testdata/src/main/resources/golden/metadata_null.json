@@ -38,9 +38,9 @@
             "id": "eece3028-137a-3b3e-8057-b49c45c17b4f",
             "title": "DreamWorks Kung Fu Panda Awesome Secrets",
             "aliases": [
-                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five",
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters",
                 "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets",
-                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters"
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five"
             ],
             "type": "UNKNOWN",
             "firstWatched": "2022-12-15T00:00:00",
@@ -51,5 +51,91 @@
         },
         "metadata": null,
         "progress": null
+    },
+    {
+        "show": {
+            "id": "0f007166-6d4e-3ea9-ba7f-842d9a652f15",
+            "title": "Stranger Things: Stranger Things 4",
+            "aliases": [
+                "Stranger Things: Stranger Things 4: Chapter Nine: The Piggyback",
+                "Stranger Things: Stranger Things 4: Chapter Seven: The Massacre at Hawkins Lab",
+                "Stranger Things: Stranger Things 4: Chapter Five: The Nina Project",
+                "Stranger Things: Stranger Things 4: Chapter Two: Vecna's Curse",
+                "Stranger Things: Stranger Things 4: Chapter Three: The Monster and the Superhero",
+                "Stranger Things: Stranger Things 4: Chapter Four: Dear Billy",
+                "Stranger Things: Stranger Things 4: Chapter One: The Hellfire Club",
+                "Stranger Things: Stranger Things 4: Chapter Six: The Dive",
+                "Stranger Things: Stranger Things 4: Chapter Eight: Papa"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2022-05-27T00:00:00",
+            "lastWatched": "2022-07-01T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 9,
+            "watchCount": 9
+        },
+        "metadata": null,
+        "progress": {
+            "season": 1,
+            "episode": 9,
+            "provider": "NETFLIX"
+        }
+    },
+    {
+        "show": {
+            "id": "55497887-7851-3f35-ac4c-4ebc10276554",
+            "title": "Stranger Things: Stranger Things 3",
+            "aliases": [
+                "Stranger Things: Stranger Things 3: Chapter Four: The Sauna Test",
+                "Stranger Things: Stranger Things 3: Chapter Five: The Flayed",
+                "Stranger Things: Stranger Things 3: Chapter Eight: The Battle of Starcourt",
+                "Stranger Things: Stranger Things 3: Chapter Three: The Case of the Missing Lifeguard",
+                "Stranger Things: Stranger Things 3: Chapter Two: The Mall Rats",
+                "Stranger Things: Stranger Things 3: Chapter Seven: The Bite",
+                "Stranger Things: Stranger Things 3: Chapter Six: E Pluribus Unum",
+                "Stranger Things: Stranger Things 3: Chapter One: Suzie, Do You Copy?"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2022-05-24T00:00:00",
+            "lastWatched": "2022-05-25T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 8,
+            "watchCount": 8
+        },
+        "metadata": null,
+        "progress": {
+            "season": 1,
+            "episode": 8,
+            "provider": "NETFLIX"
+        }
+    },
+    {
+        "show": {
+            "id": "4cabc1e4-9c04-3b32-9ae7-83ab7b51ee54",
+            "title": "Stranger Things: Stranger Things 2",
+            "aliases": [
+                "Stranger Things: Stranger Things 2: Chapter Six: The Spy",
+                "Stranger Things: Stranger Things 2: Chapter Three: The Pollywog",
+                "Stranger Things: Stranger Things 2: Chapter Four: Will the Wise",
+                "Stranger Things: Stranger Things 2: Chapter One: MADMAX",
+                "Stranger Things: Stranger Things 2: Chapter Two: Trick or Treat, Freak",
+                "Stranger Things: Stranger Things 2: Chapter Seven: The Lost Sister",
+                "Stranger Things: Stranger Things 2: Chapter Five: Dig Dug",
+                "Stranger Things: Stranger Things 2: Chapter Nine: The Gate",
+                "Stranger Things: Stranger Things 2: Chapter Eight: The Mind Flayer"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2022-05-21T00:00:00",
+            "lastWatched": "2022-05-23T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 9,
+            "watchCount": 9
+        },
+        "metadata": null,
+        "progress": {
+            "season": 1,
+            "episode": 9,
+            "provider": "NETFLIX"
+        }
     }
 ]
