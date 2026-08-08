@@ -189,43 +189,10 @@ public final class MetadataEnrichmentService {
             }
         }
 
-        if (metadata.isPresent()) {
-            if (matchedAfterStrip) {
-                diagnostics.success(
-                        DiagnosticsStage.METADATA_PROVIDER,
-                        show.title(),
-                        "Matched metadata after stripping 'Limited Series'",
-                        null,
-                        java.util.Map.of(
-                                "provider",
-                                metadata.get().provider(),
-                                "id",
-                                metadata.get().providerId(),
-                                "searchedTitle",
-                                stripLimitedSeries(originalTitle)));
-            } else {
-                diagnostics.success(
-                        DiagnosticsStage.METADATA_PROVIDER,
-                        show.title(),
-                        "Matched metadata",
-                        null,
-                        java.util.Map.of(
-                                "provider",
-                                metadata.get().provider(),
-                                "id",
-                                metadata.get().providerId()));
-            }
-        } else {
-            diagnostics.failure(DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
-        }
-
-        Optional<WatchProgress> progress = highestProgress(show, events);
-        // If metadata present, prefer provider type; if provider marks as SERIES but title/aliases
-        // contain 'Limited Series', treat it as LIMITED_SERIES.
-        Show finalShow = show;
+        ShowType mdType = show.type();
         if (metadata.isPresent()) {
             ShowMetadata md = metadata.get();
-            ShowType mdType = md.type();
+            mdType = md.type();
             boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
                     || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
             boolean hasDocumentaryGenre = md.genres().stream()
@@ -236,6 +203,41 @@ public final class MetadataEnrichmentService {
             } else if (mdType == ShowType.SERIES && hasLimited) {
                 mdType = ShowType.LIMITED_SERIES;
             }
+            if (matchedAfterStrip) {
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Matched metadata after stripping 'Limited Series'",
+                        null,
+                        java.util.Map.of(
+                                "provider",
+                                md.provider(),
+                                "id",
+                                md.providerId(),
+                                "searchedTitle",
+                                stripLimitedSeries(originalTitle)));
+            } else {
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Matched metadata",
+                        null,
+                        java.util.Map.of(
+                                "provider",
+                                md.provider(),
+                                "id",
+                                md.providerId()));
+            }
+        } else {
+            diagnostics.failure(DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
+        }
+
+        ShowType progressType = (mdType == ShowType.DOCUMENTARY && metadata.isPresent() && metadata.get().type() == ShowType.MOVIE)
+                ? ShowType.MOVIE
+                : mdType;
+        Optional<WatchProgress> progress = highestProgress(show, events, progressType, metadata);
+        Show finalShow = show;
+        if (metadata.isPresent()) {
             finalShow = new Show(
                     show.id(),
                     show.title(),
@@ -273,16 +275,29 @@ public final class MetadataEnrichmentService {
      * provider lookup, so duplicate rows (rewatches, autoplay re-entries, etc.) are collapsed to one
      * lookup per distinct (season, episode title) pair before any provider call is made.
      */
-    private Optional<WatchProgress> highestProgress(Show show, List<WatchEvent> events) {
+    private Optional<WatchProgress> highestProgress(Show show, List<WatchEvent> events, ShowType resolvedType, Optional<ShowMetadata> metadata) {
+        if (resolvedType == ShowType.MOVIE) {
+            List<WatchEvent> showEvents = events.stream()
+                    .filter(event -> show.title().equals(event.canonicalShow()))
+                    .toList();
+            if (!showEvents.isEmpty()) {
+                String providerName = metadata.isPresent() ? metadata.get().provider() : "NETFLIX";
+                return Optional.of(new WatchProgress(ShowType.MOVIE, null, null, providerName, com.watchtracker.model.WatchStatus.COMPLETED));
+            }
+            return Optional.empty();
+        }
+
         List<WatchEvent> showEvents = events.stream()
                 .filter(event -> show.title().equals(event.canonicalShow()))
                 .toList();
+
+        ShowType progType = (resolvedType == null || resolvedType == ShowType.UNKNOWN) ? ShowType.SERIES : resolvedType;
 
         Optional<WatchProgress> bestNumbered = showEvents.stream()
                 .filter(event -> event.episode() != null)
                 .map(event -> {
                     int season = event.season() != null ? event.season() : 1;
-                    return new WatchProgress(season, event.episode(), "NETFLIX");
+                    return new WatchProgress(progType, season, event.episode(), "NETFLIX", com.watchtracker.model.WatchStatus.UNKNOWN);
                 })
                 .max(WatchProgress::compareTo);
 
@@ -309,6 +324,8 @@ public final class MetadataEnrichmentService {
                             : java.util.Map.of(
                             "season", "any", "episodeTitle", named.episodeTitle());
                     if (resolved.isPresent()) {
+                        WatchProgress wp = resolved.get();
+                        WatchProgress updated = new WatchProgress(progType, wp.season(), wp.episode(), wp.provider(), wp.status());
                         diagnostics.success(
                                 DiagnosticsStage.EPISODE_RESOLVER,
                                 show.title(),
@@ -316,16 +333,17 @@ public final class MetadataEnrichmentService {
                                 searched,
                                 java.util.Map.of(
                                         "season",
-                                        resolved.get().season(),
+                                        updated.season(),
                                         "episode",
-                                        resolved.get().episode(),
+                                        updated.episode(),
                                         "provider",
-                                        resolved.get().provider()));
+                                        updated.provider()));
+                        return Optional.of(updated);
                     } else {
                         diagnostics.failure(
                                 DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
+                        return Optional.<WatchProgress>empty();
                     }
-                    return resolved;
                 })
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);

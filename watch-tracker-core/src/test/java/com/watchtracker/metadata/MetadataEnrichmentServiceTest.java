@@ -491,6 +491,91 @@ class MetadataEnrichmentServiceTest {
         assertThat(provider.anySeasonCalls).isZero();
     }
 
+    @Test
+    void resolvesMovieWatchProgressWhenMovieIsWatched() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Inception",
+                Set.of(),
+                ShowType.MOVIE,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Inception",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Inception",
+                null,
+                null,
+                null,
+                true);
+        ShowMetadata movieMetadata =
+                new ShowMetadata("TMDB", 27205, "Inception", ShowType.MOVIE, List.of("Sci-Fi"), null, null, null);
+        MetadataProvider provider = title -> Optional.of(movieMetadata);
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.show().type()).isEqualTo(ShowType.MOVIE);
+        assertThat(result.progress()).isPresent();
+        WatchProgress progress = result.progress().get();
+        assertThat(progress.type()).isEqualTo(ShowType.MOVIE);
+        assertThat(progress.season()).isNull();
+        assertThat(progress.episode()).isNull();
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.WatchStatus.COMPLETED);
+    }
+
+    @Test
+    void propagatesSpecificShowTypeToWatchProgress() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Chernobyl",
+                Set.of("Chernobyl: Episode 1"),
+                ShowType.LIMITED_SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                1,
+                1,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Chernobyl: Episode 1",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Chernobyl",
+                1,
+                1,
+                "1:23:45",
+                true);
+        ShowMetadata metadata =
+                new ShowMetadata("TMDB", 87108, "Chernobyl", ShowType.LIMITED_SERIES, List.of("Drama"), null, null, null);
+        MetadataProvider provider = title -> Optional.of(metadata);
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.show().type()).isEqualTo(ShowType.LIMITED_SERIES);
+        assertThat(result.progress()).isPresent();
+        assertThat(result.progress().get().type()).isEqualTo(ShowType.LIMITED_SERIES);
+    }
+
+    @Test
+    void supportsUnknownShowTypeInWatchProgressAndChecksCompareToConsistency() {
+        WatchProgress wp1 = new WatchProgress(ShowType.UNKNOWN, 1, 1, "TMDB");
+        WatchProgress wp2 = new WatchProgress(ShowType.UNKNOWN, 1, 1, "TMDB");
+        WatchProgress wp3 = new WatchProgress(ShowType.UNKNOWN, 1, 2, "TMDB");
+
+        assertThat(wp1.compareTo(wp2)).isZero();
+        assertThat(wp1.compareTo(wp3)).isNegative();
+        assertThat(wp1.type()).isEqualTo(ShowType.UNKNOWN);
+    }
+
     /** A provider that returns fixed results while counting how many times each method is called. */
     private static final class RecordingProvider implements MetadataProvider {
         private final Optional<ShowMetadata> metadataToReturn;

@@ -1,0 +1,1491 @@
+[
+    {
+        "show": {
+            "id": "c2af70d8-073a-3fce-9b64-bedd8bf9dd92",
+            "title": "Chicago PD",
+            "aliases": [
+                "Chicago PD: Season 1: Stepping Stone"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2026-08-01T00:00:00",
+            "lastWatched": "2026-08-01T00:00:00",
+            "highestSeasonSeen": 1,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 58841,
+            "title": "Chicago P.D.",
+            "type": "SERIES",
+            "genres": [
+                "Crime",
+                "Drama"
+            ],
+            "overview": "A riveting police drama about the men and women of the Chicago Police Department's District 21 who put it all on the line to serve and protect their community. District 21 is made up of two distinctly different groups: the uniformed cops who patrol the beat and go head-to-head with the city's street crimes and the Intelligence Unit that combats the city's major offenses - organized crime, drug trafficking, high profile murders and beyond.",
+            "posterPath": "/bez40PgT36RUu4gstD2A6GSM0tP.jpg",
+            "releaseDate": "2014-01-08"
+        },
+        "progress": {
+            "type": "SERIES",
+            "season": 1,
+            "episode": 1,
+            "provider": "TMDB",
+            "status": "UNKNOWN"
+        }
+    },
+    {
+        "show": {
+            "id": "99594ea7-bd02-3fab-b745-b81b989fcab4",
+            "title": "Gabriel Iglesias",
+            "aliases": [
+                "Gabriel Iglesias: Legend of Fluffy",
+                "Gabriel Iglesias: Stadium Fluffy"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-12-08T00:00:00",
+            "lastWatched": "2025-10-05T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 185440,
+            "title": "Gabriel Iglesias: Aloha Fluffy",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "TV Movie"
+            ],
+            "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
+            "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
+            "releaseDate": "2013-04-13"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
+            "title": "Matt Rife",
+            "aliases": [
+                "Matt Rife: Natural Selection",
+                "Matt Rife: Lucid - A Crowd Work Special"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-04-08T00:00:00",
+            "lastWatched": "2024-11-22T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1296221,
+            "title": "Matt Rife: Only Fans",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "Comedian Matt Rife discusses his world of deceptive good looks, women and even a charismatic perspective of the world's more pressing topics.",
+            "posterPath": "/w6t5LTUA6Vq3AQ061Wl6ORes6EC.jpg",
+            "releaseDate": "2021-12-17"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "eb632e99-1b64-31be-a504-27a182277a60",
+            "title": "House, M.D.",
+            "aliases": [
+                "House, M.D.: Season 5: House Divided",
+                "House, M.D.: Season 8: Chase",
+                "House, M.D.: Season 2: All In",
+                "House, M.D.: Season 4: Ugly",
+                "House, M.D.: Season 5: Locked In",
+                "House, M.D.: Season 1: Pilot",
+                "House, M.D.: Season 4: No More Mr. Nice Guy",
+                "House, M.D.: Season 2: Distractions",
+                "House, M.D.: Season 5: Painless",
+                "House, M.D.: Season 1: Honeymoon",
+                "House, M.D.: Season 2: House vs. God",
+                "House, M.D.: Season 2: The Mistake",
+                "House, M.D.: Season 1: Kids",
+                "House, M.D.: Season 5: Not Cancer",
+                "House, M.D.: Season 2: Need to Know",
+                "House, M.D.: Season 3: Resignation",
+                "House, M.D.: Season 6: Known Unknowns",
+                "House, M.D.: Season 6: Broken: Part 1",
+                "House, M.D.: Season 6: Broken: Part 2",
+                "House, M.D.: Season 2: Sex Kills",
+                "House, M.D.: Season 1: Maternity",
+                "House, M.D.: Season 7: Family Practice",
+                "House, M.D.: Season 5: Let Them Eat Cake",
+                "House, M.D.: Season 3: Cane and Able",
+                "House, M.D.: Season 2: Euphoria: Part 1",
+                "House, M.D.: Season 2: Euphoria: Part 2",
+                "House, M.D.: Season 2: Safe",
+                "House, M.D.: Season 2: Skin Deep",
+                "House, M.D.: Season 4: Alone",
+                "House, M.D.: Season 7: Unwritten",
+                "House, M.D.: Season 2: No Reason",
+                "House, M.D.: Season 1: Sports Medicine",
+                "House, M.D.: Season 4: You Don't Want to Know",
+                "House, M.D.: Season 1: Histories",
+                "House, M.D.: Season 5: Big Baby",
+                "House, M.D.: Season 3: Meaning",
+                "House, M.D.: Season 6: The Choice",
+                "House, M.D.: Season 3: Informed Consent",
+                "House, M.D.: Season 2: Acceptance",
+                "House, M.D.: Season 2: Autopsy",
+                "House, M.D.: Season 2: Forever",
+                "House, M.D.: Season 6: Moving the Chains",
+                "House, M.D.: Season 6: Baggage",
+                "House, M.D.: Season 3: Fools for Love",
+                "House, M.D.: Season 4: It's a Wonderful Lie",
+                "House, M.D.: Season 3: Act Your Age",
+                "House, M.D.: Season 5: Simple Explanation",
+                "House, M.D.: Season 2: Deception",
+                "House, M.D.: Season 7: Massage Therapy",
+                "House, M.D.: Season 1: Detox",
+                "House, M.D.: Season 5: Adverse Events",
+                "House, M.D.: Season 2: Hunting",
+                "House, M.D.: Season 1: Poison",
+                "House, M.D.: Season 7: Now What?",
+                "House, M.D.: Season 7: A Pox on Our House",
+                "House, M.D.: Season 4: Whatever It Takes",
+                "House, M.D.: Season 5: The Social Contract",
+                "House, M.D.: Season 3: Airborne",
+                "House, M.D.: Season 3: Son of a Coma Guy",
+                "House, M.D.: Season 5: The Softer Side",
+                "House, M.D.: Season 5: Both Sides Now",
+                "House, M.D.: Season 2: Sleeping Dogs Lie",
+                "House, M.D.: Season 5: The Greater Good",
+                "House, M.D.: Season 6: Private Lives",
+                "House, M.D.: Season 5: Joy to the World",
+                "House, M.D.: Season 5: Under My Skin",
+                "House, M.D.: Season 3: Fetal Position",
+                "House, M.D.: Season 3: House Training",
+                "House, M.D.: Season 6: The Tyrant",
+                "House, M.D.: Season 1: Cursed",
+                "House, M.D.: Season 4: The Right Stuff",
+                "House, M.D.: Season 5: Joy",
+                "House, M.D.: Season 4: Don't Ever Change",
+                "House, M.D.: Season 3: Finding Judas",
+                "House, M.D.: Season 2: TB or Not TB",
+                "House, M.D.: Season 3: Words and Deeds",
+                "House, M.D.: Season 3: One Day, One Room",
+                "House, M.D.: Season 3: Family",
+                "House, M.D.: Season 3: Merry Little Christmas",
+                "House, M.D.: Season 3: Human Error",
+                "House, M.D.: Season 1: Fidelity",
+                "House, M.D.: Season 1: Love Hurts",
+                "House, M.D.: Season 1: Occam's Razor",
+                "House, M.D.: Season 1: Heavy",
+                "House, M.D.: Season 3: Que Sera Sera",
+                "House, M.D.: Season 5: Dying Changes Everything",
+                "House, M.D.: Season 3: Lines in the Sand",
+                "House, M.D.: Season 2: Who's Your Daddy?",
+                "House, M.D.: Season 4: 97 Seconds",
+                "House, M.D.: Season 1: Mob Rules",
+                "House, M.D.: Season 3: Half-Wit",
+                "House, M.D.: Season 5: Here Kitty",
+                "House, M.D.: Season 4: House's Head",
+                "House, M.D.: Season 6: Help Me",
+                "House, M.D.: Season 1: Control",
+                "House, M.D.: Season 1: Three Stories",
+                "House, M.D.: Season 3: Insensitive",
+                "House, M.D.: Season 1: Paternity",
+                "House, M.D.: Season 5: Last Resort",
+                "House, M.D.: Season 6: Open and Shut",
+                "House, M.D.: Season 4: Living the Dream",
+                "House, M.D.: Season 2: Daddy's Boy",
+                "House, M.D.: Season 1: Damned If You Do",
+                "House, M.D.: Season 5: Birthmarks",
+                "House, M.D.: Season 4: Guardian Angels",
+                "House, M.D.: Season 6: Ignorance Is Bliss",
+                "House, M.D.: Season 6: 5 to 9",
+                "House, M.D.: Season 7: Small Sacrifices",
+                "House, M.D.: Season 1: Role Model",
+                "House, M.D.: Season 6: Remorse",
+                "House, M.D.: Season 6: Teamwork",
+                "House, M.D.: Season 6: Brave Heart",
+                "House, M.D.: Season 3: Whac-A-Mole",
+                "House, M.D.: Season 7: Two Stories",
+                "House, M.D.: Season 3: Top Secret",
+                "House, M.D.: Season 7: Carrot or Stick",
+                "House, M.D.: Season 6: Wilson",
+                "House, M.D.: Season 2: Humpty Dumpty",
+                "House, M.D.: Season 4: Wilson's Heart",
+                "House, M.D.: Season 6: Knight Fall",
+                "House, M.D.: Season 5: The Itch",
+                "House, M.D.: Season 5: Saviors",
+                "House, M.D.: Season 6: The Down Low",
+                "House, M.D.: Season 7: You Must Remember This",
+                "House, M.D.: Season 6: Lockdown",
+                "House, M.D.: Season 7: Office Politics",
+                "House, M.D.: Season 4: Mirror Mirror",
+                "House, M.D.: Season 7: Unplanned Parenthood",
+                "House, M.D.: Season 4: Frozen",
+                "House, M.D.: Season 5: Emancipation",
+                "House, M.D.: Season 5: Unfaithful",
+                "House, M.D.: Season 7: Selfish",
+                "House, M.D.: Season 6: Instant Karma",
+                "House, M.D.: Season 1: The Socratic Method",
+                "House, M.D.: Season 7: Larger than Life",
+                "House, M.D.: Season 2: Clueless",
+                "House, M.D.: Season 1: Babies and Bathwater",
+                "House, M.D.: Season 6: Black Hole",
+                "House, M.D.: Season 2: Spin",
+                "House, M.D.: Season 4: Games",
+                "House, M.D.: Season 3: Needle in a Haystack",
+                "House, M.D.: Season 3: The Jerk",
+                "House, M.D.: Season 1: DNR",
+                "House, M.D.: Season 2: Failure to Communicate",
+                "House, M.D.: Season 6: Epic Fail",
+                "House, M.D.: Season 5: Lucky Thirteen"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2024-02-13T00:00:00",
+            "lastWatched": "2024-11-11T00:00:00",
+            "highestSeasonSeen": 8,
+            "highestEpisodeSeen": null,
+            "watchCount": 146
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1568278,
+            "title": "House M.D.: The Doctor Directs",
+            "type": "MOVIE",
+            "genres": [
+                "Documentary"
+            ],
+            "overview": "Hugh Laurie invites you onto the set of House M.D. for a behind-the-scenes look at the making of a landmark episode. Fans of the show are brought right into the very centre of the production, showcasing the complex challenges faced by the cast and crew, as well as the creativity that inspires the award-winning team on a daily basis.",
+            "posterPath": "/9YD8o7xuGUymr2ZFisTI0AKewBm.jpg",
+            "releaseDate": "2012-08-21"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "52ae6794-fd6d-3a73-8b9d-61a006fb5894",
+            "title": "Kalki 2898 AD (Hindi)",
+            "aliases": [
+                "Kalki 2898 AD (Hindi)"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-08-24T00:00:00",
+            "lastWatched": "2024-08-24T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 801688,
+            "title": "Kalki 2898-AD",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Action",
+                "Fantasy",
+                "Science Fiction"
+            ],
+            "overview": "In the year 2898 AD, around 6000 years after Kurukshetra war, Ashwatthama gears up for his final battle of redemption at the sign of hope in a dystopian world and Bhairava, a wisecracking and self-interested bounty hunter, tired of the perilous life becomes the hurdle in the process.",
+            "posterPath": "/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
+            "releaseDate": "2024-06-26"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "46fbc427-5422-3e10-9491-c5b1bf60ba12",
+            "title": "Indian 2",
+            "aliases": [
+                "Indian 2"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-08-20T00:00:00",
+            "lastWatched": "2024-08-20T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 552398,
+            "title": "Indian 2: Zero Tolerance",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Action",
+                "Thriller"
+            ],
+            "overview": "As corruption becomes rampant in the country, a group of idealistic youngsters attract attention of freedom fighter-turned-vigilante Senapathy through social media, who returns to his homeland to finish what he started.",
+            "posterPath": "/fPoiIfqmVfNYZRVUtfTSyuAj8Tw.jpg",
+            "releaseDate": "2024-07-12"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "a0276e22-4d8b-3fd8-9425-0f182033ee8e",
+            "title": "Kingsman",
+            "aliases": [
+                "Kingsman: The Secret Service",
+                "Kingsman: The Golden Circle"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-08-12T00:00:00",
+            "lastWatched": "2024-08-13T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207703,
+            "title": "Kingsman: The Secret Service",
+            "type": "MOVIE",
+            "genres": [
+                "Crime",
+                "Comedy",
+                "Action",
+                "Adventure"
+            ],
+            "overview": "The story of a super-secret spy organization that recruits an unrefined but promising street kid into the agency's ultra-competitive training program just as a global threat emerges from a twisted tech genius.",
+            "posterPath": "/17i5YPTfHOjXoieArpATWGRhLj1.jpg",
+            "releaseDate": "2015-01-24"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "d0583c0c-b3ac-336d-a52e-cb11db4aceea",
+            "title": "Beauty Inside: Limited Series",
+            "aliases": [
+                "Beauty Inside: Limited Series: Episode 5",
+                "Beauty Inside: Limited Series: Episode 6",
+                "Beauty Inside: Limited Series: Episode 7",
+                "Beauty Inside: Limited Series: Episode 8",
+                "Beauty Inside: Limited Series: Episode 9",
+                "Beauty Inside: Limited Series: Episode 10",
+                "Beauty Inside: Limited Series: Episode 11",
+                "Beauty Inside: Limited Series: Episode 12",
+                "Beauty Inside: Limited Series: Episode 13",
+                "Beauty Inside: Limited Series: Episode 14",
+                "Beauty Inside: Limited Series: Episode 15",
+                "Beauty Inside: Limited Series: Episode 16",
+                "Beauty Inside: Limited Series: Episode 1",
+                "Beauty Inside: Limited Series: Episode 2",
+                "Beauty Inside: Limited Series: Episode 3",
+                "Beauty Inside: Limited Series: Episode 4"
+            ],
+            "type": "LIMITED_SERIES",
+            "firstWatched": "2024-07-11T00:00:00",
+            "lastWatched": "2024-07-12T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 16,
+            "watchCount": 16
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 203572,
+            "title": "The Beauty Inside",
+            "type": "SERIES",
+            "genres": [
+                "Comedy",
+                "Drama"
+            ],
+            "overview": "The Beauty Inside (2022) is a Turkish romantic drama following Efsun, a small-town dermatologist from Gaziantep who is summoned to Istanbul by her estranged mother — a renowned plastic surgeon on her deathbed. Forced to take over the city's most prestigious aesthetic clinic, Efsun clashes with Emir, the charming surgeon son of her mother's business partner, who suspects her motives. Thrown together as neighbours and colleagues, their rivalry slowly transforms into something neither expected.",
+            "posterPath": "/2ljuDEUnjFsaP090hFIZhh51w9.jpg",
+            "releaseDate": "2022-06-07"
+        },
+        "progress": {
+            "type": "LIMITED_SERIES",
+            "season": 1,
+            "episode": 16,
+            "provider": "NETFLIX",
+            "status": "UNKNOWN"
+        }
+    },
+    {
+        "show": {
+            "id": "6a079712-90f3-33fe-b0c7-7aceaa2b2c75",
+            "title": "Shameless (U.S.)",
+            "aliases": [
+                "Shameless (U.S.): Season 1: Pilot"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2024-07-04T00:00:00",
+            "lastWatched": "2024-07-04T00:00:00",
+            "highestSeasonSeen": 1,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 34307,
+            "title": "Shameless",
+            "type": "SERIES",
+            "genres": [
+                "Drama",
+                "Comedy"
+            ],
+            "overview": "Chicagoan Frank Gallagher is the proud single dad of six smart, industrious, independent kids, who without him would be... perhaps better off. When Frank's not at the bar spending what little money they have, he's passed out on the floor. But the kids have found ways to grow up in spite of him. They may not be like any family you know, but they make no apologies for being exactly who they are.",
+            "posterPath": "/ifo31fMWLmyOVpdak9K0kY4jldQ.jpg",
+            "releaseDate": "2011-01-09"
+        },
+        "progress": {
+            "type": "SERIES",
+            "season": 1,
+            "episode": 1,
+            "provider": "TMDB",
+            "status": "UNKNOWN"
+        }
+    },
+    {
+        "show": {
+            "id": "b72a95cc-cdff-3935-83e8-93a2b4c729f8",
+            "title": "A Wednesday",
+            "aliases": [
+                "A Wednesday"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-05-27T00:00:00",
+            "lastWatched": "2024-05-27T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 19703,
+            "title": "A Wednesday!",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Thriller"
+            ],
+            "overview": "Prakash Rathod, a retired police commissioner recounts the most memorable case of his career wherein he was informed about a bomb scare in Mumbai by an ordinary commoner.",
+            "posterPath": "/gVUSxtJM3arL5VIUIRNYde20EF0.jpg",
+            "releaseDate": "2008-09-05"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "e33d1fe3-d518-3d49-b0c1-db8e820d89b1",
+            "title": "Laapataa Ladies",
+            "aliases": [
+                "Laapataa Ladies"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-05-24T00:00:00",
+            "lastWatched": "2024-05-24T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1163194,
+            "title": "Lost Ladies",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Drama",
+                "Romance"
+            ],
+            "overview": "In 2001, somewhere in rural India, two young brides get accidentally swapped on a train. In the ensuing chaos, they both encounter a host of colourful characters, resulting in hilarious and unexpected consequences.",
+            "posterPath": "/yXt07MYeiyQRzS69PMHy0BPjCGP.jpg",
+            "releaseDate": "2024-03-01"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "e87ca8be-f5be-304d-b620-ab54b0be230a",
+            "title": "The Accountant",
+            "aliases": [
+                "The Accountant"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-04-02T00:00:00",
+            "lastWatched": "2024-04-02T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 870028,
+            "title": "The Accountant²",
+            "type": "MOVIE",
+            "genres": [
+                "Mystery",
+                "Crime",
+                "Thriller"
+            ],
+            "overview": "When an old acquaintance is murdered, Wolff is compelled to solve the case. Realizing more extreme measures are necessary, Wolff recruits his estranged and highly lethal brother, Brax, to help. In partnership with Marybeth Medina, they uncover a deadly conspiracy, becoming targets of a ruthless network of killers who will stop at nothing to keep their secrets buried.",
+            "posterPath": "/lUvfTcOZiK0sdcX0WNLPbMyKjGm.jpg",
+            "releaseDate": "2025-04-23"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "d2e2b3b1-7721-32dc-a68f-99751358899b",
+            "title": "Tad, The Lost Explorer and the Emerald Tablet",
+            "aliases": [
+                "Tad, The Lost Explorer and the Emerald Tablet"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-03-03T00:00:00",
+            "lastWatched": "2024-03-03T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 676701,
+            "title": "Tad the Lost Explorer and the Emerald Tablet",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Adventure",
+                "Family",
+                "Comedy",
+                "Fantasy"
+            ],
+            "overview": "Tad accidentally unleashes an ancient spell, endangering the lives of his friends Mummy, Jeff, and Belzoni. With everyone against him and only helped by Sara, he sets off on an adventure to end the Curse of the Mummy.",
+            "posterPath": "/jvIVl8zdNSOAJImw1elQEzxStMN.jpg",
+            "releaseDate": "2022-08-24"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "f8017b98-9a80-3728-bd1b-7df910a2b180",
+            "title": "Kathal - A Jackfruit Mystery",
+            "aliases": [
+                "Kathal - A Jackfruit Mystery"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-02-27T00:00:00",
+            "lastWatched": "2024-02-27T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 946025,
+            "title": "Kathal",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Drama"
+            ],
+            "overview": "When two prized jackfruits disappear from a politician's garden, a spirited cop's investigation takes an unexpected turn as she digs for the truth.",
+            "posterPath": "/yzVMUMN3tkLXdGbLHbOJ6sfXYI.jpg",
+            "releaseDate": "2023-05-19"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "633ded22-a9e9-3098-a6a6-8b0a72043043",
+            "title": "Hitler - A Career",
+            "aliases": [
+                "Hitler - A Career"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2024-02-24T00:00:00",
+            "lastWatched": "2024-02-24T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 60378,
+            "title": "Hitler: A Career",
+            "type": "MOVIE",
+            "genres": [
+                "Documentary",
+                "History"
+            ],
+            "overview": "A keen chronicle of the unlikely rise to power of Adolf Hitler (1889-1945) and a dissection of the Third Reich (1933-1945), but also an analysis of mass psychology and how the desperate crowd can be deceived and shepherded to the slaughterhouse.",
+            "posterPath": "/jtaLqChWbcpdXvBO3VUwfL3IatE.jpg",
+            "releaseDate": "1977-07-08"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "7a01f844-440a-3619-beb7-b453f774dab6",
+            "title": "Lagaan",
+            "aliases": [
+                "Lagaan"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-12-09T00:00:00",
+            "lastWatched": "2023-12-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 19666,
+            "title": "Lagaan: Once Upon a Time in India",
+            "type": "MOVIE",
+            "genres": [
+                "Adventure",
+                "Drama",
+                "History"
+            ],
+            "overview": "The year is 1893 and India is under British occupation. In a small village, the tyrannical Captain Russell has imposed an unprecedented land tax on its citizens. Outraged, Bhuvan, a rebellious farmer, rallies the villagers to publicly oppose the tax. Russell offers a novel way to settle the dispute: he challenges Bhuvan and his men to a game of cricket, a sport completely foreign to India. If Bhuvan and his men can defeat Russell's team, the tax will be repealed.",
+            "posterPath": "/yNX9lFRAFeNLNRIXdqZK9gYrYKa.jpg",
+            "releaseDate": "2001-06-15"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "88d2566e-365d-3cd8-b71c-a0e2621917ba",
+            "title": "Raja, Rasoi aur Anya Kahaniyan",
+            "aliases": [
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 1",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 2",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 3",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 4",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 5",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 6",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 7",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 11",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 8",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 10",
+                "Raja, Rasoi aur Anya Kahaniyan: Episode 9"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2023-12-02T00:00:00",
+            "lastWatched": "2023-12-02T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 11,
+            "watchCount": 11
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 101955,
+            "title": "Raja, Rasoi aur Anya Kahaniyaan",
+            "type": "SERIES",
+            "genres": [
+                "Documentary"
+            ],
+            "overview": "The history and significance of cuisine created in the royal kitchens of India.",
+            "posterPath": "/rNErg2qYVcm9DInwJeAkgSt2HtZ.jpg",
+            "releaseDate": "2014-01-01"
+        },
+        "progress": {
+            "type": "DOCUMENTARY",
+            "season": 1,
+            "episode": 11,
+            "provider": "NETFLIX",
+            "status": "UNKNOWN"
+        }
+    },
+    {
+        "show": {
+            "id": "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
+            "title": "Five Star Chef",
+            "aliases": [
+                "Five Star Chef: Episode 1",
+                "Five Star Chef: Episode 2",
+                "Five Star Chef: Episode 3",
+                "Five Star Chef: Episode 4",
+                "Five Star Chef: Episode 5",
+                "Five Star Chef: Episode 6"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2023-11-27T00:00:00",
+            "lastWatched": "2023-11-28T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": 6,
+            "watchCount": 6
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 227890,
+            "title": "Five Star Kitchen: Britain's Next Great Chef",
+            "type": "SERIES",
+            "genres": [
+                "Reality"
+            ],
+            "overview": "Who has what it takes to open a restaurant in one of the world’s most famous 5-star hotels? In this new, high-stakes competition, talented up and coming chefs battle it out to prove they have the culinary skills and business brain to win a once in a lifetime prize – the Palm Court restaurant in the exclusive hotel, The Langham, London",
+            "posterPath": "/r3UvYHyV5ZJa4b8B3nCnCAJPh7b.jpg",
+            "releaseDate": "2023-06-08"
+        },
+        "progress": {
+            "type": "SERIES",
+            "season": 1,
+            "episode": 6,
+            "provider": "NETFLIX",
+            "status": "UNKNOWN"
+        }
+    },
+    {
+        "show": {
+            "id": "8870613d-d4a2-3b38-ba96-1ebb36f0939f",
+            "title": "Gabriel Fluffy Iglesias",
+            "aliases": [
+                "Gabriel Fluffy Iglesias: One Show Fits All"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-06-11T00:00:00",
+            "lastWatched": "2023-06-11T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 185440,
+            "title": "Gabriel Iglesias: Aloha Fluffy",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "TV Movie"
+            ],
+            "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
+            "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
+            "releaseDate": "2013-04-13"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "a26fe4ca-355b-34eb-b861-74d2691f22ec",
+            "title": "Gabriel lglesias",
+            "aliases": [
+                "Gabriel lglesias: I’m Sorry For What I Said When I Was Hungry"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2023-06-11T00:00:00",
+            "lastWatched": "2023-06-11T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TVMAZE",
+            "providerId": 5338,
+            "title": "Gabriel Iglesias Presents Stand Up Revolution",
+            "type": "SERIES",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "Gabriel Iglesias hosts Stand-Up Revolution, featuring performances by Fluffy's funniest up-and-coming comedian friends.",
+            "posterPath": "https://static.tvmaze.com/uploads/images/original_untouched/22/55325.jpg",
+            "releaseDate": "2011-10-06"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "f4c4528c-6981-3104-a11e-a7548630c231",
+            "title": "Oh My God",
+            "aliases": [
+                "Oh My God"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-05-20T00:00:00",
+            "lastWatched": "2023-05-20T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 372283,
+            "title": "Oh My God!",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Science Fiction"
+            ],
+            "overview": "Oh My God is a sci-fi romantic comedy revolving around a couple who is desperate to conceive a child. Others cast alongside Lay are Cheney Chen (Chen Xudong), who trained under Cube Entertainment and starred in the movie Tiny Times, and actress Jacqueline Li (Li Xiaolu) from the recent movie Forbidden Kiss.",
+            "posterPath": "/4Q7gL75WHHlAsMsUHhlgz7LQt9W.jpg",
+            "releaseDate": "2015-12-04"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "6ed715b5-417c-3e13-b325-c6e30e1bec4d",
+            "title": "DreamWorks How to Train Your Dragon Legends: Play All Two",
+            "aliases": [
+                "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207516,
+            "title": "How to Train Your Dragon: Legends",
+            "type": "MOVIE",
+            "genres": [
+                "Family",
+                "Animation",
+                "Adventure"
+            ],
+            "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+            "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+            "releaseDate": "2010-11-15"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "1d2544e6-15ab-3abf-aa51-658c33cbcdce",
+            "title": "DreamWorks How to Train Your Dragon Legends",
+            "aliases": [
+                "DreamWorks How to Train Your Dragon Legends: Book of Dragons",
+                "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207516,
+            "title": "How to Train Your Dragon: Legends",
+            "type": "MOVIE",
+            "genres": [
+                "Family",
+                "Animation",
+                "Adventure"
+            ],
+            "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+            "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+            "releaseDate": "2010-11-15"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "81f2ade5-9bfd-3aa1-9f2d-ee498d8b1ac4",
+            "title": "DEATH NOTE: Death Note",
+            "aliases": [
+                "DEATH NOTE: Death Note: Rebirth"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2022-02-09T00:00:00",
+            "lastWatched": "2022-02-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 13916,
+            "title": "Death Note",
+            "type": "SERIES",
+            "genres": [
+                "Animation",
+                "Mystery",
+                "Sci-Fi & Fantasy"
+            ],
+            "overview": "Light Yagami is an ace student with great prospects—and he’s bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god. Any human whose name is written in the notebook dies, and Light has vowed to use the power of the Death Note to rid the world of evil. But will Light succeed in his noble goal, or will the Death Note turn him into the very thing he fights against?",
+            "posterPath": "/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg",
+            "releaseDate": "2006-10-04"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "596e8bd4-1a1c-396e-b375-245177250031",
+            "title": "Made of Honour",
+            "aliases": [
+                "Made of Honour"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-09-10T00:00:00",
+            "lastWatched": "2021-09-10T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 10761,
+            "title": "Made of Honor",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Romance"
+            ],
+            "overview": "Tom and Hannah have been platonic friends for 10 years. He's a serial dater, while she wants marriage but hasn't found Mr. Right. Just as Tom is starting to think that he is relationship material after all, Hannah gets engaged. When she asks Tom to be her 'maid' of honor, he reluctantly agrees just so he can attempt to stop the wedding and woo her.",
+            "posterPath": "/pDg8D0jNqmz7RbCBgblWvmPswHE.jpg",
+            "releaseDate": "2008-04-30"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "3dcf5b54-fa79-3258-bbac-39be2c3d5664",
+            "title": "G.I. Joe",
+            "aliases": [
+                "G.I. Joe: Retaliation"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-05-31T00:00:00",
+            "lastWatched": "2021-05-31T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 33163,
+            "title": "G.I. Joe: Renegades",
+            "type": "SERIES",
+            "genres": [
+                "Action & Adventure",
+                "Animation"
+            ],
+            "overview": "The adventures of the elite G.I. Joe unit, whose members: Duke, Snake Eyes, Scarlett, Roadblock, Tunnel Rat and Ripcord were charged with crimes they did not commit. In order to clear themselves of the charges, they must expose the real culprits, who belong to the powerful corporation COBRA Industries.",
+            "posterPath": "/sRGqn7kzeQOVUdRdYGRZlYDObdu.jpg",
+            "releaseDate": "2010-11-26"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "0f9197b3-e286-3752-a984-831949087332",
+            "title": "Little",
+            "aliases": [
+                "Little"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-05-20T00:00:00",
+            "lastWatched": "2021-05-20T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 312032,
+            "title": "Little Fox",
+            "type": "SERIES",
+            "genres": [
+                "Kids"
+            ],
+            "overview": "",
+            "posterPath": "/5TmabqunDqG9d56gBOTVcIrIa5I.jpg",
+            "releaseDate": "2000-02-25"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "40159be8-d3df-392c-8eed-99e3caf83e75",
+            "title": "Shadowhunters: The Mortal Instruments",
+            "aliases": [
+                "Shadowhunters: The Mortal Instruments: Dead Man's Party",
+                "Shadowhunters: The Mortal Instruments: Of Men and Angels",
+                "Shadowhunters: The Mortal Instruments: Raising Hell",
+                "Shadowhunters: The Mortal Instruments: Moo Shu to Go",
+                "Shadowhunters: The Mortal Instruments: The Mortal Cup",
+                "Shadowhunters: The Mortal Instruments: Rise Up",
+                "Shadowhunters: The Mortal Instruments: Major Arcana",
+                "Shadowhunters: The Mortal Instruments: Bad Blood",
+                "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
+                "Shadowhunters: The Mortal Instruments: This World Inverted"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-04-15T00:00:00",
+            "lastWatched": "2021-04-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 10
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 63210,
+            "title": "Shadowhunters",
+            "type": "SERIES",
+            "genres": [
+                "Action & Adventure",
+                "Drama",
+                "Sci-Fi & Fantasy"
+            ],
+            "overview": "When Clary Fray's mother has disappeared, Clary joins a band of Shadowhunters; demon killing hunters, and gets caught up in a plan to save the world.",
+            "posterPath": "/66YHvvVduC21xcMXPpBBF0ywyVZ.jpg",
+            "releaseDate": "2016-01-12"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "a4997a91-5ac8-36d3-8bc9-6c22a887dd37",
+            "title": "Taare Zameen Par",
+            "aliases": [
+                "Taare Zameen Par"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-03-01T00:00:00",
+            "lastWatched": "2021-03-01T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 7508,
+            "title": "Like Stars on Earth",
+            "type": "MOVIE",
+            "genres": [
+                "Drama"
+            ],
+            "overview": "Ishaan Awasthi is an eight-year-old whose world is filled with wonders that no one else seems to appreciate. Colours, fish, dogs, and kites don't seem important to the adults, who are much more interested in things like homework, marks, and neatness. Ishaan cannot seem to get anything right in class; he is then sent to boarding school, where his life changes forever.",
+            "posterPath": "/puHRt6Raovm5ujGCdwLWvRv4NHU.jpg",
+            "releaseDate": "2007-12-21"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "d9bd363e-7c51-3f6a-95f3-d8b000e4ee0a",
+            "title": "To All the Boys I’ve Loved Before",
+            "aliases": [
+                "To All the Boys I’ve Loved Before"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-02-08T00:00:00",
+            "lastWatched": "2021-02-08T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 466282,
+            "title": "To All the Boys I've Loved Before",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Romance"
+            ],
+            "overview": "Lara Jean's love life goes from imaginary to out of control when her secret letters to every boy she's ever fallen for are mysteriously mailed out.",
+            "posterPath": "/hKHZhUbIyUAjcSrqJThFGYIR6kI.jpg",
+            "releaseDate": "2018-08-17"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "5c19e6d5-06e4-3f92-b5a2-0409dc88dff0",
+            "title": ": Episode 1",
+            "aliases": [
+                ": Episode 1"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-01-15T00:00:00",
+            "lastWatched": "2021-01-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 243451,
+            "title": "EPISODE 1",
+            "type": "SERIES",
+            "genres": [],
+            "overview": "A drama variety show by Chocolate Planet x Europe Kikaku x NMB48",
+            "posterPath": "/gPXUy3RmUMwrgeUxyLerJUB7vUS.jpg",
+            "releaseDate": "2019-04-22"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "824f5b4a-4eef-38d5-ae8c-b86cf90fb733",
+            "title": "Is Love Enough? Sir",
+            "aliases": [
+                "Is Love Enough? Sir"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-01-15T00:00:00",
+            "lastWatched": "2021-01-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 518497,
+            "title": "Sir",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Romance"
+            ],
+            "overview": "A prosperous young Indian man falls in love with his servant, a widow with the dream of becoming a fashion designer.",
+            "posterPath": "/1xlh1jh9Lxz4OzusFKeljqoRxjL.jpg",
+            "releaseDate": "2018-09-20"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "36dbfc9a-0492-328f-acbb-08c10121ac80",
+            "title": "Ocean's 8",
+            "aliases": [
+                "Ocean's 8"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-10-09T00:00:00",
+            "lastWatched": "2020-10-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 402900,
+            "title": "Ocean's Eight",
+            "type": "MOVIE",
+            "genres": [
+                "Crime",
+                "Comedy",
+                "Action"
+            ],
+            "overview": "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century at New York's annual Met Gala.",
+            "posterPath": "/MvYpKlpFukTivnlBhizGbkAe3v.jpg",
+            "releaseDate": "2018-06-07"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "5607f370-727f-3068-98ac-006d8225fbe0",
+            "title": "Madras Café",
+            "aliases": [
+                "Madras Café"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-09-29T00:00:00",
+            "lastWatched": "2020-09-29T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 215776,
+            "title": "Madras Cafe",
+            "type": "MOVIE",
+            "genres": [
+                "Thriller",
+                "Drama",
+                "Action"
+            ],
+            "overview": "An Indian intelligence agent journeys to a war-torn coastal island to break a resolute rebel group and meets a passionate journalist.",
+            "posterPath": "/iQa81y965LtFp5CTYgcYeuEHAg4.jpg",
+            "releaseDate": "2013-08-23"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "fde45330-8261-358d-ba4c-ef0026827841",
+            "title": "Dabbe 5",
+            "aliases": [
+                "Dabbe 5: Curse of the Jinn"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-09-23T00:00:00",
+            "lastWatched": "2020-09-23T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 292828,
+            "title": "D@bbe 5: Curse of the Jinn",
+            "type": "MOVIE",
+            "genres": [
+                "Horror",
+                "Thriller",
+                "Fantasy"
+            ],
+            "overview": "Housewife Dilek suddenly starts to feel the presence of something abnormal in her house. Her husband Omer refuses to agree, and the situation worsens. The couple discover that an ancient paranormal creature called Jinn has cursed on Dilek. They seek a cure but instead they learn of Dilek's demons.",
+            "posterPath": "/qTxE2jlADPgkgiaxDwBaus2evPS.jpg",
+            "releaseDate": "2014-09-12"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "228b4f0d-68ef-3485-8de8-bf5fe69ec3b8",
+            "title": "Dolly Kitty Aur Woh Chamakte Sitare",
+            "aliases": [
+                "Dolly Kitty Aur Woh Chamakte Sitare"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-09-23T00:00:00",
+            "lastWatched": "2020-09-23T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 639414,
+            "title": "Dolly Kitty and Those Twinkling Stars",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Drama"
+            ],
+            "overview": "A disillusioned Delhi wife (Dolly), and her new-in-town cousin (Kitty), navigate damning secrets, dreams and their thorny dynamic on their respective roads to freedom.",
+            "posterPath": "/jGXdE7Qe2Sgth64GVgnhnMF79NJ.jpg",
+            "releaseDate": "2020-09-18"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "28ca09ff-d7f5-3d0b-a036-fb1c9bf5ac9c",
+            "title": "Gunjan Saxena",
+            "aliases": [
+                "Gunjan Saxena: The Kargil Girl"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-08-21T00:00:00",
+            "lastWatched": "2020-08-21T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 645489,
+            "title": "Gunjan Saxena: The Kargil Girl",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Drama"
+            ],
+            "overview": "Inspired by the life of a fearless young officer who made history by becoming the first Indian female Air Force officer to fly in a combat zone during the 1999 Kargil War",
+            "posterPath": "/llWz6LbVpGPChnNnhAiGJyPMDwP.jpg",
+            "releaseDate": "2020-07-23"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "4a0ba5b0-0ce8-32bb-b73e-acee9d2d82a9",
+            "title": "Kenny Sebastian",
+            "aliases": [
+                "Kenny Sebastian: The Most Interesting Person in the Room"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-05-30T00:00:00",
+            "lastWatched": "2020-05-30T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 453764,
+            "title": "Kenny Sebastian: Don't Be That Guy",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "In his 5th stand-up special, Paavam (Innocent) comedian Kenny Sebastian talks about moving cities, his parents and why he is a former nice guy.",
+            "posterPath": "/nJGam4JG0sd6GHlutjA61KEEI7V.jpg",
+            "releaseDate": "2017-04-23"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    }
+]
