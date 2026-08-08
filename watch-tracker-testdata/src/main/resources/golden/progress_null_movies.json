@@ -179,6 +179,36 @@
     },
     {
         "show": {
+            "id": "196ffb3d-357d-302f-8084-6a0c211205ed",
+            "title": "Kurukshetra",
+            "aliases": [
+                "Kurukshetra: Sanjay"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2025-10-13T00:00:00",
+            "lastWatched": "2025-10-13T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1552485,
+            "title": "Kurukshetra",
+            "type": "MOVIE",
+            "genres": [
+                "History",
+                "Drama",
+                "Fantasy"
+            ],
+            "overview": "A combination of the epic story of the Mahabharata with contemporary social issues. It starts with a focus on a new social order, featuring three social workers, including Suvarnarekha, dedicated to eliminating idleness. The main narrative then unfolds by incorporating well-known mythological events like the Draupadi Swayamvar and the Sabha (Court) incident, progressing toward the Kurukshetra war. Throughout the film, these epic sequences are mixed with modern \"social sequences\" and philosophical lessons from the Bhagavad Gita in an attempt to address and provide solutions for national problems.",
+            "posterPath": "/r0nXiVza2nehaNrJNnVKDfW67M4.jpg",
+            "releaseDate": "1945-05-17"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "c73664ac-aba1-39a3-9485-5d7187ee058d",
             "title": "Saripodhaa Sanivaaram",
             "aliases": [
@@ -211,8 +241,8 @@
             "id": "99594ea7-bd02-3fab-b745-b81b989fcab4",
             "title": "Gabriel Iglesias",
             "aliases": [
-                "Gabriel Iglesias: Legend of Fluffy",
-                "Gabriel Iglesias: Stadium Fluffy"
+                "Gabriel Iglesias: Stadium Fluffy",
+                "Gabriel Iglesias: Legend of Fluffy"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-12-08T00:00:00",
@@ -281,18 +311,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1168190,
-            "title": "The Wrecking Crew",
+            "providerId": 1045931,
+            "title": "Crew",
             "type": "MOVIE",
             "genres": [
-                "Action",
-                "Comedy",
-                "Crime",
-                "Mystery"
+                "Comedy"
             ],
-            "overview": "Estranged half-brothers Jonny and James reunite after their father's mysterious death. As they search for the truth, buried secrets reveal a conspiracy threatening to tear their family apart.",
-            "posterPath": "/gbVwHl4YPSq6BcC92TQpe7qUTh6.jpg",
-            "releaseDate": "2026-01-28"
+            "overview": "Three ordinary air hostesses from Mumbai embark on a journey to pursue their dreams but find themselves caught up in unexpected misfortunes.",
+            "posterPath": "/8mnCtQngfhYt0W0BmkrCePutmvy.jpg",
+            "releaseDate": "2024-03-29"
         },
         "progress": null
     },
@@ -321,42 +348,8 @@
                 "Drama"
             ],
             "overview": "When his family stares down the barrel of criminal charges, a commoner channels his street smarts and knowledge of action films to tie the long arm of the law into an investigative Gordian knot.",
-            "posterPath": "/gIClWRv5OSe8rl5Koi0AeUcCZ9Z.jpg",
+            "posterPath": "/bniZOGixNbYclobRpqkPK7dMBgP.jpg",
             "releaseDate": "2015-07-30"
-        },
-        "progress": null
-    },
-    {
-        "show": {
-            "id": "25ebd340-2fb9-331c-8d29-b84d364e2779",
-            "title": "Khakee",
-            "aliases": [
-                "Khakee: The Bihar Chapter: PHACE TO PHACE !",
-                "Khakee: The Bihar Chapter: MEETA JI KI LOVE STORY !!!",
-                "Khakee: The Bihar Chapter: CHANDANWA KA JANM !",
-                "Khakee: The Bihar Chapter: AMIT KAUN ???",
-                "Khakee: The Bihar Chapter: PATRA PARICHAY !",
-                "Khakee: The Bihar Chapter: MEETA JI KI LOVE STORY PART 2",
-                "Khakee: The Bihar Chapter: MOOH DIKHAI !!!"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2023-04-17T00:00:00",
-            "lastWatched": "2025-03-29T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 7
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 21665,
-            "title": "Khakee",
-            "type": "MOVIE",
-            "genres": [
-                "Action"
-            ],
-            "overview": "DCP Anant and his team get tasked with escorting an alleged terrorist to Mumbai. However, a rogue ex-police officer makes their task difficult as he tries to stop them from reaching their destination.",
-            "posterPath": "/dMsqwWFl51t8jXR0tWzjEuO8H4l.jpg",
-            "releaseDate": "2004-01-23"
         },
         "progress": null
     },
@@ -626,31 +619,30 @@
     },
     {
         "show": {
-            "id": "bf91fb13-2d73-36f9-baa5-e0135ba245a5",
-            "title": "Turning Point",
+            "id": "5db14795-d4c6-328f-9492-7d0c0a060bee",
+            "title": "Fighter",
             "aliases": [
-                "Turning Point: The Bomb and the Cold War: The Sun Came Up Tremendous",
-                "Turning Point: The Bomb and the Cold War: Poisoning the Soil"
+                "Fighter"
             ],
             "type": "MOVIE",
-            "firstWatched": "2024-11-16T00:00:00",
-            "lastWatched": "2024-11-23T00:00:00",
+            "firstWatched": "2024-11-30T00:00:00",
+            "lastWatched": "2024-11-30T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 946020,
-            "title": "Turning Point",
+            "providerId": 784651,
+            "title": "Fighter",
             "type": "MOVIE",
             "genres": [
-                "Horror",
-                "Thriller"
+                "Action",
+                "Drama"
             ],
-            "overview": "There is danger in the night, but the true terror is inside the house. Trapped within the home of a zombie in transition, Margot and her partner in crime must find their way out before they become the ghoul’s first victims. Their only hope for survival is a bizarre neighbor with an expert knowledge of the undead and the flicker of humanity remaining in their mutating stalker.",
-            "posterPath": "/rHdjOsXTmIad4GpRcAbf1PAcb6W.jpg",
-            "releaseDate": "2022-03-02"
+            "overview": "As India faces a militant attack in Kashmir, the country’s best combat aviators join forces under a reckless yet brilliant squadron leader to form 'Air Dragons', faces mortal dangers and their inner demons.",
+            "posterPath": "/zqFuriKJ6pYDvf72kXNLONnuE8k.jpg",
+            "releaseDate": "2024-01-24"
         },
         "progress": null
     },
@@ -659,8 +651,8 @@
             "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
             "title": "Matt Rife",
             "aliases": [
-                "Matt Rife: Natural Selection",
-                "Matt Rife: Lucid - A Crowd Work Special"
+                "Matt Rife: Lucid - A Crowd Work Special",
+                "Matt Rife: Natural Selection"
             ],
             "type": "MOVIE",
             "firstWatched": "2024-04-08T00:00:00",
@@ -804,39 +796,6 @@
     },
     {
         "show": {
-            "id": "ff9eb8bd-8c92-3da0-b3ce-a632f294e23b",
-            "title": "Tomorrow",
-            "aliases": [
-                "Tomorrow: Limited Series: Fallen Flower 1",
-                "Tomorrow: Limited Series: Forest of Time 2 & Tree 1",
-                "Tomorrow: Limited Series: Forest of Time 1",
-                "Tomorrow: Limited Series: Fallen Flower 2"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2024-10-30T00:00:00",
-            "lastWatched": "2024-11-02T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 4
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 588228,
-            "title": "The Tomorrow War",
-            "type": "MOVIE",
-            "genres": [
-                "Action",
-                "Science Fiction",
-                "Adventure"
-            ],
-            "overview": "The world is stunned when a group of time travelers arrive from the year 2051 to deliver an urgent message: Thirty years in the future, mankind is losing a global war against a deadly alien species. The only hope for survival is for soldiers and civilians from the present to be transported to the future and join the fight. Among those recruited is high school teacher and family man Dan Forester. Determined to save the world for his young daughter, Dan teams up with a brilliant scientist and his estranged father in a desperate quest to rewrite the fate of the planet.",
-            "posterPath": "/34nDCQZwaEvsy4CFO5hkGRFDCVU.jpg",
-            "releaseDate": "2021-09-03"
-        },
-        "progress": null
-    },
-    {
-        "show": {
             "id": "b51ab1a9-00d2-3f57-aafd-9b95f535ea0e",
             "title": "Maharaj",
             "aliases": [
@@ -954,6 +913,35 @@
     },
     {
         "show": {
+            "id": "022375cd-7a5b-333e-8d85-87d93bb01601",
+            "title": "Gifted",
+            "aliases": [
+                "Gifted"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-09-20T00:00:00",
+            "lastWatched": "2024-09-20T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 400928,
+            "title": "Gifted",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Comedy"
+            ],
+            "overview": "Frank, a single man raising his child prodigy niece Mary, is drawn into a custody battle with his mother.",
+            "posterPath": "/7YB2YrMwIm1g8FyZtlvmVDfRnAT.jpg",
+            "releaseDate": "2017-04-07"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "43726a65-42e2-30b2-8305-e7e44a01199d",
             "title": "American Sniper",
             "aliases": [
@@ -986,8 +974,8 @@
             "id": "64ddfc94-7630-37c3-85da-733127d4365d",
             "title": "Jawan",
             "aliases": [
-                "Jawan: Extended Cut",
-                "Jawan: Tamil Extended Cut"
+                "Jawan: Tamil Extended Cut",
+                "Jawan: Extended Cut"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-11-07T00:00:00",
@@ -1056,18 +1044,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 698687,
-            "title": "Transformers One",
+            "providerId": 1858,
+            "title": "Transformers",
             "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Science Fiction",
                 "Adventure",
-                "Family"
+                "Science Fiction",
+                "Action"
             ],
-            "overview": "The untold origin story of Optimus Prime and Megatron, better known as sworn enemies, but once were friends bonded like brothers who changed the fate of Cybertron forever.",
-            "posterPath": "/iRCgqpdVE4wyLQvGYU3ZP7pAtUc.jpg",
-            "releaseDate": "2024-09-11"
+            "overview": "Young teenager Sam Witwicky becomes involved in the ancient struggle between two extraterrestrial factions of transforming robots – the heroic Autobots and the evil Decepticons. Sam holds the clue to unimaginable power and the Decepticons will stop at nothing to retrieve it.",
+            "posterPath": "/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
+            "releaseDate": "2007-06-27"
         },
         "progress": null
     },
@@ -1137,8 +1124,8 @@
             "id": "a0276e22-4d8b-3fd8-9425-0f182033ee8e",
             "title": "Kingsman",
             "aliases": [
-                "Kingsman: The Secret Service",
-                "Kingsman: The Golden Circle"
+                "Kingsman: The Golden Circle",
+                "Kingsman: The Secret Service"
             ],
             "type": "MOVIE",
             "firstWatched": "2024-08-12T00:00:00",
@@ -1190,6 +1177,34 @@
             "overview": "Four eminent Indian directors explore sex, desire and love through short films in this sequel to 2018's Emmy-nominated 'Lust Stories'.",
             "posterPath": "/p5x729JI6wZs9hCqX7tc7oH87ih.jpg",
             "releaseDate": "2023-06-29"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "9cfc6178-7bb7-3670-9d1d-e74412bd0a23",
+            "title": "Ghost Stories",
+            "aliases": [
+                "Ghost Stories"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-08-12T00:00:00",
+            "lastWatched": "2024-08-12T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 687259,
+            "title": "Ghost Stories",
+            "type": "MOVIE",
+            "genres": [
+                "Horror"
+            ],
+            "overview": "",
+            "posterPath": "/m4ALMhsuqOOUkkABvgQWfrgoL8y.jpg",
+            "releaseDate": "1982-01-01"
         },
         "progress": null
     },
@@ -1479,16 +1494,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 83542,
-            "title": "Cloud Atlas",
+            "providerId": 565388,
+            "title": "Atlas",
             "type": "MOVIE",
             "genres": [
-                "Drama",
-                "Science Fiction"
+                "Drama"
             ],
-            "overview": "A set of six nested stories spanning time between the 19th century and a distant post-apocalyptic future. Cloud Atlas explores how the actions and consequences of individual lives impact one another throughout the past, the present and the future. Action, mystery and romance weave through the story as one soul is shaped from a killer into a hero and a single act of kindness ripples across centuries to inspire a revolution in the distant future.  Based on the award winning novel by David Mitchell. Directed by Tom Tykwer and the Wachowskis.",
-            "posterPath": "/8naVv2Xu3rWI5JKHz0vCujx6GaJ.jpg",
-            "releaseDate": "2012-10-26"
+            "overview": "Walter is a 60-year-old removal man for forced evictions. He recognizes in one of the tenants about to be evicted his estranged son, Jan. In order to help Jan, Walter has to confront not only his crooked boss but also his own past.",
+            "posterPath": "/xP9Da09itvve7r3Lj7twji8eQ0S.jpg",
+            "releaseDate": "2018-11-26"
         },
         "progress": null
     },
@@ -1567,17 +1581,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 575265,
-            "title": "Mission: Impossible - The Final Reckoning",
+            "providerId": 34583,
+            "title": "The Final",
             "type": "MOVIE",
             "genres": [
-                "Action",
                 "Thriller",
-                "Adventure"
+                "Horror"
             ],
-            "overview": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — with the world's governments and a mysterious ghost from Hunt's past on their trail. Joined by new allies and armed with the means to shut the Entity down for good, Hunt is in a race against time to prevent the world as we know it from changing forever.",
-            "posterPath": "/iKPsC9EFUafRP9SrUznI61getVP.jpg",
-            "releaseDate": "2025-05-17"
+            "overview": "A group of high school outcasts get revenge on the students that torment them.",
+            "posterPath": "/ff7UI8q51sOArKafaaAOQnnfpne.jpg",
+            "releaseDate": "2010-01-28"
         },
         "progress": null
     },
@@ -1771,17 +1784,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 969681,
-            "title": "Spider-Man: Brand New Day",
+            "providerId": 557,
+            "title": "Spider-Man",
             "type": "MOVIE",
             "genres": [
-                "Science Fiction",
                 "Action",
-                "Adventure"
+                "Science Fiction"
             ],
-            "overview": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
-            "posterPath": "/iPOn6DinuVyLY17YM9mKuPofV08.jpg",
-            "releaseDate": "2026-07-28"
+            "overview": "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
+            "posterPath": "/nXdAh5vUwERL4WGVMaee8RoDEAS.jpg",
+            "releaseDate": "2002-05-01"
         },
         "progress": null
     },
@@ -1841,6 +1853,35 @@
             "overview": "When a remote village is plagued by a deadly curse, one brother must fight to save his family from a terrifying supernatural threat.",
             "posterPath": "/48TDjSJpCdJ4SBOHZX3G5IjaV02.jpg",
             "releaseDate": "2023-10-25"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "c14601c9-4af8-348c-983f-4317e5fbe7cf",
+            "title": "The Call",
+            "aliases": [
+                "The Call"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-04-11T00:00:00",
+            "lastWatched": "2024-04-11T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 158011,
+            "title": "The Call",
+            "type": "MOVIE",
+            "genres": [
+                "Crime",
+                "Thriller"
+            ],
+            "overview": "Jordan Turner is an experienced 911 operator but when she makes an error in judgment and a call ends badly, Jordan is rattled and unsure if she can continue. But when teenager Casey Welson is abducted in the back of a man's car and calls 911, Jordan is the one called upon to use all of her experience, insights and quick thinking to help Casey escape, and not just to save her, but to make sure the man is brought to justice.",
+            "posterPath": "/mG334OlDVJpD8gMfTCM2Mpp0gQH.jpg",
+            "releaseDate": "2013-03-14"
         },
         "progress": null
     },
@@ -2067,16 +2108,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 574475,
-            "title": "Final Destination Bloodlines",
+            "providerId": 9532,
+            "title": "Final Destination",
             "type": "MOVIE",
             "genres": [
-                "Horror",
-                "Mystery"
+                "Horror"
             ],
-            "overview": "Plagued by a violent recurring nightmare, college student Stefanie heads home to track down the one person who might be able to break the cycle and save her family from the grisly demise that inevitably awaits them all.",
-            "posterPath": "/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
-            "releaseDate": "2025-05-14"
+            "overview": "After a teenager has a terrifying vision of him and his friends dying in a plane crash, he prevents the accident only to have Death hunt them down, one by one.",
+            "posterPath": "/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
+            "releaseDate": "2000-03-17"
         },
         "progress": null
     },
@@ -2380,6 +2420,37 @@
     },
     {
         "show": {
+            "id": "fedd5973-496e-3a7e-875d-eb421e1b6617",
+            "title": "The Pirates",
+            "aliases": [
+                "The Pirates: The Last Royal Treasure"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-02-27T00:00:00",
+            "lastWatched": "2024-02-27T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 285213,
+            "title": "The Pirates",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Comedy",
+                "Fantasy"
+            ],
+            "overview": "At the cusp of the founding of Joseon Dynasty, an envoy from China is delivering Emperor’s Ming’s Royal Seal. But nature in the form of a giant whale intervenes and swallows the royal seal.  When a generous reward is offered to whomever can retrieve the royal seal from the belly of the whale, the race is on. A group of mountain bandits led by Jang Sa Jung and a group of pirates led by Yeo Wol  go after the lost treasure, but who will get to to it first?",
+            "posterPath": "/4qU1SW1b2Txf3Ge9rGlddDthSgx.jpg",
+            "releaseDate": "2014-08-06"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "f8017b98-9a80-3728-bd1b-7df910a2b180",
             "title": "Kathal - A Jackfruit Mystery",
             "aliases": [
@@ -2432,6 +2503,36 @@
             "overview": "Badru hopes her volatile husband will reform if he stops drinking. But when his rage goes too far, she and her mom boldly, albeit clumsily, seek revenge.",
             "posterPath": "/lyA7kXCIAG17hVuvFOxlMmmv31A.jpg",
             "releaseDate": "2022-08-05"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "161e7ce7-bfdc-39ab-8b9f-52c1d4c94212",
+            "title": "Animal",
+            "aliases": [
+                "Animal"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-02-25T00:00:00",
+            "lastWatched": "2024-02-25T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 781732,
+            "title": "Animal",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Crime",
+                "Drama"
+            ],
+            "overview": "The hardened son of a powerful industrialist returns home after years abroad and vows to take bloody revenge on those threatening his father's life.",
+            "posterPath": "/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg",
+            "releaseDate": "2023-12-01"
         },
         "progress": null
     },
@@ -2614,41 +2715,6 @@
     },
     {
         "show": {
-            "id": "b7a71d87-99cf-3dd7-9b71-1a7f52de6675",
-            "title": "Alexander",
-            "aliases": [
-                "Alexander: The Making of a God: Death or Victory",
-                "Alexander: The Making of a God: Face to Face",
-                "Alexander: The Making of a God: The Boy King"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2024-02-02T00:00:00",
-            "lastWatched": "2024-02-08T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 3
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1966,
-            "title": "Alexander",
-            "type": "MOVIE",
-            "genres": [
-                "War",
-                "History",
-                "Action",
-                "Adventure",
-                "Drama",
-                "Romance"
-            ],
-            "overview": "Alexander, the King of Macedonia, leads his legions against the giant Persian Empire. After defeating the Persians, he leads his army across the then known world, venturing farther than any westerner had ever gone, all the way to India.",
-            "posterPath": "/jrwQu72sGwGqwE8Ijne89PSIvhp.jpg",
-            "releaseDate": "2004-11-21"
-        },
-        "progress": null
-    },
-    {
-        "show": {
             "id": "148e636e-95bc-36d0-a438-aa900ad6b901",
             "title": "Duck Duck Goose",
             "aliases": [
@@ -2710,6 +2776,36 @@
     },
     {
         "show": {
+            "id": "4f3ef52c-e467-3ae9-bc86-d00f7496b6ef",
+            "title": "The Last Days",
+            "aliases": [
+                "The Last Days"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-01-21T00:00:00",
+            "lastWatched": "2024-01-21T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 4966,
+            "title": "The Last Days",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Romance",
+                "History"
+            ],
+            "overview": "Romance brings two warring families together in this historical drama. As citizens fight for independence in 1810s Lithuania, Tadeusz, the son of a murderer, and Zosia, a young woman, come together for a wedding against a backdrop of changing politics, ancient traditions, and the uncertain future of a country.",
+            "posterPath": "/kWomf1J9CNZmD0P9IntFEGlAe12.jpg",
+            "releaseDate": "1999-10-22"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "79cb1017-1fcc-31c8-900e-3b5351541011",
             "title": "Homefront",
             "aliases": [
@@ -2753,18 +2849,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 278924,
-            "title": "Mechanic: Resurrection",
+            "providerId": 1262059,
+            "title": "Mechanic",
             "type": "MOVIE",
             "genres": [
-                "Action",
-                "Crime",
-                "Thriller",
-                "Adventure"
+                "Drama"
             ],
-            "overview": "Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents.",
-            "posterPath": "/bG3Q6EFcngpPn7uPuQTzTuq9DgV.jpg",
-            "releaseDate": "2016-08-25"
+            "overview": "When the COVID-19 hit the world, people put on masks, and \"free breathing\" became an extravagant hope. In the eyes of robots, humans always value what they have lost the most, and both mentally and physically, \"free breathing\" is considered the highest pursuit by humans. Perhaps fighting for the right to \"breathe freely\" is the only way to avoid wasting this moment",
+            "posterPath": "/eVLMXfDVV3hRivQuyZPrSucrNID.jpg",
+            "releaseDate": "2020-08-04"
         },
         "progress": null
     },
@@ -2803,8 +2896,8 @@
             "id": "ec0db187-98eb-362e-8d82-a3dd3d79af4b",
             "title": "Top Gun",
             "aliases": [
-                "Top Gun",
-                "Top Gun: Maverick"
+                "Top Gun: Maverick",
+                "Top Gun"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-01-05T00:00:00",
@@ -2815,16 +2908,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 361743,
-            "title": "Top Gun: Maverick",
+            "providerId": 744,
+            "title": "Top Gun",
             "type": "MOVIE",
             "genres": [
                 "Action",
-                "Drama"
+                "Drama",
+                "Romance"
             ],
-            "overview": "After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
-            "posterPath": "/n0YuM4f5lvGAP6MAW2kBIzugXnc.jpg",
-            "releaseDate": "2022-05-21"
+            "overview": "For Lieutenant Pete 'Maverick' Mitchell and his friend and co-pilot Nick 'Goose' Bradshaw, being accepted into an elite training school for fighter pilots is a dream come true. But a tragedy, as well as personal demons, will threaten Pete's dreams of becoming an ace pilot.",
+            "posterPath": "/xUuHj3CgmZQ9P2cMaqQs4J0d4Zc.jpg",
+            "releaseDate": "1986-05-16"
         },
         "progress": null
     },
@@ -2853,6 +2947,35 @@
             "overview": "A successful lawyer returns to his hometown for his mother's funeral only to discover that his estranged father, the town's judge, is suspected of murder.",
             "posterPath": "/3K93GWotLXe4FqpErri0xkpLaD5.jpg",
             "releaseDate": "2014-10-08"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "e57237e9-f0db-39af-83b6-3c62e40a2df8",
+            "title": "Forensic",
+            "aliases": [
+                "Forensic"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-12-31T00:00:00",
+            "lastWatched": "2023-12-31T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 915867,
+            "title": "Forensic",
+            "type": "MOVIE",
+            "genres": [
+                "Crime",
+                "Thriller"
+            ],
+            "overview": "Little girls begin to disappear and their bodies are found soon after in the town of Mussoorie. Police officer Megha and forensic officer Johnny join hands to nab the killer.",
+            "posterPath": "/bn2sQizEJ0qsntJRvjULsd5vk44.jpg",
+            "releaseDate": "2022-06-24"
         },
         "progress": null
     },
@@ -3393,36 +3516,6 @@
     },
     {
         "show": {
-            "id": "b5998634-c34d-3970-b2b1-ccb34a3b0260",
-            "title": "Jumanji",
-            "aliases": [
-                "Jumanji: The Next Level"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2023-10-31T00:00:00",
-            "lastWatched": "2023-10-31T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 1
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1260649,
-            "title": "Jumanji: Open World",
-            "type": "MOVIE",
-            "genres": [
-                "Fantasy",
-                "Adventure",
-                "Comedy"
-            ],
-            "overview": "Our heroes have escaped the ever-changing jungles of Jumanji before, but this time the game comes to us - as Jumanji breaks free of its console, unleashing its chaos into our world.",
-            "posterPath": "/wlzAdBQw2XnmVW05YEJLNdAbizA.jpg",
-            "releaseDate": "2026-12-23"
-        },
-        "progress": null
-    },
-    {
-        "show": {
             "id": "a63b9c9d-3579-3b6e-8be6-ac429f9bd498",
             "title": "Red Notice",
             "aliases": [
@@ -3601,32 +3694,29 @@
     },
     {
         "show": {
-            "id": "1d6b4c10-6769-364b-aaa2-3c52e038f6da",
-            "title": "House of Secrets",
+            "id": "aea641b3-cdf7-32fb-b3c7-1a3d55a6e8e2",
+            "title": "Veronica",
             "aliases": [
-                "House of Secrets: The Burari Deaths: Limited Series: Beyond 11",
-                "House of Secrets: The Burari Deaths: Limited Series: 11 Diaries",
-                "House of Secrets: The Burari Deaths: Limited Series: 11 Bodies"
+                "Veronica"
             ],
             "type": "MOVIE",
-            "firstWatched": "2023-08-17T00:00:00",
-            "lastWatched": "2023-08-18T00:00:00",
+            "firstWatched": "2023-07-30T00:00:00",
+            "lastWatched": "2023-07-30T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 3
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 79258,
-            "title": "The House of Secrets",
+            "providerId": 441701,
+            "title": "Veronica",
             "type": "MOVIE",
             "genres": [
-                "Thriller",
-                "Mystery"
+                "Horror"
             ],
-            "overview": "Two men stumble into an old mansion, and get involved with a crazed scientist, torture chambers and sinister medical experiments.",
-            "posterPath": "/tSoPC0q0ExX8lAF8k7HVORhUhUz.jpg",
-            "releaseDate": "1936-10-28"
+            "overview": "In 1991 Madrid, after holding a séance at school, a teen girl minding her younger siblings at home suspects an evil force has entered their apartment.",
+            "posterPath": "/xHP6mYLQKbJY9pg99PGoGKmmBZX.jpg",
+            "releaseDate": "2017-08-25"
         },
         "progress": null
     },
@@ -3676,16 +3766,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 962851,
-            "title": "Kaal Trighori",
+            "providerId": 20132,
+            "title": "Kaal",
             "type": "MOVIE",
             "genres": [
+                "Action",
                 "Thriller",
                 "Horror"
             ],
-            "overview": "Three nights waited a hundred years… to give birth to the Trighori and Three lives are ensnared in this Vicious cycle. When Reality begins to blur one question remains: is this a perfectly crafted trap… or is something far more sinister at play?",
-            "posterPath": "/bFwWxy1e6FGIoEAh3z4Y7KKwMmT.jpg",
-            "releaseDate": "2025-11-14"
+            "overview": "After a series of deaths in Orbit Wildlife Park are attributed to a man-eating tiger, wildlife reporter Krish Thapar decides to investigate the incidents for a magazine article. But something deadlier than tigers hunts in the forest.",
+            "posterPath": "/dzFAY2jqODs7GXGhi590222WAyw.jpg",
+            "releaseDate": "2005-04-29"
         },
         "progress": null
     },
@@ -3925,6 +4016,35 @@
     },
     {
         "show": {
+            "id": "c1abbb0e-25f7-3b38-b33b-45f3c7165a5d",
+            "title": "Ray: Limited Series",
+            "aliases": [
+                "Ray: Limited Series: Forget Me Not"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-04-18T00:00:00",
+            "lastWatched": "2023-04-18T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1677,
+            "title": "Ray",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Music"
+            ],
+            "overview": "Born on a sharecropping plantation in Northern Florida, Ray Charles went blind at seven. Inspired by a fiercely independent mom who insisted he make his own way, He found his calling and his gift behind a piano keyboard. Touring across the Southern musical circuit, the soulful singer gained a reputation and then exploded with worldwide fame when he pioneered coupling gospel and country together.",
+            "posterPath": "/tSPC7sO2XYNL9QcMmK88tuUALL5.jpg",
+            "releaseDate": "2004-10-29"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "4334bda8-9a44-372d-bf08-06e532b8aff2",
             "title": "The Croods",
             "aliases": [
@@ -3956,11 +4076,68 @@
     },
     {
         "show": {
+            "id": "c880d3c8-945e-3fc3-92e9-89bd90a2cbf0",
+            "title": "Dragons",
+            "aliases": [
+                "Dragons: Dawn of the Dragon Racers"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1376429,
+            "title": "Dragons",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "A comedy short that looks at religion versus reason.  Watch here: vimeo.com/120247347",
+            "posterPath": "/r421tFcBgl6xsU9PX1NSsXfoaSc.jpg",
+            "releaseDate": null
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "6ed715b5-417c-3e13-b325-c6e30e1bec4d",
+            "title": "DreamWorks How to Train Your Dragon Legends: Play All Two",
+            "aliases": [
+                "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207516,
+            "title": "How to Train Your Dragon: Legends",
+            "type": "MOVIE",
+            "genres": [
+                "Family",
+                "Animation",
+                "Adventure"
+            ],
+            "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+            "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+            "releaseDate": "2010-11-15"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "1d2544e6-15ab-3abf-aa51-658c33cbcdce",
             "title": "DreamWorks How to Train Your Dragon Legends",
             "aliases": [
                 "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper",
-                "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories",
                 "DreamWorks How to Train Your Dragon Legends: Book of Dragons"
             ],
             "type": "MOVIE",
@@ -3968,7 +4145,7 @@
             "lastWatched": "2023-01-16T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 3
+            "watchCount": 2
         },
         "metadata": {
             "provider": "TMDB",
@@ -4171,6 +4348,35 @@
     },
     {
         "show": {
+            "id": "4cbaa1f4-f1e9-302f-8b5f-fac43b168e80",
+            "title": "Rumble",
+            "aliases": [
+                "Rumble"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-12-16T00:00:00",
+            "lastWatched": "2022-12-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 598331,
+            "title": "Rumble",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family"
+            ],
+            "overview": "In a world where monster wrestling is a global sport and monsters are superstar athletes, teenage Winnie seeks to follow in her father’s footsteps by coaching a loveable underdog monster into a champion.",
+            "posterPath": "/3eZRgjfFWTpejRvRKyKe1EKgt9s.jpg",
+            "releaseDate": "2021-02-12"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "91017b78-2fe2-32ec-a82c-0c3f3ddf8471",
             "title": "Kung Fu Panda 2",
             "aliases": [
@@ -4205,8 +4411,8 @@
             "id": "25bc131e-b22e-3175-8a22-cc94411faa53",
             "title": "Kung Fu Panda",
             "aliases": [
-                "Kung Fu Panda: Secrets of the Scroll",
-                "Kung Fu Panda"
+                "Kung Fu Panda",
+                "Kung Fu Panda: Secrets of the Scroll"
             ],
             "type": "MOVIE",
             "firstWatched": "2022-12-15T00:00:00",
@@ -4491,8 +4697,7 @@
             "type": "MOVIE",
             "genres": [
                 "Horror",
-                "Science Fiction",
-                "Thriller"
+                "Science Fiction"
             ],
             "overview": "Bryan, a medical courier, is in the process of making a delivery when a sudden outbreak occurs, forcing him to fight for survival.",
             "posterPath": "/qku2uWSoJ9amQV5MWo1Eek29iji.jpg",
@@ -4616,6 +4821,35 @@
             "overview": "A woman falls victim to a dominant mafia boss, who imprisons her and gives her one year to fall in love with him.",
             "posterPath": "/6KwrHucIE3CvNT7kTm2MAlZ4fYF.jpg",
             "releaseDate": "2020-02-07"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "3c59dc04-8e88-3024-bbe8-079a5c74d079",
+            "title": "21",
+            "aliases": [
+                "21"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-11-15T00:00:00",
+            "lastWatched": "2021-11-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 8065,
+            "title": "21",
+            "type": "MOVIE",
+            "genres": [
+                "Drama",
+                "Crime"
+            ],
+            "overview": "Ben Campbell is a young, highly intelligent student at M.I.T. who strives to succeed. Wanting a scholarship to transfer to Harvard School of Medicine to become a doctor, Ben learns that he cannot afford the $300,000 tuition as he comes from a poor, working-class background. But one evening, Ben is introduced by his unorthodox math professor to a small but secretive club of five students, Jill, Choi, Kianna, and Fisher, who are being trained by Professor Rosa to count cards at blackjack.",
+            "posterPath": "/efG8Po57alqSlhqHU1lXJ3duG6t.jpg",
+            "releaseDate": "2008-03-27"
         },
         "progress": null
     },
@@ -5243,6 +5477,36 @@
     },
     {
         "show": {
+            "id": "7835bcb4-49ba-3548-913d-728a3a70a9da",
+            "title": "The Bounty Hunter",
+            "aliases": [
+                "The Bounty Hunter"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-04-15T00:00:00",
+            "lastWatched": "2021-04-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 27573,
+            "title": "The Bounty Hunter",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Comedy",
+                "Romance"
+            ],
+            "overview": "Milo Boyd, a down-on-his-luck bounty hunter, thinks he's seeing an upswing in fortune when he gets a call to bring in his bail-jumping ex-wife, a reporter named Nicole. Milo considers the job an easy payday, but Nicole quickly escapes to chase a lead on a murder case. The former spouses play an escalating game of one-upmanship, until they suddenly find themselves on the run for their lives.",
+            "posterPath": "/fJPKar0jnAsS09l3xfP6LL8sUkX.jpg",
+            "releaseDate": "2010-03-16"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "253614bb-ac99-3b38-b5b6-0cae531c4969",
             "title": "2012",
             "aliases": [
@@ -5471,46 +5735,6 @@
             "overview": "John Gregory, who is a seventh son of a seventh son and also the local spook, has protected the country from witches, boggarts, ghouls and all manner of things that go bump in the night. However John is not young anymore, and has been seeking an apprentice to carry on his trade. Most have failed to survive. The last hope is a young farmer's son named Thomas Ward. Will he survive the training to become the spook that so many others couldn't?",
             "posterPath": "/7Q8DfXSjcFSSQDOxz1Sk865wNqI.jpg",
             "releaseDate": "2014-12-12"
-        },
-        "progress": null
-    },
-    {
-        "show": {
-            "id": "d0007b78-f262-357e-9cc7-057fef32c48d",
-            "title": "The Crew",
-            "aliases": [
-                "The Crew: Hot Mushroom Meat",
-                "The Crew: Your Face Is a Baby",
-                "The Crew: Monkeys and Bears Riding Bicycles",
-                "The Crew: Good Things Happen to Handsome People",
-                "The Crew: My Name's Kevin and I Care About Feelings",
-                "The Crew: We're Gonna Be Okay. We're Gonna Be Okay.",
-                "The Crew: I Guess That Cake Did Need to Be Refrigerated",
-                "The Crew: You Seem Like a Perfectly Serviceable Woman",
-                "The Crew: Ooof, Someone Throw a Robe on Grandma",
-                "The Crew: No One Likes You. No One."
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2021-02-21T00:00:00",
-            "lastWatched": "2021-02-21T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 10
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1168190,
-            "title": "The Wrecking Crew",
-            "type": "MOVIE",
-            "genres": [
-                "Action",
-                "Comedy",
-                "Crime",
-                "Mystery"
-            ],
-            "overview": "Estranged half-brothers Jonny and James reunite after their father's mysterious death. As they search for the truth, buried secrets reveal a conspiracy threatening to tear their family apart.",
-            "posterPath": "/gbVwHl4YPSq6BcC92TQpe7qUTh6.jpg",
-            "releaseDate": "2026-01-28"
         },
         "progress": null
     },
@@ -6076,6 +6300,36 @@
     },
     {
         "show": {
+            "id": "9c6efc70-8aa2-35df-9473-27dfd11b8c36",
+            "title": "Shazam!",
+            "aliases": [
+                "Shazam!"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2021-01-07T00:00:00",
+            "lastWatched": "2021-01-07T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 287947,
+            "title": "Shazam!",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Comedy",
+                "Fantasy"
+            ],
+            "overview": "A boy is given the ability to become an adult superhero in times of need with a single magic word.",
+            "posterPath": "/xnopI5Xtky18MPhK40cZAGAOVeV.jpg",
+            "releaseDate": "2019-03-29"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "6bb7e9d1-4ab2-3851-98b8-d1c27000b56f",
             "title": "The Invisible Guest",
             "aliases": [
@@ -6101,6 +6355,38 @@
             "overview": "Barcelona, Spain. Adrián Doria, a young and successful businessman accused of murder, meets one night with Virginia Goodman, an expert interrogation lawyer, in order to devise a defense strategy.",
             "posterPath": "/fptnZJbLzKUHeNlYrAynbyoL5YJ.jpg",
             "releaseDate": "2017-01-06"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "cbb53f91-67aa-381b-9359-ea7f8e22b4f6",
+            "title": "The Lord of the Rings",
+            "aliases": [
+                "The Lord of the Rings: The Two Towers",
+                "The Lord of the Rings: The Return of the King",
+                "The Lord of the Rings: The Fellowship of the Ring"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-12-29T00:00:00",
+            "lastWatched": "2020-12-30T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 3
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 123,
+            "title": "The Lord of the Rings",
+            "type": "MOVIE",
+            "genres": [
+                "Adventure",
+                "Animation",
+                "Fantasy"
+            ],
+            "overview": "Young Hobbit Frodo Baggins is thrown into an amazing adventure when he's tasked with destroying the One Ring, created by the dark lord Sauron. Frodo must travel in a small fellowship of nine warriors and accomplices. But it won't be an easy journey for the Fellowship of the Ring, on the ultimate quest to rid Middle-earth of evil.",
+            "posterPath": "/liW0mjvTyLs7UCumaHhx3PpU4VT.jpg",
+            "releaseDate": "1978-11-15"
         },
         "progress": null
     },
@@ -6372,32 +6658,31 @@
     },
     {
         "show": {
-            "id": "970f6043-1bec-32ab-b9a6-d7357c87a23f",
-            "title": "Self Made",
+            "id": "3aa4d22d-6288-3c1c-913a-f9de568a3a35",
+            "title": "#Alive",
             "aliases": [
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race",
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century",
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl",
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps"
+                "#Alive"
             ],
             "type": "MOVIE",
-            "firstWatched": "2020-10-08T00:00:00",
-            "lastWatched": "2020-10-08T00:00:00",
+            "firstWatched": "2020-10-02T00:00:00",
+            "lastWatched": "2020-10-02T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 4
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 284343,
-            "title": "Self Made",
+            "providerId": 614696,
+            "title": "#Alive",
             "type": "MOVIE",
             "genres": [
-                "Drama"
+                "Action",
+                "Horror",
+                "Science Fiction"
             ],
-            "overview": "Self Made tells the story of two women - one Israeli, the other Palestinian- who are trapped within their respective worlds. After a mix-up at a checkpoint, they find themselves living the life of the other on the opposite side of the border.",
-            "posterPath": "/AtBh2HAeJ7OE9BEvE0H9vk7JRMo.jpg",
-            "releaseDate": "2014-06-16"
+            "overview": "As a grisly virus rampages a city, a lone man stays locked inside his apartment, digitally cut off from seeking help and desperate to find a way out.",
+            "posterPath": "/lZPvLUMYEPLTE2df1VW5FHTYC8N.jpg",
+            "releaseDate": "2020-06-24"
         },
         "progress": null
     },
@@ -6478,17 +6763,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1202033,
-            "title": "Enola Holmes 3",
+            "providerId": 497582,
+            "title": "Enola Holmes",
             "type": "MOVIE",
             "genres": [
                 "Adventure",
-                "Crime",
-                "Mystery"
+                "Mystery",
+                "Crime"
             ],
-            "overview": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
-            "posterPath": "/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
-            "releaseDate": "2026-06-30"
+            "overview": "While searching for her missing mother, intrepid teen Enola Holmes uses her sleuthing skills to outsmart big brother Sherlock and help a runaway lord.",
+            "posterPath": "/riYInlsq2kf1AWoGm80JQW5dLKp.jpg",
+            "releaseDate": "2020-09-22"
         },
         "progress": null
     },
@@ -6871,6 +7156,36 @@
             "overview": "This bittersweet comedy follows North-east Indians in Delhi who are attempting to organize a wedding party, but soon find everything going wrong.",
             "posterPath": "/qYXepvYtI1DHtCyZTff3UbHFhzg.jpg",
             "releaseDate": "2019-10-02"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "1b66f071-5363-370a-92aa-0a7071241ed1",
+            "title": "Amar",
+            "aliases": [
+                "Amar"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-07-15T00:00:00",
+            "lastWatched": "2020-07-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 44122,
+            "title": "Amar",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Drama",
+                "Romance"
+            ],
+            "overview": "Five stories blend with love, sex, the emptiness of being unloved, passion and desire: Carlos and Susana go to some uncle´s apartment to make love. Meanwhile, Benito, an 80-year-old, performs a serenade to his wife. His neighbor Adela is told that her mother has Alzheimer and that she will be relocated since the Buenos Aires building she lives in will be demolished. Amado catches his son Carlos stealing his money. Gabriel asks Martha´s parents for her hand in marriage but they condition them to get married at their favorite church. And Patricia, 40, a creative agent, sexually abuses Joel, who directs a beer commercial.",
+            "posterPath": "/cGZgpYMBC3eIxQpYZt4DuZVAuek.jpg",
+            "releaseDate": "2009-02-27"
         },
         "progress": null
     },

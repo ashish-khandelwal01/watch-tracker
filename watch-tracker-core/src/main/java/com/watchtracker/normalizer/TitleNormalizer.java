@@ -51,6 +51,15 @@ public final class TitleNormalizer {
     // so this clause would never actually be reached for it.
     private static final Pattern CONTAINER_TITLE = Pattern.compile("(?i)^(?<show>.+?):\\s*(?:season|series|part"
             + "|book|volume)\\s+(?<season>" + NUMBER_TOKEN + ")\\s*:\\s*(?<title>.+)$");
+    // Netflix sometimes labels a later season's container by repeating the show's own name with the
+    // season number appended, e.g. "Stranger Things: Stranger Things 4: Chapter Eight: Papa". That
+    // repeated segment isn't part of the real title — it's a season marker in disguise. Left alone,
+    // the lazy "show" group in NUMBERED has no choice but to swallow it (there's no earlier point at
+    // which the rest of the pattern can match), which fragments one show into a separate entry per
+    // season. This is applied as a post-processing step to whatever "show" a branch above produced,
+    // since the repetition can in principle show up regardless of which pattern matched.
+    private static final Pattern SELF_REPEATING_SEASON =
+            Pattern.compile("(?i)^(?<base>.+):\\s+\\k<base>\\s+(?<season>" + NUMBER_TOKEN + ")$");
 
     /**
      * Normalizes a source event without changing its identifier or watch timestamp.
@@ -91,39 +100,59 @@ public final class TitleNormalizer {
             matcher = SEASON_EPISODE.matcher(trimmed);
         }
         if (matcher.matches()) {
-            return new NormalizedTitle(
+            return collapseSelfRepeatingSeason(new NormalizedTitle(
                     matcher.group("show").trim(),
-                    number(nullableTrim(matcher.group("season"))),
-                    number(nullableTrim(matcher.group("episode"))),
-                    nullableTrim(matcher.group("title")));
+                    number(matcher.group("season")),
+                    number(matcher.group("episode")),
+                    nullableTrim(matcher.group("title"))));
         }
         matcher = CONTAINER_TITLE.matcher(trimmed);
         if (matcher.matches()) {
-            return new NormalizedTitle(
+            return collapseSelfRepeatingSeason(new NormalizedTitle(
                     matcher.group("show").trim(),
-                    number(nullableTrim(matcher.group("season"))),
+                    number(matcher.group("season")),
                     null,
-                    nullableTrim(matcher.group("title")));
+                    nullableTrim(matcher.group("title"))));
         }
-        int delimiter = trimmed.indexOf(": ");
+        int delimiter = trimmed.lastIndexOf(": ");
         if (delimiter > 0) {
-            // Anything past the first colon is a container/collection/arc label rather than the
-            // actual episode title whenever a *further* colon follows it (e.g. "Show: Limited
-            // Series: Episode Title", "Show: The Smuggler's Web: Episode Title"). Strip an
-            // initial "Limited Series: " infix after the first colon to avoid polluting the
-            // episode title (e.g. "Show: Limited Series: The Vixen" -> episode "The Vixen").
+            // The LAST colon (not the first) marks the show/episode-title boundary here, so any
+            // middle segments stay attached to the show name rather than being dropped or glued onto
+            // the episode title. This matters because those segments are frequently part of the
+            // show's actual registered title rather than a throwaway label — e.g. the real title is
+            // "The Trauma Code: Heroes on Call", not "The Trauma Code" with "Heroes on Call" bolted
+            // onto the episode title. A single colon is unaffected: first and last are the same
+            // position, so ordinary "Show: Episode Title" titles are unchanged.
+            //
+            // "Limited Series" is the one common label that is NOT actually part of a show's real
+            // title despite sitting in this same position (e.g. "My Royal Nemesis: Limited Series:
+            // The Vixen and the Beast"). It is deliberately NOT special-cased here: this normalizer
+            // has no way to distinguish a genuine subtitle from an injected label using string shape
+            // alone. Instead, the show name is left as "My Royal Nemesis: Limited Series", and
+            // MetadataEnrichmentService's existing findByTitle retry strips a trailing "Limited
+            // Series" and searches again when the first lookup misses.
             String show = trimmed.substring(0, delimiter).trim();
-            String afterFirst = trimmed.substring(delimiter + 2).trim();
-            String episodeTitle;
-            if (afterFirst.toLowerCase(Locale.ROOT).startsWith("limited series:")) {
-                episodeTitle = afterFirst.replaceFirst("(?i)^limited series\\s*:\\s*", "").trim();
-            } else {
-                int lastDelimiter = trimmed.lastIndexOf(": ");
-                episodeTitle = trimmed.substring(lastDelimiter + 2).trim();
-            }
-            return new NormalizedTitle(show, null, null, nullableTrim(episodeTitle));
+            String episodeTitle = trimmed.substring(delimiter + 2).trim();
+            return collapseSelfRepeatingSeason(new NormalizedTitle(show, null, null, nullableTrim(episodeTitle)));
         }
         return new NormalizedTitle(trimmed, null, null, null);
+    }
+
+    /**
+     * Detects a show name of the form "X: X N" (the show's own name repeated, followed by a
+     * number) and collapses it to show "X" with season N, instead of leaving the repeated segment
+     * fused into the show name. Only applies when a season wasn't already captured some other way.
+     */
+    private static NormalizedTitle collapseSelfRepeatingSeason(NormalizedTitle title) {
+        if (title.season() != null) {
+            return title;
+        }
+        Matcher matcher = SELF_REPEATING_SEASON.matcher(title.canonicalShow());
+        if (!matcher.matches()) {
+            return title;
+        }
+        return new NormalizedTitle(
+                matcher.group("base").trim(), number(matcher.group("season")), title.episode(), title.episodeTitle());
     }
 
     /** Trims an optional value and maps blanks to {@code null}. */

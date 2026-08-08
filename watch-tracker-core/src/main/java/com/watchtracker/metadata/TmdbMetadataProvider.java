@@ -61,22 +61,59 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      * Searches TV and movie results, then retrieves the selected result's full details.
      *
      * @param title canonical title to search
-     * @return TMDb metadata for the first TV or movie result
+     * @return TMDb metadata for the best-matching TV or movie result
      */
     @Override
     public Optional<ShowMetadata> findByTitle(String title) {
         JsonNode results = request("/search/multi?include_adult=false&language=en-US&query=" + encode(title))
                 .path("results");
+        JsonNode selected = selectBestMatch(results, title);
+        if (selected == null) {
+            return Optional.empty();
+        }
+        String mediaType = selected.path("media_type").asText();
+        long id = selected.path("id").asLong();
+        return Optional.of(toMetadata(request('/' + mediaType + '/' + id), mediaType));
+    }
+
+    /**
+     * Chooses the best {@code /search/multi} candidate for a title.
+     *
+     * <p>TMDb ranks multi-search results by popularity, not by how closely each result's own title
+     * matches the query. Blindly taking the first TV/movie hit means a more famous, similarly-named
+     * result can silently outrank the actual match — for example, a query for "Fighter" (an obscure
+     * film) can be outranked by "The Ultimate Fighter" (a long-running, far more popular reality
+     * franchise), producing plausible-looking but entirely wrong metadata.
+     *
+     * <p>This prefers the first result whose own title exactly matches the query
+     * (case/punctuation-insensitive, via {@link #sameTitle}), scanning every candidate rather than
+     * stopping at the first TV/movie hit. Only when no exact match exists anywhere in the results
+     * does it fall back to the first TV/movie hit, preserving the previous behavior for titles where
+     * TMDb's own title legitimately differs (alternate spelling, subtitle, re-release naming, etc.).
+     *
+     * @param results the {@code results} array from a {@code /search/multi} response
+     * @param queryTitle the title that was searched for
+     * @return the selected result node, or {@code null} if no TV/movie candidate exists
+     */
+    static JsonNode selectBestMatch(JsonNode results, String queryTitle) {
+        JsonNode fallback = null;
         for (JsonNode result : results) {
             String mediaType = result.path("media_type").asText();
-            if ("tv".equals(mediaType) || "movie".equals(mediaType)) {
-                long id = result.path("id").asLong();
-                if (id > 0) {
-                    return Optional.of(toMetadata(request('/' + mediaType + '/' + id), mediaType));
-                }
+            if (!"tv".equals(mediaType) && !"movie".equals(mediaType)) {
+                continue;
+            }
+            if (result.path("id").asLong() <= 0) {
+                continue;
+            }
+            if (fallback == null) {
+                fallback = result;
+            }
+            String resultTitle = "tv".equals(mediaType) ? result.path("name").asText() : result.path("title").asText();
+            if (sameTitle(resultTitle, queryTitle)) {
+                return result;
             }
         }
-        return Optional.empty();
+        return fallback;
     }
 
     /**

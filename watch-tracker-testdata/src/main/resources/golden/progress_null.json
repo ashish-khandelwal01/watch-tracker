@@ -30,12 +30,12 @@
     },
     {
         "show": {
-            "id": "25708c93-255d-36da-91b9-3e9a9a2f3353",
-            "title": "My Royal Nemesis",
+            "id": "94564a6b-7732-3e53-b300-027354e8e00a",
+            "title": "My Royal Nemesis: Limited Series",
             "aliases": [
-                "My Royal Nemesis: Limited Series: A Guide to Optimizing Your Fate",
+                "My Royal Nemesis: Limited Series: A Whole New Reality",
                 "My Royal Nemesis: Limited Series: The Vixen and the Beast",
-                "My Royal Nemesis: Limited Series: A Whole New Reality"
+                "My Royal Nemesis: Limited Series: A Guide to Optimizing Your Fate"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2026-07-11T00:00:00",
@@ -95,8 +95,8 @@
             "id": "b6f47431-7649-330b-96fe-6ff9fad17809",
             "title": "Lock Upp",
             "aliases": [
-                "Lock Upp: Ep. 1 - Famous, Accused, Locked.",
-                "Lock Upp: Ep. 2 - Tagged and Targeted"
+                "Lock Upp: Ep. 2 - Tagged and Targeted",
+                "Lock Upp: Ep. 1 - Famous, Accused, Locked."
             ],
             "type": "SERIES",
             "firstWatched": "2026-06-28T00:00:00",
@@ -208,11 +208,11 @@
     },
     {
         "show": {
-            "id": "7579abe7-c28e-35f1-9f7e-9e7c8fdf8872",
-            "title": "Boyfriend on Demand",
+            "id": "71cfba91-cbd8-38d4-8f9c-63806d6e64a3",
+            "title": "Boyfriend on Demand: Limited Series",
             "aliases": [
-                "Boyfriend on Demand: Limited Series: The Futures of You and Me",
-                "Boyfriend on Demand: Limited Series: Cliche or Classic"
+                "Boyfriend on Demand: Limited Series: Cliche or Classic",
+                "Boyfriend on Demand: Limited Series: The Futures of You and Me"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2026-04-16T00:00:00",
@@ -268,11 +268,11 @@
     },
     {
         "show": {
-            "id": "4908eeb5-8873-3853-b593-b7c0b520f25e",
-            "title": "Dynamite Kiss",
+            "id": "fa3a340d-557f-3a44-8403-7e57be28ad4c",
+            "title": "Dynamite Kiss: Limited Series",
             "aliases": [
-                "Dynamite Kiss: Limited Series: Nitric Acid, Sulfuric Acid, and Dynamite",
-                "Dynamite Kiss: Limited Series: Gone With a Kiss"
+                "Dynamite Kiss: Limited Series: Gone With a Kiss",
+                "Dynamite Kiss: Limited Series: Nitric Acid, Sulfuric Acid, and Dynamite"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2025-12-20T00:00:00",
@@ -298,15 +298,15 @@
     },
     {
         "show": {
-            "id": "c4580748-73a9-3cf1-847d-c75fd7f8bace",
-            "title": "Taskaree",
+            "id": "42ac7c13-8078-3f0c-997b-5a7bc4fd4fd3",
+            "title": "Taskaree: The Smuggler's Web",
             "aliases": [
-                "Taskaree: The Smuggler's Web: Bada Choudhary",
-                "Taskaree: The Smuggler's Web: Customs vs Popat",
-                "Taskaree: The Smuggler's Web: The Priya Story",
-                "Taskaree: The Smuggler's Web: Kahani Khatam",
-                "Taskaree: The Smuggler's Web: Operation Longshot",
                 "Taskaree: The Smuggler's Web: Hum Coin Hain",
+                "Taskaree: The Smuggler's Web: Operation Longshot",
+                "Taskaree: The Smuggler's Web: Kahani Khatam",
+                "Taskaree: The Smuggler's Web: The Priya Story",
+                "Taskaree: The Smuggler's Web: Customs vs Popat",
+                "Taskaree: The Smuggler's Web: Bada Choudhary",
                 "Taskaree: The Smuggler's Web: Darr Ka Dhandha"
             ],
             "type": "SERIES",
@@ -394,45 +394,49 @@
     },
     {
         "show": {
-            "id": "e91b944d-5703-31d6-9ccf-31b7d9c0b94c",
-            "title": "The Lady's Companion",
+            "id": "e54dc302-e2a8-3d1d-acf4-d8d82973336b",
+            "title": "The Lady's Companion: Lesson 2",
             "aliases": [
-                "The Lady's Companion: Lesson 2: Do Not Tell Lies",
-                "The Lady's Companion: Lesson 1: Never Fall in Love"
+                "The Lady's Companion: Lesson 2: Do Not Tell Lies"
             ],
-            "type": "SERIES",
+            "type": "UNKNOWN",
             "firstWatched": "2025-11-18T00:00:00",
             "lastWatched": "2025-11-18T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 1
         },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 280890,
-            "title": "The Lady's Companion",
-            "type": "SERIES",
-            "genres": [
-                "Drama",
-                "Comedy"
-            ],
-            "overview": "Hired to find husbands for three wealthy sisters, chaperone Elena Bianda is drawn into a late 19th-century world of love, scandal and comic intrigue.",
-            "posterPath": "/3C4MQlp0yWyVErSGVzHBObvFbMX.jpg",
-            "releaseDate": "2025-03-28"
-        },
+        "metadata": null,
         "progress": null
     },
     {
         "show": {
-            "id": "47c6e6dd-11c3-308e-9a1e-a98da5db5c44",
-            "title": "The Potato Lab",
+            "id": "025c871f-03e6-3fe2-9a91-7a72dc3de025",
+            "title": "The Lady's Companion: Lesson 1",
             "aliases": [
-                "The Potato Lab: Limited Series: The Hot Director",
-                "The Potato Lab: Limited Series: The Price of a Kiss",
-                "The Potato Lab: Limited Series: Person of Interest",
-                "The Potato Lab: Limited Series: That Wonhan Bastard",
-                "The Potato Lab: Limited Series: This message has been deleted",
+                "The Lady's Companion: Lesson 1: Never Fall in Love"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2025-11-18T00:00:00",
+            "lastWatched": "2025-11-18T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "c668e43c-a7d8-3d99-905d-bb2b925e336c",
+            "title": "The Potato Lab: Limited Series",
+            "aliases": [
                 "The Potato Lab: Limited Series: Softie Sweetie",
+                "The Potato Lab: Limited Series: This message has been deleted",
+                "The Potato Lab: Limited Series: That Wonhan Bastard",
+                "The Potato Lab: Limited Series: Person of Interest",
+                "The Potato Lab: Limited Series: The Price of a Kiss",
+                "The Potato Lab: Limited Series: The Hot Director",
                 "The Potato Lab: Limited Series: False Goat's Beard"
             ],
             "type": "LIMITED_SERIES",
@@ -495,7 +499,7 @@
             "aliases": [
                 "Kurukshetra: Sanjay"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2025-10-13T00:00:00",
             "lastWatched": "2025-10-13T00:00:00",
             "highestSeasonSeen": null,
@@ -504,17 +508,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 300894,
-            "title": "Kurukshetra: The Great War of Mahabharata",
-            "type": "SERIES",
+            "providerId": 1552485,
+            "title": "Kurukshetra",
+            "type": "MOVIE",
             "genres": [
-                "Action & Adventure",
+                "History",
                 "Drama",
-                "Animation"
+                "Fantasy"
             ],
-            "overview": "An epic 18-day battle unfolds through the perspectives of 18 warriors, revealing their inner struggles and ethical challenges during a war between brothers.",
-            "posterPath": "/xbafLh6kWkWf87dqHdoHFDWGot9.jpg",
-            "releaseDate": "2025-10-10"
+            "overview": "A combination of the epic story of the Mahabharata with contemporary social issues. It starts with a focus on a new social order, featuring three social workers, including Suvarnarekha, dedicated to eliminating idleness. The main narrative then unfolds by incorporating well-known mythological events like the Draupadi Swayamvar and the Sabha (Court) incident, progressing toward the Kurukshetra war. Throughout the film, these epic sequences are mixed with modern \"social sequences\" and philosophical lessons from the Bhagavad Gita in an attempt to address and provide solutions for national problems.",
+            "posterPath": "/r0nXiVza2nehaNrJNnVKDfW67M4.jpg",
+            "releaseDate": "1945-05-17"
         },
         "progress": null
     },
@@ -552,8 +556,8 @@
             "id": "99594ea7-bd02-3fab-b745-b81b989fcab4",
             "title": "Gabriel Iglesias",
             "aliases": [
-                "Gabriel Iglesias: Legend of Fluffy",
-                "Gabriel Iglesias: Stadium Fluffy"
+                "Gabriel Iglesias: Stadium Fluffy",
+                "Gabriel Iglesias: Legend of Fluffy"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-12-08T00:00:00",
@@ -579,21 +583,21 @@
     },
     {
         "show": {
-            "id": "7a9e0b3a-1846-376c-9fbd-3b35131a6457",
-            "title": "Bon Appétit, Your Majesty",
+            "id": "a589073f-291a-3a55-a0be-1482251e707b",
+            "title": "Bon Appétit, Your Majesty: Limited Series",
             "aliases": [
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 12 Hwanseban",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 4 **** and Spinach Doenjang Soup",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 10 Joseon Restaurant",
-                "Bon Appétit, Your Majesty: Limited Series: Course Nº 1 Gochujang Butter Bibimbap",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 9 Pressure-Cooked Ogyetang",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 8 Rice Wine Beef Bourguignon",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 11 Soy Meat Gujeolpan & Eggplant Pie",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 3 Haute Cuisine",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 7 Dongnae Pajeon on a Rainy Day",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 6 Black Sesame Macaron",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 2 Sous Vide Cuisine",
                 "Bon Appétit, Your Majesty: Limited Series: Course N° 5 Snowflake Schnitzel",
-                "Bon Appétit, Your Majesty: Limited Series: Course N° 2 Sous Vide Cuisine"
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 6 Black Sesame Macaron",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 7 Dongnae Pajeon on a Rainy Day",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 3 Haute Cuisine",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 11 Soy Meat Gujeolpan & Eggplant Pie",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 8 Rice Wine Beef Bourguignon",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 9 Pressure-Cooked Ogyetang",
+                "Bon Appétit, Your Majesty: Limited Series: Course Nº 1 Gochujang Butter Bibimbap",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 10 Joseon Restaurant",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 4 **** and Spinach Doenjang Soup",
+                "Bon Appétit, Your Majesty: Limited Series: Course N° 12 Hwanseban"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2025-09-06T00:00:00",
@@ -619,15 +623,15 @@
     },
     {
         "show": {
-            "id": "c5d69f59-c8e4-3d0c-befa-8787f6e303c6",
-            "title": "Tastefully Yours",
+            "id": "63ce4884-9fb5-31fd-bbe8-640e2b2626d7",
+            "title": "Tastefully Yours: Limited Series",
             "aliases": [
-                "Tastefully Yours: Limited Series: A Taste of Familiarity",
-                "Tastefully Yours: Limited Series: Love Is Like a Spark",
-                "Tastefully Yours: Limited Series: Jungjae Manual",
                 "Tastefully Yours: Limited Series: Partially Soaked",
-                "Tastefully Yours: Limited Series: The Stubbornness of Jungjae",
-                "Tastefully Yours: Limited Series: Neither Hot nor Cold"
+                "Tastefully Yours: Limited Series: Jungjae Manual",
+                "Tastefully Yours: Limited Series: Love Is Like a Spark",
+                "Tastefully Yours: Limited Series: A Taste of Familiarity",
+                "Tastefully Yours: Limited Series: Neither Hot nor Cold",
+                "Tastefully Yours: Limited Series: The Stubbornness of Jungjae"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2025-06-28T00:00:00",
@@ -656,9 +660,9 @@
             "id": "7f7291e3-6a0a-3731-880a-2acdeebb536f",
             "title": "The Empress",
             "aliases": [
-                "The Empress: Season 1: The Hunt",
-                "The Empress: Season 1: The Arrival",
                 "The Empress: Season 1: The Wedding",
+                "The Empress: Season 1: The Arrival",
+                "The Empress: Season 1: The Hunt",
                 "The Empress: Season 1: One's Place in the World"
             ],
             "type": "SERIES",
@@ -670,15 +674,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 61988,
-            "title": "The Empress of China",
+            "providerId": 131488,
+            "title": "The Empress",
             "type": "SERIES",
             "genres": [
                 "Drama"
             ],
-            "overview": "Based on events in 7th and 8th-century Tang dynasty and starring producer Fan Bingbing as the titular character Wu Zetian, The Empress of China is the story of the only woman in Chinese history to rule as an emperor.",
-            "posterPath": "/stcpHqW4U4W3WxklqEEFVhctr4Y.jpg",
-            "releaseDate": "2014-12-21"
+            "overview": "When rebellious Elisabeth falls for Emperor Franz and becomes his unlikely bride, she enters a world of tension and intrigue at the Viennese court.",
+            "posterPath": "/9AWkNkZHwNLuM6H5u6dToioHMAI.jpg",
+            "releaseDate": "2022-09-29"
         },
         "progress": null
     },
@@ -727,18 +731,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1168190,
-            "title": "The Wrecking Crew",
+            "providerId": 1045931,
+            "title": "Crew",
             "type": "MOVIE",
             "genres": [
-                "Action",
-                "Comedy",
-                "Crime",
-                "Mystery"
+                "Comedy"
             ],
-            "overview": "Estranged half-brothers Jonny and James reunite after their father's mysterious death. As they search for the truth, buried secrets reveal a conspiracy threatening to tear their family apart.",
-            "posterPath": "/gbVwHl4YPSq6BcC92TQpe7qUTh6.jpg",
-            "releaseDate": "2026-01-28"
+            "overview": "Three ordinary air hostesses from Mumbai embark on a journey to pursue their dreams but find themselves caught up in unexpected misfortunes.",
+            "posterPath": "/8mnCtQngfhYt0W0BmkrCePutmvy.jpg",
+            "releaseDate": "2024-03-29"
         },
         "progress": null
     },
@@ -767,15 +768,15 @@
                 "Drama"
             ],
             "overview": "When his family stares down the barrel of criminal charges, a commoner channels his street smarts and knowledge of action films to tie the long arm of the law into an investigative Gordian knot.",
-            "posterPath": "/gIClWRv5OSe8rl5Koi0AeUcCZ9Z.jpg",
+            "posterPath": "/bniZOGixNbYclobRpqkPK7dMBgP.jpg",
             "releaseDate": "2015-07-30"
         },
         "progress": null
     },
     {
         "show": {
-            "id": "eacc2808-6ef0-3b0c-b9b9-20759cc01b88",
-            "title": "Melo Movie",
+            "id": "2a3f70a7-89df-3a45-b6a2-97b481f0207c",
+            "title": "Melo Movie: Limited Series",
             "aliases": [
                 "Melo Movie: Limited Series: It Will Become Scenic When Dawn Comes"
             ],
@@ -803,18 +804,18 @@
     },
     {
         "show": {
-            "id": "25ebd340-2fb9-331c-8d29-b84d364e2779",
-            "title": "Khakee",
+            "id": "ba9e3682-d7b6-300e-89b1-7c22bacb7a0a",
+            "title": "Khakee: The Bihar Chapter",
             "aliases": [
-                "Khakee: The Bihar Chapter: PHACE TO PHACE !",
-                "Khakee: The Bihar Chapter: MEETA JI KI LOVE STORY !!!",
-                "Khakee: The Bihar Chapter: CHANDANWA KA JANM !",
-                "Khakee: The Bihar Chapter: AMIT KAUN ???",
-                "Khakee: The Bihar Chapter: PATRA PARICHAY !",
                 "Khakee: The Bihar Chapter: MEETA JI KI LOVE STORY PART 2",
+                "Khakee: The Bihar Chapter: PATRA PARICHAY !",
+                "Khakee: The Bihar Chapter: AMIT KAUN ???",
+                "Khakee: The Bihar Chapter: CHANDANWA KA JANM !",
+                "Khakee: The Bihar Chapter: MEETA JI KI LOVE STORY !!!",
+                "Khakee: The Bihar Chapter: PHACE TO PHACE !",
                 "Khakee: The Bihar Chapter: MOOH DIKHAI !!!"
             ],
-            "type": "MOVIE",
+            "type": "SERIES",
             "firstWatched": "2023-04-17T00:00:00",
             "lastWatched": "2025-03-29T00:00:00",
             "highestSeasonSeen": null,
@@ -823,15 +824,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 21665,
-            "title": "Khakee",
-            "type": "MOVIE",
+            "providerId": 213635,
+            "title": "Khakee: The Bihar Chapter",
+            "type": "SERIES",
             "genres": [
-                "Action"
+                "Crime",
+                "Drama"
             ],
-            "overview": "DCP Anant and his team get tasked with escorting an alleged terrorist to Mumbai. However, a rogue ex-police officer makes their task difficult as he tries to stop them from reaching their destination.",
-            "posterPath": "/dMsqwWFl51t8jXR0tWzjEuO8H4l.jpg",
-            "releaseDate": "2004-01-23"
+            "overview": "As a righteous cop pursues a merciless criminal in Bihar, he finds himself navigating a deadly chase and a moral battle mired in corruption.",
+            "posterPath": "/xvr3WrwAQMlcb00OZEos9nLekTE.jpg",
+            "releaseDate": "2022-11-25"
         },
         "progress": null
     },
@@ -867,8 +869,8 @@
     },
     {
         "show": {
-            "id": "130380ec-f716-39da-bf64-4e093bd2a763",
-            "title": "See You in My 19th Life",
+            "id": "e7f66c93-6792-3197-80f3-11fb53dba1de",
+            "title": "See You in My 19th Life: Limited Series",
             "aliases": [
                 "See You in My 19th Life: Limited Series: Happiness, Sadness, Pity, and Joy"
             ],
@@ -924,14 +926,14 @@
     },
     {
         "show": {
-            "id": "ca7380a1-180f-3dfc-8817-ee904662170c",
-            "title": "The Trauma Code",
+            "id": "34e86d7e-1356-364e-a8e4-cfe4fef40aac",
+            "title": "The Trauma Code: Heroes on Call",
             "aliases": [
-                "The Trauma Code: Heroes on Call: Enter Doctor Maniac",
-                "The Trauma Code: Heroes on Call: The Birth of Protégé No.1",
-                "The Trauma Code: Heroes on Call: Keep On Running",
-                "The Trauma Code: Heroes on Call: Closer Than You Think",
                 "The Trauma Code: Heroes on Call: Code Black",
+                "The Trauma Code: Heroes on Call: Closer Than You Think",
+                "The Trauma Code: Heroes on Call: Keep On Running",
+                "The Trauma Code: Heroes on Call: The Birth of Protégé No.1",
+                "The Trauma Code: Heroes on Call: Enter Doctor Maniac",
                 "The Trauma Code: Heroes on Call: Reasons for Not Giving Up"
             ],
             "type": "SERIES",
@@ -1018,9 +1020,9 @@
             "id": "0a1f3f3e-cf9a-3841-bd9f-a3f352b4f4e0",
             "title": "Start-Up",
             "aliases": [
-                "Start-Up: Angel",
+                "Start-Up: START-UP",
                 "Start-Up: FAMILY, FRIENDS, FOOLS",
-                "Start-Up: START-UP"
+                "Start-Up: Angel"
             ],
             "type": "SERIES",
             "firstWatched": "2024-12-26T00:00:00",
@@ -1031,15 +1033,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 215491,
-            "title": "Stand Up Start",
+            "providerId": 99048,
+            "title": "Start-Up",
             "type": "SERIES",
             "genres": [
-                "Drama"
+                "Drama",
+                "Comedy"
             ],
-            "overview": "Mihoshi Taiyo is the CEO of investment company Sunshine Fund and self-proclaimed human investor. He holds the belief that \"Assets are people. No investor will dispose of their assets.\" Mihoshi Taiyo approaches people who are having difficulties in their personal lives or business career. He talks to them and proposes doing a start-up together, allowing them to dream again.",
-            "posterPath": "/2jQyZ13Wbld0DoBQkjt8BBZzAs5.jpg",
-            "releaseDate": "2023-01-18"
+            "overview": "Young entrepreneurs aspiring to launch virtual dreams into reality compete for success and love in the cutthroat world of Korea's high-tech industry.",
+            "posterPath": "/hxJQ3A2wtreuWDnVBbzzXI3YlOE.jpg",
+            "releaseDate": "2020-10-17"
         },
         "progress": null
     },
@@ -1199,7 +1202,7 @@
             "aliases": [
                 "Fighter"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-11-30T00:00:00",
             "lastWatched": "2024-11-30T00:00:00",
             "highestSeasonSeen": null,
@@ -1208,15 +1211,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 517,
-            "title": "The Ultimate Fighter",
-            "type": "SERIES",
+            "providerId": 784651,
+            "title": "Fighter",
+            "type": "MOVIE",
             "genres": [
-                "Reality"
+                "Action",
+                "Drama"
             ],
-            "overview": "The next generation of UFC stars are produced in an intense elimination tournament that separates the contenders from the pretenders.",
-            "posterPath": "/k3NlkqDeYmKTsx7QIQWjXXo0DeW.jpg",
-            "releaseDate": "2005-01-17"
+            "overview": "As India faces a militant attack in Kashmir, the country’s best combat aviators join forces under a reckless yet brilliant squadron leader to form 'Air Dragons', faces mortal dangers and their inner demons.",
+            "posterPath": "/zqFuriKJ6pYDvf72kXNLONnuE8k.jpg",
+            "releaseDate": "2024-01-24"
         },
         "progress": null
     },
@@ -1239,13 +1243,13 @@
     },
     {
         "show": {
-            "id": "bf91fb13-2d73-36f9-baa5-e0135ba245a5",
-            "title": "Turning Point",
+            "id": "768c5b00-4dd1-3003-9793-f3a715075f0d",
+            "title": "Turning Point: The Bomb and the Cold War",
             "aliases": [
-                "Turning Point: The Bomb and the Cold War: The Sun Came Up Tremendous",
-                "Turning Point: The Bomb and the Cold War: Poisoning the Soil"
+                "Turning Point: The Bomb and the Cold War: Poisoning the Soil",
+                "Turning Point: The Bomb and the Cold War: The Sun Came Up Tremendous"
             ],
-            "type": "MOVIE",
+            "type": "DOCUMENTARY",
             "firstWatched": "2024-11-16T00:00:00",
             "lastWatched": "2024-11-23T00:00:00",
             "highestSeasonSeen": null,
@@ -1254,16 +1258,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 946020,
-            "title": "Turning Point",
-            "type": "MOVIE",
+            "providerId": 245926,
+            "title": "Turning Point: The Bomb and the Cold War",
+            "type": "SERIES",
             "genres": [
-                "Horror",
-                "Thriller"
+                "Documentary"
             ],
-            "overview": "There is danger in the night, but the true terror is inside the house. Trapped within the home of a zombie in transition, Margot and her partner in crime must find their way out before they become the ghoul’s first victims. Their only hope for survival is a bizarre neighbor with an expert knowledge of the undead and the flicker of humanity remaining in their mutating stalker.",
-            "posterPath": "/rHdjOsXTmIad4GpRcAbf1PAcb6W.jpg",
-            "releaseDate": "2022-03-02"
+            "overview": "With firsthand accounts and access to prominent figures around the world, this comprehensive docuseries explores the Cold War and its aftermath.",
+            "posterPath": "/5XBYN5Sb0yBvvodwr8fJa7iyuo2.jpg",
+            "releaseDate": "2024-03-12"
         },
         "progress": null
     },
@@ -1272,8 +1275,8 @@
             "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
             "title": "Matt Rife",
             "aliases": [
-                "Matt Rife: Natural Selection",
-                "Matt Rife: Lucid - A Crowd Work Special"
+                "Matt Rife: Lucid - A Crowd Work Special",
+                "Matt Rife: Natural Selection"
             ],
             "type": "MOVIE",
             "firstWatched": "2024-04-08T00:00:00",
@@ -1417,15 +1420,15 @@
     },
     {
         "show": {
-            "id": "ff9eb8bd-8c92-3da0-b3ce-a632f294e23b",
-            "title": "Tomorrow",
+            "id": "8691d920-e8e5-3d4c-9ec4-4889fe667124",
+            "title": "Tomorrow: Limited Series",
             "aliases": [
-                "Tomorrow: Limited Series: Fallen Flower 1",
                 "Tomorrow: Limited Series: Forest of Time 2 & Tree 1",
-                "Tomorrow: Limited Series: Forest of Time 1",
-                "Tomorrow: Limited Series: Fallen Flower 2"
+                "Tomorrow: Limited Series: Fallen Flower 1",
+                "Tomorrow: Limited Series: Fallen Flower 2",
+                "Tomorrow: Limited Series: Forest of Time 1"
             ],
-            "type": "MOVIE",
+            "type": "LIMITED_SERIES",
             "firstWatched": "2024-10-30T00:00:00",
             "lastWatched": "2024-11-02T00:00:00",
             "highestSeasonSeen": null,
@@ -1434,17 +1437,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 588228,
-            "title": "The Tomorrow War",
-            "type": "MOVIE",
+            "providerId": 136369,
+            "title": "Tomorrow",
+            "type": "SERIES",
             "genres": [
-                "Action",
-                "Science Fiction",
-                "Adventure"
+                "Drama",
+                "Sci-Fi & Fantasy",
+                "Action & Adventure"
             ],
-            "overview": "The world is stunned when a group of time travelers arrive from the year 2051 to deliver an urgent message: Thirty years in the future, mankind is losing a global war against a deadly alien species. The only hope for survival is for soldiers and civilians from the present to be transported to the future and join the fight. Among those recruited is high school teacher and family man Dan Forester. Determined to save the world for his young daughter, Dan teams up with a brilliant scientist and his estranged father in a desperate quest to rewrite the fate of the planet.",
-            "posterPath": "/34nDCQZwaEvsy4CFO5hkGRFDCVU.jpg",
-            "releaseDate": "2021-09-03"
+            "overview": "Made half-human and half-spirit by accident, a young man is employed by a company of grim reapers in the underworld to carry out special missions.",
+            "posterPath": "/3SFVIdXXQ2DrAOARBdf1knqG7Pw.jpg",
+            "releaseDate": "2022-04-01"
         },
         "progress": null
     },
@@ -1595,25 +1598,25 @@
     },
     {
         "show": {
-            "id": "1231e4cd-180e-3eee-b82c-9b49ab49ef73",
-            "title": "Love Next Door",
+            "id": "fa6f3c39-b2e0-3bec-9b56-426fda93dd36",
+            "title": "Love Next Door: Limited Series",
             "aliases": [
-                "Love Next Door: Limited Series: Puppy Love",
-                "Love Next Door: Limited Series: His Secret",
-                "Love Next Door: Limited Series: Past Perfect",
-                "Love Next Door: Limited Series: The End",
-                "Love Next Door: Limited Series: Sweet Love",
-                "Love Next Door: Limited Series: Your First",
-                "Love Next Door: Limited Series: Love is All About Timing",
-                "Love Next Door: Limited Series: Darkness in Life",
-                "Love Next Door: Limited Series: Stop Line",
-                "Love Next Door: Limited Series: Hate",
-                "Love Next Door: Limited Series: Comeback",
-                "Love Next Door: Limited Series: Bear in the Cave",
-                "Love Next Door: Limited Series: Belated",
-                "Love Next Door: Limited Series: Bravo, My Life",
+                "Love Next Door: Limited Series: Go Back",
                 "Love Next Door: Limited Series: Love",
-                "Love Next Door: Limited Series: Go Back"
+                "Love Next Door: Limited Series: Bravo, My Life",
+                "Love Next Door: Limited Series: Belated",
+                "Love Next Door: Limited Series: Bear in the Cave",
+                "Love Next Door: Limited Series: Comeback",
+                "Love Next Door: Limited Series: Hate",
+                "Love Next Door: Limited Series: Stop Line",
+                "Love Next Door: Limited Series: Darkness in Life",
+                "Love Next Door: Limited Series: Love is All About Timing",
+                "Love Next Door: Limited Series: Your First",
+                "Love Next Door: Limited Series: Sweet Love",
+                "Love Next Door: Limited Series: The End",
+                "Love Next Door: Limited Series: Past Perfect",
+                "Love Next Door: Limited Series: His Secret",
+                "Love Next Door: Limited Series: Puppy Love"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-10-09T00:00:00",
@@ -1644,7 +1647,7 @@
             "aliases": [
                 "Gifted"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-09-20T00:00:00",
             "lastWatched": "2024-09-20T00:00:00",
             "highestSeasonSeen": null,
@@ -1653,17 +1656,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 69629,
-            "title": "The Gifted",
-            "type": "SERIES",
+            "providerId": 400928,
+            "title": "Gifted",
+            "type": "MOVIE",
             "genres": [
-                "Sci-Fi & Fantasy",
-                "Action & Adventure",
-                "Drama"
+                "Drama",
+                "Comedy"
             ],
-            "overview": "A suburban couple's ordinary lives are rocked by the sudden discovery that their children possess mutant powers. Forced to go on the run from a hostile government, the family joins up with an underground network of mutants and must fight to survive.",
-            "posterPath": "/nshCqszjTNuqhrB53vrSqWO18sE.jpg",
-            "releaseDate": "2017-10-02"
+            "overview": "Frank, a single man raising his child prodigy niece Mary, is drawn into a custody battle with his mother.",
+            "posterPath": "/7YB2YrMwIm1g8FyZtlvmVDfRnAT.jpg",
+            "releaseDate": "2017-04-07"
         },
         "progress": null
     },
@@ -1701,8 +1703,8 @@
             "id": "64ddfc94-7630-37c3-85da-733127d4365d",
             "title": "Jawan",
             "aliases": [
-                "Jawan: Extended Cut",
-                "Jawan: Tamil Extended Cut"
+                "Jawan: Tamil Extended Cut",
+                "Jawan: Extended Cut"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-11-07T00:00:00",
@@ -1771,18 +1773,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 698687,
-            "title": "Transformers One",
+            "providerId": 1858,
+            "title": "Transformers",
             "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Science Fiction",
                 "Adventure",
-                "Family"
+                "Science Fiction",
+                "Action"
             ],
-            "overview": "The untold origin story of Optimus Prime and Megatron, better known as sworn enemies, but once were friends bonded like brothers who changed the fate of Cybertron forever.",
-            "posterPath": "/iRCgqpdVE4wyLQvGYU3ZP7pAtUc.jpg",
-            "releaseDate": "2024-09-11"
+            "overview": "Young teenager Sam Witwicky becomes involved in the ancient struggle between two extraterrestrial factions of transforming robots – the heroic Autobots and the evil Decepticons. Sam holds the clue to unimaginable power and the Decepticons will stop at nothing to retrieve it.",
+            "posterPath": "/lkZ9gqCEjzX85lKR6Jjd1uGAXNp.jpg",
+            "releaseDate": "2007-06-27"
         },
         "progress": null
     },
@@ -1849,25 +1850,25 @@
     },
     {
         "show": {
-            "id": "fdc7d50a-798c-351b-b02b-e4edc401ff75",
-            "title": "My Demon",
+            "id": "3bdd953e-1615-3926-92f5-9d775a5a5029",
+            "title": "My Demon: Limited Series",
             "aliases": [
-                "My Demon: Limited Series: Living in the Mist",
-                "My Demon: Limited Series: Everyone Has a Demon in Their Heart",
-                "My Demon: Limited Series: The Savior of Destruction",
-                "My Demon: Limited Series: Joining Hands With a Demon",
-                "My Demon: Limited Series: Sweet but Dangerous",
-                "My Demon: Limited Series: A Paradise of the Ominous",
-                "My Demon: Limited Series: The Unmasked Truth",
-                "My Demon: Limited Series: The Fateful Choice",
-                "My Demon: Limited Series: Stained Relationships",
-                "My Demon: Limited Series: The End of Fate",
-                "My Demon: Limited Series: Our Personal Heaven",
-                "My Demon: Limited Series: Our Personal Hell",
                 "My Demon: Limited Series: Breaking Through the Shell",
-                "My Demon: Limited Series: Only You",
+                "My Demon: Limited Series: Our Personal Hell",
+                "My Demon: Limited Series: Our Personal Heaven",
+                "My Demon: Limited Series: The End of Fate",
+                "My Demon: Limited Series: Stained Relationships",
+                "My Demon: Limited Series: The Fateful Choice",
+                "My Demon: Limited Series: The Unmasked Truth",
+                "My Demon: Limited Series: A Paradise of the Ominous",
+                "My Demon: Limited Series: Sweet but Dangerous",
+                "My Demon: Limited Series: Joining Hands With a Demon",
+                "My Demon: Limited Series: The Savior of Destruction",
+                "My Demon: Limited Series: Everyone Has a Demon in Their Heart",
+                "My Demon: Limited Series: Living in the Mist",
+                "My Demon: Limited Series: The Past, the Original Sin",
                 "My Demon: Limited Series: Into the Wheel of Fortune",
-                "My Demon: Limited Series: The Past, the Original Sin"
+                "My Demon: Limited Series: Only You"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-08-13T00:00:00",
@@ -1896,8 +1897,8 @@
             "id": "a0276e22-4d8b-3fd8-9425-0f182033ee8e",
             "title": "Kingsman",
             "aliases": [
-                "Kingsman: The Secret Service",
-                "Kingsman: The Golden Circle"
+                "Kingsman: The Golden Circle",
+                "Kingsman: The Secret Service"
             ],
             "type": "MOVIE",
             "firstWatched": "2024-08-12T00:00:00",
@@ -1925,14 +1926,14 @@
     },
     {
         "show": {
-            "id": "31487cc7-c9e5-3652-a608-cd60f73ac5de",
-            "title": "Welcome to Samdal-ri",
+            "id": "4228a10a-a805-31cf-9a79-caecc1dd3a56",
+            "title": "Welcome to Samdal-ri: Limited Series",
             "aliases": [
-                "Welcome to Samdal-ri: Limited Series: The Soulmates' History",
-                "Welcome to Samdal-ri: Limited Series: Tears of the Dragon",
-                "Welcome to Samdal-ri: Limited Series: Like Wild Birds, Soaring, Dreaming, Descending",
-                "Welcome to Samdal-ri: Limited Series: I See You",
                 "Welcome to Samdal-ri: Limited Series: The Rotten Apple of My Eye",
+                "Welcome to Samdal-ri: Limited Series: I See You",
+                "Welcome to Samdal-ri: Limited Series: Like Wild Birds, Soaring, Dreaming, Descending",
+                "Welcome to Samdal-ri: Limited Series: Tears of the Dragon",
+                "Welcome to Samdal-ri: Limited Series: The Soulmates' History",
                 "Welcome to Samdal-ri: Limited Series: The Dreams by Cho Yong-pil"
             ],
             "type": "LIMITED_SERIES",
@@ -1962,22 +1963,22 @@
             "id": "67c018d4-ed00-371e-b093-6321efd31add",
             "title": "Extraordinary Attorney Woo",
             "aliases": [
-                "Extraordinary Attorney Woo: Though Unusual and Peculiar",
-                "Extraordinary Attorney Woo: If I Were a Whale...",
-                "Extraordinary Attorney Woo: The Wedding Dress That Slipped Off",
-                "Extraordinary Attorney Woo: The Pied Piper",
-                "Extraordinary Attorney Woo: The Strife of the Three Brothers",
-                "Extraordinary Attorney Woo: A Tale About Sodeok-dong I",
-                "Extraordinary Attorney Woo: Wild Card VS Tactician",
-                "Extraordinary Attorney Woo: Yangtze River Dolphin",
-                "Extraordinary Attorney Woo: Saying and Doing Things Not Asked",
-                "Extraordinary Attorney Woo: The Blue Night of Jeju I",
-                "Extraordinary Attorney Woo: Holding Hands Can Wait",
-                "Extraordinary Attorney Woo: This is Pengsoo",
-                "Extraordinary Attorney Woo: Mr. Salt, Ms. Pepper and Attorney Soy Sauce",
                 "Extraordinary Attorney Woo: The Blue Night of Jeju II",
-                "Extraordinary Attorney Woo: Extraordinary Attorney Woo",
-                "Extraordinary Attorney Woo: A Tale About Sodeok-dong II"
+                "Extraordinary Attorney Woo: Mr. Salt, Ms. Pepper and Attorney Soy Sauce",
+                "Extraordinary Attorney Woo: This is Pengsoo",
+                "Extraordinary Attorney Woo: Holding Hands Can Wait",
+                "Extraordinary Attorney Woo: The Blue Night of Jeju I",
+                "Extraordinary Attorney Woo: Saying and Doing Things Not Asked",
+                "Extraordinary Attorney Woo: Yangtze River Dolphin",
+                "Extraordinary Attorney Woo: Wild Card VS Tactician",
+                "Extraordinary Attorney Woo: A Tale About Sodeok-dong I",
+                "Extraordinary Attorney Woo: The Strife of the Three Brothers",
+                "Extraordinary Attorney Woo: The Pied Piper",
+                "Extraordinary Attorney Woo: The Wedding Dress That Slipped Off",
+                "Extraordinary Attorney Woo: If I Were a Whale...",
+                "Extraordinary Attorney Woo: Though Unusual and Peculiar",
+                "Extraordinary Attorney Woo: A Tale About Sodeok-dong II",
+                "Extraordinary Attorney Woo: Extraordinary Attorney Woo"
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-15T00:00:00",
@@ -2036,7 +2037,7 @@
             "aliases": [
                 "Ghost Stories"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-08-12T00:00:00",
             "lastWatched": "2024-08-12T00:00:00",
             "highestSeasonSeen": null,
@@ -2045,18 +2046,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 32803,
-            "title": "Celebrity Ghost Stories",
-            "type": "SERIES",
+            "providerId": 687259,
+            "title": "Ghost Stories",
+            "type": "MOVIE",
             "genres": [
-                "Reality",
-                "Sci-Fi & Fantasy",
-                "Mystery",
-                "Talk"
+                "Horror"
             ],
-            "overview": "Compelling, surprising and downright spooky — celebrities share their real-life personal encounters with the paranormal in each one-hour special. From encounters with ghosts and angry spirits to haunted homes, unexplainable spells and magic, these descriptive, first person narratives from our favorite stars delivers a brand new way of experiencing the thrills and chills of the addictive world of the paranormal.",
-            "posterPath": "/2nQByTYVW27g3XyZNQeStzm1mD4.jpg",
-            "releaseDate": "2009-10-03"
+            "overview": "",
+            "posterPath": "/m4ALMhsuqOOUkkABvgQWfrgoL8y.jpg",
+            "releaseDate": "1982-01-01"
         },
         "progress": null
     },
@@ -2095,23 +2093,22 @@
             "id": "0693dc44-9366-3a5f-b3f2-2b74e578450f",
             "title": "Love to Hate You",
             "aliases": [
-                "Love to Hate You: Trigonometry: The Love Triangle Edition",
-                "Love to Hate You: Femme Fatale vs Homme Fatale",
-                "Love to Hate You: A Passionate Goodbye",
                 "Love to Hate You: You Are Not What I Expected",
-                "Love to Hate You: You Made Me Who I Am",
                 "Love to Hate You: The Way You Change Me",
-                "Love to Hate You: Love is Just an Experiment, Life is the Real Thing",
-                "Love to Hate You: Nice Guys Get a Pass\r\nBad Boys Have It Coming",
                 "Love to Hate You: Bad Boy",
-                "Love to Hate You: Bad Girl"
+                "Love to Hate You: Bad Girl",
+                "Love to Hate You: Love is Just an Experiment, Life is the Real Thing",
+                "Love to Hate You: You Made Me Who I Am",
+                "Love to Hate You: A Passionate Goodbye",
+                "Love to Hate You: Nice Guys Get a Pass\r\nBad Boys Have It Coming",
+                "Love to Hate You: Femme Fatale vs Homme Fatale"
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-20T00:00:00",
             "lastWatched": "2024-07-21T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 10
+            "watchCount": 9
         },
         "metadata": {
             "provider": "TMDB",
@@ -2130,8 +2127,25 @@
     },
     {
         "show": {
-            "id": "833ae42f-9585-3d6b-8a09-b94125633669",
-            "title": "Forecasting Love and Weather",
+            "id": "92cb000a-72e5-3999-af98-79250eb8b03d",
+            "title": "Love to Hate You: Trigonometry",
+            "aliases": [
+                "Love to Hate You: Trigonometry: The Love Triangle Edition"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2024-07-21T00:00:00",
+            "lastWatched": "2024-07-21T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "9bf22286-969f-3990-a1ce-6703fcc8a484",
+            "title": "Forecasting Love and Weather: Limited Series",
             "aliases": [
                 "Forecasting Love and Weather: Limited Series: Signal"
             ],
@@ -2159,8 +2173,8 @@
     },
     {
         "show": {
-            "id": "f6d75d34-0290-3abc-a32d-a9e4bc654cd6",
-            "title": "Castaway Diva",
+            "id": "f0678d81-95b3-36ae-82bb-9771ce6c39dc",
+            "title": "Castaway Diva: Limited Series",
             "aliases": [
                 "Castaway Diva: Limited Series: Inside the Fish Tank vs. Outside the Fish Tank"
             ],
@@ -2188,12 +2202,12 @@
     },
     {
         "show": {
-            "id": "7e21d97a-969c-358f-8cd7-ea66e2170036",
-            "title": "Nevertheless,",
+            "id": "73ab4aa3-7cd3-366a-a704-5f68fbedbb41",
+            "title": "Nevertheless,: Limited Series",
             "aliases": [
-                "Nevertheless,: Limited Series: It Has Already Begun. Nevertheless,",
+                "Nevertheless,: Limited Series: There’s No Such Thing as Fate. Nevertheless,",
                 "Nevertheless,: Limited Series: It’s Not Only Me. Nevertheless,",
-                "Nevertheless,: Limited Series: There’s No Such Thing as Fate. Nevertheless,"
+                "Nevertheless,: Limited Series: It Has Already Begun. Nevertheless,"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-07T00:00:00",
@@ -2307,8 +2321,8 @@
     },
     {
         "show": {
-            "id": "50c0c35b-e44e-359c-a276-d162e13e25cb",
-            "title": "Crash Course in Romance",
+            "id": "0aae20dd-b1e1-3c99-9cf5-9efec0be3317",
+            "title": "Crash Course in Romance: Limited Series",
             "aliases": [
                 "Crash Course in Romance: Limited Series: You and I, the Intersection of Two Universes"
             ],
@@ -2339,8 +2353,8 @@
             "id": "0e98eaad-43b8-36ca-bdb5-dff03ae9138d",
             "title": "It's Okay to Not Be Okay",
             "aliases": [
-                "It's Okay to Not Be Okay: The Lady In Red Shoes",
-                "It's Okay to Not Be Okay: The Boy Who Fed On Nightmares"
+                "It's Okay to Not Be Okay: The Boy Who Fed On Nightmares",
+                "It's Okay to Not Be Okay: The Lady In Red Shoes"
             ],
             "type": "SERIES",
             "firstWatched": "2024-06-26T00:00:00",
@@ -2531,16 +2545,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 83542,
-            "title": "Cloud Atlas",
+            "providerId": 565388,
+            "title": "Atlas",
             "type": "MOVIE",
             "genres": [
-                "Drama",
-                "Science Fiction"
+                "Drama"
             ],
-            "overview": "A set of six nested stories spanning time between the 19th century and a distant post-apocalyptic future. Cloud Atlas explores how the actions and consequences of individual lives impact one another throughout the past, the present and the future. Action, mystery and romance weave through the story as one soul is shaped from a killer into a hero and a single act of kindness ripples across centuries to inspire a revolution in the distant future.  Based on the award winning novel by David Mitchell. Directed by Tom Tykwer and the Wachowskis.",
-            "posterPath": "/8naVv2Xu3rWI5JKHz0vCujx6GaJ.jpg",
-            "releaseDate": "2012-10-26"
+            "overview": "Walter is a 60-year-old removal man for forced evictions. He recognizes in one of the tenants about to be evicted his estranged son, Jan. In order to help Jan, Walter has to confront not only his crooked boss but also his own past.",
+            "posterPath": "/xP9Da09itvve7r3Lj7twji8eQ0S.jpg",
+            "releaseDate": "2018-11-26"
         },
         "progress": null
     },
@@ -2619,17 +2632,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 575265,
-            "title": "Mission: Impossible - The Final Reckoning",
+            "providerId": 34583,
+            "title": "The Final",
             "type": "MOVIE",
             "genres": [
-                "Action",
                 "Thriller",
-                "Adventure"
+                "Horror"
             ],
-            "overview": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity — which has infiltrated intelligence networks all over the globe — with the world's governments and a mysterious ghost from Hunt's past on their trail. Joined by new allies and armed with the means to shut the Entity down for good, Hunt is in a race against time to prevent the world as we know it from changing forever.",
-            "posterPath": "/iKPsC9EFUafRP9SrUznI61getVP.jpg",
-            "releaseDate": "2025-05-17"
+            "overview": "A group of high school outcasts get revenge on the students that torment them.",
+            "posterPath": "/ff7UI8q51sOArKafaaAOQnnfpne.jpg",
+            "releaseDate": "2010-01-28"
         },
         "progress": null
     },
@@ -2823,32 +2835,31 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 969681,
-            "title": "Spider-Man: Brand New Day",
+            "providerId": 557,
+            "title": "Spider-Man",
             "type": "MOVIE",
             "genres": [
-                "Science Fiction",
                 "Action",
-                "Adventure"
+                "Science Fiction"
             ],
-            "overview": "Fighting crime full-time as Spider-Man in a world that doesn't remember him—and the pressure of seeing his old friends move on without him—sparks a change in Peter Parker he may not have the power to control. But that transformation might also be the only thing that can stop a shocking new threat to the city and those he loves - a powerful villain no one can even see.",
-            "posterPath": "/iPOn6DinuVyLY17YM9mKuPofV08.jpg",
-            "releaseDate": "2026-07-28"
+            "overview": "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
+            "posterPath": "/nXdAh5vUwERL4WGVMaee8RoDEAS.jpg",
+            "releaseDate": "2002-05-01"
         },
         "progress": null
     },
     {
         "show": {
-            "id": "28749160-25f1-3a88-a899-e9ed1055e349",
-            "title": "The Queen's Gambit",
+            "id": "2dbeb27b-eba2-32b7-8bcd-0e5d8c6acb65",
+            "title": "The Queen's Gambit: Limited Series",
             "aliases": [
-                "The Queen's Gambit: Limited Series: Middle Game",
-                "The Queen's Gambit: Limited Series: Exchanges",
-                "The Queen's Gambit: Limited Series: Fork",
-                "The Queen's Gambit: Limited Series: Openings",
                 "The Queen's Gambit: Limited Series: End Game",
-                "The Queen's Gambit: Limited Series: Adjournment",
-                "The Queen's Gambit: Limited Series: Doubled Pawns"
+                "The Queen's Gambit: Limited Series: Openings",
+                "The Queen's Gambit: Limited Series: Fork",
+                "The Queen's Gambit: Limited Series: Exchanges",
+                "The Queen's Gambit: Limited Series: Middle Game",
+                "The Queen's Gambit: Limited Series: Doubled Pawns",
+                "The Queen's Gambit: Limited Series: Adjournment"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-04-20T00:00:00",
@@ -2932,14 +2943,14 @@
     },
     {
         "show": {
-            "id": "b14814d0-ee12-3fad-88f0-9ab9c604a9d0",
-            "title": "Testament",
+            "id": "0de8fb88-3b98-3963-93f4-95861d6b923f",
+            "title": "Testament: The Story of Moses",
             "aliases": [
-                "Testament: The Story of Moses: Part Three The Promised Land",
+                "Testament: The Story of Moses: Part One The Prophet",
                 "Testament: The Story of Moses: Part Two The Plagues",
-                "Testament: The Story of Moses: Part One The Prophet"
+                "Testament: The Story of Moses: Part Three The Promised Land"
             ],
-            "type": "SERIES",
+            "type": "DOCUMENTARY",
             "firstWatched": "2024-04-13T00:00:00",
             "lastWatched": "2024-04-14T00:00:00",
             "highestSeasonSeen": null,
@@ -2948,16 +2959,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 256886,
-            "title": "Testament",
+            "providerId": 247441,
+            "title": "Testament: The Story of Moses",
             "type": "SERIES",
             "genres": [
-                "Action & Adventure",
-                "Drama"
+                "Documentary",
+                "Drama",
+                "Sci-Fi & Fantasy"
             ],
-            "overview": "The series is a modern-day reimagining of the Book of Acts that follows the early followers of Jesus in an alternate, modern era. A resurrection sparks a new movement that turns the world upside down, spreading hope amid chaos. As the followers risk everything to preach the good news, the Temple races to silence them before the oppressive Imperium regime retaliates. But public miracles, unburied secrets, and fractured loyalties force both sides to confront the true cost of their choices.",
-            "posterPath": "/cR1tZd4LNtakAaWZlYY8bLMfqTI.jpg",
-            "releaseDate": "2025-06-08"
+            "overview": "This illuminating docudrama series chronicles Moses' remarkable life as a prince, prophet and more with insights from theologians and historians.",
+            "posterPath": "/rRMIvf9OismdaKSuyUoo3mQa3iD.jpg",
+            "releaseDate": "2024-03-27"
         },
         "progress": null
     },
@@ -2968,7 +2980,7 @@
             "aliases": [
                 "The Call"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-04-11T00:00:00",
             "lastWatched": "2024-04-11T00:00:00",
             "highestSeasonSeen": null,
@@ -2977,15 +2989,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 39793,
-            "title": "Call the Midwife",
-            "type": "SERIES",
+            "providerId": 158011,
+            "title": "The Call",
+            "type": "MOVIE",
             "genres": [
-                "Drama"
+                "Crime",
+                "Thriller"
             ],
-            "overview": "Drama following the lives of a group of midwives working in the poverty-stricken East End of London during the 1950s, based on the best-selling memoirs of Jennifer Worth.",
-            "posterPath": "/b1p0nL00x563ACkcmGNIRP4ZnkA.jpg",
-            "releaseDate": "2012-01-15"
+            "overview": "Jordan Turner is an experienced 911 operator but when she makes an error in judgment and a call ends badly, Jordan is rattled and unsure if she can continue. But when teenager Casey Welson is abducted in the back of a man's car and calls 911, Jordan is the one called upon to use all of her experience, insights and quick thinking to help Casey escape, and not just to save her, but to make sure the man is brought to justice.",
+            "posterPath": "/mG334OlDVJpD8gMfTCM2Mpp0gQH.jpg",
+            "releaseDate": "2013-03-14"
         },
         "progress": null
     },
@@ -3248,8 +3261,8 @@
             "id": "49b7d377-f0b3-3a5e-81c8-33e379feb7f6",
             "title": "Captains of the World",
             "aliases": [
-                "Captains of the World: Where Is Messi?",
-                "Captains of the World: Great Expectations"
+                "Captains of the World: Great Expectations",
+                "Captains of the World: Where Is Messi?"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2024-01-07T00:00:00",
@@ -3288,16 +3301,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 574475,
-            "title": "Final Destination Bloodlines",
+            "providerId": 9532,
+            "title": "Final Destination",
             "type": "MOVIE",
             "genres": [
-                "Horror",
-                "Mystery"
+                "Horror"
             ],
-            "overview": "Plagued by a violent recurring nightmare, college student Stefanie heads home to track down the one person who might be able to break the cycle and save her family from the grisly demise that inevitably awaits them all.",
-            "posterPath": "/6WxhEvFsauuACfv8HyoVX6mZKFj.jpg",
-            "releaseDate": "2025-05-14"
+            "overview": "After a teenager has a terrifying vision of him and his friends dying in a plane crash, he prevents the accident only to have Death hunt them down, one by one.",
+            "posterPath": "/1mXhlQMnlfvJ2frxTjZSQNnA9Vp.jpg",
+            "releaseDate": "2000-03-17"
         },
         "progress": null
     },
@@ -3317,16 +3329,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 93768,
-            "title": "Shopping Queen",
+            "providerId": 85769,
+            "title": "Queen",
             "type": "SERIES",
             "genres": [
-                "Reality",
-                "Soap"
+                "Crime"
             ],
-            "overview": "\"Shopping Queen\" is a styling documentary in which five women compete against each other on five consecutive days each week to become the woman with the best style and the best sense of fashion.",
-            "posterPath": "/ucE44IzwL20BQwsCSz37vyWYtmT.jpg",
-            "releaseDate": "2012-01-30"
+            "overview": "Ko Himi (Yuko Takeuchi) works as a lawyer and she is also an expert in crisis management. Her clients are women who are trapped in scandals. Ko Himi never gives up on her clients and does whatever is necessary for justice to take place.",
+            "posterPath": "/4GiYfWgNyxYL8EuKRo3PaNRjp4B.jpg",
+            "releaseDate": "2019-01-10"
         },
         "progress": null
     },
@@ -3635,7 +3646,7 @@
             "aliases": [
                 "The Pirates: The Last Royal Treasure"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-02-27T00:00:00",
             "lastWatched": "2024-02-27T00:00:00",
             "highestSeasonSeen": null,
@@ -3644,17 +3655,18 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 34891,
-            "title": "Jake and the Never Land Pirates",
-            "type": "SERIES",
+            "providerId": 285213,
+            "title": "The Pirates",
+            "type": "MOVIE",
             "genres": [
-                "Family",
-                "Animation",
-                "Action & Adventure"
+                "Action",
+                "Adventure",
+                "Comedy",
+                "Fantasy"
             ],
-            "overview": "A crew of kid pirates - leader Jake and pals Izzy and Cubby - and their Never Land adventures as they work to outwit two infamous characters, the one and only Captain Hook and Smee.",
-            "posterPath": "/uet64gptwR7iDGc0laIRmYNtNH0.jpg",
-            "releaseDate": "2011-02-14"
+            "overview": "At the cusp of the founding of Joseon Dynasty, an envoy from China is delivering Emperor’s Ming’s Royal Seal. But nature in the form of a giant whale intervenes and swallows the royal seal.  When a generous reward is offered to whomever can retrieve the royal seal from the belly of the whale, the race is on. A group of mountain bandits led by Jang Sa Jung and a group of pirates led by Yeo Wol  go after the lost treasure, but who will get to to it first?",
+            "posterPath": "/4qU1SW1b2Txf3Ge9rGlddDthSgx.jpg",
+            "releaseDate": "2014-08-06"
         },
         "progress": null
     },
@@ -3722,7 +3734,7 @@
             "aliases": [
                 "Animal"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-02-25T00:00:00",
             "lastWatched": "2024-02-25T00:00:00",
             "highestSeasonSeen": null,
@@ -3731,16 +3743,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 66025,
-            "title": "Animal Kingdom",
-            "type": "SERIES",
+            "providerId": 781732,
+            "title": "Animal",
+            "type": "MOVIE",
             "genres": [
+                "Action",
                 "Crime",
                 "Drama"
             ],
-            "overview": "17-year-old Joshua \"J\" Cody moves in with his freewheeling relatives in their Southern California beach town after his mother dies of a heroin overdose. Headed by boot-tough matriarch Janine \"Smurf\" Cody and her right-hand Baz, who runs the business and calls the shots, the clan also consists of Pope, the oldest and most dangerous of the Cody boys; Craig, the tough and fearless middle son; and Deran, the troubled, suspicious \"baby\" of the family.",
-            "posterPath": "/rzvdKrnSRKPFI0pgqMQknDPpRC9.jpg",
-            "releaseDate": "2016-06-14"
+            "overview": "The hardened son of a powerful industrialist returns home after years abroad and vows to take bloody revenge on those threatening his father's life.",
+            "posterPath": "/hr9rjR3J0xBBKmlJ4n3gHId9ccx.jpg",
+            "releaseDate": "2023-12-01"
         },
         "progress": null
     },
@@ -3923,14 +3936,14 @@
     },
     {
         "show": {
-            "id": "b7a71d87-99cf-3dd7-9b71-1a7f52de6675",
-            "title": "Alexander",
+            "id": "bdec572e-26ee-390f-b183-9018762c76a4",
+            "title": "Alexander: The Making of a God",
             "aliases": [
-                "Alexander: The Making of a God: Death or Victory",
+                "Alexander: The Making of a God: The Boy King",
                 "Alexander: The Making of a God: Face to Face",
-                "Alexander: The Making of a God: The Boy King"
+                "Alexander: The Making of a God: Death or Victory"
             ],
-            "type": "MOVIE",
+            "type": "DOCUMENTARY",
             "firstWatched": "2024-02-02T00:00:00",
             "lastWatched": "2024-02-08T00:00:00",
             "highestSeasonSeen": null,
@@ -3939,20 +3952,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1966,
-            "title": "Alexander",
-            "type": "MOVIE",
+            "providerId": 242392,
+            "title": "Alexander: The Making of a God",
+            "type": "SERIES",
             "genres": [
-                "War",
-                "History",
-                "Action",
-                "Adventure",
-                "Drama",
-                "Romance"
+                "Documentary",
+                "Drama"
             ],
-            "overview": "Alexander, the King of Macedonia, leads his legions against the giant Persian Empire. After defeating the Persians, he leads his army across the then known world, venturing farther than any westerner had ever gone, all the way to India.",
-            "posterPath": "/jrwQu72sGwGqwE8Ijne89PSIvhp.jpg",
-            "releaseDate": "2004-11-21"
+            "overview": "Expert interviews and gripping reenactments combine to reveal the extraordinary life of Alexander the Great and his burning desire to conquer the world.",
+            "posterPath": "/tKUTpdyg0wGfIYplIAfkN6hDbRw.jpg",
+            "releaseDate": "2024-01-31"
         },
         "progress": null
     },
@@ -3989,11 +3998,11 @@
     },
     {
         "show": {
-            "id": "7c8c5a77-4c1b-38d8-b1f3-1bcf2044ac9a",
-            "title": "Einsatzgruppen",
+            "id": "fb2564a3-08ff-347b-bd7b-b087524077d5",
+            "title": "Einsatzgruppen: The Nazi Death Squads",
             "aliases": [
-                "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)",
-                "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)"
+                "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)",
+                "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2024-01-21T00:00:00",
@@ -4052,8 +4061,8 @@
             "id": "cbaa9351-519d-3ed8-be75-5d821c7ffc7f",
             "title": "Hitler's Circle of Evil",
             "aliases": [
-                "Hitler's Circle of Evil: Meltdown",
-                "Hitler's Circle of Evil: Beginning of the End"
+                "Hitler's Circle of Evil: Beginning of the End",
+                "Hitler's Circle of Evil: Meltdown"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2024-01-21T00:00:00",
@@ -4084,7 +4093,7 @@
             "aliases": [
                 "The Last Days"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2024-01-21T00:00:00",
             "lastWatched": "2024-01-21T00:00:00",
             "highestSeasonSeen": null,
@@ -4093,26 +4102,28 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 155493,
-            "title": "The Last Days of Ptolemy Grey",
-            "type": "SERIES",
+            "providerId": 4966,
+            "title": "The Last Days",
+            "type": "MOVIE",
             "genres": [
-                "Drama"
+                "Drama",
+                "Romance",
+                "History"
             ],
-            "overview": "Suddenly left without his trusted caretaker, Ptolemy Grey is assigned to the care of orphaned teenager Robyn. When they learn about a treatment that will restore Ptolemy’s dementia-addled memories, it begins a journey toward shocking truths.",
-            "posterPath": "/r82gsvG8sAX6V3gWZL5hgVvu8un.jpg",
-            "releaseDate": "2022-03-10"
+            "overview": "Romance brings two warring families together in this historical drama. As citizens fight for independence in 1810s Lithuania, Tadeusz, the son of a murderer, and Zosia, a young woman, come together for a wedding against a backdrop of changing politics, ancient traditions, and the uncertain future of a country.",
+            "posterPath": "/kWomf1J9CNZmD0P9IntFEGlAe12.jpg",
+            "releaseDate": "1999-10-22"
         },
         "progress": null
     },
     {
         "show": {
-            "id": "fbb78bbe-6849-3c04-a934-7d81962322f9",
-            "title": "World War II",
+            "id": "61939846-5864-3a3c-8132-b54dd24ee718",
+            "title": "World War II: From the Frontlines",
             "aliases": [
-                "World War II: From the Frontlines: Fortress Europe",
-                "World War II: From the Frontlines: Turning Point",
                 "World War II: From the Frontlines: Last Stand",
+                "World War II: From the Frontlines: Turning Point",
+                "World War II: From the Frontlines: Fortress Europe",
                 "World War II: From the Frontlines: Invasion"
             ],
             "type": "DOCUMENTARY",
@@ -4124,15 +4135,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 316992,
-            "title": "World War II with Tom Hanks",
+            "providerId": 233237,
+            "title": "World War II: From the Frontlines",
             "type": "SERIES",
             "genres": [
-                "Documentary"
+                "Documentary",
+                "War & Politics"
             ],
-            "overview": "Explores WWII from Germany's invasion of Poland through the atomic age, examining pivotal battles, wartime leaders like Churchill and Roosevelt, and the human cost of total war.",
-            "posterPath": "/MPN0glmZV3JnZfmXtKF32SRhDD.jpg",
-            "releaseDate": "2026-05-25"
+            "overview": "Through vividly enhanced archival footage and voices from all sides of the conflict, this docuseries brings WWII to life like never before.",
+            "posterPath": "/15wIhM1X6oRiId0tPPTVoXLT6mx.jpg",
+            "releaseDate": "2023-12-07"
         },
         "progress": null
     },
@@ -4181,18 +4193,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 278924,
-            "title": "Mechanic: Resurrection",
+            "providerId": 1262059,
+            "title": "Mechanic",
             "type": "MOVIE",
             "genres": [
-                "Action",
-                "Crime",
-                "Thriller",
-                "Adventure"
+                "Drama"
             ],
-            "overview": "Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents.",
-            "posterPath": "/bG3Q6EFcngpPn7uPuQTzTuq9DgV.jpg",
-            "releaseDate": "2016-08-25"
+            "overview": "When the COVID-19 hit the world, people put on masks, and \"free breathing\" became an extravagant hope. In the eyes of robots, humans always value what they have lost the most, and both mentally and physically, \"free breathing\" is considered the highest pursuit by humans. Perhaps fighting for the right to \"breathe freely\" is the only way to avoid wasting this moment",
+            "posterPath": "/eVLMXfDVV3hRivQuyZPrSucrNID.jpg",
+            "releaseDate": "2020-08-04"
         },
         "progress": null
     },
@@ -4261,8 +4270,8 @@
             "id": "ec0db187-98eb-362e-8d82-a3dd3d79af4b",
             "title": "Top Gun",
             "aliases": [
-                "Top Gun",
-                "Top Gun: Maverick"
+                "Top Gun: Maverick",
+                "Top Gun"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-01-05T00:00:00",
@@ -4273,16 +4282,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 361743,
-            "title": "Top Gun: Maverick",
+            "providerId": 744,
+            "title": "Top Gun",
             "type": "MOVIE",
             "genres": [
                 "Action",
-                "Drama"
+                "Drama",
+                "Romance"
             ],
-            "overview": "After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
-            "posterPath": "/n0YuM4f5lvGAP6MAW2kBIzugXnc.jpg",
-            "releaseDate": "2022-05-21"
+            "overview": "For Lieutenant Pete 'Maverick' Mitchell and his friend and co-pilot Nick 'Goose' Bradshaw, being accepted into an elite training school for fighter pilots is a dream come true. But a tragedy, as well as personal demons, will threaten Pete's dreams of becoming an ace pilot.",
+            "posterPath": "/xUuHj3CgmZQ9P2cMaqQs4J0d4Zc.jpg",
+            "releaseDate": "1986-05-16"
         },
         "progress": null
     },
@@ -4321,7 +4331,7 @@
             "aliases": [
                 "Forensic"
             ],
-            "type": "DOCUMENTARY",
+            "type": "MOVIE",
             "firstWatched": "2023-12-31T00:00:00",
             "lastWatched": "2023-12-31T00:00:00",
             "highestSeasonSeen": null,
@@ -4330,16 +4340,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 11105,
-            "title": "Forensic Files",
-            "type": "SERIES",
+            "providerId": 915867,
+            "title": "Forensic",
+            "type": "MOVIE",
             "genres": [
                 "Crime",
-                "Documentary"
+                "Thriller"
             ],
-            "overview": "Real crimes, disease outbreaks and accidents around the world are solved by experts using scientific laboratory analysis which helps them find previously undetectable evidence. Brilliant scientific work helps convict the guilty and free the innocent.",
-            "posterPath": "/k7zrsnodHEe3UUdwHG207rjdbrB.jpg",
-            "releaseDate": "1996-04-21"
+            "overview": "Little girls begin to disappear and their bodies are found soon after in the town of Mussoorie. Police officer Megha and forensic officer Johnny join hands to nab the killer.",
+            "posterPath": "/bn2sQizEJ0qsntJRvjULsd5vk44.jpg",
+            "releaseDate": "2022-06-24"
         },
         "progress": null
     },
@@ -4589,8 +4599,8 @@
             "id": "2ef9613c-e75e-34ea-847c-6387645cfb94",
             "title": "The Final Table",
             "aliases": [
-                "The Final Table: Spain",
                 "The Final Table: UK",
+                "The Final Table: Spain",
                 "The Final Table: Mexico"
             ],
             "type": "SERIES",
@@ -4678,14 +4688,14 @@
             "id": "383d3c61-9673-3404-8bef-87d1d9a1fa63",
             "title": "Salvation",
             "aliases": [
-                "Salvation: The Human Strain",
-                "Salvation: From Russia, With Love",
-                "Salvation: Keeping The Faith",
-                "Salvation: Chip Off The 'Ol Block",
                 "Salvation: Seeing Red",
-                "Salvation: Another Trip Around The Sun",
+                "Salvation: Chip Off The 'Ol Block",
+                "Salvation: Keeping The Faith",
+                "Salvation: From Russia, With Love",
+                "Salvation: The Human Strain",
+                "Salvation: Truth Or Darius",
                 "Salvation: Pilot",
-                "Salvation: Truth Or Darius"
+                "Salvation: Another Trip Around The Sun"
             ],
             "type": "SERIES",
             "firstWatched": "2023-11-20T00:00:00",
@@ -4711,17 +4721,17 @@
     },
     {
         "show": {
-            "id": "2510bc0d-d63b-37e0-9087-08a98837f19d",
-            "title": "Bodies",
+            "id": "e6cc3d07-a78f-3404-bece-287eb0842ad2",
+            "title": "Bodies: Limited Series",
             "aliases": [
-                "Bodies: Limited Series: 'We Are One Another's Ghosts'",
-                "Bodies: Limited Series: 'Know You Are Loved'",
-                "Bodies: Limited Series: 'Right Up the Wazoo'",
-                "Bodies: Limited Series: 'Do You Know Who I Am?'",
-                "Bodies: Limited Series: 'The World Is Yours'",
                 "Bodies: Limited Series: 'You're Dead Already'",
-                "Bodies: Limited Series: 'All in Good Time'",
-                "Bodies: Limited Series: 'Catch Me If You Can'"
+                "Bodies: Limited Series: 'The World Is Yours'",
+                "Bodies: Limited Series: 'Do You Know Who I Am?'",
+                "Bodies: Limited Series: 'Right Up the Wazoo'",
+                "Bodies: Limited Series: 'Know You Are Loved'",
+                "Bodies: Limited Series: 'We Are One Another's Ghosts'",
+                "Bodies: Limited Series: 'Catch Me If You Can'",
+                "Bodies: Limited Series: 'All in Good Time'"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2023-11-18T00:00:00",
@@ -5019,7 +5029,7 @@
             "aliases": [
                 "Jumanji: The Next Level"
             ],
-            "type": "MOVIE",
+            "type": "SERIES",
             "firstWatched": "2023-10-31T00:00:00",
             "lastWatched": "2023-10-31T00:00:00",
             "highestSeasonSeen": null,
@@ -5028,17 +5038,18 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1260649,
-            "title": "Jumanji: Open World",
-            "type": "MOVIE",
+            "providerId": 2118,
+            "title": "Jumanji",
+            "type": "SERIES",
             "genres": [
-                "Fantasy",
-                "Adventure",
-                "Comedy"
+                "Animation",
+                "Kids",
+                "Action & Adventure",
+                "Sci-Fi & Fantasy"
             ],
-            "overview": "Our heroes have escaped the ever-changing jungles of Jumanji before, but this time the game comes to us - as Jumanji breaks free of its console, unleashing its chaos into our world.",
-            "posterPath": "/wlzAdBQw2XnmVW05YEJLNdAbizA.jpg",
-            "releaseDate": "2026-12-23"
+            "overview": "Judy and Peter Shepherd are two kids that found a board game called \"Jumanji\". With each turn, the two of them are given a \"game clue\" and then sucked into a dangerous jungle until they solve their clue. There they meet Alan Parrish, who was trapped in the Jumanji jungle because he had never seen his clue.",
+            "posterPath": "/2s0v5wRdbJGBMrLHxr9WB2rPUJI.jpg",
+            "releaseDate": "1996-09-08"
         },
         "progress": null
     },
@@ -5077,10 +5088,10 @@
             "id": "2d509377-a73d-389d-97d8-0ce1c22c3892",
             "title": "Kaala Paani",
             "aliases": [
-                "Kaala Paani: Garjen",
-                "Kaala Paani: Eraba Reta Mono",
+                "Kaala Paani: Nature Wins",
                 "Kaala Paani: The Switch",
-                "Kaala Paani: Nature Wins"
+                "Kaala Paani: Eraba Reta Mono",
+                "Kaala Paani: Garjen"
             ],
             "type": "SERIES",
             "firstWatched": "2023-10-26T00:00:00",
@@ -5105,13 +5116,13 @@
     },
     {
         "show": {
-            "id": "0d282b7d-2bfc-3670-8d41-edf7e6946112",
-            "title": "Beckham",
+            "id": "23a1ba4e-8571-333b-a5fd-2b3e775b2dab",
+            "title": "Beckham: Limited Series",
             "aliases": [
-                "Beckham: Limited Series: Golden Balls",
                 "Beckham: Limited Series: The Kick",
-                "Beckham: Limited Series: What Makes David Run",
-                "Beckham: Limited Series: Seeing Red"
+                "Beckham: Limited Series: Golden Balls",
+                "Beckham: Limited Series: Seeing Red",
+                "Beckham: Limited Series: What Makes David Run"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2023-10-07T00:00:00",
@@ -5314,12 +5325,12 @@
     },
     {
         "show": {
-            "id": "36a338b7-a1e3-39b8-98f2-6a9f4b9d440d",
-            "title": "DEPP V HEARD",
+            "id": "8a62910f-aaa8-3229-9e12-3e4b4c1481cd",
+            "title": "DEPP V HEARD: Limited Series",
             "aliases": [
-                "DEPP V HEARD: Limited Series: Breaking the Internet",
+                "DEPP V HEARD: Limited Series: Truth on Trial",
                 "DEPP V HEARD: Limited Series: The Viral Verdict",
-                "DEPP V HEARD: Limited Series: Truth on Trial"
+                "DEPP V HEARD: Limited Series: Breaking the Internet"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2023-08-19T00:00:00",
@@ -5345,14 +5356,14 @@
     },
     {
         "show": {
-            "id": "1d6b4c10-6769-364b-aaa2-3c52e038f6da",
-            "title": "House of Secrets",
+            "id": "c6d64604-3494-364e-a119-2ee85ab38f6b",
+            "title": "House of Secrets: The Burari Deaths: Limited Series",
             "aliases": [
-                "House of Secrets: The Burari Deaths: Limited Series: Beyond 11",
+                "House of Secrets: The Burari Deaths: Limited Series: 11 Bodies",
                 "House of Secrets: The Burari Deaths: Limited Series: 11 Diaries",
-                "House of Secrets: The Burari Deaths: Limited Series: 11 Bodies"
+                "House of Secrets: The Burari Deaths: Limited Series: Beyond 11"
             ],
-            "type": "MOVIE",
+            "type": "DOCUMENTARY",
             "firstWatched": "2023-08-17T00:00:00",
             "lastWatched": "2023-08-18T00:00:00",
             "highestSeasonSeen": null,
@@ -5361,16 +5372,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 79258,
-            "title": "The House of Secrets",
-            "type": "MOVIE",
+            "providerId": 133359,
+            "title": "House of Secrets: The Burari Deaths",
+            "type": "SERIES",
             "genres": [
-                "Thriller",
-                "Mystery"
+                "Documentary",
+                "Crime"
             ],
-            "overview": "Two men stumble into an old mansion, and get involved with a crazed scientist, torture chambers and sinister medical experiments.",
-            "posterPath": "/tSoPC0q0ExX8lAF8k7HVORhUhUz.jpg",
-            "releaseDate": "1936-10-28"
+            "overview": "Suicide, murder... or something else? This docuseries examines chilling truths and theories around the deaths of 11 members of a Delhi family.",
+            "posterPath": "/cao9YvzYZoP6ms5OZGS4xsq0y00.jpg",
+            "releaseDate": "2021-10-08"
         },
         "progress": null
     },
@@ -5381,7 +5392,7 @@
             "aliases": [
                 "Veronica"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-07-30T00:00:00",
             "lastWatched": "2023-07-30T00:00:00",
             "highestSeasonSeen": null,
@@ -5390,17 +5401,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1432,
-            "title": "Veronica Mars",
-            "type": "SERIES",
+            "providerId": 441701,
+            "title": "Veronica",
+            "type": "MOVIE",
             "genres": [
-                "Mystery",
-                "Drama",
-                "Comedy"
+                "Horror"
             ],
-            "overview": "In the fictional town of Neptune, California, student Veronica Mars progresses from high school to college while moonlighting as a private investigator under the tutelage of her detective father.",
-            "posterPath": "/vOdJETEueGgUqJR4UvwTdUoJhvO.jpg",
-            "releaseDate": "2004-09-22"
+            "overview": "In 1991 Madrid, after holding a séance at school, a teen girl minding her younger siblings at home suspects an evil force has entered their apartment.",
+            "posterPath": "/xHP6mYLQKbJY9pg99PGoGKmmBZX.jpg",
+            "releaseDate": "2017-08-25"
         },
         "progress": null
     },
@@ -5450,16 +5459,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 962851,
-            "title": "Kaal Trighori",
+            "providerId": 20132,
+            "title": "Kaal",
             "type": "MOVIE",
             "genres": [
+                "Action",
                 "Thriller",
                 "Horror"
             ],
-            "overview": "Three nights waited a hundred years… to give birth to the Trighori and Three lives are ensnared in this Vicious cycle. When Reality begins to blur one question remains: is this a perfectly crafted trap… or is something far more sinister at play?",
-            "posterPath": "/bFwWxy1e6FGIoEAh3z4Y7KKwMmT.jpg",
-            "releaseDate": "2025-11-14"
+            "overview": "After a series of deaths in Orbit Wildlife Park are attributed to a man-eating tiger, wildlife reporter Krish Thapar decides to investigate the incidents for a magazine article. But something deadlier than tigers hunts in the forest.",
+            "posterPath": "/dzFAY2jqODs7GXGhi590222WAyw.jpg",
+            "releaseDate": "2005-04-29"
         },
         "progress": null
     },
@@ -5613,10 +5623,10 @@
             "id": "a152dab1-cf65-35fb-b183-7037c771daa3",
             "title": "God's Favorite Idiot",
             "aliases": [
-                "God's Favorite Idiot: God, Satan and All the Good Smells",
-                "God's Favorite Idiot: The Preacher",
+                "God's Favorite Idiot: B-Minus",
                 "God's Favorite Idiot: The Angel",
-                "God's Favorite Idiot: B-Minus"
+                "God's Favorite Idiot: The Preacher",
+                "God's Favorite Idiot: God, Satan and All the Good Smells"
             ],
             "type": "SERIES",
             "firstWatched": "2023-05-25T00:00:00",
@@ -5672,8 +5682,8 @@
     },
     {
         "show": {
-            "id": "9dc47de0-1f72-3e28-95ad-088f34e4867f",
-            "title": "Maid",
+            "id": "e46dc9c5-29e2-310d-9be1-3252f795334e",
+            "title": "Maid: Limited Series",
             "aliases": [
                 "Maid: Limited Series: Dollar Store"
             ],
@@ -5700,15 +5710,15 @@
     },
     {
         "show": {
-            "id": "1225e5fd-d9ff-39e1-9c8d-a4db5e5a31fe",
-            "title": "Queen Charlotte",
+            "id": "97a5e56c-181b-3224-8842-af4407656b81",
+            "title": "Queen Charlotte: A Bridgerton Story",
             "aliases": [
-                "Queen Charlotte: A Bridgerton Story: Holding the King",
-                "Queen Charlotte: A Bridgerton Story: Crown Jewels",
-                "Queen Charlotte: A Bridgerton Story: Gardens in Bloom",
                 "Queen Charlotte: A Bridgerton Story: Honeymoon Bliss",
-                "Queen Charlotte: A Bridgerton Story: Queen to Be",
-                "Queen Charlotte: A Bridgerton Story: Even Days"
+                "Queen Charlotte: A Bridgerton Story: Gardens in Bloom",
+                "Queen Charlotte: A Bridgerton Story: Crown Jewels",
+                "Queen Charlotte: A Bridgerton Story: Holding the King",
+                "Queen Charlotte: A Bridgerton Story: Even Days",
+                "Queen Charlotte: A Bridgerton Story: Queen to Be"
             ],
             "type": "SERIES",
             "firstWatched": "2023-05-09T00:00:00",
@@ -5791,13 +5801,13 @@
     },
     {
         "show": {
-            "id": "314a9d49-50b2-37b6-8c91-082d62f7f6d9",
-            "title": "Queen Cleopatra",
+            "id": "80f5053e-c79c-3948-916a-355e3ea2bc45",
+            "title": "Queen Cleopatra: Limited Series",
             "aliases": [
-                "Queen Cleopatra: Limited Series: When in Rome",
                 "Queen Cleopatra: Limited Series: The Last Pharaoh",
-                "Queen Cleopatra: Limited Series: What Must Be Done",
-                "Queen Cleopatra: Limited Series: Rivals"
+                "Queen Cleopatra: Limited Series: When in Rome",
+                "Queen Cleopatra: Limited Series: Rivals",
+                "Queen Cleopatra: Limited Series: What Must Be Done"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2023-05-10T00:00:00",
@@ -5851,12 +5861,12 @@
     },
     {
         "show": {
-            "id": "9406e3c3-25bf-3987-b426-e5eda4ba6e18",
-            "title": "Ray",
+            "id": "c1abbb0e-25f7-3b38-b33b-45f3c7165a5d",
+            "title": "Ray: Limited Series",
             "aliases": [
                 "Ray: Limited Series: Forget Me Not"
             ],
-            "type": "LIMITED_SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-04-18T00:00:00",
             "lastWatched": "2023-04-18T00:00:00",
             "highestSeasonSeen": null,
@@ -5865,15 +5875,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1423,
-            "title": "Ray Donovan",
-            "type": "SERIES",
+            "providerId": 1677,
+            "title": "Ray",
+            "type": "MOVIE",
             "genres": [
-                "Drama"
+                "Drama",
+                "Music"
             ],
-            "overview": "Set in the sprawling mecca of the rich and famous, Ray Donovan does the dirty work for LA's top power players, and makes their problems disappear. His father's unexpected release from prison sets off a chain of events that shakes the Donovan family to its core.",
-            "posterPath": "/cwJ6nLNvX62By0yoLYWFhRelPkF.jpg",
-            "releaseDate": "2013-06-30"
+            "overview": "Born on a sharecropping plantation in Northern Florida, Ray Charles went blind at seven. Inspired by a fiercely independent mom who insisted he make his own way, He found his calling and his gift behind a piano keyboard. Touring across the Southern musical circuit, the soulful singer gained a reputation and then exploded with worldwide fame when he pioneered coupling gospel and country together.",
+            "posterPath": "/tSPC7sO2XYNL9QcMmK88tuUALL5.jpg",
+            "releaseDate": "2004-10-29"
         },
         "progress": null
     },
@@ -5883,16 +5894,14 @@
             "title": "Black Lightning",
             "aliases": [
                 "Black Lightning: The Resurrection",
-                "Black Lightning: Black Jesus",
-                "Black Lightning: LaWanda: The Book of Hope",
-                "Black Lightning: LaWanda: The Book of Burial"
+                "Black Lightning: Black Jesus"
             ],
             "type": "SERIES",
             "firstWatched": "2023-03-11T00:00:00",
             "lastWatched": "2023-03-12T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 4
+            "watchCount": 2
         },
         "metadata": {
             "provider": "TMDB",
@@ -5908,6 +5917,24 @@
             "posterPath": "/h1xbvvO6oqchfLe6xh0yLNnQxeM.jpg",
             "releaseDate": "2018-01-16"
         },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "ad251274-f85a-38ea-931f-a9fe4057a4b0",
+            "title": "Black Lightning: LaWanda",
+            "aliases": [
+                "Black Lightning: LaWanda: The Book of Burial",
+                "Black Lightning: LaWanda: The Book of Hope"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2023-03-11T00:00:00",
+            "lastWatched": "2023-03-11T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": null,
         "progress": null
     },
     {
@@ -5977,7 +6004,7 @@
             "aliases": [
                 "Dragons: Dawn of the Dragon Racers"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-01-16T00:00:00",
             "lastWatched": "2023-01-16T00:00:00",
             "highestSeasonSeen": null,
@@ -5986,17 +6013,45 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 212989,
-            "title": "LEGO Ninjago: Dragons Rising",
-            "type": "SERIES",
+            "providerId": 1376429,
+            "title": "Dragons",
+            "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Kids",
-                "Action & Adventure"
+                "Comedy"
             ],
-            "overview": "A phenomenon known as the Merge has caused many legendary realms to suddenly combine into one, but their union is unstable. A Spinjitzu Ninja Master must train a new generation of heroes to help find Elemental Dragons who can save the planet before the forces of evil use the same dragon energy to destroy this new world.",
-            "posterPath": "/5q3tfPVAcL9AlFcb8HXsOdHEtJR.jpg",
-            "releaseDate": "2023-06-01"
+            "overview": "A comedy short that looks at religion versus reason.  Watch here: vimeo.com/120247347",
+            "posterPath": "/r421tFcBgl6xsU9PX1NSsXfoaSc.jpg",
+            "releaseDate": null
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "6ed715b5-417c-3e13-b325-c6e30e1bec4d",
+            "title": "DreamWorks How to Train Your Dragon Legends: Play All Two",
+            "aliases": [
+                "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207516,
+            "title": "How to Train Your Dragon: Legends",
+            "type": "MOVIE",
+            "genres": [
+                "Family",
+                "Animation",
+                "Adventure"
+            ],
+            "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+            "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+            "releaseDate": "2010-11-15"
         },
         "progress": null
     },
@@ -6006,7 +6061,6 @@
             "title": "DreamWorks How to Train Your Dragon Legends",
             "aliases": [
                 "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper",
-                "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories",
                 "DreamWorks How to Train Your Dragon Legends: Book of Dragons"
             ],
             "type": "MOVIE",
@@ -6014,7 +6068,7 @@
             "lastWatched": "2023-01-16T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 3
+            "watchCount": 2
         },
         "metadata": {
             "provider": "TMDB",
@@ -6222,7 +6276,7 @@
             "aliases": [
                 "Rumble"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2022-12-16T00:00:00",
             "lastWatched": "2022-12-16T00:00:00",
             "highestSeasonSeen": null,
@@ -6231,16 +6285,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 31665,
-            "title": "School Rumble",
-            "type": "SERIES",
+            "providerId": 598331,
+            "title": "Rumble",
+            "type": "MOVIE",
             "genres": [
                 "Animation",
-                "Comedy"
+                "Family"
             ],
-            "overview": "High school can be hard enough with just academics alone, but when love enters into the picture, it can unravel into a comedy of errors. Tenma has fallen for oblivious Karasama and class delinquent Harima has fallen for Tenma. While this unlikely trio winds their way through the pitfalls of love and high school life, their friends and classmates become caught up in the chaos.",
-            "posterPath": "/qiKPFfRNoKfqz1MQCMxPs0fiXrH.jpg",
-            "releaseDate": "2004-10-05"
+            "overview": "In a world where monster wrestling is a global sport and monsters are superstar athletes, teenage Winnie seeks to follow in her father’s footsteps by coaching a loveable underdog monster into a champion.",
+            "posterPath": "/3eZRgjfFWTpejRvRKyKe1EKgt9s.jpg",
+            "releaseDate": "2021-02-12"
         },
         "progress": null
     },
@@ -6281,7 +6335,6 @@
             "title": "DreamWorks Kung Fu Panda Awesome Secrets",
             "aliases": [
                 "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters",
-                "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets",
                 "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five"
             ],
             "type": "UNKNOWN",
@@ -6289,7 +6342,24 @@
             "lastWatched": "2022-12-15T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 3
+            "watchCount": 2
+        },
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "e148efdd-f441-3a7f-9a87-2eceed531c23",
+            "title": "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two",
+            "aliases": [
+                "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2022-12-15T00:00:00",
+            "lastWatched": "2022-12-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
         },
         "metadata": null,
         "progress": null
@@ -6299,8 +6369,8 @@
             "id": "25bc131e-b22e-3175-8a22-cc94411faa53",
             "title": "Kung Fu Panda",
             "aliases": [
-                "Kung Fu Panda: Secrets of the Scroll",
-                "Kung Fu Panda"
+                "Kung Fu Panda",
+                "Kung Fu Panda: Secrets of the Scroll"
             ],
             "type": "MOVIE",
             "firstWatched": "2022-12-15T00:00:00",
@@ -6331,12 +6401,12 @@
             "id": "994fb029-5dcf-38f6-8fcd-b81a563890f1",
             "title": "Pretty Smart",
             "aliases": [
-                "Pretty Smart: Get this! Chelsea got a package!",
-                "Pretty Smart: Guess what?! Claire’s sister is coming!",
-                "Pretty Smart: Yikes! Grant asked Chelsea for a favor!",
                 "Pretty Smart: Did you hear?! Chelsea ran into Margot!",
-                "Pretty Smart: Here’s the tea! Jayden found a pottery twunk!",
-                "Pretty Smart: Check this, Mama! It’s a Laura Dern party!"
+                "Pretty Smart: Yikes! Grant asked Chelsea for a favor!",
+                "Pretty Smart: Guess what?! Claire’s sister is coming!",
+                "Pretty Smart: Get this! Chelsea got a package!",
+                "Pretty Smart: Check this, Mama! It’s a Laura Dern party!",
+                "Pretty Smart: Here’s the tea! Jayden found a pottery twunk!"
             ],
             "type": "SERIES",
             "firstWatched": "2022-12-07T00:00:00",
@@ -6435,32 +6505,30 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 295071,
-            "title": "Goodbye, Lara",
+            "providerId": 87433,
+            "title": "Goodbye",
             "type": "SERIES",
             "genres": [
-                "Animation",
-                "Drama",
-                "Sci-Fi & Fantasy"
+                "Comedy"
             ],
-            "overview": "Once upon a time, a mermaid princess named Lara fell in love with a human prince. To be with him, she used a witch’s potion to become human—but the magic came at a cost: If she failed to find true love, she would vanish into sea foam forever. Now, 200 years later, Lara awakens in Lake Biwa with one final chance at life and love.",
-            "posterPath": "/oeFOFNMSk0yLGGmpQd3wSkXHLJm.jpg",
-            "releaseDate": "2026-07-06"
+            "overview": "Shu Tajimage happens to meet Fumiyo Bessho, a former high school senior, by chance. He is a popular guy with many girlfriends. But he has to end these relationships out of necessity. After hearing his story, Fumiyo unintentionally mutters that this situation is exactly like Osamu Dazai's unfinished novel 'Goodbye'. Shu is moved by the queer coincidence.",
+            "posterPath": "/h6UCQSBEijvK753xPahdSEMi2Vx.jpg",
+            "releaseDate": "2018-07-14"
         },
         "progress": null
     },
     {
         "show": {
-            "id": "f55a738e-7077-3507-8dde-1f20096306d8",
-            "title": "Boo, Bitch",
+            "id": "35f5134f-849c-3b73-a572-7cc09a2efa18",
+            "title": "Boo, Bitch: Limited Series",
             "aliases": [
-                "Boo, Bitch: Limited Series: Payback's a Bitch",
-                "Boo, Bitch: Limited Series: Fake Bitch",
-                "Boo, Bitch: Limited Series: Bitch, Bye",
-                "Boo, Bitch: Limited Series: Who Dat Bitch?",
-                "Boo, Bitch: Limited Series: Bad Bitch",
-                "Boo, Bitch: Limited Series: Resting Bitch Face",
                 "Boo, Bitch: Limited Series: Bitch Slapped",
+                "Boo, Bitch: Limited Series: Resting Bitch Face",
+                "Boo, Bitch: Limited Series: Bad Bitch",
+                "Boo, Bitch: Limited Series: Who Dat Bitch?",
+                "Boo, Bitch: Limited Series: Bitch, Bye",
+                "Boo, Bitch: Limited Series: Fake Bitch",
+                "Boo, Bitch: Limited Series: Payback's a Bitch",
                 "Boo, Bitch: Limited Series: Life's a Bitch and Then You Die"
             ],
             "type": "LIMITED_SERIES",
@@ -6669,15 +6737,15 @@
             "id": "d3c701d1-524a-3b9f-89a9-8ebfa2359937",
             "title": "The Haunting of Bly Manor",
             "aliases": [
-                "The Haunting of Bly Manor: The Jolly Corner",
-                "The Haunting of Bly Manor: The Altar of the Dead",
-                "The Haunting of Bly Manor: The Way It Came",
-                "The Haunting of Bly Manor: The Pupil",
-                "The Haunting of Bly Manor: The Two Faces, Part Two",
-                "The Haunting of Bly Manor: The Two Faces, Part One",
                 "The Haunting of Bly Manor: The Great Good Place",
-                "The Haunting of Bly Manor: The Romance of Certain Old Clothes",
-                "The Haunting of Bly Manor: The Beast in the Jungle"
+                "The Haunting of Bly Manor: The Two Faces, Part One",
+                "The Haunting of Bly Manor: The Two Faces, Part Two",
+                "The Haunting of Bly Manor: The Pupil",
+                "The Haunting of Bly Manor: The Way It Came",
+                "The Haunting of Bly Manor: The Altar of the Dead",
+                "The Haunting of Bly Manor: The Jolly Corner",
+                "The Haunting of Bly Manor: The Beast in the Jungle",
+                "The Haunting of Bly Manor: The Romance of Certain Old Clothes"
             ],
             "type": "SERIES",
             "firstWatched": "2022-08-15T00:00:00",
@@ -6782,8 +6850,7 @@
             "type": "MOVIE",
             "genres": [
                 "Horror",
-                "Science Fiction",
-                "Thriller"
+                "Science Fiction"
             ],
             "overview": "Bryan, a medical courier, is in the process of making a delivery when a sudden outbreak occurs, forcing him to fight for survival.",
             "posterPath": "/qku2uWSoJ9amQV5MWo1Eek29iji.jpg",
@@ -6912,8 +6979,8 @@
     },
     {
         "show": {
-            "id": "311cbc6b-6422-3d32-bcd4-6f3590fb35d3",
-            "title": "Too Hot To Handle",
+            "id": "e3235d6b-64a3-3309-aeee-1af9f8219a96",
+            "title": "Too Hot To Handle: Latino",
             "aliases": [
                 "Too Hot To Handle: Latino: Sex O'Clock"
             ],
@@ -6926,22 +6993,22 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 102085,
-            "title": "Too Hot to Handle",
+            "providerId": 131589,
+            "title": "Too Hot to Handle: Latino",
             "type": "SERIES",
             "genres": [
                 "Reality"
             ],
-            "overview": "On the shores of paradise, gorgeous singles meet and mingle. But there’s a twist. To win a $100,000 grand prize, they’ll have to give up sex.",
-            "posterPath": "/jr21CagMMfglh7YVgcyov3Cj833.jpg",
-            "releaseDate": "2020-04-17"
+            "overview": "Singles from Latin America and Spain are challenged to give up sex. But here, abstinence comes with a silver lining: US$100,000.",
+            "posterPath": "/tnW1J8sg0W8WiL9083tSW6K0yL3.jpg",
+            "releaseDate": "2021-09-15"
         },
         "progress": null
     },
     {
         "show": {
-            "id": "af8a6f22-ffbb-3044-8fc9-95e8595f603d",
-            "title": "DEATH NOTE",
+            "id": "81f2ade5-9bfd-3aa1-9f2d-ee498d8b1ac4",
+            "title": "DEATH NOTE: Death Note",
             "aliases": [
                 "DEATH NOTE: Death Note: Rebirth"
             ],
@@ -6975,7 +7042,7 @@
             "aliases": [
                 "21"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2021-11-15T00:00:00",
             "lastWatched": "2021-11-15T00:00:00",
             "highestSeasonSeen": null,
@@ -6984,18 +7051,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 31736,
-            "title": "Eyeshield 21",
-            "type": "SERIES",
+            "providerId": 8065,
+            "title": "21",
+            "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Action & Adventure",
-                "Comedy",
-                "Drama"
+                "Drama",
+                "Crime"
             ],
-            "overview": "In Tokyo, a weak, unassertive boy named Sena Kobayakawa enters the high school of his choice, Deimon Private Senior High School. Sena's only remarkable physical abilities are his running speed and agility, which are noted by the school's American football team captain Yoichi Hiruma. Hiruma forces Sena to join the Deimon Devil Bats football team as its running back. To protect his identity from other teams who want to recruit him, Sena is forced to publicly assume the role of the team secretary and enter the field under the pseudonym of \"Eyeshield 21\" wearing a helmet with an eyeshield to hide his features.",
-            "posterPath": "/1y4hiISidFouTSHkF5tOzy8fvyU.jpg",
-            "releaseDate": "2005-04-06"
+            "overview": "Ben Campbell is a young, highly intelligent student at M.I.T. who strives to succeed. Wanting a scholarship to transfer to Harvard School of Medicine to become a doctor, Ben learns that he cannot afford the $300,000 tuition as he comes from a poor, working-class background. But one evening, Ben is introduced by his unorthodox math professor to a small but secretive club of five students, Jill, Choi, Kianna, and Fisher, who are being trained by Professor Rosa to count cards at blackjack.",
+            "posterPath": "/efG8Po57alqSlhqHU1lXJ3duG6t.jpg",
+            "releaseDate": "2008-03-27"
         },
         "progress": null
     },
@@ -7479,14 +7544,14 @@
             "id": "d724a118-cb08-3ee9-bbae-df2a3d15ebed",
             "title": "Dad Stop Embarrassing Me!",
             "aliases": [
-                "Dad Stop Embarrassing Me!: #MaybeItsBAYBelline",
-                "Dad Stop Embarrassing Me!: #Godastamaste",
-                "Dad Stop Embarrassing Me!: #BlackPeopleDontGoToTherapy",
-                "Dad Stop Embarrassing Me!: #NipplesOrNuts",
-                "Dad Stop Embarrassing Me!: #RichDadWokeDad",
                 "Dad Stop Embarrassing Me!: #YeezysAndShrimp",
-                "Dad Stop Embarrassing Me!: #ThrillaOnTheGrilla",
-                "Dad Stop Embarrassing Me!: #TheMotherPucker"
+                "Dad Stop Embarrassing Me!: #RichDadWokeDad",
+                "Dad Stop Embarrassing Me!: #NipplesOrNuts",
+                "Dad Stop Embarrassing Me!: #BlackPeopleDontGoToTherapy",
+                "Dad Stop Embarrassing Me!: #Godastamaste",
+                "Dad Stop Embarrassing Me!: #MaybeItsBAYBelline",
+                "Dad Stop Embarrassing Me!: #TheMotherPucker",
+                "Dad Stop Embarrassing Me!: #ThrillaOnTheGrilla"
             ],
             "type": "SERIES",
             "firstWatched": "2021-06-05T00:00:00",
@@ -7660,14 +7725,14 @@
             "id": "a67e36e6-a1e8-3a13-9709-d42be3572af9",
             "title": "Jupiter's Legacy",
             "aliases": [
-                "Jupiter's Legacy: Omnes Pro Uno",
-                "Jupiter's Legacy: By Dawn's Early Light",
-                "Jupiter's Legacy: All the Devils Are Here",
-                "Jupiter's Legacy: Painting the Clouds With Sunshine",
-                "Jupiter's Legacy: What's the Use?",
                 "Jupiter's Legacy: Paper and Stone",
-                "Jupiter's Legacy: How It All Ends",
-                "Jupiter's Legacy: Cover Her Face"
+                "Jupiter's Legacy: What's the Use?",
+                "Jupiter's Legacy: Painting the Clouds With Sunshine",
+                "Jupiter's Legacy: All the Devils Are Here",
+                "Jupiter's Legacy: By Dawn's Early Light",
+                "Jupiter's Legacy: Omnes Pro Uno",
+                "Jupiter's Legacy: Cover Her Face",
+                "Jupiter's Legacy: How It All Ends"
             ],
             "type": "SERIES",
             "firstWatched": "2021-05-09T00:00:00",
@@ -7698,18 +7763,18 @@
             "id": "df53b7c1-d3cd-3375-9e79-cf8cbbc3a9da",
             "title": "Stories by Rabindranath Tagore",
             "aliases": [
-                "Stories by Rabindranath Tagore: Kabuliwala",
-                "Stories by Rabindranath Tagore: Atithi",
-                "Stories by Rabindranath Tagore: Detective",
-                "Stories by Rabindranath Tagore: Samapti - Part 1",
-                "Stories by Rabindranath Tagore: Samapti - Part 2",
-                "Stories by Rabindranath Tagore: Chokher Bali - Part 2",
-                "Stories by Rabindranath Tagore: Chokher Bali - Part 3",
-                "Stories by Rabindranath Tagore: Chokher Bali - Part 1",
-                "Stories by Rabindranath Tagore: Maanbhanjan",
-                "Stories by Rabindranath Tagore: Broken Nest - Part 1",
-                "Stories by Rabindranath Tagore: Broken Nest - Part 2",
                 "Stories by Rabindranath Tagore: Wafadaar",
+                "Stories by Rabindranath Tagore: Broken Nest - Part 2",
+                "Stories by Rabindranath Tagore: Broken Nest - Part 1",
+                "Stories by Rabindranath Tagore: Maanbhanjan",
+                "Stories by Rabindranath Tagore: Chokher Bali - Part 1",
+                "Stories by Rabindranath Tagore: Chokher Bali - Part 3",
+                "Stories by Rabindranath Tagore: Chokher Bali - Part 2",
+                "Stories by Rabindranath Tagore: Samapti - Part 2",
+                "Stories by Rabindranath Tagore: Samapti - Part 1",
+                "Stories by Rabindranath Tagore: Detective",
+                "Stories by Rabindranath Tagore: Atithi",
+                "Stories by Rabindranath Tagore: Kabuliwala",
                 "Stories by Rabindranath Tagore: Punishment"
             ],
             "type": "SERIES",
@@ -7794,13 +7859,13 @@
     },
     {
         "show": {
-            "id": "c2b884a0-b2f3-3fe9-a4fd-43527ebb5732",
-            "title": "Sex, Explained",
+            "id": "4407616b-fb22-3ee3-8d54-6cb12fa473b0",
+            "title": "Sex, Explained: Limited Series",
             "aliases": [
-                "Sex, Explained: Limited Series: Fertility",
-                "Sex, Explained: Limited Series: Childbirth",
-                "Sex, Explained: Limited Series: Birth Control",
                 "Sex, Explained: Limited Series: Sexual Fantasies",
+                "Sex, Explained: Limited Series: Birth Control",
+                "Sex, Explained: Limited Series: Childbirth",
+                "Sex, Explained: Limited Series: Fertility",
                 "Sex, Explained: Limited Series: Attraction"
             ],
             "type": "DOCUMENTARY",
@@ -7829,8 +7894,8 @@
             "id": "1967e814-a948-3419-9d74-c55400040cbf",
             "title": "The 100",
             "aliases": [
-                "The 100: Earth Skills",
-                "The 100: Pilot"
+                "The 100: Pilot",
+                "The 100: Earth Skills"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-17T00:00:00",
@@ -7851,7 +7916,7 @@
                 "Crime"
             ],
             "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
-            "posterPath": "/wcaDIAG1QdXQLRaj4vC1EFdBT2.jpg",
+            "posterPath": "/wHIMMLFsk32wIzDmawWkYVbxFCS.jpg",
             "releaseDate": "2014-03-19"
         },
         "progress": null
@@ -7887,19 +7952,19 @@
     },
     {
         "show": {
-            "id": "12a91a45-9703-3f8d-8fe4-7269a9962460",
-            "title": "Shadowhunters",
+            "id": "40159be8-d3df-392c-8eed-99e3caf83e75",
+            "title": "Shadowhunters: The Mortal Instruments",
             "aliases": [
-                "Shadowhunters: The Mortal Instruments: Rise Up",
-                "Shadowhunters: The Mortal Instruments: Major Arcana",
-                "Shadowhunters: The Mortal Instruments: Bad Blood",
-                "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
-                "Shadowhunters: The Mortal Instruments: This World Inverted",
-                "Shadowhunters: The Mortal Instruments: Dead Man's Party",
                 "Shadowhunters: The Mortal Instruments: Of Men and Angels",
-                "Shadowhunters: The Mortal Instruments: Raising Hell",
+                "Shadowhunters: The Mortal Instruments: Dead Man's Party",
+                "Shadowhunters: The Mortal Instruments: This World Inverted",
+                "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
+                "Shadowhunters: The Mortal Instruments: Bad Blood",
+                "Shadowhunters: The Mortal Instruments: Major Arcana",
+                "Shadowhunters: The Mortal Instruments: Rise Up",
+                "Shadowhunters: The Mortal Instruments: The Mortal Cup",
                 "Shadowhunters: The Mortal Instruments: Moo Shu to Go",
-                "Shadowhunters: The Mortal Instruments: The Mortal Cup"
+                "Shadowhunters: The Mortal Instruments: Raising Hell"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-15T00:00:00",
@@ -7931,7 +7996,7 @@
             "aliases": [
                 "The Bounty Hunter"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2021-04-15T00:00:00",
             "lastWatched": "2021-04-15T00:00:00",
             "highestSeasonSeen": null,
@@ -7940,13 +8005,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1883,
-            "title": "Dog the Bounty Hunter",
-            "type": "SERIES",
-            "genres": [],
-            "overview": "Dog the Bounty Hunter was an American reality television series on A&E which chronicled Duane \"Dog\" Chapman's adventures as a fugitive recovery agent, or bounty hunter. With a few exceptions, the series took place in Hawaii or Dog's home state of Colorado.\n\nOn May 21, 2012, A&E cancelled the series after eight seasons, citing the popular phrase: \"Every dog has its day\".",
-            "posterPath": "/dTy6Gcprfib9GDaXa6bKKPmWBgn.jpg",
-            "releaseDate": "2004-08-31"
+            "providerId": 27573,
+            "title": "The Bounty Hunter",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Comedy",
+                "Romance"
+            ],
+            "overview": "Milo Boyd, a down-on-his-luck bounty hunter, thinks he's seeing an upswing in fortune when he gets a call to bring in his bail-jumping ex-wife, a reporter named Nicole. Milo considers the job an easy payday, but Nicole quickly escapes to chase a lead on a murder case. The former spouses play an escalating game of one-upmanship, until they suddenly find themselves on the run for their lives.",
+            "posterPath": "/fJPKar0jnAsS09l3xfP6LL8sUkX.jpg",
+            "releaseDate": "2010-03-16"
         },
         "progress": null
     },
@@ -8011,33 +8080,70 @@
     },
     {
         "show": {
-            "id": "c5e9be8c-6ffa-3f88-9457-d1d503b4ef7c",
-            "title": "GAME ON",
+            "id": "4d8e0407-2744-3e9b-8e0c-6790547562a4",
+            "title": "GAME ON: A Comedy Crossover Event: Family Reunion",
             "aliases": [
-                "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort",
-                "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?",
-                "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020",
-                "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games"
+                "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?"
             ],
-            "type": "SERIES",
+            "type": "UNKNOWN",
             "firstWatched": "2021-04-09T00:00:00",
             "lastWatched": "2021-04-09T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 4
+            "watchCount": 1
         },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 4155,
-            "title": "Game On",
-            "type": "SERIES",
-            "genres": [
-                "Comedy"
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "c5762d52-8167-3e84-bc2f-efe5654d389a",
+            "title": "GAME ON: A Comedy Crossover Event: Ashley Garcia",
+            "aliases": [
+                "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020"
             ],
-            "overview": "Following the lives of three 20-somethings sharing a flat in Battersea. They're young, bright and sexy - so why aren't they having a good time ? Join Matthew (the agoraphobic, self-obsessed, macho man); Martin (the wimpish, sex-starved underdog) and Mandy (the gorgeous blonde, who always ends up with the wrong men), in this outrageously funny flat-share comedy that is anything but politically correct.",
-            "posterPath": "/iPrwhNbldLomS0rzr7l35wTc3uk.jpg",
-            "releaseDate": "1995-03-27"
+            "type": "UNKNOWN",
+            "firstWatched": "2021-04-09T00:00:00",
+            "lastWatched": "2021-04-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
         },
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "05ca94fd-2e93-304d-9e3c-84fee4d1670e",
+            "title": "GAME ON: A Comedy Crossover Event: Mr. Iglesias",
+            "aliases": [
+                "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2021-04-09T00:00:00",
+            "lastWatched": "2021-04-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": null,
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "28b6b9fe-49d7-33c9-b6e6-7fe4ed688b4c",
+            "title": "GAME ON: A Comedy Crossover Event: The Big Show Show",
+            "aliases": [
+                "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games"
+            ],
+            "type": "UNKNOWN",
+            "firstWatched": "2021-04-09T00:00:00",
+            "lastWatched": "2021-04-09T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": null,
         "progress": null
     },
     {
@@ -8045,16 +8151,16 @@
             "id": "c58abbe6-5a1c-31e9-9af2-595f9273eabe",
             "title": "Zero Chill",
             "aliases": [
-                "Zero Chill: Head Rush",
-                "Zero Chill: Ice Breaker",
-                "Zero Chill: Secret Skater",
-                "Zero Chill: Guilt Trip",
-                "Zero Chill: Blade Star",
-                "Zero Chill: Triple Threat",
-                "Zero Chill: Come and Take It from Me",
-                "Zero Chill: We Do Our Talking on the Ice",
+                "Zero Chill: This Is Happening",
                 "Zero Chill: Sucker Punch",
-                "Zero Chill: This Is Happening"
+                "Zero Chill: We Do Our Talking on the Ice",
+                "Zero Chill: Come and Take It from Me",
+                "Zero Chill: Triple Threat",
+                "Zero Chill: Blade Star",
+                "Zero Chill: Guilt Trip",
+                "Zero Chill: Secret Skater",
+                "Zero Chill: Ice Breaker",
+                "Zero Chill: Head Rush"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-22T00:00:00",
@@ -8084,16 +8190,16 @@
             "id": "dff12283-083e-3b31-9db1-e5c3d67b401c",
             "title": "Country Comfort",
             "aliases": [
-                "Country Comfort: Crazy",
-                "Country Comfort: You're Nobody Till Somebody Loves You",
-                "Country Comfort: Bless the Broken Road",
-                "Country Comfort: My Girl",
-                "Country Comfort: Teardrops on My Guitar",
-                "Country Comfort: Blue",
-                "Country Comfort: Sign, Sign, Everywhere a Sign",
-                "Country Comfort: Back in the Saddle Again",
+                "Country Comfort: Summer Lovin'",
                 "Country Comfort: You Matter to Me",
-                "Country Comfort: Summer Lovin'"
+                "Country Comfort: Back in the Saddle Again",
+                "Country Comfort: Sign, Sign, Everywhere a Sign",
+                "Country Comfort: Blue",
+                "Country Comfort: Teardrops on My Guitar",
+                "Country Comfort: My Girl",
+                "Country Comfort: Bless the Broken Road",
+                "Country Comfort: You're Nobody Till Somebody Loves You",
+                "Country Comfort: Crazy"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-22T00:00:00",
@@ -8209,8 +8315,8 @@
             "id": "837b7a04-3c59-32af-9479-91414d38a0a6",
             "title": "Wu Assassins",
             "aliases": [
-                "Wu Assassins: Drunken Watermelon",
                 "Wu Assassins: Fire Chicken",
+                "Wu Assassins: Drunken Watermelon",
                 "Wu Assassins: Misspent Youth"
             ],
             "type": "SERIES",
@@ -8358,18 +8464,18 @@
             "id": "d0007b78-f262-357e-9cc7-057fef32c48d",
             "title": "The Crew",
             "aliases": [
-                "The Crew: Hot Mushroom Meat",
-                "The Crew: Your Face Is a Baby",
-                "The Crew: Monkeys and Bears Riding Bicycles",
-                "The Crew: Good Things Happen to Handsome People",
-                "The Crew: My Name's Kevin and I Care About Feelings",
-                "The Crew: We're Gonna Be Okay. We're Gonna Be Okay.",
-                "The Crew: I Guess That Cake Did Need to Be Refrigerated",
-                "The Crew: You Seem Like a Perfectly Serviceable Woman",
                 "The Crew: Ooof, Someone Throw a Robe on Grandma",
+                "The Crew: You Seem Like a Perfectly Serviceable Woman",
+                "The Crew: I Guess That Cake Did Need to Be Refrigerated",
+                "The Crew: We're Gonna Be Okay. We're Gonna Be Okay.",
+                "The Crew: My Name's Kevin and I Care About Feelings",
+                "The Crew: Good Things Happen to Handsome People",
+                "The Crew: Monkeys and Bears Riding Bicycles",
+                "The Crew: Your Face Is a Baby",
+                "The Crew: Hot Mushroom Meat",
                 "The Crew: No One Likes You. No One."
             ],
-            "type": "MOVIE",
+            "type": "SERIES",
             "firstWatched": "2021-02-21T00:00:00",
             "lastWatched": "2021-02-21T00:00:00",
             "highestSeasonSeen": null,
@@ -8378,18 +8484,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1168190,
-            "title": "The Wrecking Crew",
-            "type": "MOVIE",
+            "providerId": 116736,
+            "title": "The Crew",
+            "type": "SERIES",
             "genres": [
-                "Action",
-                "Comedy",
-                "Crime",
-                "Mystery"
+                "Comedy"
             ],
-            "overview": "Estranged half-brothers Jonny and James reunite after their father's mysterious death. As they search for the truth, buried secrets reveal a conspiracy threatening to tear their family apart.",
-            "posterPath": "/gbVwHl4YPSq6BcC92TQpe7qUTh6.jpg",
-            "releaseDate": "2026-01-28"
+            "overview": "When the owner of the fictional NASCAR Bobby Spencer Racing team steps down and passes the team off to his daughter Catherine, the crew chief has to protect himself and his crew from her attempts to  modernize.",
+            "posterPath": "/9dF4l0wVGuqxbKvGkrWQaoCuuGC.jpg",
+            "releaseDate": "2021-02-15"
         },
         "progress": null
     },
@@ -8398,15 +8501,15 @@
             "id": "15eec912-2778-31c4-9431-6c08540b6c6d",
             "title": "Champions",
             "aliases": [
-                "Champions: Deal or No Deal",
-                "Champions: I Think I'm Gonna Tolerate it Here",
-                "Champions: Opening Night",
-                "Champions: My Fair Uncle",
-                "Champions: Lumps",
-                "Champions: Pilot",
-                "Champions: Vincemas",
-                "Champions: Matt Bomer Poster",
                 "Champions: Grandma Dearest",
+                "Champions: Matt Bomer Poster",
+                "Champions: Vincemas",
+                "Champions: Pilot",
+                "Champions: Lumps",
+                "Champions: My Fair Uncle",
+                "Champions: Opening Night",
+                "Champions: I Think I'm Gonna Tolerate it Here",
+                "Champions: Deal or No Deal",
                 "Champions: Nepotism"
             ],
             "type": "SERIES",
@@ -8418,16 +8521,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 4579,
-            "title": "The Champions",
+            "providerId": 71744,
+            "title": "Champions",
             "type": "SERIES",
             "genres": [
-                "Sci-Fi & Fantasy",
-                "Action & Adventure"
+                "Comedy"
             ],
-            "overview": "After a plane carrying three Agents crashes in the Himalayas, they are rescued by an advanced civilisation secretly living in Tibet who grant them enhanced versions of the ordinary five senses, and intellectual and physical abilities.",
-            "posterPath": "/93fLFB8HfKAhVKF968Dl03ITwOX.jpg",
-            "releaseDate": "1968-09-25"
+            "overview": "Vince, a charismatic gym owner with no ambition lives with his younger brother Matthew, a gorgeous idiot. Their simple life of women and working out is put on hold when the teenage son of Vince is dropped off on their doorstep by Priya, one of his old high school flings.",
+            "posterPath": "/p0lsqyrRwV7rKBLuXAl7WgWQoRt.jpg",
+            "releaseDate": "2018-03-08"
         },
         "progress": null
     },
@@ -8712,17 +8814,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 3782,
-            "title": "Naked City",
+            "providerId": 298893,
+            "title": "Naked",
             "type": "SERIES",
             "genres": [
-                "Drama",
-                "Crime",
-                "Action & Adventure"
+                "Drama"
             ],
-            "overview": "Naked City is a police drama series which aired from 1958 to 1963 on the ABC television network. It was inspired by the 1948 motion picture of the same name, and mimics its dramatic “semi-documentary” format.\n\nIn 1997, the episode “Sweet Prince of Delancey Street” was ranked #93 on TV Guide’s “100 Greatest Episodes of All Time”.",
-            "posterPath": "/56pxzIXS9dEwtUHsQc4ggDMkSX2.jpg",
-            "releaseDate": "1958-09-30"
+            "overview": "Marie and Luis meet at a costume party and immediately fall for each other. What begins as a dream of true love increasingly turns into a nightmare. Because Luis is addicted to sex. And Marie is addicted to Luis.",
+            "posterPath": "/4sALwFbEvQNumPbwHVYiU9NGhe.jpg",
+            "releaseDate": "2025-10-01"
         },
         "progress": null
     },
@@ -9054,7 +9154,7 @@
             "aliases": [
                 "Shazam!"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2021-01-07T00:00:00",
             "lastWatched": "2021-01-07T00:00:00",
             "highestSeasonSeen": null,
@@ -9063,15 +9163,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 71654,
-            "title": "Beat Shazam",
-            "type": "SERIES",
+            "providerId": 287947,
+            "title": "Shazam!",
+            "type": "MOVIE",
             "genres": [
-                "Reality"
+                "Action",
+                "Comedy",
+                "Fantasy"
             ],
-            "overview": "Game show in which teams of two race against the clock and each other as they attempt to identify the biggest hit songs of all time. In the end, the team with the highest score will outlast the competition and go against Shazam, the world’s most popular song identification app, for the chance to win a cash prize.",
-            "posterPath": "/q2U5Iulo8NWWiOiVx0f7VX9o4RM.jpg",
-            "releaseDate": "2017-05-25"
+            "overview": "A boy is given the ability to become an adult superhero in times of need with a single magic word.",
+            "posterPath": "/xnopI5Xtky18MPhK40cZAGAOVeV.jpg",
+            "releaseDate": "2019-03-29"
         },
         "progress": null
     },
@@ -9110,11 +9212,11 @@
             "id": "cbb53f91-67aa-381b-9359-ea7f8e22b4f6",
             "title": "The Lord of the Rings",
             "aliases": [
-                "The Lord of the Rings: The Fellowship of the Ring",
+                "The Lord of the Rings: The Two Towers",
                 "The Lord of the Rings: The Return of the King",
-                "The Lord of the Rings: The Two Towers"
+                "The Lord of the Rings: The Fellowship of the Ring"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2020-12-29T00:00:00",
             "lastWatched": "2020-12-30T00:00:00",
             "highestSeasonSeen": null,
@@ -9123,17 +9225,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 84773,
-            "title": "The Lord of the Rings: The Rings of Power",
-            "type": "SERIES",
+            "providerId": 123,
+            "title": "The Lord of the Rings",
+            "type": "MOVIE",
             "genres": [
-                "Action & Adventure",
-                "Drama",
-                "Sci-Fi & Fantasy"
+                "Adventure",
+                "Animation",
+                "Fantasy"
             ],
-            "overview": "Beginning in a time of relative peace, we follow an ensemble cast of characters as they confront the re-emergence of evil to Middle-earth. From the darkest depths of the Misty Mountains, to the majestic forests of Lindon, to the breathtaking island kingdom of Númenor, to the furthest reaches of the map, these kingdoms and characters will carve out legacies that live on long after they are gone.",
-            "posterPath": "/kf5Hz70tjNAHg4swGDzOr9BfoZ1.jpg",
-            "releaseDate": "2022-09-01"
+            "overview": "Young Hobbit Frodo Baggins is thrown into an amazing adventure when he's tasked with destroying the One Ring, created by the dark lord Sauron. Frodo must travel in a small fellowship of nine warriors and accomplices. But it won't be an easy journey for the Fellowship of the Ring, on the ultimate quest to rid Middle-earth of evil.",
+            "posterPath": "/liW0mjvTyLs7UCumaHhx3PpU4VT.jpg",
+            "releaseDate": "1978-11-15"
         },
         "progress": null
     },
@@ -9258,11 +9360,11 @@
             "id": "9170a39b-0c61-3c3a-9caf-bb786709ecda",
             "title": "College Romance",
             "aliases": [
-                "College Romance: Spank Me",
-                "College Romance: Happily Fucked Up",
-                "College Romance: Paneer Sex Masala",
+                "College Romance: Tommy",
                 "College Romance: The Hint",
-                "College Romance: Tommy"
+                "College Romance: Paneer Sex Masala",
+                "College Romance: Happily Fucked Up",
+                "College Romance: Spank Me"
             ],
             "type": "SERIES",
             "firstWatched": "2020-10-22T00:00:00",
@@ -9408,16 +9510,16 @@
             "id": "62becf34-a5c4-32ce-a09d-f9c0e960be04",
             "title": "The Haunting of Hill House",
             "aliases": [
-                "The Haunting of Hill House: Eulogy",
-                "The Haunting of Hill House: The Twin Thing",
-                "The Haunting of Hill House: The Bent-Neck Lady",
-                "The Haunting of Hill House: Steven Sees a Ghost",
-                "The Haunting of Hill House: Screaming Meemies",
-                "The Haunting of Hill House: Two Storms",
-                "The Haunting of Hill House: Witness Marks",
                 "The Haunting of Hill House: Touch",
-                "The Haunting of Hill House: Open Casket",
-                "The Haunting of Hill House: Silence Lay Steadily"
+                "The Haunting of Hill House: Witness Marks",
+                "The Haunting of Hill House: Two Storms",
+                "The Haunting of Hill House: Screaming Meemies",
+                "The Haunting of Hill House: Steven Sees a Ghost",
+                "The Haunting of Hill House: The Bent-Neck Lady",
+                "The Haunting of Hill House: The Twin Thing",
+                "The Haunting of Hill House: Eulogy",
+                "The Haunting of Hill House: Silence Lay Steadily",
+                "The Haunting of Hill House: Open Casket"
             ],
             "type": "SERIES",
             "firstWatched": "2020-10-16T00:00:00",
@@ -9504,15 +9606,15 @@
     },
     {
         "show": {
-            "id": "970f6043-1bec-32ab-b9a6-d7357c87a23f",
-            "title": "Self Made",
+            "id": "d7454aa0-13ed-3fe5-bc28-dadb6de085cb",
+            "title": "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series",
             "aliases": [
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race",
                 "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century",
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl",
-                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps"
+                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race",
+                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps",
+                "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl"
             ],
-            "type": "MOVIE",
+            "type": "LIMITED_SERIES",
             "firstWatched": "2020-10-08T00:00:00",
             "lastWatched": "2020-10-08T00:00:00",
             "highestSeasonSeen": null,
@@ -9521,15 +9623,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 284343,
-            "title": "Self Made",
-            "type": "MOVIE",
+            "providerId": 97539,
+            "title": "Self Made: Inspired by the Life of Madam C.J. Walker",
+            "type": "SERIES",
             "genres": [
                 "Drama"
             ],
-            "overview": "Self Made tells the story of two women - one Israeli, the other Palestinian- who are trapped within their respective worlds. After a mix-up at a checkpoint, they find themselves living the life of the other on the opposite side of the border.",
-            "posterPath": "/AtBh2HAeJ7OE9BEvE0H9vk7JRMo.jpg",
-            "releaseDate": "2014-06-16"
+            "overview": "An African American washerwoman rises from poverty to build a beauty empire and become the first female self-made millionaire.",
+            "posterPath": "/2TMkFGAbsTfN3DHJu5AemEpdcEE.jpg",
+            "releaseDate": "2020-03-20"
         },
         "progress": null
     },
@@ -9540,7 +9642,7 @@
             "aliases": [
                 "#Alive"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2020-10-02T00:00:00",
             "lastWatched": "2020-10-02T00:00:00",
             "highestSeasonSeen": null,
@@ -9549,17 +9651,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 6279,
-            "title": "Mummies Alive!",
-            "type": "SERIES",
+            "providerId": 614696,
+            "title": "#Alive",
+            "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Action & Adventure",
-                "Comedy"
+                "Action",
+                "Horror",
+                "Science Fiction"
             ],
-            "overview": "Mummies Alive follows the exploits of four Egyptian warriors brought back to life to protect and serve the reborn spirit of a young Pharaoh, but fitting into our modern world proves to be just as challenging!",
-            "posterPath": "/g1Vaitb2Z5Lxwg4EjM1OV77TqT9.jpg",
-            "releaseDate": "1997-09-15"
+            "overview": "As a grisly virus rampages a city, a lone man stays locked inside his apartment, digitally cut off from seeking help and desperate to find a way out.",
+            "posterPath": "/lZPvLUMYEPLTE2df1VW5FHTYC8N.jpg",
+            "releaseDate": "2020-06-24"
         },
         "progress": null
     },
@@ -9640,17 +9742,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1202033,
-            "title": "Enola Holmes 3",
+            "providerId": 497582,
+            "title": "Enola Holmes",
             "type": "MOVIE",
             "genres": [
                 "Adventure",
-                "Crime",
-                "Mystery"
+                "Mystery",
+                "Crime"
             ],
-            "overview": "Adventure follows detective Enola Holmes to Malta, where her plans to tie the knot unravel when Sherlock's disappearance plunges her into a perilous case.",
-            "posterPath": "/7kRYHH9H9PjBFwz1FprbHB2AAjI.jpg",
-            "releaseDate": "2026-06-30"
+            "overview": "While searching for her missing mother, intrepid teen Enola Holmes uses her sleuthing skills to outsmart big brother Sherlock and help a runaway lord.",
+            "posterPath": "/riYInlsq2kf1AWoGm80JQW5dLKp.jpg",
+            "releaseDate": "2020-09-22"
         },
         "progress": null
     },
@@ -9748,15 +9850,15 @@
             "id": "312dc56e-a9c3-36a6-bc91-3f988a233791",
             "title": "Away",
             "aliases": [
-                "Away: Goodnight Mars",
-                "Away: A Little Faith",
-                "Away: Go",
-                "Away: Spektr",
-                "Away: Home",
-                "Away: Negative Return",
-                "Away: Half the Sky",
-                "Away: Excellent Chariots",
                 "Away: Vital Signs",
+                "Away: Excellent Chariots",
+                "Away: Half the Sky",
+                "Away: Negative Return",
+                "Away: Home",
+                "Away: Spektr",
+                "Away: Go",
+                "Away: A Little Faith",
+                "Away: Goodnight Mars",
                 "Away: Space Dogs"
             ],
             "type": "SERIES",
@@ -9768,16 +9870,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 2354,
-            "title": "Home and Away",
+            "providerId": 89233,
+            "title": "Away",
             "type": "SERIES",
             "genres": [
-                "Drama",
-                "Soap"
+                "Sci-Fi & Fantasy",
+                "Drama"
             ],
-            "overview": "Home and Away is set in the fictional town of Summer Bay, a coastal town in New South Wales, and follows the personal and professional lives of the people living in the area. The show initially focused on the Fletcher family, Pippa and Tom Fletcher and their five foster children Frank Morgan, Carly Morris, Steven Matheson, Lynn Davenport and Sally Keating, who would go on to become one of the show's longest-running characters. The show also originally and currently focuses on the Stewart family. Home and Away had proved popular when it premiered in 1988 and had risen to become a hit in Australia, and after only a few weeks, the show tackled its first major and disturbing storyline, the rape of Carly Morris; it was one of the first shows to feature such storylines during the early timeslot. H&A has tackled many adult-themed and controversial storylines; something rarely found in its restricted timeslot.",
-            "posterPath": "/vn0eKMiG69bhQtxb7qLRo8SSqu5.jpg",
-            "releaseDate": "1988-01-18"
+            "overview": "American astronaut Emma Green must leave her husband and teenage daughter behind to command an international space crew embarking upon a treacherous mission. A series about hope, humanity and how we need one another if we are to achieve impossible things.",
+            "posterPath": "/lkT776mSvQ9wZ8wkYsnpQuogp10.jpg",
+            "releaseDate": "2020-09-04"
         },
         "progress": null
     },
@@ -9961,16 +10063,16 @@
             "id": "2a31072f-729c-36c2-9db6-7a11c9e8f433",
             "title": "Cursed",
             "aliases": [
-                "Cursed: Cursed",
-                "Cursed: The Fey Queen",
-                "Cursed: Festa and Moreii",
-                "Cursed: Poisons",
-                "Cursed: The Red Lake",
-                "Cursed: Nimue",
-                "Cursed: Bring Us In Good Ale",
-                "Cursed: Alone",
+                "Cursed: The Sacrifice",
                 "Cursed: The Joining",
-                "Cursed: The Sacrifice"
+                "Cursed: Alone",
+                "Cursed: Bring Us In Good Ale",
+                "Cursed: Nimue",
+                "Cursed: The Red Lake",
+                "Cursed: Poisons",
+                "Cursed: Festa and Moreii",
+                "Cursed: The Fey Queen",
+                "Cursed: Cursed"
             ],
             "type": "SERIES",
             "firstWatched": "2020-07-17T00:00:00",
@@ -10119,7 +10221,7 @@
             "aliases": [
                 "Amar"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2020-07-15T00:00:00",
             "lastWatched": "2020-07-15T00:00:00",
             "highestSeasonSeen": null,
@@ -10128,15 +10230,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 194696,
-            "title": "Saber Amar",
-            "type": "SERIES",
+            "providerId": 44122,
+            "title": "Amar",
+            "type": "MOVIE",
             "genres": [
-                "Drama"
+                "Comedy",
+                "Drama",
+                "Romance"
             ],
-            "overview": "",
-            "posterPath": "/kJCTxOrI1drwNCDsghC575w20jc.jpg",
-            "releaseDate": "2003-01-20"
+            "overview": "Five stories blend with love, sex, the emptiness of being unloved, passion and desire: Carlos and Susana go to some uncle´s apartment to make love. Meanwhile, Benito, an 80-year-old, performs a serenade to his wife. His neighbor Adela is told that her mother has Alzheimer and that she will be relocated since the Buenos Aires building she lives in will be demolished. Amado catches his son Carlos stealing his money. Gabriel asks Martha´s parents for her hand in marriage but they condition them to get married at their favorite church. And Patricia, 40, a creative agent, sexually abuses Joel, who directs a beer commercial.",
+            "posterPath": "/cGZgpYMBC3eIxQpYZt4DuZVAuek.jpg",
+            "releaseDate": "2009-02-27"
         },
         "progress": null
     },

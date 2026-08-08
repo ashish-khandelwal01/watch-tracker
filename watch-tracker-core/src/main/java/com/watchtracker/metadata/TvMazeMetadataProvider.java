@@ -58,10 +58,8 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
     @Override
     public Optional<ShowMetadata> findByTitle(String title) {
         JsonNode results = request("/search/shows?q=" + encode(title));
-        if (!results.isArray() || results.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(toMetadata(results.get(0).path("show")));
+        JsonNode selected = selectBestMatch(results, title);
+        return selected == null ? Optional.empty() : Optional.of(toMetadata(selected));
     }
 
     /**
@@ -117,13 +115,50 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         return Optional.empty();
     }
 
+    /**
+     * Chooses the best {@code /search/shows} candidate for a title.
+     *
+     * <p>TVMaze ranks results by its own relevance score, but a close-but-wrong show with a similar
+     * name can still rank above the actual match — the same class of problem as TMDb's
+     * popularity-ranked multi-search (see {@code TmdbMetadataProvider.selectBestMatch}), just via a
+     * different ranking signal. Blindly taking the first hit risks the same kind of mismatch: a
+     * well-known show with a similar name outranking an obscure but correct one.
+     *
+     * <p>This prefers the first result whose own name exactly matches the query
+     * (case/punctuation-insensitive, via {@link #sameTitle}), scanning every candidate rather than
+     * stopping at the first hit. Only when no exact match exists anywhere does it fall back to
+     * TVMaze's own top-ranked result, preserving the previous behavior for titles where TVMaze's own
+     * name legitimately differs (alternate spelling, subtitle, re-release naming, etc.).
+     *
+     * @param results the array response from {@code /search/shows}, each entry wrapping a show under
+     *     a {@code "show"} key
+     * @param queryTitle the title that was searched for
+     * @return the selected show node, unwrapped from its {@code "show"} envelope, or {@code null}
+     *     when results are empty
+     */
+    static JsonNode selectBestMatch(JsonNode results, String queryTitle) {
+        if (!results.isArray() || results.isEmpty()) {
+            return null;
+        }
+        JsonNode fallback = null;
+        for (JsonNode result : results) {
+            JsonNode show = result.path("show");
+            if (fallback == null) {
+                fallback = show;
+            }
+            if (sameTitle(show.path("name").asText(), queryTitle)) {
+                return show;
+            }
+        }
+        return fallback;
+    }
+
     /** Resolves and caches the TVMaze show id for a title, fetching it at most once per title. */
     private long showId(String showTitle) {
         return showIdByTitle.computeIfAbsent(showTitle, title -> {
             JsonNode results = request("/search/shows?q=" + encode(title));
-            return results.isArray() && !results.isEmpty()
-                    ? results.get(0).path("show").path("id").asLong()
-                    : -1L;
+            JsonNode selected = selectBestMatch(results, title);
+            return selected == null ? -1L : selected.path("id").asLong();
         });
     }
 
