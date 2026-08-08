@@ -36,16 +36,17 @@ public final class TitleNormalizer {
     // episode marker.
     private static final String NUMBER_TOKEN = "(?:[0-9]+|[ivxlcdm]+|" + NUMBER_WORD_PATTERN + ")";
 
-    // The inner clause accepts "episode" or "chapter" as an episode marker, so a bare "Chapter N"
-    // with nothing further numbered after it resolves to an episode. When "chapter" (or another
+    // The inner clause accepts "episode", "chapter", "ep" or "ep." as an episode marker, so a bare "Chapter N"
+    // or "Ep. N" with nothing further numbered after it resolves to an episode. When "chapter" (or another
     // season word) appears before this clause instead, it is still captured as the outer season,
     // e.g. "Part 2: Chapter 12" or "Chapter 2: Episode 8" both resolve chapter/part as the season.
+    // Episode titles can be separated by either ":" or "-" after the episode number.
     private static final Pattern NUMBERED = Pattern.compile("(?i)^(?<show>.+?):\\s*(?:(?:season|series|part|book"
-            + "|chapter|volume)\\s+(?<season>" + NUMBER_TOKEN + ")\\s*:\\s*)?(?:episodes?|chapters?)\\s+(?<episode>"
-            + NUMBER_TOKEN + ")(?:\\s*:\\s*(?<title>.+))?$");
+            + "|chapter|volume)\\s+(?<season>" + NUMBER_TOKEN + ")\\s*:\\s*)?(?:episodes?|chapters?|ep\\.?)\\s+(?<episode>"
+            + NUMBER_TOKEN + ")(?:\\s*[-:]\\s*(?<title>.+))?$");
     private static final Pattern SEASON_EPISODE = Pattern.compile("(?i)^(?<show>.+?):\\s*(?:season|series)\\s+"
-            + "(?<season>" + NUMBER_TOKEN + ")\\s*:\\s*(?:episodes?)\\s+(?<episode>" + NUMBER_TOKEN
-            + ")(?:\\s*:\\s*(?<title>.+))?$");
+            + "(?<season>" + NUMBER_TOKEN + ")\\s*:\\s*(?:episodes?|ep\\.?)\\s+(?<episode>" + NUMBER_TOKEN
+            + ")(?:\\s*[-:]\\s*(?<title>.+))?$");
     // "chapter" is deliberately absent here: any "Chapter N: Title" is already resolved by NUMBERED
     // above (as an episode when bare, or as a season when a nested episode/chapter marker follows),
     // so this clause would never actually be reached for it.

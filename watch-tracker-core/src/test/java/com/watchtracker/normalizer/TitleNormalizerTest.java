@@ -72,6 +72,15 @@ class TitleNormalizerTest {
         assertThat(result).isEqualTo(new NormalizedTitle(show, season, episode, episodeTitle));
     }
 
+    @ParameterizedTest
+    @MethodSource("abbreviatedEpisodeTitles")
+    void extractsAbbreviatedEpisodeMarkersWithHyphenOrColonSeparators(
+            String raw, String show, Integer season, Integer episode, String episodeTitle) {
+        NormalizedTitle result = normalizer.normalize(raw);
+
+        assertThat(result).isEqualTo(new NormalizedTitle(show, season, episode, episodeTitle));
+    }
+
     private static Stream<Arguments> selfRepeatingSeasonTitles() {
         return Stream.of(
                 // Netflix labels later-season containers by repeating the show's own name with the
@@ -141,8 +150,8 @@ class TitleNormalizerTest {
                 Arguments.of("Jane The Virgin: Chapter One: Pilot", "Jane The Virgin", null, 1, "Pilot"),
                 Arguments.of(
                         "Stranger Things: Stranger Things 2: Chapter Eight: The Mind Flayer",
-                        "Stranger Things: Stranger Things 2",
-                        null,
+                        "Stranger Things",
+                        2,
                         8,
                         "The Mind Flayer"),
                 Arguments.of("Dark: Season Two: Episode Five", "Dark", 2, 5, null),
@@ -183,5 +192,50 @@ class TitleNormalizerTest {
                         "My Royal Nemesis: Limited Series: The Vixen and the Beast",
                         "My Royal Nemesis: Limited Series",
                         "The Vixen and the Beast"));
+    }
+
+    private static Stream<Arguments> abbreviatedEpisodeTitles() {
+        return Stream.of(
+                // Netflix often uses abbreviated episode markers with hyphen separators
+                Arguments.of(
+                        "Lock Upp: Ep. 1 - Famous, Accused, Locked.",
+                        "Lock Upp",
+                        null,
+                        1,
+                        "Famous, Accused, Locked."),
+                Arguments.of(
+                        "Lock Upp: Ep. 2 - Tagged and Targeted",
+                        "Lock Upp",
+                        null,
+                        2,
+                        "Tagged and Targeted"),
+                // "Ep." with colon separator (alternative format)
+                Arguments.of(
+                        "Show Name: Ep. 3: Episode Title",
+                        "Show Name",
+                        null,
+                        3,
+                        "Episode Title"),
+                // "Ep" without period and hyphen separator
+                Arguments.of(
+                        "Show Name: Ep 4 - Some Title",
+                        "Show Name",
+                        null,
+                        4,
+                        "Some Title"),
+                // Season + abbreviated episode with hyphen
+                Arguments.of(
+                        "Show Name: Season 2: Ep. 5 - Title",
+                        "Show Name",
+                        2,
+                        5,
+                        "Title"),
+                // Part + abbreviated episode with colon
+                Arguments.of(
+                        "Show Name: Part 1: Ep. 6: Title Here",
+                        "Show Name",
+                        1,
+                        6,
+                        "Title Here"));
     }
 }

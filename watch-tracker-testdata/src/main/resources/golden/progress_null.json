@@ -62,35 +62,6 @@
     },
     {
         "show": {
-            "id": "b6f47431-7649-330b-96fe-6ff9fad17809",
-            "title": "Lock Upp",
-            "aliases": [
-                "Lock Upp: Ep. 1 - Famous, Accused, Locked.",
-                "Lock Upp: Ep. 2 - Tagged and Targeted"
-            ],
-            "type": "SERIES",
-            "firstWatched": "2026-06-28T00:00:00",
-            "lastWatched": "2026-06-28T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 2
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 158282,
-            "title": "Lock Upp",
-            "type": "SERIES",
-            "genres": [
-                "Reality"
-            ],
-            "overview": "Lockupp is a 24*7 captive reality show which has 16 celebrities locked inside the queen’s jail for 72 days. Who will survive the badass jail and play atyachaari khel?",
-            "posterPath": "/hRMpjPcg3P4wsdCl61KNXum1Itf.jpg",
-            "releaseDate": "2022-02-27"
-        },
-        "progress": null
-    },
-    {
-        "show": {
             "id": "71cfba91-cbd8-38d4-8f9c-63806d6e64a3",
             "title": "Boyfriend on Demand: Limited Series",
             "aliases": [
@@ -517,12 +488,12 @@
             "id": "34e86d7e-1356-364e-a8e4-cfe4fef40aac",
             "title": "The Trauma Code: Heroes on Call",
             "aliases": [
-                "The Trauma Code: Heroes on Call: Keep On Running",
                 "The Trauma Code: Heroes on Call: Closer Than You Think",
                 "The Trauma Code: Heroes on Call: Code Black",
                 "The Trauma Code: Heroes on Call: Reasons for Not Giving Up",
                 "The Trauma Code: Heroes on Call: Enter Doctor Maniac",
-                "The Trauma Code: Heroes on Call: The Birth of Protégé No.1"
+                "The Trauma Code: Heroes on Call: The Birth of Protégé No.1",
+                "The Trauma Code: Heroes on Call: Keep On Running"
             ],
             "type": "SERIES",
             "firstWatched": "2025-02-18T00:00:00",
@@ -733,8 +704,6 @@
             "id": "3bdd953e-1615-3926-92f5-9d775a5a5029",
             "title": "My Demon: Limited Series",
             "aliases": [
-                "My Demon: Limited Series: The Unmasked Truth",
-                "My Demon: Limited Series: The Fateful Choice",
                 "My Demon: Limited Series: Stained Relationships",
                 "My Demon: Limited Series: The End of Fate",
                 "My Demon: Limited Series: Our Personal Heaven",
@@ -748,7 +717,9 @@
                 "My Demon: Limited Series: The Savior of Destruction",
                 "My Demon: Limited Series: Joining Hands With a Demon",
                 "My Demon: Limited Series: Sweet but Dangerous",
-                "My Demon: Limited Series: A Paradise of the Ominous"
+                "My Demon: Limited Series: A Paradise of the Ominous",
+                "My Demon: Limited Series: The Unmasked Truth",
+                "My Demon: Limited Series: The Fateful Choice"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-08-13T00:00:00",
@@ -811,9 +782,6 @@
             "id": "67c018d4-ed00-371e-b093-6321efd31add",
             "title": "Extraordinary Attorney Woo",
             "aliases": [
-                "Extraordinary Attorney Woo: A Tale About Sodeok-dong I",
-                "Extraordinary Attorney Woo: Wild Card VS Tactician",
-                "Extraordinary Attorney Woo: Yangtze River Dolphin",
                 "Extraordinary Attorney Woo: Saying and Doing Things Not Asked",
                 "Extraordinary Attorney Woo: The Blue Night of Jeju I",
                 "Extraordinary Attorney Woo: Holding Hands Can Wait",
@@ -826,7 +794,10 @@
                 "Extraordinary Attorney Woo: If I Were a Whale...",
                 "Extraordinary Attorney Woo: The Wedding Dress That Slipped Off",
                 "Extraordinary Attorney Woo: The Pied Piper",
-                "Extraordinary Attorney Woo: The Strife of the Three Brothers"
+                "Extraordinary Attorney Woo: The Strife of the Three Brothers",
+                "Extraordinary Attorney Woo: A Tale About Sodeok-dong I",
+                "Extraordinary Attorney Woo: Wild Card VS Tactician",
+                "Extraordinary Attorney Woo: Yangtze River Dolphin"
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-15T00:00:00",
@@ -854,15 +825,15 @@
             "id": "0693dc44-9366-3a5f-b3f2-2b74e578450f",
             "title": "Love to Hate You",
             "aliases": [
-                "Love to Hate You: Bad Girl",
-                "Love to Hate You: Bad Boy",
                 "Love to Hate You: The Way You Change Me",
                 "Love to Hate You: You Are Not What I Expected",
                 "Love to Hate You: Femme Fatale vs Homme Fatale",
                 "Love to Hate You: Nice Guys Get a Pass\r\nBad Boys Have It Coming",
                 "Love to Hate You: A Passionate Goodbye",
                 "Love to Hate You: You Made Me Who I Am",
-                "Love to Hate You: Love is Just an Experiment, Life is the Real Thing"
+                "Love to Hate You: Love is Just an Experiment, Life is the Real Thing",
+                "Love to Hate You: Bad Girl",
+                "Love to Hate You: Bad Boy"
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-20T00:00:00",
@@ -1784,12 +1755,12 @@
             "id": "97a5e56c-181b-3224-8842-af4407656b81",
             "title": "Queen Charlotte: A Bridgerton Story",
             "aliases": [
-                "Queen Charlotte: A Bridgerton Story: Holding the King",
                 "Queen Charlotte: A Bridgerton Story: Crown Jewels",
                 "Queen Charlotte: A Bridgerton Story: Gardens in Bloom",
                 "Queen Charlotte: A Bridgerton Story: Honeymoon Bliss",
                 "Queen Charlotte: A Bridgerton Story: Queen to Be",
-                "Queen Charlotte: A Bridgerton Story: Even Days"
+                "Queen Charlotte: A Bridgerton Story: Even Days",
+                "Queen Charlotte: A Bridgerton Story: Holding the King"
             ],
             "type": "SERIES",
             "firstWatched": "2023-05-09T00:00:00",
@@ -1962,12 +1933,12 @@
             "id": "994fb029-5dcf-38f6-8fcd-b81a563890f1",
             "title": "Pretty Smart",
             "aliases": [
-                "Pretty Smart: Get this! Chelsea got a package!",
                 "Pretty Smart: Guess what?! Claire’s sister is coming!",
                 "Pretty Smart: Yikes! Grant asked Chelsea for a favor!",
                 "Pretty Smart: Did you hear?! Chelsea ran into Margot!",
                 "Pretty Smart: Here’s the tea! Jayden found a pottery twunk!",
-                "Pretty Smart: Check this, Mama! It’s a Laura Dern party!"
+                "Pretty Smart: Check this, Mama! It’s a Laura Dern party!",
+                "Pretty Smart: Get this! Chelsea got a package!"
             ],
             "type": "SERIES",
             "firstWatched": "2022-12-07T00:00:00",
@@ -2120,15 +2091,15 @@
             "id": "d3c701d1-524a-3b9f-89a9-8ebfa2359937",
             "title": "The Haunting of Bly Manor",
             "aliases": [
-                "The Haunting of Bly Manor: The Two Faces, Part Two",
-                "The Haunting of Bly Manor: The Two Faces, Part One",
                 "The Haunting of Bly Manor: The Great Good Place",
                 "The Haunting of Bly Manor: The Romance of Certain Old Clothes",
                 "The Haunting of Bly Manor: The Beast in the Jungle",
                 "The Haunting of Bly Manor: The Jolly Corner",
                 "The Haunting of Bly Manor: The Altar of the Dead",
                 "The Haunting of Bly Manor: The Way It Came",
-                "The Haunting of Bly Manor: The Pupil"
+                "The Haunting of Bly Manor: The Pupil",
+                "The Haunting of Bly Manor: The Two Faces, Part Two",
+                "The Haunting of Bly Manor: The Two Faces, Part One"
             ],
             "type": "SERIES",
             "firstWatched": "2022-08-15T00:00:00",
@@ -2375,9 +2346,6 @@
             "id": "df53b7c1-d3cd-3375-9e79-cf8cbbc3a9da",
             "title": "Stories by Rabindranath Tagore",
             "aliases": [
-                "Stories by Rabindranath Tagore: Samapti - Part 2",
-                "Stories by Rabindranath Tagore: Chokher Bali - Part 2",
-                "Stories by Rabindranath Tagore: Chokher Bali - Part 3",
                 "Stories by Rabindranath Tagore: Chokher Bali - Part 1",
                 "Stories by Rabindranath Tagore: Maanbhanjan",
                 "Stories by Rabindranath Tagore: Broken Nest - Part 1",
@@ -2387,7 +2355,10 @@
                 "Stories by Rabindranath Tagore: Kabuliwala",
                 "Stories by Rabindranath Tagore: Atithi",
                 "Stories by Rabindranath Tagore: Detective",
-                "Stories by Rabindranath Tagore: Samapti - Part 1"
+                "Stories by Rabindranath Tagore: Samapti - Part 1",
+                "Stories by Rabindranath Tagore: Samapti - Part 2",
+                "Stories by Rabindranath Tagore: Chokher Bali - Part 2",
+                "Stories by Rabindranath Tagore: Chokher Bali - Part 3"
             ],
             "type": "SERIES",
             "firstWatched": "2020-10-23T00:00:00",
@@ -2415,11 +2386,11 @@
             "id": "4407616b-fb22-3ee3-8d54-6cb12fa473b0",
             "title": "Sex, Explained: Limited Series",
             "aliases": [
-                "Sex, Explained: Limited Series: Birth Control",
                 "Sex, Explained: Limited Series: Sexual Fantasies",
                 "Sex, Explained: Limited Series: Attraction",
                 "Sex, Explained: Limited Series: Fertility",
-                "Sex, Explained: Limited Series: Childbirth"
+                "Sex, Explained: Limited Series: Childbirth",
+                "Sex, Explained: Limited Series: Birth Control"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2021-05-05T00:00:00",
@@ -2479,7 +2450,6 @@
             "id": "40159be8-d3df-392c-8eed-99e3caf83e75",
             "title": "Shadowhunters: The Mortal Instruments",
             "aliases": [
-                "Shadowhunters: The Mortal Instruments: Major Arcana",
                 "Shadowhunters: The Mortal Instruments: Bad Blood",
                 "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
                 "Shadowhunters: The Mortal Instruments: This World Inverted",
@@ -2488,7 +2458,8 @@
                 "Shadowhunters: The Mortal Instruments: Raising Hell",
                 "Shadowhunters: The Mortal Instruments: Moo Shu to Go",
                 "Shadowhunters: The Mortal Instruments: The Mortal Cup",
-                "Shadowhunters: The Mortal Instruments: Rise Up"
+                "Shadowhunters: The Mortal Instruments: Rise Up",
+                "Shadowhunters: The Mortal Instruments: Major Arcana"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-15T00:00:00",
@@ -2586,8 +2557,6 @@
             "id": "c58abbe6-5a1c-31e9-9af2-595f9273eabe",
             "title": "Zero Chill",
             "aliases": [
-                "Zero Chill: Triple Threat",
-                "Zero Chill: Come and Take It from Me",
                 "Zero Chill: We Do Our Talking on the Ice",
                 "Zero Chill: Sucker Punch",
                 "Zero Chill: This Is Happening",
@@ -2595,7 +2564,9 @@
                 "Zero Chill: Ice Breaker",
                 "Zero Chill: Secret Skater",
                 "Zero Chill: Guilt Trip",
-                "Zero Chill: Blade Star"
+                "Zero Chill: Blade Star",
+                "Zero Chill: Triple Threat",
+                "Zero Chill: Come and Take It from Me"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-22T00:00:00",
@@ -2625,8 +2596,6 @@
             "id": "dff12283-083e-3b31-9db1-e5c3d67b401c",
             "title": "Country Comfort",
             "aliases": [
-                "Country Comfort: Blue",
-                "Country Comfort: Sign, Sign, Everywhere a Sign",
                 "Country Comfort: Back in the Saddle Again",
                 "Country Comfort: You Matter to Me",
                 "Country Comfort: Summer Lovin'",
@@ -2634,7 +2603,9 @@
                 "Country Comfort: You're Nobody Till Somebody Loves You",
                 "Country Comfort: Bless the Broken Road",
                 "Country Comfort: My Girl",
-                "Country Comfort: Teardrops on My Guitar"
+                "Country Comfort: Teardrops on My Guitar",
+                "Country Comfort: Blue",
+                "Country Comfort: Sign, Sign, Everywhere a Sign"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-22T00:00:00",
@@ -2725,7 +2696,6 @@
             "id": "d0007b78-f262-357e-9cc7-057fef32c48d",
             "title": "The Crew",
             "aliases": [
-                "The Crew: We're Gonna Be Okay. We're Gonna Be Okay.",
                 "The Crew: I Guess That Cake Did Need to Be Refrigerated",
                 "The Crew: You Seem Like a Perfectly Serviceable Woman",
                 "The Crew: Ooof, Someone Throw a Robe on Grandma",
@@ -2734,7 +2704,8 @@
                 "The Crew: Your Face Is a Baby",
                 "The Crew: Monkeys and Bears Riding Bicycles",
                 "The Crew: Good Things Happen to Handsome People",
-                "The Crew: My Name's Kevin and I Care About Feelings"
+                "The Crew: My Name's Kevin and I Care About Feelings",
+                "The Crew: We're Gonna Be Okay. We're Gonna Be Okay."
             ],
             "type": "SERIES",
             "firstWatched": "2021-02-21T00:00:00",
@@ -2762,7 +2733,6 @@
             "id": "15eec912-2778-31c4-9431-6c08540b6c6d",
             "title": "Champions",
             "aliases": [
-                "Champions: Lumps",
                 "Champions: Pilot",
                 "Champions: Vincemas",
                 "Champions: Matt Bomer Poster",
@@ -2771,7 +2741,8 @@
                 "Champions: Deal or No Deal",
                 "Champions: I Think I'm Gonna Tolerate it Here",
                 "Champions: Opening Night",
-                "Champions: My Fair Uncle"
+                "Champions: My Fair Uncle",
+                "Champions: Lumps"
             ],
             "type": "SERIES",
             "firstWatched": "2021-02-20T00:00:00",
@@ -2914,8 +2885,6 @@
             "id": "62becf34-a5c4-32ce-a09d-f9c0e960be04",
             "title": "The Haunting of Hill House",
             "aliases": [
-                "The Haunting of Hill House: Steven Sees a Ghost",
-                "The Haunting of Hill House: Screaming Meemies",
                 "The Haunting of Hill House: Two Storms",
                 "The Haunting of Hill House: Witness Marks",
                 "The Haunting of Hill House: Touch",
@@ -2923,7 +2892,9 @@
                 "The Haunting of Hill House: Silence Lay Steadily",
                 "The Haunting of Hill House: Eulogy",
                 "The Haunting of Hill House: The Twin Thing",
-                "The Haunting of Hill House: The Bent-Neck Lady"
+                "The Haunting of Hill House: The Bent-Neck Lady",
+                "The Haunting of Hill House: Steven Sees a Ghost",
+                "The Haunting of Hill House: Screaming Meemies"
             ],
             "type": "SERIES",
             "firstWatched": "2020-10-16T00:00:00",
@@ -2983,7 +2954,6 @@
             "id": "312dc56e-a9c3-36a6-bc91-3f988a233791",
             "title": "Away",
             "aliases": [
-                "Away: Negative Return",
                 "Away: Half the Sky",
                 "Away: Excellent Chariots",
                 "Away: Vital Signs",
@@ -2992,7 +2962,8 @@
                 "Away: A Little Faith",
                 "Away: Go",
                 "Away: Spektr",
-                "Away: Home"
+                "Away: Home",
+                "Away: Negative Return"
             ],
             "type": "SERIES",
             "firstWatched": "2020-09-07T00:00:00",
@@ -3021,8 +2992,6 @@
             "id": "2a31072f-729c-36c2-9db6-7a11c9e8f433",
             "title": "Cursed",
             "aliases": [
-                "Cursed: Bring Us In Good Ale",
-                "Cursed: Alone",
                 "Cursed: The Joining",
                 "Cursed: The Sacrifice",
                 "Cursed: Cursed",
@@ -3030,7 +2999,9 @@
                 "Cursed: Festa and Moreii",
                 "Cursed: Poisons",
                 "Cursed: The Red Lake",
-                "Cursed: Nimue"
+                "Cursed: Nimue",
+                "Cursed: Bring Us In Good Ale",
+                "Cursed: Alone"
             ],
             "type": "SERIES",
             "firstWatched": "2020-07-17T00:00:00",
