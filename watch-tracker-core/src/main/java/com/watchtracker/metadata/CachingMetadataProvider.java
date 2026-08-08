@@ -68,4 +68,60 @@ public final class CachingMetadataProvider implements MetadataProvider {
         resolved.ifPresent(progress -> cache.putEpisode(showTitle, season, episodeTitle, progress));
         return resolved;
     }
+
+    /**
+     * Finds an episode position without a season constraint, using the persistent cache when
+     * possible.
+     *
+     * @param showTitle canonical show title
+     * @param episodeTitle title to resolve
+     * @return a cached or freshly resolved episode position
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
+        Optional<WatchProgress> cached = cache.getEpisodeAnySeason(showTitle, episodeTitle);
+        if (cached.isPresent()) {
+            return cached;
+        }
+        Optional<WatchProgress> resolved = delegate.resolveEpisodeAnySeason(showTitle, episodeTitle);
+        resolved.ifPresent(progress -> cache.putEpisodeAnySeason(showTitle, episodeTitle, progress));
+        return resolved;
+    }
+
+    /**
+     * Resolves against a known provider series id, caching successful results by id.
+     *
+     * @param providerId provider-specific series identifier
+     * @param season Netflix container number
+     * @param episodeTitle title to resolve
+     * @return a cached or freshly resolved episode position
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        Optional<WatchProgress> cached = cache.getEpisodeById(providerId, season, episodeTitle);
+        if (cached.isPresent()) {
+            return cached;
+        }
+        Optional<WatchProgress> resolved = delegate.resolveEpisode(providerId, season, episodeTitle);
+        resolved.ifPresent(progress -> cache.putEpisodeById(providerId, season, episodeTitle, progress));
+        return resolved;
+    }
+
+    /**
+     * Resolves a named episode anywhere in a series identified by provider id.
+     *
+     * @param providerId provider-specific series identifier
+     * @param episodeTitle title to resolve
+     * @return a cached or freshly resolved episode position
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+        Optional<WatchProgress> cached = cache.getEpisodeAnySeasonById(providerId, episodeTitle);
+        if (cached.isPresent()) {
+            return cached;
+        }
+        Optional<WatchProgress> resolved = delegate.resolveEpisodeAnySeason(providerId, episodeTitle);
+        resolved.ifPresent(progress -> cache.putEpisodeAnySeasonById(providerId, episodeTitle, progress));
+        return resolved;
+    }
 }

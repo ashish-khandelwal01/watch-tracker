@@ -43,6 +43,33 @@ public interface MetadataProvider {
     }
 
     /**
+     * Resolves a named episode against a provider series already identified by id.
+     *
+     * <p>Prefer this overload once {@link #findByTitle} has returned a match: it avoids a second,
+     * independent title search that can fail on Netflix-specific suffixes such as "Limited Series"
+     * or pick a different series than the one already matched for metadata.
+     *
+     * @param providerId provider-specific series identifier from a prior metadata match
+     * @param season Netflix container number to match against a provider season
+     * @param episodeTitle Netflix episode title
+     * @return resolved provider position when the episode title is known for that series
+     */
+    default Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        return Optional.empty();
+    }
+
+    /**
+     * Resolves a named episode anywhere in a provider series already identified by id.
+     *
+     * @param providerId provider-specific series identifier from a prior metadata match
+     * @param episodeTitle Netflix episode title
+     * @return resolved provider position when the episode title is found in any season
+     */
+    default Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+        return Optional.empty();
+    }
+
+    /**
      * Creates the provider selected by metadata configuration.
      *
      * @param properties provider configuration

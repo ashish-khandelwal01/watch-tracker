@@ -76,7 +76,23 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         if (showId < 1) {
             return Optional.empty();
         }
-        List<JsonNode> inSeason = episodesForShow(showId).stream()
+        return resolveEpisode(showId, season, episodeTitle);
+    }
+
+    /**
+     * Resolves a named episode against a TVMaze show already identified by id.
+     *
+     * @param providerId TVMaze show id
+     * @param season Netflix part or season number
+     * @param episodeTitle Netflix episode title
+     * @return canonical TVMaze episode position when its title matches
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        if (providerId < 1 || episodeTitle == null || episodeTitle.isBlank()) {
+            return Optional.empty();
+        }
+        List<JsonNode> inSeason = episodesForShow(providerId).stream()
                 .filter(episode -> episode.path("season").asInt() == season)
                 .toList();
         return matchByTitle(inSeason, episodeTitle);
@@ -98,7 +114,22 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         if (showId < 1) {
             return Optional.empty();
         }
-        return matchByTitle(episodesForShow(showId), episodeTitle);
+        return resolveEpisodeAnySeason(showId, episodeTitle);
+    }
+
+    /**
+     * Resolves a named episode anywhere in a TVMaze show already identified by id.
+     *
+     * @param providerId TVMaze show id
+     * @param episodeTitle Netflix episode title
+     * @return canonical TVMaze episode position when its title is found in any season
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+        if (providerId < 1 || episodeTitle == null || episodeTitle.isBlank()) {
+            return Optional.empty();
+        }
+        return matchByTitle(episodesForShow(providerId), episodeTitle);
     }
 
     /** Finds the first episode among the candidates whose title matches, using its own position. */
@@ -156,10 +187,32 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
     /** Resolves and caches the TVMaze show id for a title, fetching it at most once per title. */
     private long showId(String showTitle) {
         return showIdByTitle.computeIfAbsent(showTitle, title -> {
-            JsonNode results = request("/search/shows?q=" + encode(title));
-            JsonNode selected = selectBestMatch(results, title);
-            return selected == null ? -1L : selected.path("id").asLong();
+            long id = searchShowId(title);
+            if (id > 0) {
+                return id;
+            }
+            String cleaned = stripLimitedSeriesSuffix(title);
+            if (!cleaned.equals(title) && !cleaned.isBlank()) {
+                return searchShowId(cleaned);
+            }
+            return -1L;
         });
+    }
+
+    private long searchShowId(String title) {
+        JsonNode results = request("/search/shows?q=" + encode(title));
+        JsonNode selected = selectBestMatch(results, title);
+        return selected == null ? -1L : selected.path("id").asLong();
+    }
+
+    private static final java.util.regex.Pattern LIMITED_SERIES_TRAILING =
+            java.util.regex.Pattern.compile("(?i)\\s*:?\\s*limited series\\b\\s*$");
+
+    private static String stripLimitedSeriesSuffix(String title) {
+        if (title == null) {
+            return "";
+        }
+        return LIMITED_SERIES_TRAILING.matcher(title).replaceAll("").trim();
     }
 
     /** Resolves and caches a show's complete episode guide, fetching it at most once per show. */

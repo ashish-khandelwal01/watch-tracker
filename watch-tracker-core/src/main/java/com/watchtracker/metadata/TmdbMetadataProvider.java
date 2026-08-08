@@ -130,7 +130,23 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         if (seriesId < 1) {
             return Optional.empty();
         }
-        for (JsonNode episode : episodesForSeason(seriesId, season)) {
+        return resolveEpisode(seriesId, season, episodeTitle);
+    }
+
+    /**
+     * Resolves a named episode against a TMDb series already identified by id.
+     *
+     * @param providerId TMDb series id
+     * @param season Netflix part or season number
+     * @param episodeTitle Netflix episode title
+     * @return canonical TMDb episode position when its title matches
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        if (providerId < 1 || episodeTitle == null || episodeTitle.isBlank()) {
+            return Optional.empty();
+        }
+        for (JsonNode episode : episodesForSeason(providerId, season)) {
             if (sameTitle(episode.path("name").asText(), episodeTitle)) {
                 int episodeNumber = episode.path("episode_number").asInt();
                 return episodeNumber > 0
@@ -139,15 +155,6 @@ public final class TmdbMetadataProvider implements MetadataProvider {
             }
         }
         return Optional.empty();
-    }
-
-    /** Resolves and caches the TMDb series id for a title, fetching it at most once per title. */
-    private long seriesId(String showTitle) {
-        return seriesIdByTitle.computeIfAbsent(showTitle, title -> {
-            JsonNode results = request("/search/tv?include_adult=false&language=en-US&query=" + encode(title))
-                    .path("results");
-            return results.isEmpty() ? -1L : results.get(0).path("id").asLong();
-        });
     }
 
     /** Resolves and caches one season's episode list, fetching it at most once per show and season. */
@@ -175,8 +182,23 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         if (seriesId < 1) {
             return Optional.empty();
         }
-        for (int season = 1; season <= seasonCount(seriesId); season++) {
-            for (JsonNode episode : episodesForSeason(seriesId, season)) {
+        return resolveEpisodeAnySeason(seriesId, episodeTitle);
+    }
+
+    /**
+     * Resolves a named episode anywhere in a TMDb series already identified by id.
+     *
+     * @param providerId TMDb series id
+     * @param episodeTitle Netflix episode title
+     * @return canonical TMDb episode position when its title is found in any season
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+        if (providerId < 1 || episodeTitle == null || episodeTitle.isBlank()) {
+            return Optional.empty();
+        }
+        for (int season = 1; season <= seasonCount(providerId); season++) {
+            for (JsonNode episode : episodesForSeason(providerId, season)) {
                 if (sameTitle(episode.path("name").asText(), episodeTitle)) {
                     int resolvedSeason = episode.path("season_number").asInt();
                     int episodeNumber = episode.path("episode_number").asInt();
@@ -187,6 +209,53 @@ public final class TmdbMetadataProvider implements MetadataProvider {
             }
         }
         return Optional.empty();
+    }
+
+    private long seriesId(String showTitle) {
+        return seriesIdByTitle.computeIfAbsent(showTitle, title -> {
+            long id = searchSeriesId(title);
+            if (id > 0) {
+                return id;
+            }
+            String cleaned = stripLimitedSeriesSuffix(title);
+            if (!cleaned.equals(title) && !cleaned.isBlank()) {
+                return searchSeriesId(cleaned);
+            }
+            return -1L;
+        });
+    }
+
+    /** Searches TMDb TV and prefers an exact title match over popularity rank. */
+    private long searchSeriesId(String title) {
+        JsonNode results = request("/search/tv?include_adult=false&language=en-US&query=" + encode(title))
+                .path("results");
+        if (results.isEmpty()) {
+            return -1L;
+        }
+        long fallback = -1L;
+        for (JsonNode result : results) {
+            long id = result.path("id").asLong();
+            if (id <= 0) {
+                continue;
+            }
+            if (fallback < 1) {
+                fallback = id;
+            }
+            if (sameTitle(result.path("name").asText(), title)) {
+                return id;
+            }
+        }
+        return fallback;
+    }
+
+    private static final java.util.regex.Pattern LIMITED_SERIES_TRAILING =
+            java.util.regex.Pattern.compile("(?i)\\s*:?\\s*limited series\\b\\s*$");
+
+    private static String stripLimitedSeriesSuffix(String title) {
+        if (title == null) {
+            return "";
+        }
+        return LIMITED_SERIES_TRAILING.matcher(title).replaceAll("").trim();
     }
 
     /** Resolves and caches a series' season count, fetching series details at most once per series. */

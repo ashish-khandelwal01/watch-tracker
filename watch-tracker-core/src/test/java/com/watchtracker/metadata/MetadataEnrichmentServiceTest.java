@@ -492,6 +492,126 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
+    void prefersProviderIdResolutionWhenMetadataIsPresent() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "My Royal Nemesis: Limited Series",
+                Set.of("My Royal Nemesis: Limited Series: The Vixen and the Beast"),
+                ShowType.LIMITED_SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "My Royal Nemesis: Limited Series: The Vixen and the Beast",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "My Royal Nemesis: Limited Series",
+                null,
+                null,
+                "The Vixen and the Beast",
+                true);
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB", 303143, "My Royal Nemesis", ShowType.SERIES, List.of("Drama"), null, null, null);
+        WatchProgress idMatch = new WatchProgress(1, 2, "TMDB");
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.of(new WatchProgress(9, 9, "TITLE_SHOULD_NOT_BE_USED")),
+                Optional.of(new WatchProgress(8, 8, "TITLE_ANY_SHOULD_NOT_BE_USED")),
+                Optional.empty(),
+                Optional.of(idMatch));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(idMatch);
+        assertThat(provider.idAnySeasonCalls).isEqualTo(1);
+        assertThat(provider.lastProviderId).isEqualTo(303143L);
+        assertThat(provider.scopedCalls).isZero();
+        assertThat(provider.anySeasonCalls).isZero();
+    }
+
+    @Test
+    void fallsBackToProviderMetadataTitleWhenIdResolutionMisses() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Boyfriend on Demand: Limited Series",
+                Set.of("Boyfriend on Demand: Limited Series: Cliche or Classic"),
+                ShowType.LIMITED_SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Boyfriend on Demand: Limited Series: Cliche or Classic",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Boyfriend on Demand: Limited Series",
+                null,
+                null,
+                "Cliche or Classic",
+                true);
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB", 281016, "Boyfriend on Demand", ShowType.SERIES, List.of("Comedy"), null, null, null);
+        WatchProgress titleMatch = new WatchProgress(1, 3, "TMDB");
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.of(titleMatch),
+                Optional.empty(),
+                Optional.empty());
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(titleMatch);
+        assertThat(provider.idAnySeasonCalls).isEqualTo(1);
+        assertThat(provider.anySeasonCalls).isEqualTo(1);
+        assertThat(provider.lastTitleLookup).isEqualTo("Boyfriend on Demand");
+    }
+
+    @Test
+    void stripsLimitedSeriesFromShowTitleWhenNoMetadataTitleIsAvailable() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Dynamite Kiss: Limited Series",
+                Set.of("Dynamite Kiss: Limited Series: Gone With a Kiss"),
+                ShowType.LIMITED_SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Dynamite Kiss: Limited Series: Gone With a Kiss",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Dynamite Kiss: Limited Series",
+                null,
+                null,
+                "Gone With a Kiss",
+                true);
+        WatchProgress titleMatch = new WatchProgress(1, 1, "TMDB");
+        EpisodeResolutionRecordingProvider provider =
+                new EpisodeResolutionRecordingProvider(Optional.empty(), Optional.of(titleMatch));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(titleMatch);
+        assertThat(provider.anySeasonCalls).isEqualTo(1);
+        assertThat(provider.lastTitleLookup).isEqualTo("Dynamite Kiss");
+    }
+
+    @Test
     void resolvesMovieWatchProgressWhenMovieIsWatched() {
         Show show = new Show(
                 UUID.randomUUID(),
@@ -606,31 +726,66 @@ class MetadataEnrichmentServiceTest {
      * episode resolution, so tests can assert which one was used.
      */
     private static final class EpisodeResolutionRecordingProvider implements MetadataProvider {
+        private final Optional<ShowMetadata> metadataToReturn;
         private final Optional<WatchProgress> scopedResult;
         private final Optional<WatchProgress> anySeasonResult;
+        private final Optional<WatchProgress> idScopedResult;
+        private final Optional<WatchProgress> idAnySeasonResult;
         private int scopedCalls;
         private int anySeasonCalls;
+        private int idScopedCalls;
+        private int idAnySeasonCalls;
+        private String lastTitleLookup;
+        private long lastProviderId;
 
         EpisodeResolutionRecordingProvider(Optional<WatchProgress> scopedResult, Optional<WatchProgress> anySeasonResult) {
+            this(Optional.empty(), scopedResult, anySeasonResult, Optional.empty(), Optional.empty());
+        }
+
+        EpisodeResolutionRecordingProvider(
+                Optional<ShowMetadata> metadataToReturn,
+                Optional<WatchProgress> scopedResult,
+                Optional<WatchProgress> anySeasonResult,
+                Optional<WatchProgress> idScopedResult,
+                Optional<WatchProgress> idAnySeasonResult) {
+            this.metadataToReturn = metadataToReturn;
             this.scopedResult = scopedResult;
             this.anySeasonResult = anySeasonResult;
+            this.idScopedResult = idScopedResult;
+            this.idAnySeasonResult = idAnySeasonResult;
         }
 
         @Override
         public Optional<ShowMetadata> findByTitle(String title) {
-            return Optional.empty();
+            return metadataToReturn;
         }
 
         @Override
         public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
             scopedCalls++;
+            lastTitleLookup = showTitle;
             return scopedResult;
         }
 
         @Override
         public Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
             anySeasonCalls++;
+            lastTitleLookup = showTitle;
             return anySeasonResult;
+        }
+
+        @Override
+        public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+            idScopedCalls++;
+            lastProviderId = providerId;
+            return idScopedResult;
+        }
+
+        @Override
+        public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+            idAnySeasonCalls++;
+            lastProviderId = providerId;
+            return idAnySeasonResult;
         }
     }
 }

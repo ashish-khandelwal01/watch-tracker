@@ -323,43 +323,98 @@ public final class MetadataEnrichmentService {
         }
 
         Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
-                .map(named -> {
-                    Optional<WatchProgress> resolved = named.season() != null
-                            ? provider.resolveEpisode(show.title(), named.season(), named.episodeTitle())
-                            : provider.resolveEpisodeAnySeason(show.title(), named.episodeTitle());
-                    java.util.Map<String, Object> searched = named.season() != null
-                            ? java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle())
-                            : java.util.Map.of(
-                            "season", "any", "episodeTitle", named.episodeTitle());
-                    if (resolved.isPresent()) {
-                        WatchProgress wp = resolved.get();
-                        // wp.status() is still CompletionStatus.UNKNOWN here too: the provider
-                        // only resolved a season/episode position, not a total to compare it
-                        // against. Only the type is corrected to the show's own resolved type.
-                        WatchProgress updated = new WatchProgress(progType, wp.season(), wp.episode(), wp.provider(), wp.status());
-                        diagnostics.success(
-                                DiagnosticsStage.EPISODE_RESOLVER,
-                                show.title(),
-                                "Episode title resolved",
-                                searched,
-                                java.util.Map.of(
-                                        "season",
-                                        updated.season(),
-                                        "episode",
-                                        updated.episode(),
-                                        "provider",
-                                        updated.provider()));
-                        return Optional.of(updated);
-                    } else {
-                        diagnostics.failure(
-                                DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
-                        return Optional.<WatchProgress>empty();
-                    }
-                })
+                .map(named -> resolveNamedEpisode(show, named, progType, metadata))
                 .flatMap(Optional::stream)
                 .max(WatchProgress::compareTo);
 
         return Stream.of(bestNumbered, bestNamed).flatMap(Optional::stream).max(WatchProgress::compareTo);
+    }
+
+    /**
+     * Resolves one named episode title to a provider position.
+     *
+     * <p>Order of attempts:
+     * <ol>
+     *   <li>Provider series id from a prior metadata match (avoids a second, fragile title search).
+     *   <li>Cleaned lookup title: provider metadata title when available, otherwise the show title
+     *       with a trailing {@code Limited Series} suffix stripped.
+     *   <li>Original show title, when it differs from the cleaned lookup title.
+     * </ol>
+     */
+    private Optional<WatchProgress> resolveNamedEpisode(
+            Show show, NamedEpisode named, ShowType progType, Optional<ShowMetadata> metadata) {
+        java.util.Map<String, Object> searched = named.season() != null
+                ? java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle())
+                : java.util.Map.of("season", "any", "episodeTitle", named.episodeTitle());
+
+        Optional<WatchProgress> resolved = Optional.empty();
+        String resolutionPath = null;
+
+        if (metadata.isPresent()) {
+            long providerId = metadata.get().providerId();
+            resolved = named.season() != null
+                    ? provider.resolveEpisode(providerId, named.season(), named.episodeTitle())
+                    : provider.resolveEpisodeAnySeason(providerId, named.episodeTitle());
+            if (resolved.isPresent()) {
+                resolutionPath = "providerId";
+            }
+        }
+
+        if (resolved.isEmpty()) {
+            String lookupTitle = lookupTitleForResolution(show.title(), metadata);
+            resolved = named.season() != null
+                    ? provider.resolveEpisode(lookupTitle, named.season(), named.episodeTitle())
+                    : provider.resolveEpisodeAnySeason(lookupTitle, named.episodeTitle());
+            if (resolved.isPresent()) {
+                resolutionPath = "lookupTitle";
+                searched = new java.util.LinkedHashMap<>(searched);
+                searched.put("lookupTitle", lookupTitle);
+            } else if (!lookupTitle.equals(show.title())) {
+                resolved = named.season() != null
+                        ? provider.resolveEpisode(show.title(), named.season(), named.episodeTitle())
+                        : provider.resolveEpisodeAnySeason(show.title(), named.episodeTitle());
+                if (resolved.isPresent()) {
+                    resolutionPath = "originalTitle";
+                }
+            }
+        }
+
+        if (resolved.isPresent()) {
+            WatchProgress wp = resolved.get();
+            // wp.status() is still CompletionStatus.UNKNOWN here too: the provider
+            // only resolved a season/episode position, not a total to compare it
+            // against. Only the type is corrected to the show's own resolved type.
+            WatchProgress updated =
+                    new WatchProgress(progType, wp.season(), wp.episode(), wp.provider(), wp.status());
+            java.util.Map<String, Object> output = new java.util.LinkedHashMap<>();
+            output.put("season", updated.season());
+            output.put("episode", updated.episode());
+            output.put("provider", updated.provider());
+            if (resolutionPath != null) {
+                output.put("resolutionPath", resolutionPath);
+            }
+            diagnostics.success(
+                    DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title resolved", searched, output);
+            return Optional.of(updated);
+        }
+        diagnostics.failure(DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
+        return Optional.empty();
+    }
+
+    /**
+     * Chooses the title used for title-based episode resolution: prefer the provider's canonical
+     * title from a prior metadata match, otherwise strip a trailing {@code Limited Series} label
+     * from the imported show title.
+     */
+    private static String lookupTitleForResolution(String showTitle, Optional<ShowMetadata> metadata) {
+        if (metadata.isPresent()) {
+            String providerTitle = metadata.get().title();
+            if (providerTitle != null && !providerTitle.isBlank()) {
+                return providerTitle.trim();
+            }
+        }
+        String cleaned = stripLimitedSeries(showTitle);
+        return cleaned == null || cleaned.isBlank() ? showTitle : cleaned;
     }
 
     /**

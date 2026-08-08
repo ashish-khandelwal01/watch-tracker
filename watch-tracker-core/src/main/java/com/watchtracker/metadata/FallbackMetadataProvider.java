@@ -63,4 +63,60 @@ public final class FallbackMetadataProvider implements MetadataProvider {
                 ? primaryAnySeason
                 : fallback.resolveEpisodeAnySeason(showTitle, episodeTitle);
     }
+
+    /**
+     * Resolves a named episode without a season constraint, trying primary then fallback.
+     *
+     * @param showTitle canonical show title
+     * @param episodeTitle title to resolve
+     * @return first match from the configured provider chain
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(String showTitle, String episodeTitle) {
+        Optional<WatchProgress> primaryResult = primary.resolveEpisodeAnySeason(showTitle, episodeTitle);
+        return primaryResult.isPresent()
+                ? primaryResult
+                : fallback.resolveEpisodeAnySeason(showTitle, episodeTitle);
+    }
+
+    /**
+     * Resolves against a known provider series id. Primary is tried first; a miss falls through to
+     * the fallback. Provider id namespaces differ (TMDb versus TVMaze), so a miss on the wrong
+     * provider is expected and harmless.
+     *
+     * @param providerId provider-specific series identifier
+     * @param season Netflix container number
+     * @param episodeTitle title to resolve
+     * @return first match from the configured provider chain
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        Optional<WatchProgress> primaryResult = primary.resolveEpisode(providerId, season, episodeTitle);
+        if (primaryResult.isPresent()) {
+            return primaryResult;
+        }
+        Optional<WatchProgress> fallbackResult = fallback.resolveEpisode(providerId, season, episodeTitle);
+        if (fallbackResult.isPresent()) {
+            return fallbackResult;
+        }
+        Optional<WatchProgress> primaryAnySeason = primary.resolveEpisodeAnySeason(providerId, episodeTitle);
+        return primaryAnySeason.isPresent()
+                ? primaryAnySeason
+                : fallback.resolveEpisodeAnySeason(providerId, episodeTitle);
+    }
+
+    /**
+     * Resolves a named episode anywhere in a series identified by provider id.
+     *
+     * @param providerId provider-specific series identifier
+     * @param episodeTitle title to resolve
+     * @return first match from the configured provider chain
+     */
+    @Override
+    public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+        Optional<WatchProgress> primaryResult = primary.resolveEpisodeAnySeason(providerId, episodeTitle);
+        return primaryResult.isPresent()
+                ? primaryResult
+                : fallback.resolveEpisodeAnySeason(providerId, episodeTitle);
+    }
 }
