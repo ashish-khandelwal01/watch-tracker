@@ -1,7 +1,7 @@
 package com.watchtracker.metadata;
 
+import com.watchtracker.model.CompletionStatus;
 import com.watchtracker.model.ShowType;
-import com.watchtracker.model.WatchStatus;
 import java.util.Objects;
 
 /**
@@ -11,27 +11,32 @@ import java.util.Objects;
  * @param season canonical provider season number
  * @param episode canonical provider episode number
  * @param provider provider that resolved the episode title
- * @param status user-declared or inferred watch status
+ * @param status mechanically derived completion state — see {@link CompletionStatus}. This is
+ *     never the user's own declared intent; that lives separately on {@link
+ *     com.watchtracker.model.UserShow} as {@link com.watchtracker.model.WatchStatus} and is set
+ *     only by explicit user action, not by this record or anything that constructs it.
  */
-public record WatchProgress(ShowType type, Integer season, Integer episode, String provider, WatchStatus status)
+public record WatchProgress(
+        ShowType type, Integer season, Integer episode, String provider, CompletionStatus status)
         implements Comparable<WatchProgress> {
     /**
      * Creates a resolved progress position.
      *
      * <p>For movies the season and episode must be absent and the status defaults to COMPLETED.
-     * For non-movie shows season and episode must be present and the status defaults to UNKNOWN.
+     * For non-movie shows season and episode must be present and the status defaults to UNKNOWN
+     * until a provider's total episode count is known to compare the resolved position against.
      */
     public WatchProgress {
         // Allow type to be null or UNKNOWN: callers may omit a resolved type; do not hard-fail.
         if (type == null || type == ShowType.UNKNOWN) {
             // When type is unknown, accept whatever season/episode values are supplied but default
             // the status to UNKNOWN when not explicitly provided.
-            if (status == null) status = WatchStatus.UNKNOWN;
+            if (status == null) status = CompletionStatus.UNKNOWN;
         } else if (type == ShowType.MOVIE) {
             if (season != null || episode != null) {
                 throw new IllegalArgumentException("movies must not have season or episode");
             }
-            if (status == null) status = WatchStatus.COMPLETED;
+            if (status == null) status = CompletionStatus.COMPLETED;
         } else {
             if (season == null || episode == null) {
                 throw new IllegalArgumentException("season and episode must be present for non-movie shows");
@@ -42,7 +47,7 @@ public record WatchProgress(ShowType type, Integer season, Integer episode, Stri
             if (episode < 1) {
                 throw new IllegalArgumentException("episode must be positive");
             }
-            if (status == null) status = WatchStatus.UNKNOWN;
+            if (status == null) status = CompletionStatus.UNKNOWN;
         }
 
         if (provider == null || provider.isBlank()) {

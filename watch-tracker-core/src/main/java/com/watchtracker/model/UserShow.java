@@ -7,7 +7,11 @@ import java.util.UUID;
  * User-owned metadata that is deliberately separate from imported viewing history.
  *
  * @param showId associated show identifier
- * @param status user-declared watch status
+ * @param status user-declared watch status. This is set only by explicit user action and is never
+ *     inferred or overwritten from {@link com.watchtracker.metadata.WatchProgress}'s mechanically
+ *     derived {@link CompletionStatus} — the two answer different questions ("what the user
+ *     wants" versus "what happened") and are allowed to disagree. See {@link CompletionStatus} for
+ *     why.
  * @param completedOutsideNetflix whether completion occurred outside Netflix
  * @param reasonStopped optional reason the user stopped watching
  * @param recommendation user-facing recommendation

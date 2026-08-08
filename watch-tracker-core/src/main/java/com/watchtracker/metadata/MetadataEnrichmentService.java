@@ -3,6 +3,7 @@ package com.watchtracker.metadata;
 import com.watchtracker.diagnostics.DiagnosticsCollector;
 import com.watchtracker.diagnostics.DiagnosticsStage;
 import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
+import com.watchtracker.model.CompletionStatus;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.ShowType;
 import com.watchtracker.model.WatchEvent;
@@ -282,7 +283,11 @@ public final class MetadataEnrichmentService {
                     .toList();
             if (!showEvents.isEmpty()) {
                 String providerName = metadata.isPresent() ? metadata.get().provider() : "NETFLIX";
-                return Optional.of(new WatchProgress(ShowType.MOVIE, null, null, providerName, com.watchtracker.model.WatchStatus.COMPLETED));
+                // A single watch is definitionally the whole movie, so this is mechanically
+                // COMPLETED — a real fact, not a stand-in for whatever the user's own WatchStatus
+                // on UserShow might eventually say (they could still mark it DROPPED after
+                // watching, e.g. if they hated it; that's their call, not this record's).
+                return Optional.of(new WatchProgress(ShowType.MOVIE, null, null, providerName, CompletionStatus.COMPLETED));
             }
             return Optional.empty();
         }
@@ -297,7 +302,10 @@ public final class MetadataEnrichmentService {
                 .filter(event -> event.episode() != null)
                 .map(event -> {
                     int season = event.season() != null ? event.season() : 1;
-                    return new WatchProgress(progType, season, event.episode(), "NETFLIX", com.watchtracker.model.WatchStatus.UNKNOWN);
+                    // UNKNOWN, not IN_PROGRESS or COMPLETED: without a provider's total episode
+                    // count to compare this position against, there's no data-derived basis for
+                    // either conclusion yet. That comparison is future work (see ShowMetadata).
+                    return new WatchProgress(progType, season, event.episode(), "NETFLIX", CompletionStatus.UNKNOWN);
                 })
                 .max(WatchProgress::compareTo);
 
@@ -325,6 +333,9 @@ public final class MetadataEnrichmentService {
                             "season", "any", "episodeTitle", named.episodeTitle());
                     if (resolved.isPresent()) {
                         WatchProgress wp = resolved.get();
+                        // wp.status() is still CompletionStatus.UNKNOWN here too: the provider
+                        // only resolved a season/episode position, not a total to compare it
+                        // against. Only the type is corrected to the show's own resolved type.
                         WatchProgress updated = new WatchProgress(progType, wp.season(), wp.episode(), wp.provider(), wp.status());
                         diagnostics.success(
                                 DiagnosticsStage.EPISODE_RESOLVER,

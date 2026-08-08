@@ -527,7 +527,7 @@ class MetadataEnrichmentServiceTest {
         assertThat(progress.type()).isEqualTo(ShowType.MOVIE);
         assertThat(progress.season()).isNull();
         assertThat(progress.episode()).isNull();
-        assertThat(progress.status()).isEqualTo(com.watchtracker.model.WatchStatus.COMPLETED);
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.COMPLETED);
     }
 
     @Test
