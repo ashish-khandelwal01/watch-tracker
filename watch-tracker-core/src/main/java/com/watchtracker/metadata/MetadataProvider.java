@@ -70,6 +70,18 @@ public interface MetadataProvider {
     }
 
     /**
+     * Seeds this provider's in-memory title → series-id map for the remainder of the run.
+     *
+     * <p>Call after a successful {@link #findByTitle} match so a later title-based episode resolve
+     * reuses the same series id instead of performing a second, independent search that can rank a
+     * different result first. Providers that do not cache series ids ignore this call.
+     *
+     * @param title title key to associate (imported show title, stripped variant, or provider title)
+     * @param providerId provider-specific series identifier from the successful match
+     */
+    default void rememberSeriesMapping(String title, long providerId) {}
+
+    /**
      * Creates the provider selected by metadata configuration.
      *
      * @param properties provider configuration

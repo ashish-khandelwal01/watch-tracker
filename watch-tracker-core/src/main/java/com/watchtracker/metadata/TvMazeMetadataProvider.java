@@ -59,7 +59,29 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
     public Optional<ShowMetadata> findByTitle(String title) {
         JsonNode results = request("/search/shows?q=" + encode(title));
         JsonNode selected = selectBestMatch(results, title);
-        return selected == null ? Optional.empty() : Optional.of(toMetadata(selected));
+        if (selected == null) {
+            return Optional.empty();
+        }
+        ShowMetadata metadata = toMetadata(selected);
+        rememberSeriesMapping(title, metadata.providerId());
+        if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
+            rememberSeriesMapping(metadata.title(), metadata.providerId());
+        }
+        return Optional.of(metadata);
+    }
+
+    /**
+     * Seeds the title → TVMaze show-id map used by title-based episode resolution.
+     *
+     * @param title title key to associate
+     * @param providerId TVMaze show id
+     */
+    @Override
+    public void rememberSeriesMapping(String title, long providerId) {
+        if (title == null || title.isBlank() || providerId < 1) {
+            return;
+        }
+        showIdByTitle.put(title.trim(), providerId);
     }
 
     /**

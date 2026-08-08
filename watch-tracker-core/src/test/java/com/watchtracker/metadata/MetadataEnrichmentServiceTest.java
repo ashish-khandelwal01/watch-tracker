@@ -2,6 +2,9 @@ package com.watchtracker.metadata;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.watchtracker.diagnostics.DiagnosticsCollector;
+import com.watchtracker.diagnostics.DiagnosticsEntry;
+import com.watchtracker.diagnostics.DiagnosticsStage;
 import com.watchtracker.exporter.WatchHistoryExporter;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.ShowType;
@@ -491,6 +494,159 @@ class MetadataEnrichmentServiceTest {
         assertThat(provider.anySeasonCalls).isZero();
     }
 
+
+    @Test
+    void recordsEpisodeResolverFailureInDiagnosticsWhenNamedEpisodeCannotBeMatched() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Lockwood & Co.",
+                Set.of("Lockwood & Co.: This Will Be Us"),
+                ShowType.SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Lockwood & Co.: This Will Be Us",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Lockwood & Co.",
+                null,
+                null,
+                "This Will Be Us",
+                true);
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB", 213241, "Lockwood & Co.", ShowType.SERIES, List.of("Sci-Fi & Fantasy"), null, null, null);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty());
+        RecordingDiagnosticsCollector diagnostics = new RecordingDiagnosticsCollector();
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, diagnostics)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).isEmpty();
+        assertThat(diagnostics.entries)
+                .anySatisfy(entry -> {
+                    assertThat(entry.stage()).isEqualTo(DiagnosticsStage.EPISODE_RESOLVER);
+                    assertThat(entry.message()).contains("Episode title not found");
+                    assertThat(entry.input()).isNotNull();
+                });
+    }
+
+    @Test
+    void seedsSeriesMappingsForOriginalStrippedAndProviderTitlesAfterMetadataMatch() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "My Royal Nemesis: Limited Series",
+                Set.of("My Royal Nemesis: Limited Series: The Vixen and the Beast"),
+                ShowType.LIMITED_SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB", 303143, "My Royal Nemesis", ShowType.SERIES, List.of("Drama"), null, null, null);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty());
+
+        new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY);
+
+        assertThat(provider.rememberedMappings)
+                .containsEntry("My Royal Nemesis: Limited Series", 303143L)
+                .containsEntry("My Royal Nemesis", 303143L);
+    }
+
+    @Test
+    void endToEndNamedOnlyTitlesProduceProgressViaProviderIdPath() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Taskaree: The Smuggler's Web",
+                Set.of(
+                        "Taskaree: The Smuggler's Web: Kahani Khatam",
+                        "Taskaree: The Smuggler's Web: Operation Longshot"),
+                ShowType.SERIES,
+                LocalDateTime.of(2026, 2, 22, 0, 0),
+                LocalDateTime.of(2026, 2, 22, 0, 0),
+                null,
+                null,
+                2);
+        List<WatchEvent> events = List.of(
+                new WatchEvent(
+                        UUID.randomUUID(),
+                        "Taskaree: The Smuggler's Web: Kahani Khatam",
+                        LocalDateTime.of(2026, 2, 22, 0, 0),
+                        "Netflix",
+                        "Taskaree: The Smuggler's Web",
+                        null,
+                        null,
+                        "Kahani Khatam",
+                        true),
+                new WatchEvent(
+                        UUID.randomUUID(),
+                        "Taskaree: The Smuggler's Web: Operation Longshot",
+                        LocalDateTime.of(2026, 2, 22, 0, 0),
+                        "Netflix",
+                        "Taskaree: The Smuggler's Web",
+                        null,
+                        null,
+                        "Operation Longshot",
+                        true));
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB",
+                308482,
+                "Taskaree: The Smuggler's Web",
+                ShowType.SERIES,
+                List.of("Crime"),
+                null,
+                null,
+                null);
+        // Id path resolves both titles; highest episode wins.
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(new WatchProgress(1, 7, "TMDB"))) {
+            @Override
+            public Optional<WatchProgress> resolveEpisodeAnySeason(long providerId, String episodeTitle) {
+                idAnySeasonCalls++;
+                lastProviderId = providerId;
+                if ("Operation Longshot".equals(episodeTitle)) {
+                    return Optional.of(new WatchProgress(1, 7, "TMDB"));
+                }
+                if ("Kahani Khatam".equals(episodeTitle)) {
+                    return Optional.of(new WatchProgress(1, 1, "TMDB"));
+                }
+                return Optional.empty();
+            }
+        };
+        RecordingDiagnosticsCollector diagnostics = new RecordingDiagnosticsCollector();
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, diagnostics)
+                .enrich(List.of(show), events, PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(new WatchProgress(1, 7, "TMDB"));
+        assertThat(provider.idAnySeasonCalls).isEqualTo(2);
+        assertThat(provider.lastProviderId).isEqualTo(308482L);
+        assertThat(diagnostics.entries)
+                .filteredOn(e -> e.stage() == DiagnosticsStage.EPISODE_RESOLVER)
+                .allSatisfy(e -> assertThat(e.message()).contains("Episode title resolved"));
+    }
+
     @Test
     void prefersProviderIdResolutionWhenMetadataIsPresent() {
         Show show = new Show(
@@ -527,7 +683,7 @@ class MetadataEnrichmentServiceTest {
                 .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
                 .getFirst();
 
-        assertThat(result.progress()).contains(idMatch);
+        assertThat(result.progress()).contains(new WatchProgress(ShowType.LIMITED_SERIES, 1, 2, "TMDB"));
         assertThat(provider.idAnySeasonCalls).isEqualTo(1);
         assertThat(provider.lastProviderId).isEqualTo(303143L);
         assertThat(provider.scopedCalls).isZero();
@@ -535,7 +691,52 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
-    void fallsBackToProviderMetadataTitleWhenIdResolutionMisses() {
+    void providerIdScopedMissFallsBackToAnySeasonOnSameId() {
+        // Netflix container/season numbers often disagree with TMDb; scoped miss must still try any-season.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Dark",
+                Set.of("Dark: Season 3: Secrets"),
+                ShowType.SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                3,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Dark: Season 3: Secrets",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Dark",
+                3,
+                null,
+                "Secrets",
+                true);
+        ShowMetadata metadata =
+                new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null);
+        WatchProgress anySeasonMatch = new WatchProgress(1, 5, "TMDB");
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(anySeasonMatch));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(new WatchProgress(ShowType.SERIES, 1, 5, "TMDB"));
+        assertThat(provider.idScopedCalls).isEqualTo(1);
+        assertThat(provider.idAnySeasonCalls).isEqualTo(1);
+        assertThat(provider.anySeasonCalls).isZero();
+    }
+
+    @Test
+    void doesNotRepeatTitleBasedAnySeasonWhenProviderIdPathAlreadyMissed() {
+        // Once metadata identifies the series, a failed id-based guide scan must not fall through
+        // to title-based any-season (duplicate HTTP over the same seasons).
         Show show = new Show(
                 UUID.randomUUID(),
                 "Boyfriend on Demand: Limited Series",
@@ -570,10 +771,9 @@ class MetadataEnrichmentServiceTest {
                 .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
                 .getFirst();
 
-        assertThat(result.progress()).contains(titleMatch);
+        assertThat(result.progress()).isEmpty();
         assertThat(provider.idAnySeasonCalls).isEqualTo(1);
-        assertThat(provider.anySeasonCalls).isEqualTo(1);
-        assertThat(provider.lastTitleLookup).isEqualTo("Boyfriend on Demand");
+        assertThat(provider.anySeasonCalls).isZero();
     }
 
     @Test
@@ -606,7 +806,7 @@ class MetadataEnrichmentServiceTest {
                 .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
                 .getFirst();
 
-        assertThat(result.progress()).contains(titleMatch);
+        assertThat(result.progress()).contains(new WatchProgress(ShowType.LIMITED_SERIES, 1, 1, "TMDB"));
         assertThat(provider.anySeasonCalls).isEqualTo(1);
         assertThat(provider.lastTitleLookup).isEqualTo("Dynamite Kiss");
     }
@@ -725,18 +925,20 @@ class MetadataEnrichmentServiceTest {
      * A provider that separately tracks and configures season-scoped versus season-agnostic named
      * episode resolution, so tests can assert which one was used.
      */
-    private static final class EpisodeResolutionRecordingProvider implements MetadataProvider {
+    private static class EpisodeResolutionRecordingProvider implements MetadataProvider {
         private final Optional<ShowMetadata> metadataToReturn;
         private final Optional<WatchProgress> scopedResult;
         private final Optional<WatchProgress> anySeasonResult;
         private final Optional<WatchProgress> idScopedResult;
         private final Optional<WatchProgress> idAnySeasonResult;
-        private int scopedCalls;
-        private int anySeasonCalls;
-        private int idScopedCalls;
-        private int idAnySeasonCalls;
-        private String lastTitleLookup;
-        private long lastProviderId;
+        // Package-private so anonymous subclasses in tests can update counters.
+        int scopedCalls;
+        int anySeasonCalls;
+        int idScopedCalls;
+        int idAnySeasonCalls;
+        String lastTitleLookup;
+        long lastProviderId;
+        final java.util.Map<String, Long> rememberedMappings = new java.util.LinkedHashMap<>();
 
         EpisodeResolutionRecordingProvider(Optional<WatchProgress> scopedResult, Optional<WatchProgress> anySeasonResult) {
             this(Optional.empty(), scopedResult, anySeasonResult, Optional.empty(), Optional.empty());
@@ -786,6 +988,23 @@ class MetadataEnrichmentServiceTest {
             idAnySeasonCalls++;
             lastProviderId = providerId;
             return idAnySeasonResult;
+        }
+
+        @Override
+        public void rememberSeriesMapping(String title, long providerId) {
+            if (title != null && !title.isBlank() && providerId > 0) {
+                rememberedMappings.put(title.trim(), providerId);
+            }
+        }
+    }
+
+    /** Collects diagnostics entries for assertions without writing files. */
+    private static final class RecordingDiagnosticsCollector implements DiagnosticsCollector {
+        private final List<DiagnosticsEntry> entries = new java.util.ArrayList<>();
+
+        @Override
+        public void record(DiagnosticsEntry entry) {
+            entries.add(entry);
         }
     }
 }

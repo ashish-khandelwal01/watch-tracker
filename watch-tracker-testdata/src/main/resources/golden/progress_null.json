@@ -69,6 +69,36 @@
     },
     {
         "show": {
+            "id": "0e98eaad-43b8-36ca-bdb5-dff03ae9138d",
+            "title": "It's Okay to Not Be Okay",
+            "aliases": [
+                "It's Okay to Not Be Okay: The Lady In Red Shoes",
+                "It's Okay to Not Be Okay: The Boy Who Fed On Nightmares"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2024-06-26T00:00:00",
+            "lastWatched": "2024-06-26T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 241506,
+            "title": "It's Okay to Not Be Okay",
+            "type": "SERIES",
+            "genres": [
+                "Drama",
+                "Comedy"
+            ],
+            "overview": "An author with severe antisocial tendencies learns to confront her deep emotional wounds when she meets a stranger who challenges her cold facade.",
+            "posterPath": "/7rQ7E7u0y8VJgnUeDT6oF1J32Gu.jpg",
+            "releaseDate": "2025-07-21"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "07312fb3-80dc-3e65-bb77-ddc9dfa05013",
             "title": "Shooter",
             "aliases": [
@@ -147,8 +177,8 @@
             "id": "fb2564a3-08ff-347b-bd7b-b087524077d5",
             "title": "Einsatzgruppen: The Nazi Death Squads",
             "aliases": [
-                "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)",
-                "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)"
+                "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)",
+                "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2024-01-21T00:00:00",
@@ -296,8 +326,8 @@
             "id": "ad251274-f85a-38ea-931f-a9fe4057a4b0",
             "title": "Black Lightning: LaWanda",
             "aliases": [
-                "Black Lightning: LaWanda: The Book of Burial",
-                "Black Lightning: LaWanda: The Book of Hope"
+                "Black Lightning: LaWanda: The Book of Hope",
+                "Black Lightning: LaWanda: The Book of Burial"
             ],
             "type": "UNKNOWN",
             "firstWatched": "2023-03-11T00:00:00",
@@ -311,11 +341,60 @@
     },
     {
         "show": {
+            "id": "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
+            "title": "The Order",
+            "aliases": [
+                "The Order: Season 1: Finals: Part 1",
+                "The Order: Season 2: Spring Outbreak, Part 1",
+                "The Order: Season 2: Spring Outbreak, Part 2",
+                "The Order: Season 2: New World Order, Part 1",
+                "The Order: Season 2: New World Order, Part 2",
+                "The Order: Season 2: Fear Itself, Part 1",
+                "The Order: Season 2: The Commons, Part 1",
+                "The Order: Season 2: The Commons, Part 2",
+                "The Order: Season 2: Free Radicals, Part 1",
+                "The Order: Season 2: Free Radicals, Part 2",
+                "The Order: Season 1: Introduction to Ethics: Part 1",
+                "The Order: Season 1: Introduction to Ethics: Part 2",
+                "The Order: Season 1: Homecoming: Part 1",
+                "The Order: Season 1: Homecoming: Part 2",
+                "The Order: Season 1: Hell Week: Part 2",
+                "The Order: Season 1: Undeclared: Part 1",
+                "The Order: Season 1: Undeclared: Part 2",
+                "The Order: Season 1: Hell Week: Part 1",
+                "The Order: Season 1: Finals: Part 2",
+                "The Order: Season 2: Fear Itself, Part 2"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2020-12-12T00:00:00",
+            "lastWatched": "2023-03-05T00:00:00",
+            "highestSeasonSeen": 2,
+            "highestEpisodeSeen": null,
+            "watchCount": 20
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 82104,
+            "title": "The Order",
+            "type": "SERIES",
+            "genres": [
+                "Drama",
+                "Mystery",
+                "Sci-Fi & Fantasy"
+            ],
+            "overview": "Out to avenge his mother's death, a college student pledges a secret order and lands in a war between werewolves and practitioners of dark magic.",
+            "posterPath": "/yMPjmuSd5Fac8YMNOwofGALQWjR.jpg",
+            "releaseDate": "2019-03-07"
+        },
+        "progress": null
+    },
+    {
+        "show": {
             "id": "eece3028-137a-3b3e-8057-b49c45c17b4f",
             "title": "DreamWorks Kung Fu Panda Awesome Secrets",
             "aliases": [
-                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters",
-                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five"
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five",
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters"
             ],
             "type": "UNKNOWN",
             "firstWatched": "2022-12-15T00:00:00",
@@ -429,6 +508,72 @@
             "overview": "The arrival of a charismatic young priest brings glorious miracles, ominous mysteries and renewed religious fervor to a dying town desperate to believe.",
             "posterPath": "/3eVSQJdiBin6A7F7nsg62eJFf0Y.jpg",
             "releaseDate": "2021-09-24"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "7c9a179e-5555-37f1-a354-6fa422d8a77f",
+            "title": "One Day at a Time",
+            "aliases": [
+                "One Day at a Time: Season 2: What Happened",
+                "One Day at a Time: Season 3: The Man",
+                "One Day at a Time: Season 1: The Death of Mrs. Resnick",
+                "One Day at a Time: Season 1: This Is It",
+                "One Day at a Time: Season 1: Pride & Prejudice",
+                "One Day at a Time: Season 1: Hurricane Victor",
+                "One Day at a Time: Season 3: She Drives Me Crazy",
+                "One Day at a Time: Season 2: Citizen Lydia",
+                "One Day at a Time: Season 3: One Valentine's Day at a Time",
+                "One Day at a Time: Season 2: Roots",
+                "One Day at a Time: Season 2: To Zir, With Love",
+                "One Day at a Time: Season 3: Drinking and Driving",
+                "One Day at a Time: Season 2: Schooled",
+                "One Day at a Time: Season 3: Anxiety",
+                "One Day at a Time: Season 1: Sex Talk",
+                "One Day at a Time: Season 3: Nip It in the Bud",
+                "One Day at a Time: Season 3: Hermanos",
+                "One Day at a Time: Season 1: One Lie at a Time",
+                "One Day at a Time: Season 1: Bobos and Mamitas",
+                "One Day at a Time: Season 3: A Penny and a Nicole",
+                "One Day at a Time: Season 2: Locked Down",
+                "One Day at a Time: Season 3: The First Time",
+                "One Day at a Time: Season 2: The Turn",
+                "One Day at a Time: Season 3: The Funeral",
+                "One Day at a Time: Season 3: Benefit with Friends",
+                "One Day at a Time: Season 2: Exclusive",
+                "One Day at a Time: Season 1: A Snowman's Tale",
+                "One Day at a Time: Season 3: Outside",
+                "One Day at a Time: Season 1: Quinces",
+                "One Day at a Time: Season 2: Not Yet",
+                "One Day at a Time: Season 2: Work Hard, Play Hard",
+                "One Day at a Time: Season 1: No Mass",
+                "One Day at a Time: Season 1: Strays",
+                "One Day at a Time: Season 2: Storage Wars",
+                "One Day at a Time: Season 1: Viva Cuba",
+                "One Day at a Time: Season 1: Hold, Please",
+                "One Day at a Time: Season 3: Ghosts",
+                "One Day at a Time: Season 2: Homecoming",
+                "One Day at a Time: Season 2: Hello, Penelope"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-02-23T00:00:00",
+            "lastWatched": "2022-08-02T00:00:00",
+            "highestSeasonSeen": 3,
+            "highestEpisodeSeen": null,
+            "watchCount": 39
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 2191,
+            "title": "One Day at a Time",
+            "type": "SERIES",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "The misadventures of a divorced mother, two teenage daughters, and their new building superintendent in Indianapolis.",
+            "posterPath": "/zheJWmmDRUYuApz83ZVrrPUjL2F.jpg",
+            "releaseDate": "1975-12-16"
         },
         "progress": null
     },
@@ -612,6 +757,36 @@
             "overview": "Marie and Luis meet at a costume party and immediately fall for each other. What begins as a dream of true love increasingly turns into a nightmare. Because Luis is addicted to sex. And Marie is addicted to Luis.",
             "posterPath": "/4sALwFbEvQNumPbwHVYiU9NGhe.jpg",
             "releaseDate": "2025-10-01"
+        },
+        "progress": null
+    },
+    {
+        "show": {
+            "id": "03391b97-c07b-397a-9b20-80c048679e2a",
+            "title": "Lost in Space",
+            "aliases": [
+                "Lost in Space: Season 1: Impact",
+                "Lost in Space: Season 1: Diamonds In The Sky"
+            ],
+            "type": "SERIES",
+            "firstWatched": "2021-02-02T00:00:00",
+            "lastWatched": "2021-02-02T00:00:00",
+            "highestSeasonSeen": 1,
+            "highestEpisodeSeen": null,
+            "watchCount": 2
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 3051,
+            "title": "Lost in Space",
+            "type": "SERIES",
+            "genres": [
+                "Sci-Fi & Fantasy",
+                "Comedy"
+            ],
+            "overview": "The space family Robinson is sent on a five-year mission to find a new planet to colonise. The voyage is sabotaged time and again by an inept stowaway, Dr. Zachary Smith. The family's spaceship, Jupiter II, also carries a friendly robot who endures an endless stream of abuse from Dr. Smith, but is a trusted companion of young Will Robinson",
+            "posterPath": "/f7xArCMZPBW7SoCsqsOXvc3X8Ry.jpg",
+            "releaseDate": "1965-09-15"
         },
         "progress": null
     },

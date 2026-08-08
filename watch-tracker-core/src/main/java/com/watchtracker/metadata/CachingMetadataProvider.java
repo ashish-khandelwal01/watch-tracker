@@ -124,4 +124,15 @@ public final class CachingMetadataProvider implements MetadataProvider {
         resolved.ifPresent(progress -> cache.putEpisodeAnySeasonById(providerId, episodeTitle, progress));
         return resolved;
     }
+
+    /**
+     * Forwards title → series-id seeding to the delegate provider.
+     *
+     * @param title title key to associate
+     * @param providerId provider-specific series identifier
+     */
+    @Override
+    public void rememberSeriesMapping(String title, long providerId) {
+        delegate.rememberSeriesMapping(title, providerId);
+    }
 }

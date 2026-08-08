@@ -117,13 +117,21 @@ public final class MetadataEnrichmentService {
                     // Emit diagnostics for cached resolved progress when present.
                     if (prior.progress().isPresent()) {
                         WatchProgress wp = prior.progress().get();
+                        java.util.Map<String, Object> progressOut = new java.util.LinkedHashMap<>();
+                        if (wp.season() != null) {
+                            progressOut.put("season", wp.season());
+                        }
+                        if (wp.episode() != null) {
+                            progressOut.put("episode", wp.episode());
+                        }
+                        progressOut.put("provider", wp.provider());
+                        progressOut.put("type", wp.type());
                         diagnostics.success(
                                 DiagnosticsStage.PROGRESS_BUILDER,
                                 show.title(),
                                 "Reused cached highest resolved progress",
                                 null,
-                                java.util.Map.of(
-                                        "season", wp.season(), "episode", wp.episode(), "provider", wp.provider()));
+                                progressOut);
                     }
 
                     return new EnrichedShow(show, prior.metadata(), prior.progress());
@@ -134,28 +142,22 @@ public final class MetadataEnrichmentService {
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
                         "Previous snapshot present but show data changed; resolving fresh");
+                java.util.Map<String, Object> previousState = new java.util.LinkedHashMap<>();
+                previousState.put("previousHighestSeason", prior.show().highestSeasonSeen());
+                previousState.put("previousHighestEpisode", prior.show().highestEpisodeSeen());
+                previousState.put("previousWatchCount", prior.show().watchCount());
+                previousState.put("previousAliases", prior.show().aliases());
+                java.util.Map<String, Object> currentState = new java.util.LinkedHashMap<>();
+                currentState.put("currentHighestSeason", show.highestSeasonSeen());
+                currentState.put("currentHighestEpisode", show.highestEpisodeSeen());
+                currentState.put("currentWatchCount", show.watchCount());
+                currentState.put("currentAliases", show.aliases());
                 diagnostics.success(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
                         "Previous vs current",
-                        java.util.Map.of(
-                                "previousHighestSeason",
-                                prior.show().highestSeasonSeen(),
-                                "previousHighestEpisode",
-                                prior.show().highestEpisodeSeen(),
-                                "previousWatchCount",
-                                prior.show().watchCount(),
-                                "previousAliases",
-                                prior.show().aliases()),
-                        java.util.Map.of(
-                                "currentHighestSeason",
-                                show.highestSeasonSeen(),
-                                "currentHighestEpisode",
-                                show.highestEpisodeSeen(),
-                                "currentWatchCount",
-                                show.watchCount(),
-                                "currentAliases",
-                                show.aliases()));
+                        previousState,
+                        currentState);
             }
         }
 
@@ -193,6 +195,9 @@ public final class MetadataEnrichmentService {
         ShowType mdType = show.type();
         if (metadata.isPresent()) {
             ShowMetadata md = metadata.get();
+            // Residual C: seed title → id so any later title-based episode resolve in this run
+            // reuses the matched series instead of ranking a different search hit first.
+            seedSeriesMappings(originalTitle, md);
             mdType = md.type();
             boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
                     || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
@@ -310,16 +315,21 @@ public final class MetadataEnrichmentService {
                 .max(WatchProgress::compareTo);
 
         if (bestNumbered.isPresent()) {
+            WatchProgress numbered = bestNumbered.get();
+            java.util.Map<String, Object> numberedOut = new java.util.LinkedHashMap<>();
+            if (numbered.season() != null) {
+                numberedOut.put("season", numbered.season());
+            }
+            if (numbered.episode() != null) {
+                numberedOut.put("episode", numbered.episode());
+            }
+            numberedOut.put("provider", numbered.provider());
             diagnostics.success(
                     DiagnosticsStage.PROGRESS_BUILDER,
                     show.title(),
                     "Highest numbered episode",
                     null,
-                    java.util.Map.of(
-                            "season",
-                            bestNumbered.get().season(),
-                            "episode",
-                            bestNumbered.get().episode()));
+                    numberedOut);
         }
 
         Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
@@ -333,49 +343,51 @@ public final class MetadataEnrichmentService {
     /**
      * Resolves one named episode title to a provider position.
      *
-     * <p>Order of attempts:
-     * <ol>
-     *   <li>Provider series id from a prior metadata match (avoids a second, fragile title search).
-     *   <li>Cleaned lookup title: provider metadata title when available, otherwise the show title
-     *       with a trailing {@code Limited Series} suffix stripped.
-     *   <li>Original show title, when it differs from the cleaned lookup title.
-     * </ol>
+     * <p>When metadata already identified the series, resolution uses only that provider id:
+     * season-scoped first (when Netflix supplied a season/container number), then any-season on
+     * the same id. Netflix "Part" / container numbers often disagree with provider seasons, so
+     * scoped-only resolution would leave real matches as null. Title-based any-season is not used
+     * after an id attempt — that would re-crawl the same guide (residual-C cold-cache regression).
+     *
+     * <p>When no metadata is available, a single cleaned-title lookup is used (scoped then
+     * any-season).
      */
     private Optional<WatchProgress> resolveNamedEpisode(
             Show show, NamedEpisode named, ShowType progType, Optional<ShowMetadata> metadata) {
-        java.util.Map<String, Object> searched = named.season() != null
-                ? java.util.Map.of("season", named.season(), "episodeTitle", named.episodeTitle())
-                : java.util.Map.of("season", "any", "episodeTitle", named.episodeTitle());
+        java.util.Map<String, Object> searched = new java.util.LinkedHashMap<>();
+        if (named.season() != null) {
+            searched.put("season", named.season());
+        } else {
+            searched.put("season", "any");
+        }
+        searched.put("episodeTitle", named.episodeTitle());
 
         Optional<WatchProgress> resolved = Optional.empty();
         String resolutionPath = null;
 
         if (metadata.isPresent()) {
             long providerId = metadata.get().providerId();
-            resolved = named.season() != null
-                    ? provider.resolveEpisode(providerId, named.season(), named.episodeTitle())
-                    : provider.resolveEpisodeAnySeason(providerId, named.episodeTitle());
+            if (named.season() != null) {
+                resolved = provider.resolveEpisode(providerId, named.season(), named.episodeTitle());
+            }
+            if (resolved.isEmpty()) {
+                // Same series, full guide — in-memory season cache reuses any season already fetched.
+                resolved = provider.resolveEpisodeAnySeason(providerId, named.episodeTitle());
+            }
             if (resolved.isPresent()) {
                 resolutionPath = "providerId";
             }
-        }
-
-        if (resolved.isEmpty()) {
+        } else {
             String lookupTitle = lookupTitleForResolution(show.title(), metadata);
-            resolved = named.season() != null
-                    ? provider.resolveEpisode(lookupTitle, named.season(), named.episodeTitle())
-                    : provider.resolveEpisodeAnySeason(lookupTitle, named.episodeTitle());
+            searched.put("lookupTitle", lookupTitle);
+            if (named.season() != null) {
+                resolved = provider.resolveEpisode(lookupTitle, named.season(), named.episodeTitle());
+            }
+            if (resolved.isEmpty()) {
+                resolved = provider.resolveEpisodeAnySeason(lookupTitle, named.episodeTitle());
+            }
             if (resolved.isPresent()) {
                 resolutionPath = "lookupTitle";
-                searched = new java.util.LinkedHashMap<>(searched);
-                searched.put("lookupTitle", lookupTitle);
-            } else if (!lookupTitle.equals(show.title())) {
-                resolved = named.season() != null
-                        ? provider.resolveEpisode(show.title(), named.season(), named.episodeTitle())
-                        : provider.resolveEpisodeAnySeason(show.title(), named.episodeTitle());
-                if (resolved.isPresent()) {
-                    resolutionPath = "originalTitle";
-                }
             }
         }
 
@@ -399,6 +411,22 @@ public final class MetadataEnrichmentService {
         }
         diagnostics.failure(DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
         return Optional.empty();
+    }
+
+    /**
+     * Associates the imported title, a stripped Limited Series variant, and the provider's own
+     * title with the matched series id for the remainder of the run.
+     */
+    private void seedSeriesMappings(String originalTitle, ShowMetadata metadata) {
+        long id = metadata.providerId();
+        provider.rememberSeriesMapping(originalTitle, id);
+        String stripped = stripLimitedSeries(originalTitle);
+        if (stripped != null && !stripped.isBlank() && !stripped.equals(originalTitle)) {
+            provider.rememberSeriesMapping(stripped, id);
+        }
+        if (metadata.title() != null && !metadata.title().isBlank()) {
+            provider.rememberSeriesMapping(metadata.title(), id);
+        }
     }
 
     /**

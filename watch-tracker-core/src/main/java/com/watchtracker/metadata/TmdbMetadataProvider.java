@@ -73,7 +73,28 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         }
         String mediaType = selected.path("media_type").asText();
         long id = selected.path("id").asLong();
-        return Optional.of(toMetadata(request('/' + mediaType + '/' + id), mediaType));
+        ShowMetadata metadata = toMetadata(request('/' + mediaType + '/' + id), mediaType);
+        if ("tv".equals(mediaType) && id > 0) {
+            rememberSeriesMapping(title, id);
+            if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
+                rememberSeriesMapping(metadata.title(), id);
+            }
+        }
+        return Optional.of(metadata);
+    }
+
+    /**
+     * Seeds the title → TMDb series-id map used by title-based episode resolution.
+     *
+     * @param title title key to associate
+     * @param providerId TMDb series id
+     */
+    @Override
+    public void rememberSeriesMapping(String title, long providerId) {
+        if (title == null || title.isBlank() || providerId < 1) {
+            return;
+        }
+        seriesIdByTitle.put(title.trim(), providerId);
     }
 
     /**

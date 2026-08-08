@@ -91,18 +91,13 @@ public final class FallbackMetadataProvider implements MetadataProvider {
      */
     @Override
     public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+        // Id namespaces differ across providers. Try primary then fallback scoped only; the caller
+        // invokes resolveEpisodeAnySeason explicitly when a season-agnostic search is wanted.
         Optional<WatchProgress> primaryResult = primary.resolveEpisode(providerId, season, episodeTitle);
         if (primaryResult.isPresent()) {
             return primaryResult;
         }
-        Optional<WatchProgress> fallbackResult = fallback.resolveEpisode(providerId, season, episodeTitle);
-        if (fallbackResult.isPresent()) {
-            return fallbackResult;
-        }
-        Optional<WatchProgress> primaryAnySeason = primary.resolveEpisodeAnySeason(providerId, episodeTitle);
-        return primaryAnySeason.isPresent()
-                ? primaryAnySeason
-                : fallback.resolveEpisodeAnySeason(providerId, episodeTitle);
+        return fallback.resolveEpisode(providerId, season, episodeTitle);
     }
 
     /**
@@ -118,5 +113,18 @@ public final class FallbackMetadataProvider implements MetadataProvider {
         return primaryResult.isPresent()
                 ? primaryResult
                 : fallback.resolveEpisodeAnySeason(providerId, episodeTitle);
+    }
+
+    /**
+     * Seeds the primary provider only. Provider id namespaces differ (TMDb versus TVMaze);
+     * the matching provider already seeds itself inside findByTitle. This call exists so stripped
+     * Netflix titles (e.g. without "Limited Series") still resolve against the primary series id.
+     *
+     * @param title title key to associate
+     * @param providerId provider-specific series identifier
+     */
+    @Override
+    public void rememberSeriesMapping(String title, long providerId) {
+        primary.rememberSeriesMapping(title, providerId);
     }
 }
