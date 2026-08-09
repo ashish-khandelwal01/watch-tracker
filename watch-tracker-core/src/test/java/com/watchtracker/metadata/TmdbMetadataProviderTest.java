@@ -62,6 +62,42 @@ class TmdbMetadataProviderTest {
     }
 
     @Test
+    void prefersTheClosestTextualMatchOverAnUnrelatedResultRankedFirst() throws Exception {
+        // Reproduces the real "House, M.D." mismatch: a making-of documentary whose title contains
+        // the whole query as a substring ranks first, but the actual show's title ("House") is also
+        // substring-related to the query and is a much closer length match, so it should win instead
+        // of blindly taking the first hit.
+        JsonNode results = readResults(
+                """
+                [
+                    {"media_type": "movie", "id": 99, "title": "House M.D.: The Doctor Directs"},
+                    {"media_type": "tv", "id": 42, "name": "House"}
+                ]
+                """);
+
+        JsonNode selected = TmdbMetadataProvider.selectBestMatch(results, "House, M.D.");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(42);
+    }
+
+    @Test
+    void fallsBackToFirstCandidateWhenNoCandidateIsTextuallyRelatedToTheQuery() throws Exception {
+        // Legitimately different titles (e.g. a translated international title) have no substring
+        // relationship with the query at all, so the original first-hit fallback must still apply.
+        JsonNode results = readResults(
+                """
+                [
+                    {"media_type": "movie", "id": 7, "title": "Like Stars on Earth"},
+                    {"media_type": "movie", "id": 8, "title": "Completely Unrelated"}
+                ]
+                """);
+
+        JsonNode selected = TmdbMetadataProvider.selectBestMatch(results, "Taare Zameen Par");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(7);
+    }
+
+    @Test
     void skipsNonTvMovieResultsAndInvalidIdsEntirely() throws Exception {
         JsonNode results = readResults(
                 """

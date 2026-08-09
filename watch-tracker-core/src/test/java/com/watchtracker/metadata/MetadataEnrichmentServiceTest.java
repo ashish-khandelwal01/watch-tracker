@@ -257,6 +257,109 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
+    void retriesWithFullRawTitleWhenSplitTitleResolvesToAMovie() {
+        // "G.I. Joe: Retaliation" is a single movie title, but the generic normalizer fallback
+        // (no season/part/chapter marker present) splits it into show "G.I. Joe" + episode
+        // "Retaliation". Looking up the truncated "G.I. Joe" alone is ambiguous and, in the real
+        // failure this reproduces, matched an unrelated animated series instead.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "G.I. Joe",
+                Set.of("G.I. Joe: Retaliation"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata wrongSeriesMatch =
+                new ShowMetadata("TMDB", 1, "G.I. Joe: Renegades", ShowType.SERIES, List.of("Animation"), null, null, null);
+        ShowMetadata correctMovieMatch =
+                new ShowMetadata("TMDB", 2, "G.I. Joe: Retaliation", ShowType.MOVIE, List.of("Action"), null, null, null);
+        List<String> requestedTitles = new java.util.ArrayList<>();
+        MetadataProvider provider = title -> {
+            requestedTitles.add(title);
+            if ("G.I. Joe".equals(title)) {
+                return Optional.of(wrongSeriesMatch);
+            }
+            if ("G.I. Joe: Retaliation".equals(title)) {
+                return Optional.of(correctMovieMatch);
+            }
+            return Optional.empty();
+        };
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(correctMovieMatch);
+        assertThat(requestedTitles).containsExactly("G.I. Joe", "G.I. Joe: Retaliation");
+    }
+
+    @Test
+    void doesNotRetryWithFullRawTitleWhenSplitTitleResolvesToASeries() {
+        // The retry is only meant to catch a movie subtitle mistaken for an episode title. A show
+        // that already resolves to a real series should be left alone: retrying would risk pulling
+        // in a completely different, unrelated result for the full "show: episode" string.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Dark",
+                Set.of("Dark: Secrets"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata seriesMatch =
+                new ShowMetadata("TMDB", 1, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null);
+        List<String> requestedTitles = new java.util.ArrayList<>();
+        MetadataProvider provider = title -> {
+            requestedTitles.add(title);
+            return "Dark".equals(title) ? Optional.of(seriesMatch) : Optional.empty();
+        };
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(seriesMatch);
+        assertThat(requestedTitles).containsExactly("Dark");
+    }
+
+    @Test
+    void doesNotRetryWithFullRawTitleWhenMultipleAliasesShareTheSplitTitle() {
+        // Two different Kingsman movies both lose their subtitle to the same generic split, merging
+        // them under one "show" named "Kingsman". With more than one alias there is no single full
+        // title that can safely resolve the merged group, so the retry is deliberately skipped and
+        // the (already imperfect) split-title match is kept rather than guessing.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Kingsman",
+                Set.of("Kingsman: The Secret Service", "Kingsman: The Golden Circle"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                2);
+        ShowMetadata movieMatch =
+                new ShowMetadata("TMDB", 1, "Kingsman: The Secret Service", ShowType.MOVIE, List.of("Action"), null, null, null);
+        List<String> requestedTitles = new java.util.ArrayList<>();
+        MetadataProvider provider = title -> {
+            requestedTitles.add(title);
+            return "Kingsman".equals(title) ? Optional.of(movieMatch) : Optional.empty();
+        };
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(movieMatch);
+        assertThat(requestedTitles).containsExactly("Kingsman");
+    }
+
+    @Test
     void documentaryGenreOverridesProviderType() {
         Show show = new Show(
                 UUID.randomUUID(),

@@ -125,9 +125,19 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      *
      * <p>This prefers the first result whose own title exactly matches the query
      * (case/punctuation-insensitive, via {@link #sameTitle}), scanning every candidate rather than
-     * stopping at the first TV/movie hit. Only when no exact match exists anywhere in the results
-     * does it fall back to the first TV/movie hit, preserving the previous behavior for titles where
-     * TMDb's own title legitimately differs (alternate spelling, subtitle, re-release naming, etc.).
+     * stopping at the first TV/movie hit.
+     *
+     * <p>When no exact match exists, a plain "first TV/movie hit" fallback can still pick a badly
+     * wrong result: TMDb's text relevance can rank a tangentially-titled result (e.g. a making-of
+     * documentary whose title happens to contain the query as a substring, such as "House M.D.: The
+     * Doctor Directs" for a query of "House, M.D.") above the actual show ("House"), even though the
+     * actual show's title is also textually related to the query and is the much closer match. So
+     * among candidates whose normalized title is a substring of the query's (or vice versa), this
+     * prefers whichever is closest in length to the query — i.e. the smallest amount of extra or
+     * missing text — before falling back to the plain first-hit behavior. This only changes the
+     * outcome when at least one candidate has this substring relationship; titles where TMDb's own
+     * title legitimately differs with no textual overlap at all (alternate language title,
+     * re-release naming, etc.) are unaffected and keep the previous first-hit fallback.
      *
      * @param results the {@code results} array from a {@code /search/multi} response
      * @param queryTitle the title that was searched for
@@ -135,6 +145,9 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      */
     static JsonNode selectBestMatch(JsonNode results, String queryTitle) {
         JsonNode fallback = null;
+        JsonNode closestRelated = null;
+        int closestRelatedDistance = Integer.MAX_VALUE;
+        String normalizedQuery = normalizeTitle(queryTitle);
         for (JsonNode result : results) {
             String mediaType = result.path("media_type").asText();
             if (!"tv".equals(mediaType) && !"movie".equals(mediaType)) {
@@ -150,8 +163,18 @@ public final class TmdbMetadataProvider implements MetadataProvider {
             if (sameTitle(resultTitle, queryTitle)) {
                 return result;
             }
+            String normalizedResult = normalizeTitle(resultTitle);
+            if (!normalizedQuery.isEmpty()
+                    && !normalizedResult.isEmpty()
+                    && (normalizedResult.contains(normalizedQuery) || normalizedQuery.contains(normalizedResult))) {
+                int distance = Math.abs(normalizedResult.length() - normalizedQuery.length());
+                if (distance < closestRelatedDistance) {
+                    closestRelatedDistance = distance;
+                    closestRelated = result;
+                }
+            }
         }
-        return fallback;
+        return closestRelated != null ? closestRelated : fallback;
     }
 
     /**

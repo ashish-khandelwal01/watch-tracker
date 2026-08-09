@@ -226,9 +226,18 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
      *
      * <p>This prefers the first result whose own name exactly matches the query
      * (case/punctuation-insensitive, via {@link #sameTitle}), scanning every candidate rather than
-     * stopping at the first hit. Only when no exact match exists anywhere does it fall back to
-     * TVMaze's own top-ranked result, preserving the previous behavior for titles where TVMaze's own
-     * name legitimately differs (alternate spelling, subtitle, re-release naming, etc.).
+     * stopping at the first hit.
+     *
+     * <p>When no exact match exists, a plain "top-ranked result" fallback can still pick a badly
+     * wrong result: a tangentially-titled show (e.g. a special or spin-off whose name happens to
+     * contain the query as a substring) can outrank the actual show even though the actual show's
+     * name is also textually related to the query and is the much closer match. So among candidates
+     * whose normalized name is a substring of the query's (or vice versa), this prefers whichever is
+     * closest in length to the query — i.e. the smallest amount of extra or missing text — before
+     * falling back to the plain top-ranked-result behavior. This only changes the outcome when at
+     * least one candidate has this substring relationship; titles where TVMaze's own name legitimately
+     * differs with no textual overlap at all (alternate spelling, re-release naming, etc.) are
+     * unaffected and keep the previous top-ranked-result fallback.
      *
      * @param results the array response from {@code /search/shows}, each entry wrapping a show under
      *     a {@code "show"} key
@@ -241,16 +250,30 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
             return null;
         }
         JsonNode fallback = null;
+        JsonNode closestRelated = null;
+        int closestRelatedDistance = Integer.MAX_VALUE;
+        String normalizedQuery = normalizeTitle(queryTitle);
         for (JsonNode result : results) {
             JsonNode show = result.path("show");
             if (fallback == null) {
                 fallback = show;
             }
-            if (sameTitle(show.path("name").asText(), queryTitle)) {
+            String showName = show.path("name").asText();
+            if (sameTitle(showName, queryTitle)) {
                 return show;
             }
+            String normalizedName = normalizeTitle(showName);
+            if (!normalizedQuery.isEmpty()
+                    && !normalizedName.isEmpty()
+                    && (normalizedName.contains(normalizedQuery) || normalizedQuery.contains(normalizedName))) {
+                int distance = Math.abs(normalizedName.length() - normalizedQuery.length());
+                if (distance < closestRelatedDistance) {
+                    closestRelatedDistance = distance;
+                    closestRelated = show;
+                }
+            }
         }
-        return fallback;
+        return closestRelated != null ? closestRelated : fallback;
     }
 
     /** Resolves and caches the TVMaze show id for a title, fetching it at most once per title. */

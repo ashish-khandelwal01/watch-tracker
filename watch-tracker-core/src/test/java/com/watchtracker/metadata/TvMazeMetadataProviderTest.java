@@ -78,6 +78,24 @@ class TvMazeMetadataProviderTest {
     }
 
     @Test
+    void prefersTheClosestTextualMatchOverAnUnrelatedTopRankedResult() throws Exception {
+        // Same class of mismatch as TmdbMetadataProviderTest's "House, M.D." case: a tangentially
+        // titled special ranks first, but the real show's name is also substring-related to the
+        // query and is a much closer length match.
+        JsonNode results = readResults(
+                """
+                [
+                    {"score": 9.0, "show": {"id": 99, "name": "House M.D.: The Doctor Directs"}},
+                    {"score": 5.0, "show": {"id": 42, "name": "House"}}
+                ]
+                """);
+
+        JsonNode selected = TvMazeMetadataProvider.selectBestMatch(results, "House, M.D.");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(42);
+    }
+
+    @Test
     void returnsNullWhenResultsAreEmpty() throws Exception {
         JsonNode results = readResults("[]");
 

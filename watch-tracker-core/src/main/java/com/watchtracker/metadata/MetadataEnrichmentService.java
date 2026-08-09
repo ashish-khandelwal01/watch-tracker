@@ -193,6 +193,35 @@ public final class MetadataEnrichmentService {
             }
         }
 
+        // A generic "Show: Subtitle" split (the fallback used when no season/part/chapter marker is
+        // present — see TitleNormalizer) is inherently ambiguous between a real episode title and a
+        // movie's own subtitle, e.g. "G.I. Joe: Retaliation" splits into show "G.I. Joe" + episode
+        // "Retaliation" even though the whole thing is one movie title. When the truncated "show"
+        // name alone resolves to a movie, that is itself a strong signal the split ate a movie
+        // subtitle (a real TV show's bare franchise name doesn't usually resolve to a movie), and the
+        // truncated name is too generic for a reliable lookup — "G.I. Joe" alone is ambiguous with an
+        // unrelated animated series. Retrying with the full, untruncated raw title recovers the real,
+        // specific movie.
+        //
+        // This is only applied when there is a single raw alias. With more than one alias, the split
+        // may have merged multiple distinct movies under one shared franchise prefix (e.g. two
+        // different "Kingsman" films both losing their subtitles to this same split), and a
+        // single retry title can't safely disambiguate which movie is which — that case needs the
+        // shows to be un-merged at grouping time, which this per-show retry deliberately does not
+        // attempt.
+        boolean retriedWithFullTitle = false;
+        if (metadata.isPresent() && metadata.get().type() == ShowType.MOVIE && show.aliases().size() == 1) {
+            String fullRawTitle = show.aliases().iterator().next();
+            if (!fullRawTitle.equals(originalTitle)) {
+                Optional<ShowMetadata> fullTitleMetadata = findByTitleSafely(fullRawTitle);
+                if (fullTitleMetadata.isPresent() && fullTitleMetadata.get().type() == ShowType.MOVIE) {
+                    metadata = fullTitleMetadata;
+                    matchedAfterStrip = false;
+                    retriedWithFullTitle = true;
+                }
+            }
+        }
+
         ShowType mdType = show.type();
         if (metadata.isPresent()) {
             ShowMetadata md = metadata.get();
@@ -210,7 +239,20 @@ public final class MetadataEnrichmentService {
             } else if (mdType == ShowType.SERIES && hasLimited) {
                 mdType = ShowType.LIMITED_SERIES;
             }
-            if (matchedAfterStrip) {
+            if (retriedWithFullTitle) {
+                diagnostics.success(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        show.title(),
+                        "Matched metadata after retrying with full raw title (split title resolved to a movie)",
+                        null,
+                        java.util.Map.of(
+                                "provider",
+                                md.provider(),
+                                "id",
+                                md.providerId(),
+                                "searchedTitle",
+                                show.aliases().iterator().next()));
+            } else if (matchedAfterStrip) {
                 diagnostics.success(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),

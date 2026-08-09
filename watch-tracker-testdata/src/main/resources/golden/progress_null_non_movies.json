@@ -360,6 +360,13 @@
             "id": "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
             "title": "The Order",
             "aliases": [
+                "The Order: Season 1: Homecoming: Part 1",
+                "The Order: Season 1: Homecoming: Part 2",
+                "The Order: Season 1: Hell Week: Part 2",
+                "The Order: Season 1: Undeclared: Part 1",
+                "The Order: Season 1: Undeclared: Part 2",
+                "The Order: Season 1: Hell Week: Part 1",
+                "The Order: Season 1: Finals: Part 2",
                 "The Order: Season 2: Fear Itself, Part 2",
                 "The Order: Season 1: Finals: Part 1",
                 "The Order: Season 2: Spring Outbreak, Part 1",
@@ -372,14 +379,7 @@
                 "The Order: Season 2: Free Radicals, Part 1",
                 "The Order: Season 2: Free Radicals, Part 2",
                 "The Order: Season 1: Introduction to Ethics: Part 1",
-                "The Order: Season 1: Introduction to Ethics: Part 2",
-                "The Order: Season 1: Homecoming: Part 1",
-                "The Order: Season 1: Homecoming: Part 2",
-                "The Order: Season 1: Hell Week: Part 2",
-                "The Order: Season 1: Undeclared: Part 1",
-                "The Order: Season 1: Undeclared: Part 2",
-                "The Order: Season 1: Hell Week: Part 1",
-                "The Order: Season 1: Finals: Part 2"
+                "The Order: Season 1: Introduction to Ethics: Part 2"
             ],
             "type": "SERIES",
             "firstWatched": "2020-12-12T00:00:00",
@@ -540,6 +540,24 @@
             "id": "7c9a179e-5555-37f1-a354-6fa422d8a77f",
             "title": "One Day at a Time",
             "aliases": [
+                "One Day at a Time: Season 2: Locked Down",
+                "One Day at a Time: Season 3: The First Time",
+                "One Day at a Time: Season 2: The Turn",
+                "One Day at a Time: Season 3: The Funeral",
+                "One Day at a Time: Season 3: Benefit with Friends",
+                "One Day at a Time: Season 2: Exclusive",
+                "One Day at a Time: Season 1: A Snowman's Tale",
+                "One Day at a Time: Season 3: Outside",
+                "One Day at a Time: Season 1: Quinces",
+                "One Day at a Time: Season 2: Not Yet",
+                "One Day at a Time: Season 2: Work Hard, Play Hard",
+                "One Day at a Time: Season 1: No Mass",
+                "One Day at a Time: Season 1: Strays",
+                "One Day at a Time: Season 2: Storage Wars",
+                "One Day at a Time: Season 1: Viva Cuba",
+                "One Day at a Time: Season 1: Hold, Please",
+                "One Day at a Time: Season 3: Ghosts",
+                "One Day at a Time: Season 2: Homecoming",
                 "One Day at a Time: Season 2: Hello, Penelope",
                 "One Day at a Time: Season 2: What Happened",
                 "One Day at a Time: Season 3: The Man",
@@ -560,25 +578,7 @@
                 "One Day at a Time: Season 3: Hermanos",
                 "One Day at a Time: Season 1: One Lie at a Time",
                 "One Day at a Time: Season 1: Bobos and Mamitas",
-                "One Day at a Time: Season 3: A Penny and a Nicole",
-                "One Day at a Time: Season 2: Locked Down",
-                "One Day at a Time: Season 3: The First Time",
-                "One Day at a Time: Season 2: The Turn",
-                "One Day at a Time: Season 3: The Funeral",
-                "One Day at a Time: Season 3: Benefit with Friends",
-                "One Day at a Time: Season 2: Exclusive",
-                "One Day at a Time: Season 1: A Snowman's Tale",
-                "One Day at a Time: Season 3: Outside",
-                "One Day at a Time: Season 1: Quinces",
-                "One Day at a Time: Season 2: Not Yet",
-                "One Day at a Time: Season 2: Work Hard, Play Hard",
-                "One Day at a Time: Season 1: No Mass",
-                "One Day at a Time: Season 1: Strays",
-                "One Day at a Time: Season 2: Storage Wars",
-                "One Day at a Time: Season 1: Viva Cuba",
-                "One Day at a Time: Season 1: Hold, Please",
-                "One Day at a Time: Season 3: Ghosts",
-                "One Day at a Time: Season 2: Homecoming"
+                "One Day at a Time: Season 3: A Penny and a Nicole"
             ],
             "type": "SERIES",
             "firstWatched": "2021-02-23T00:00:00",
@@ -631,37 +631,6 @@
             "posterPath": "/w5mGLHBT59nFilSPgd5TgJnZ1ix.jpg",
             "releaseDate": "2001-09-03",
             "totalEpisodes": 39,
-            "productionEnded": true
-        },
-        "progress": null
-    },
-    {
-        "show": {
-            "id": "3dcf5b54-fa79-3258-bbac-39be2c3d5664",
-            "title": "G.I. Joe",
-            "aliases": [
-                "G.I. Joe: Retaliation"
-            ],
-            "type": "SERIES",
-            "firstWatched": "2021-05-31T00:00:00",
-            "lastWatched": "2021-05-31T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 1
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 33163,
-            "title": "G.I. Joe: Renegades",
-            "type": "SERIES",
-            "genres": [
-                "Action & Adventure",
-                "Animation"
-            ],
-            "overview": "The adventures of the elite G.I. Joe unit, whose members: Duke, Snake Eyes, Scarlett, Roadblock, Tunnel Rat and Ripcord were charged with crimes they did not commit. In order to clear themselves of the charges, they must expose the real culprits, who belong to the powerful corporation COBRA Industries.",
-            "posterPath": "/sRGqn7kzeQOVUdRdYGRZlYDObdu.jpg",
-            "releaseDate": "2010-11-26",
-            "totalEpisodes": 26,
             "productionEnded": true
         },
         "progress": null
@@ -780,16 +749,16 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 104690,
+            "providerId": 298893,
             "title": "Naked",
             "type": "SERIES",
             "genres": [
                 "Drama"
             ],
-            "overview": "Eylül lives with her grandmother and earns her living by escort. All she wants is to save enough money, move to Wales and create a new life there. One night she is summoned to a bachelor party of a group...",
-            "posterPath": "/3Yq5dXQFheq1iH8uIPjc2kb3qxc.jpg",
-            "releaseDate": "2020-06-11",
-            "totalEpisodes": 16,
+            "overview": "Marie and Luis meet at a costume party and immediately fall for each other. What begins as a dream of true love increasingly turns into a nightmare. Because Luis is addicted to sex. And Marie is addicted to Luis.",
+            "posterPath": "/4sALwFbEvQNumPbwHVYiU9NGhe.jpg",
+            "releaseDate": "2025-10-01",
+            "totalEpisodes": 6,
             "productionEnded": true
         },
         "progress": null
