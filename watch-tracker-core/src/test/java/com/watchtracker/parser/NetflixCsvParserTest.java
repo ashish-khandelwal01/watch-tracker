@@ -45,6 +45,17 @@ class NetflixCsvParserTest {
         assertThat(new NetflixCsvParser().parse(csv)).hasSize(1);
     }
 
+    @Test
+    void skipsTitlesThatStartWithColon() throws java.io.IOException {
+        Path csv = java.nio.file.Files.createTempFile("netflix-history", ".csv");
+        java.nio.file.Files.writeString(
+                csv, "Title,Date\n: Episode 1,7/19/26\n  : Episode 2,7/18/26\nDark: Episode 1,7/17/26\n");
+
+        List<WatchEvent> events = new NetflixCsvParser().parse(csv);
+        assertThat(events).hasSize(1);
+        assertThat(events.getFirst().rawTitle()).isEqualTo("Dark: Episode 1");
+    }
+
     private static Path resource(String name) throws URISyntaxException {
         return Path.of(NetflixCsvParserTest.class.getResource('/' + name).toURI());
     }

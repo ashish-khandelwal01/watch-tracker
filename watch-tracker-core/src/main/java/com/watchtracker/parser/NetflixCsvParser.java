@@ -38,19 +38,21 @@ public final class NetflixCsvParser {
             throw new NetflixCsvException("CSV file does not exist: " + csv);
         }
         try (Reader reader = Files.newBufferedReader(csv);
-                CSVParser parser = CSVFormat.DEFAULT
-                        .builder()
-                        .setHeader()
-                        .setSkipHeaderRecord(true)
-                        .setIgnoreSurroundingSpaces(true)
-                        .setTrim(true)
-                        .get()
-                        .parse(reader)) {
+             CSVParser parser = CSVFormat.DEFAULT
+                     .builder()
+                     .setHeader()
+                     .setSkipHeaderRecord(true)
+                     .setIgnoreSurroundingSpaces(true)
+                     .setTrim(true)
+                     .get()
+                     .parse(reader)) {
             validateHeaders(parser);
             List<WatchEvent> events = new ArrayList<>();
             for (CSVRecord row : parser) {
-                if (row.get(TITLE) == null || row.get(TITLE).isBlank()) {
-                    LOGGER.warn("Skipping row {} with a blank Title", row.getRecordNumber());
+                String title = row.get(TITLE);
+                if (title == null || title.isBlank() || title.trim().startsWith(":")) {
+                    LOGGER.warn(
+                            "Skipping row {} with a blank or empty-prefix Title", row.getRecordNumber());
                     continue;
                 }
                 events.add(WatchEvent.raw(
