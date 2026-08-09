@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -23,9 +24,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /** TVMaze provider for TV-series metadata; it uses TVMaze's public search API. */
 public final class TvMazeMetadataProvider implements MetadataProvider {
-    private static final String API_ROOT = "https://api.tvmaze.com";
+    private static final String DEFAULT_API_ROOT = "https://api.tvmaze.com";
+    // Without these, a stalled connection or an unresponsive server (including a soft rate-limit
+    // that never sends a response instead of returning 429) blocks java.net.http.HttpClient
+    // indefinitely — there is no default timeout. A single hung request can then stall the entire
+    // synchronous, single-threaded import for hours with no way to recover.
+    private static final Duration DEFAULT_CONNECT_TIMEOUT = Duration.ofSeconds(15);
+    private static final Duration DEFAULT_REQUEST_TIMEOUT = Duration.ofSeconds(30);
     private final HttpClient client;
     private final ObjectMapper mapper;
+    private final String apiRoot;
+    private final Duration requestTimeout;
 
     // Per-instance lookup caches so a run resolving many named episodes for the same show only
     // performs one show search and one per-season episode-guide fetch, instead of repeating both
@@ -35,7 +44,11 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
 
     /** Creates a provider using Java's standard HTTP client. */
     public TvMazeMetadataProvider() {
-        this(HttpClient.newHttpClient(), new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
+        this(
+                HttpClient.newBuilder().connectTimeout(DEFAULT_CONNECT_TIMEOUT).build(),
+                new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS),
+                DEFAULT_API_ROOT,
+                DEFAULT_REQUEST_TIMEOUT);
     }
 
     /**
@@ -45,8 +58,24 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
      * @param mapper JSON mapper used to decode TVMaze responses
      */
     TvMazeMetadataProvider(HttpClient client, ObjectMapper mapper) {
+        this(client, mapper, DEFAULT_API_ROOT, DEFAULT_REQUEST_TIMEOUT);
+    }
+
+    /**
+     * Creates a provider with every collaborator injectable, including the API root and per-request
+     * timeout, so tests can point at a local stub server and use a short timeout instead of waiting
+     * out the real 30-second default.
+     *
+     * @param client HTTP client used for TVMaze requests
+     * @param mapper JSON mapper used to decode TVMaze responses
+     * @param apiRoot base URL for TVMaze requests
+     * @param requestTimeout per-request timeout
+     */
+    TvMazeMetadataProvider(HttpClient client, ObjectMapper mapper, String apiRoot, Duration requestTimeout) {
         this.client = Objects.requireNonNull(client, "client must not be null");
         this.mapper = Objects.requireNonNull(mapper, "mapper must not be null");
+        this.apiRoot = Objects.requireNonNull(apiRoot, "apiRoot must not be null");
+        this.requestTimeout = Objects.requireNonNull(requestTimeout, "requestTimeout must not be null");
     }
 
     /**
@@ -62,12 +91,30 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         if (selected == null) {
             return Optional.empty();
         }
-        ShowMetadata metadata = toMetadata(selected);
+        long id = selected.path("id").asLong();
+        // TVMaze's search result doesn't carry a total episode count directly (unlike TMDb's
+        // /tv/{id} response), so this costs an extra request here — but it's cached by
+        // episodesForShow, so a later named-episode resolution for the same show reuses it instead
+        // of fetching the guide twice. This is best-effort: it's purely for completion-status data,
+        // so a failure here (timeout, rate limit, transient error) must not take down the whole
+        // metadata match, which has already succeeded by this point. Worst case, totalEpisodes
+        // stays null and completion status is reported as UNKNOWN for this show.
+        Integer totalEpisodes = id > 0 ? totalEpisodesOrNull(id) : null;
+        ShowMetadata metadata = toMetadata(selected, totalEpisodes);
         rememberSeriesMapping(title, metadata.providerId());
         if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
             rememberSeriesMapping(metadata.title(), metadata.providerId());
         }
         return Optional.of(metadata);
+    }
+
+    /** Fetches a show's total episode count, degrading to {@code null} on any failure. */
+    private Integer totalEpisodesOrNull(long id) {
+        try {
+            return episodesForShow(id).size();
+        } catch (RuntimeException exception) {
+            return null;
+        }
     }
 
     /**
@@ -248,8 +295,9 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
 
     /** Executes a TVMaze search request. */
     private JsonNode request(String endpoint) {
-        HttpRequest request = HttpRequest.newBuilder(URI.create(API_ROOT + endpoint))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(apiRoot + endpoint))
                 .header("Accept", "application/json")
+                .timeout(requestTimeout)
                 .GET()
                 .build();
         try {
@@ -270,9 +318,10 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
     }
 
     /** Maps TVMaze's nested search result to the provider-neutral metadata model. */
-    private static ShowMetadata toMetadata(JsonNode show) {
+    static ShowMetadata toMetadata(JsonNode show, Integer totalEpisodes) {
         List<String> genres = new ArrayList<>();
         show.path("genres").forEach(genre -> genres.add(genre.asText()));
+        Boolean productionEnded = show.hasNonNull("status") ? isEndedStatus(show.path("status").asText()) : null;
         return new ShowMetadata(
                 "TVMAZE",
                 show.path("id").asLong(),
@@ -281,7 +330,19 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
                 genres,
                 stripHtml(nullable(show, "summary")),
                 nullable(show.path("image"), "original"),
-                date(nullable(show, "premiered")));
+                date(nullable(show, "premiered")),
+                totalEpisodes,
+                productionEnded);
+    }
+
+    /**
+     * TVMaze's "status" field distinguishes a finished run ("Ended") from one still releasing new
+     * episodes ("Running") or not yet confirmed ("To Be Determined", "In Development"). Only
+     * "Ended" is treated as finished; the others are conservatively treated as not-yet-finished
+     * rather than guessed at.
+     */
+    private static boolean isEndedStatus(String status) {
+        return "Ended".equalsIgnoreCase(status);
     }
 
     /** Encodes a title as a query-string value. */

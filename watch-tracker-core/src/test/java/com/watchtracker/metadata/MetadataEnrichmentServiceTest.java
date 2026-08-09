@@ -896,6 +896,208 @@ class MetadataEnrichmentServiceTest {
         assertThat(wp1.type()).isEqualTo(ShowType.UNKNOWN);
     }
 
+    @Test
+    void completionStatusIsInProgressWhenFewerDistinctEpisodesWatchedThanTotal() {
+        Show show = seriesShow("Dark", 1, 3, 3);
+        List<WatchEvent> events =
+                List.of(numberedEvent("Dark", 1, 1), numberedEvent("Dark", 1, 2), numberedEvent("Dark", 1, 3));
+        ShowMetadata metadata = seriesMetadata("Dark", 10, null);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.IN_PROGRESS);
+        assertThat(progress.season()).isEqualTo(1);
+        assertThat(progress.episode()).isEqualTo(3);
+    }
+
+    @Test
+    void completionStatusIsCompletedWhenAllDistinctEpisodesWatchedAndSeriesHasEnded() {
+        Show show = seriesShow("Dark", 1, 3, 3);
+        List<WatchEvent> events =
+                List.of(numberedEvent("Dark", 1, 1), numberedEvent("Dark", 1, 2), numberedEvent("Dark", 1, 3));
+        ShowMetadata metadata = seriesMetadata("Dark", 3, true);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.COMPLETED);
+    }
+
+    @Test
+    void completionStatusIsInProgressWhenCaughtUpButSeriesIsStillAiring() {
+        // Every currently-released episode has been watched, but the show isn't over yet, so this
+        // must not be reported as COMPLETED -- more of the story is still to come.
+        Show show = seriesShow("Stranger Things", 4, 1, 1);
+        List<WatchEvent> events = List.of(numberedEvent("Stranger Things", 4, 1));
+        ShowMetadata metadata = seriesMetadata("Stranger Things", 1, false);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.IN_PROGRESS);
+    }
+
+    @Test
+    void completionStatusIsUnknownWhenProviderDoesNotReportATotalEpisodeCount() {
+        Show show = seriesShow("Obscure Show", 1, 1, 1);
+        List<WatchEvent> events = List.of(numberedEvent("Obscure Show", 1, 1));
+        ShowMetadata metadata = seriesMetadata("Obscure Show", null, null);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.UNKNOWN);
+    }
+
+    @Test
+    void completionStatusCountsDistinctEpisodesRatherThanHighestPositionReached() {
+        // Season 1 watched in full, then a jump straight to season 3 episode 1: the highest
+        // position is "high", but only 4 of 10 distinct episodes have actually been watched.
+        Show show = seriesShow("Skip Ahead Show", 3, 1, 5);
+        List<WatchEvent> events = List.of(
+                numberedEvent("Skip Ahead Show", 1, 1),
+                numberedEvent("Skip Ahead Show", 1, 2),
+                numberedEvent("Skip Ahead Show", 1, 3),
+                numberedEvent("Skip Ahead Show", 3, 1));
+        ShowMetadata metadata = seriesMetadata("Skip Ahead Show", 10, true);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        // The reported position is still the highest one reached...
+        assertThat(progress.season()).isEqualTo(3);
+        assertThat(progress.episode()).isEqualTo(1);
+        // ...but status reflects the true distinct count (4 of 10), not the high-looking position.
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.IN_PROGRESS);
+    }
+
+    @Test
+    void completionStatusCountsRepeatedWatchesOfTheSameEpisodeOnlyOnce() {
+        Show show = seriesShow("Rewatched Show", 1, 1, 2);
+        List<WatchEvent> events = List.of(
+                numberedEvent("Rewatched Show", 1, 1),
+                numberedEvent("Rewatched Show", 1, 1), // rewatch / duplicate row
+                numberedEvent("Rewatched Show", 1, 2));
+        ShowMetadata metadata = seriesMetadata("Rewatched Show", 2, true);
+
+        WatchProgress progress = enrichAndGetProgress(show, events, metadata);
+
+        // Only 2 distinct episodes were watched, matching the total, so this is COMPLETED --
+        // if the duplicate row were double-counted this would look like 3 of 2, which isn't
+        // meaningful, but the outcome is still correct either way here; the real assertion is in
+        // completionStatusCountsDistinctEpisodesRatherThanHighestPositionReached above and in the
+        // diagnostics-based test below.
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.COMPLETED);
+    }
+
+    @Test
+    void diagnosticsReportTheTrueDistinctCountNotTheRawEventCount() {
+        Show show = seriesShow("Rewatched Show", 1, 1, 1);
+        List<WatchEvent> events = List.of(
+                numberedEvent("Rewatched Show", 1, 1),
+                numberedEvent("Rewatched Show", 1, 1),
+                numberedEvent("Rewatched Show", 1, 1));
+        ShowMetadata metadata = seriesMetadata("Rewatched Show", 5, false);
+        RecordingDiagnosticsCollector diagnostics = new RecordingDiagnosticsCollector();
+        MetadataProvider provider = title -> Optional.of(metadata);
+
+        new MetadataEnrichmentService(provider, diagnostics)
+                .enrich(List.of(show), events, PreviousEnrichmentSnapshot.EMPTY);
+
+        assertThat(diagnostics.entries)
+                .anySatisfy(entry -> {
+                    assertThat(entry.message()).contains("Completion status");
+                    assertThat(entry.input()).isInstanceOfSatisfying(java.util.Map.class, input -> {
+                        // Three watch events for the same episode must still count as one distinct
+                        // episode, not three, in what actually drives the completion-status decision.
+                        assertThat(input.get("distinctEpisodesWatched")).isEqualTo(1);
+                    });
+                });
+    }
+
+    @Test
+    void completionStatusMergesNumberedAndNamedPositionsWithoutDoubleCounting() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Mixed Show",
+                Set.of("Mixed Show: Episode 1", "Mixed Show: A Named One"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                1,
+                1,
+                2);
+        WatchEvent numbered = numberedEvent("Mixed Show", 1, 1);
+        WatchEvent named = new WatchEvent(
+                UUID.randomUUID(),
+                "Mixed Show: A Named One",
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                "Netflix",
+                "Mixed Show",
+                1,
+                null,
+                "A Named One",
+                true);
+        ShowMetadata metadata = seriesMetadata("Mixed Show", 2, true);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata),
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of(new WatchProgress(1, 2, "TMDB")),
+                Optional.empty());
+
+        WatchProgress progress = enrichAndGetProgress(show, List.of(numbered, named), provider);
+
+        // 2 distinct episodes (season 1 episode 1 from Netflix numbering, season 1 episode 2 from
+        // the resolved named episode) match the total of 2, so this is COMPLETED.
+        assertThat(progress.status()).isEqualTo(com.watchtracker.model.CompletionStatus.COMPLETED);
+    }
+
+    /** Builds a minimal series Show for completion-status tests. */
+    private static Show seriesShow(String title, int highestSeason, int highestEpisode, int watchCount) {
+        return new Show(
+                UUID.randomUUID(),
+                title,
+                Set.of(),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                highestSeason,
+                highestEpisode,
+                watchCount);
+    }
+
+    /** Builds a Netflix-numbered watch event for the given show, season, and episode. */
+    private static WatchEvent numberedEvent(String canonicalShow, int season, int episode) {
+        return new WatchEvent(
+                UUID.randomUUID(),
+                canonicalShow + ": Season " + season + ": Episode " + episode,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                canonicalShow,
+                season,
+                episode,
+                null,
+                true);
+    }
+
+    /** Builds series metadata with the given total episode count and production-ended flag. */
+    private static ShowMetadata seriesMetadata(String title, Integer totalEpisodes, Boolean productionEnded) {
+        return new ShowMetadata(
+                "TMDB", 1, title, ShowType.SERIES, List.of("Drama"), null, null, null, totalEpisodes, productionEnded);
+    }
+
+    /** Runs enrichment for one show against a provider that always returns the given metadata. */
+    private static WatchProgress enrichAndGetProgress(Show show, List<WatchEvent> events, ShowMetadata metadata) {
+        MetadataProvider provider = title -> Optional.of(metadata);
+        return enrichAndGetProgress(show, events, provider);
+    }
+
+    /** Runs enrichment for one show against the given provider and returns the resolved progress. */
+    private static WatchProgress enrichAndGetProgress(Show show, List<WatchEvent> events, MetadataProvider provider) {
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), events, PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+        assertThat(result.progress()).isPresent();
+        return result.progress().get();
+    }
+
     /** A provider that returns fixed results while counting how many times each method is called. */
     private static final class RecordingProvider implements MetadataProvider {
         private final Optional<ShowMetadata> metadataToReturn;

@@ -14,7 +14,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 /** Enriches already-grouped shows without changing raw import data. */
 public final class MetadataEnrichmentService {
@@ -303,41 +302,100 @@ public final class MetadataEnrichmentService {
 
         ShowType progType = (resolvedType == null || resolvedType == ShowType.UNKNOWN) ? ShowType.SERIES : resolvedType;
 
-        Optional<WatchProgress> bestNumbered = showEvents.stream()
-                .filter(event -> event.episode() != null)
-                .map(event -> {
-                    int season = event.season() != null ? event.season() : 1;
-                    // UNKNOWN, not IN_PROGRESS or COMPLETED: without a provider's total episode
-                    // count to compare this position against, there's no data-derived basis for
-                    // either conclusion yet. That comparison is future work (see ShowMetadata).
-                    return new WatchProgress(progType, season, event.episode(), "NETFLIX", CompletionStatus.UNKNOWN);
-                })
-                .max(WatchProgress::compareTo);
+        // Every distinct (season, episode) position resolved for this show, regardless of whether
+        // it came from Netflix's own numbering or a provider-resolved named episode. Completion
+        // status is derived from how many *distinct* episodes have been watched, not from the
+        // highest position reached: someone who watched all of season 1 and then skipped straight
+        // to season 3 episode 1 has a high position but has only watched a fraction of the show,
+        // and a running max alone would not catch that. Numbered and named positions are merged
+        // into the same map (keyed purely by season+episode, not by source) so the same real
+        // episode is only counted once even if it happened to be seen both ways.
+        java.util.Map<EpisodeKey, String> resolvedPositions = new java.util.LinkedHashMap<>();
+        WatchProgress bestPosition = null;
 
-        if (bestNumbered.isPresent()) {
-            WatchProgress numbered = bestNumbered.get();
-            java.util.Map<String, Object> numberedOut = new java.util.LinkedHashMap<>();
-            if (numbered.season() != null) {
-                numberedOut.put("season", numbered.season());
+        for (WatchEvent event : showEvents) {
+            if (event.episode() == null) {
+                continue;
             }
-            if (numbered.episode() != null) {
-                numberedOut.put("episode", numbered.episode());
+            int season = event.season() != null ? event.season() : 1;
+            resolvedPositions.putIfAbsent(new EpisodeKey(season, event.episode()), "NETFLIX");
+            // UNKNOWN here is a placeholder: the real, count-derived status is computed once below,
+            // after every numbered and named position for this show has been collected.
+            WatchProgress candidate = new WatchProgress(progType, season, event.episode(), "NETFLIX", CompletionStatus.UNKNOWN);
+            if (bestPosition == null || candidate.compareTo(bestPosition) > 0) {
+                bestPosition = candidate;
             }
-            numberedOut.put("provider", numbered.provider());
-            diagnostics.success(
-                    DiagnosticsStage.PROGRESS_BUILDER,
-                    show.title(),
-                    "Highest numbered episode",
-                    null,
-                    numberedOut);
         }
 
-        Optional<WatchProgress> bestNamed = uniqueNamedEpisodes(showEvents).stream()
-                .map(named -> resolveNamedEpisode(show, named, progType, metadata))
-                .flatMap(Optional::stream)
-                .max(WatchProgress::compareTo);
+        if (bestPosition != null) {
+            java.util.Map<String, Object> numberedOut = new java.util.LinkedHashMap<>();
+            numberedOut.put("season", bestPosition.season());
+            numberedOut.put("episode", bestPosition.episode());
+            numberedOut.put("provider", bestPosition.provider());
+            diagnostics.success(
+                    DiagnosticsStage.PROGRESS_BUILDER, show.title(), "Highest numbered episode", null, numberedOut);
+        }
 
-        return Stream.of(bestNumbered, bestNamed).flatMap(Optional::stream).max(WatchProgress::compareTo);
+        for (NamedEpisode named : uniqueNamedEpisodes(showEvents)) {
+            Optional<WatchProgress> resolved = resolveNamedEpisode(show, named, progType, metadata);
+            if (resolved.isEmpty()) {
+                continue;
+            }
+            WatchProgress wp = resolved.get();
+            resolvedPositions.putIfAbsent(new EpisodeKey(wp.season(), wp.episode()), wp.provider());
+            if (bestPosition == null || wp.compareTo(bestPosition) > 0) {
+                bestPosition = wp;
+            }
+        }
+
+        if (bestPosition == null) {
+            return Optional.empty();
+        }
+
+        int distinctWatched = resolvedPositions.size();
+        CompletionStatus status = completionStatus(distinctWatched, metadata);
+        WatchProgress finalProgress = new WatchProgress(
+                progType, bestPosition.season(), bestPosition.episode(), bestPosition.provider(), status);
+
+        java.util.Map<String, Object> statusInput = new java.util.LinkedHashMap<>();
+        statusInput.put("distinctEpisodesWatched", distinctWatched);
+        metadata.map(ShowMetadata::totalEpisodes).ifPresent(total -> statusInput.put("totalEpisodes", total));
+        metadata.map(ShowMetadata::productionEnded).ifPresent(ended -> statusInput.put("productionEnded", ended));
+        diagnostics.success(
+                DiagnosticsStage.PROGRESS_BUILDER,
+                show.title(),
+                "Completion status",
+                statusInput,
+                java.util.Map.of("status", status));
+
+        return Optional.of(finalProgress);
+    }
+
+    /**
+     * Determines completion status by comparing how many distinct episodes have been watched
+     * against a provider's total episode count, when one is known. See {@link CompletionStatus}
+     * for why this is a mechanical judgment, deliberately independent of the user's own
+     * WatchStatus.
+     *
+     * <p>Distinct episode count is used rather than "highest position reached" because someone who
+     * watches all of season 1 and then skips straight to season 3 episode 1 has a high position
+     * but has only watched a fraction of the show; counting distinct positions catches that, a
+     * running max would not.
+     *
+     * <p>A show that is fully caught up but still airing new episodes is deliberately reported as
+     * IN_PROGRESS, not COMPLETED: more of the story is still to come, so calling it complete would
+     * be a false claim even though every currently-available episode has been watched.
+     */
+    private static CompletionStatus completionStatus(int distinctWatched, Optional<ShowMetadata> metadata) {
+        Integer total = metadata.map(ShowMetadata::totalEpisodes).orElse(null);
+        if (total == null || total <= 0) {
+            return CompletionStatus.UNKNOWN;
+        }
+        if (distinctWatched < total) {
+            return CompletionStatus.IN_PROGRESS;
+        }
+        Boolean ended = metadata.map(ShowMetadata::productionEnded).orElse(null);
+        return Boolean.TRUE.equals(ended) ? CompletionStatus.COMPLETED : CompletionStatus.IN_PROGRESS;
     }
 
     /**
@@ -463,4 +521,11 @@ public final class MetadataEnrichmentService {
 
     /** A distinct named-episode-title pair awaiting provider resolution, with an optional season. */
     private record NamedEpisode(Integer season, String episodeTitle) {}
+
+    /**
+     * A distinct (season, episode) position, used to count distinct watched episodes for
+     * completion status regardless of whether they were Netflix-numbered or resolved from a named
+     * episode title.
+     */
+    private record EpisodeKey(int season, int episode) {}
 }

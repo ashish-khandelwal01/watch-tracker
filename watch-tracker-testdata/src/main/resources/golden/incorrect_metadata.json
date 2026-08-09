@@ -24,14 +24,16 @@
             ],
             "overview": "A riveting police drama about the men and women of the Chicago Police Department's District 21 who put it all on the line to serve and protect their community. District 21 is made up of two distinctly different groups: the uniformed cops who patrol the beat and go head-to-head with the city's street crimes and the Intelligence Unit that combats the city's major offenses - organized crime, drug trafficking, high profile murders and beyond.",
             "posterPath": "/bez40PgT36RUu4gstD2A6GSM0tP.jpg",
-            "releaseDate": "2014-01-08"
+            "releaseDate": "2014-01-08",
+            "totalEpisodes": 265,
+            "productionEnded": false
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 1,
             "provider": "TMDB",
-            "status": "UNKNOWN"
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -60,7 +62,9 @@
             ],
             "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
             "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
-            "releaseDate": "2013-04-13"
+            "releaseDate": "2013-04-13",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -95,7 +99,9 @@
             ],
             "overview": "Comedian Matt Rife discusses his world of deceptive good looks, women and even a charismatic perspective of the world's more pressing topics.",
             "posterPath": "/w6t5LTUA6Vq3AQ061Wl6ORes6EC.jpg",
-            "releaseDate": "2021-12-17"
+            "releaseDate": "2021-12-17",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -110,6 +116,8 @@
             "id": "eb632e99-1b64-31be-a504-27a182277a60",
             "title": "House, M.D.",
             "aliases": [
+                "House, M.D.: Season 4: Whatever It Takes",
+                "House, M.D.: Season 5: The Social Contract",
                 "House, M.D.: Season 3: Airborne",
                 "House, M.D.: Season 3: Son of a Coma Guy",
                 "House, M.D.: Season 5: The Softer Side",
@@ -253,9 +261,7 @@
                 "House, M.D.: Season 2: Hunting",
                 "House, M.D.: Season 1: Poison",
                 "House, M.D.: Season 7: Now What?",
-                "House, M.D.: Season 7: A Pox on Our House",
-                "House, M.D.: Season 4: Whatever It Takes",
-                "House, M.D.: Season 5: The Social Contract"
+                "House, M.D.: Season 7: A Pox on Our House"
             ],
             "type": "DOCUMENTARY",
             "firstWatched": "2024-02-13T00:00:00",
@@ -274,7 +280,9 @@
             ],
             "overview": "Hugh Laurie invites you onto the set of House M.D. for a behind-the-scenes look at the making of a landmark episode. Fans of the show are brought right into the very centre of the production, showcasing the complex challenges faced by the cast and crew, as well as the creativity that inspires the award-winning team on a daily basis.",
             "posterPath": "/9YD8o7xuGUymr2ZFisTI0AKewBm.jpg",
-            "releaseDate": "2012-08-21"
+            "releaseDate": "2012-08-21",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -311,7 +319,9 @@
             ],
             "overview": "In the year 2898 AD, around 6000 years after Kurukshetra war, Ashwatthama gears up for his final battle of redemption at the sign of hope in a dystopian world and Bhairava, a wisecracking and self-interested bounty hunter, tired of the perilous life becomes the hurdle in the process.",
             "posterPath": "/rstcAnBeCkxNQjNp3YXrF6IP1tW.jpg",
-            "releaseDate": "2024-06-26"
+            "releaseDate": "2024-06-26",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -347,7 +357,9 @@
             ],
             "overview": "As corruption becomes rampant in the country, a group of idealistic youngsters attract attention of freedom fighter-turned-vigilante Senapathy through social media, who returns to his homeland to finish what he started.",
             "posterPath": "/fPoiIfqmVfNYZRVUtfTSyuAj8Tw.jpg",
-            "releaseDate": "2024-07-12"
+            "releaseDate": "2024-07-12",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -385,7 +397,9 @@
             ],
             "overview": "The story of a super-secret spy organization that recruits an unrefined but promising street kid into the agency's ultra-competitive training program just as a global threat emerges from a twisted tech genius.",
             "posterPath": "/17i5YPTfHOjXoieArpATWGRhLj1.jpg",
-            "releaseDate": "2015-01-24"
+            "releaseDate": "2015-01-24",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -435,14 +449,16 @@
             ],
             "overview": "The Beauty Inside (2022) is a Turkish romantic drama following Efsun, a small-town dermatologist from Gaziantep who is summoned to Istanbul by her estranged mother — a renowned plastic surgeon on her deathbed. Forced to take over the city's most prestigious aesthetic clinic, Efsun clashes with Emir, the charming surgeon son of her mother's business partner, who suspects her motives. Thrown together as neighbours and colleagues, their rivalry slowly transforms into something neither expected.",
             "posterPath": "/2ljuDEUnjFsaP090hFIZhh51w9.jpg",
-            "releaseDate": "2022-06-07"
+            "releaseDate": "2022-06-07",
+            "totalEpisodes": 14,
+            "productionEnded": true
         },
         "progress": {
             "type": "LIMITED_SERIES",
             "season": 1,
             "episode": 16,
             "provider": "NETFLIX",
-            "status": "UNKNOWN"
+            "status": "COMPLETED"
         }
     },
     {
@@ -470,14 +486,16 @@
             ],
             "overview": "Chicagoan Frank Gallagher is the proud single dad of six smart, industrious, independent kids, who without him would be... perhaps better off. When Frank's not at the bar spending what little money they have, he's passed out on the floor. But the kids have found ways to grow up in spite of him. They may not be like any family you know, but they make no apologies for being exactly who they are.",
             "posterPath": "/ifo31fMWLmyOVpdak9K0kY4jldQ.jpg",
-            "releaseDate": "2011-01-09"
+            "releaseDate": "2011-01-09",
+            "totalEpisodes": 134,
+            "productionEnded": true
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 1,
             "provider": "TMDB",
-            "status": "UNKNOWN"
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -505,7 +523,9 @@
             ],
             "overview": "Prakash Rathod, a retired police commissioner recounts the most memorable case of his career wherein he was informed about a bomb scare in Mumbai by an ordinary commoner.",
             "posterPath": "/gVUSxtJM3arL5VIUIRNYde20EF0.jpg",
-            "releaseDate": "2008-09-05"
+            "releaseDate": "2008-09-05",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -541,7 +561,9 @@
             ],
             "overview": "In 2001, somewhere in rural India, two young brides get accidentally swapped on a train. In the ensuing chaos, they both encounter a host of colourful characters, resulting in hilarious and unexpected consequences.",
             "posterPath": "/yXt07MYeiyQRzS69PMHy0BPjCGP.jpg",
-            "releaseDate": "2024-03-01"
+            "releaseDate": "2024-03-01",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -577,7 +599,9 @@
             ],
             "overview": "When an old acquaintance is murdered, Wolff is compelled to solve the case. Realizing more extreme measures are necessary, Wolff recruits his estranged and highly lethal brother, Brax, to help. In partnership with Marybeth Medina, they uncover a deadly conspiracy, becoming targets of a ruthless network of killers who will stop at nothing to keep their secrets buried.",
             "posterPath": "/lUvfTcOZiK0sdcX0WNLPbMyKjGm.jpg",
-            "releaseDate": "2025-04-23"
+            "releaseDate": "2025-04-23",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -615,7 +639,9 @@
             ],
             "overview": "Tad accidentally unleashes an ancient spell, endangering the lives of his friends Mummy, Jeff, and Belzoni. With everyone against him and only helped by Sara, he sets off on an adventure to end the Curse of the Mummy.",
             "posterPath": "/jvIVl8zdNSOAJImw1elQEzxStMN.jpg",
-            "releaseDate": "2022-08-24"
+            "releaseDate": "2022-08-24",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -650,7 +676,9 @@
             ],
             "overview": "When two prized jackfruits disappear from a politician's garden, a spirited cop's investigation takes an unexpected turn as she digs for the truth.",
             "posterPath": "/yzVMUMN3tkLXdGbLHbOJ6sfXYI.jpg",
-            "releaseDate": "2023-05-19"
+            "releaseDate": "2023-05-19",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -685,7 +713,9 @@
             ],
             "overview": "A keen chronicle of the unlikely rise to power of Adolf Hitler (1889-1945) and a dissection of the Third Reich (1933-1945), but also an analysis of mass psychology and how the desperate crowd can be deceived and shepherded to the slaughterhouse.",
             "posterPath": "/jtaLqChWbcpdXvBO3VUwfL3IatE.jpg",
-            "releaseDate": "1977-07-08"
+            "releaseDate": "1977-07-08",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -721,7 +751,9 @@
             ],
             "overview": "The year is 1893 and India is under British occupation. In a small village, the tyrannical Captain Russell has imposed an unprecedented land tax on its citizens. Outraged, Bhuvan, a rebellious farmer, rallies the villagers to publicly oppose the tax. Russell offers a novel way to settle the dispute: he challenges Bhuvan and his men to a game of cricket, a sport completely foreign to India. If Bhuvan and his men can defeat Russell's team, the tax will be repealed.",
             "posterPath": "/yNX9lFRAFeNLNRIXdqZK9gYrYKa.jpg",
-            "releaseDate": "2001-06-15"
+            "releaseDate": "2001-06-15",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -765,14 +797,16 @@
             ],
             "overview": "The history and significance of cuisine created in the royal kitchens of India.",
             "posterPath": "/rNErg2qYVcm9DInwJeAkgSt2HtZ.jpg",
-            "releaseDate": "2014-01-01"
+            "releaseDate": "2014-01-01",
+            "totalEpisodes": 45,
+            "productionEnded": true
         },
         "progress": {
             "type": "DOCUMENTARY",
             "season": 1,
             "episode": 11,
             "provider": "NETFLIX",
-            "status": "UNKNOWN"
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -804,14 +838,16 @@
             ],
             "overview": "Who has what it takes to open a restaurant in one of the world’s most famous 5-star hotels? In this new, high-stakes competition, talented up and coming chefs battle it out to prove they have the culinary skills and business brain to win a once in a lifetime prize – the Palm Court restaurant in the exclusive hotel, The Langham, London",
             "posterPath": "/r3UvYHyV5ZJa4b8B3nCnCAJPh7b.jpg",
-            "releaseDate": "2023-06-08"
+            "releaseDate": "2023-06-08",
+            "totalEpisodes": 6,
+            "productionEnded": true
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 6,
             "provider": "NETFLIX",
-            "status": "UNKNOWN"
+            "status": "COMPLETED"
         }
     },
     {
@@ -839,7 +875,9 @@
             ],
             "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
             "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
-            "releaseDate": "2013-04-13"
+            "releaseDate": "2013-04-13",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -873,7 +911,9 @@
             ],
             "overview": "Gabriel Iglesias hosts Stand-Up Revolution, featuring performances by Fluffy's funniest up-and-coming comedian friends.",
             "posterPath": "https://static.tvmaze.com/uploads/images/original_untouched/22/55325.jpg",
-            "releaseDate": "2011-10-06"
+            "releaseDate": "2011-10-06",
+            "totalEpisodes": 19,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -902,7 +942,9 @@
             ],
             "overview": "Oh My God is a sci-fi romantic comedy revolving around a couple who is desperate to conceive a child. Others cast alongside Lay are Cheney Chen (Chen Xudong), who trained under Cube Entertainment and starred in the movie Tiny Times, and actress Jacqueline Li (Li Xiaolu) from the recent movie Forbidden Kiss.",
             "posterPath": "/4Q7gL75WHHlAsMsUHhlgz7LQt9W.jpg",
-            "releaseDate": "2015-12-04"
+            "releaseDate": "2015-12-04",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -938,7 +980,9 @@
             ],
             "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
             "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
-            "releaseDate": "2010-11-15"
+            "releaseDate": "2010-11-15",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -975,7 +1019,9 @@
             ],
             "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
             "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
-            "releaseDate": "2010-11-15"
+            "releaseDate": "2010-11-15",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1011,14 +1057,16 @@
             ],
             "overview": "Light Yagami is an ace student with great prospects—and he’s bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god. Any human whose name is written in the notebook dies, and Light has vowed to use the power of the Death Note to rid the world of evil. But will Light succeed in his noble goal, or will the Death Note turn him into the very thing he fights against?",
             "posterPath": "/tCZFfYTIwrR7n94J6G14Y4hAFU6.jpg",
-            "releaseDate": "2006-10-04"
+            "releaseDate": "2006-10-04",
+            "totalEpisodes": 37,
+            "productionEnded": true
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 1,
             "provider": "TMDB",
-            "status": "UNKNOWN"
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -1046,7 +1094,9 @@
             ],
             "overview": "Tom and Hannah have been platonic friends for 10 years. He's a serial dater, while she wants marriage but hasn't found Mr. Right. Just as Tom is starting to think that he is relationship material after all, Hannah gets engaged. When she asks Tom to be her 'maid' of honor, he reluctantly agrees just so he can attempt to stop the wedding and woo her.",
             "posterPath": "/pDg8D0jNqmz7RbCBgblWvmPswHE.jpg",
-            "releaseDate": "2008-04-30"
+            "releaseDate": "2008-04-30",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1081,7 +1131,9 @@
             ],
             "overview": "The adventures of the elite G.I. Joe unit, whose members: Duke, Snake Eyes, Scarlett, Roadblock, Tunnel Rat and Ripcord were charged with crimes they did not commit. In order to clear themselves of the charges, they must expose the real culprits, who belong to the powerful corporation COBRA Industries.",
             "posterPath": "/sRGqn7kzeQOVUdRdYGRZlYDObdu.jpg",
-            "releaseDate": "2010-11-26"
+            "releaseDate": "2010-11-26",
+            "totalEpisodes": 26,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -1109,7 +1161,9 @@
             ],
             "overview": "",
             "posterPath": "/5TmabqunDqG9d56gBOTVcIrIa5I.jpg",
-            "releaseDate": "2000-02-25"
+            "releaseDate": "2000-02-25",
+            "totalEpisodes": 543,
+            "productionEnded": false
         },
         "progress": null
     },
@@ -1148,14 +1202,16 @@
             ],
             "overview": "When Clary Fray's mother has disappeared, Clary joins a band of Shadowhunters; demon killing hunters, and gets caught up in a plan to save the world.",
             "posterPath": "/66YHvvVduC21xcMXPpBBF0ywyVZ.jpg",
-            "releaseDate": "2016-01-12"
+            "releaseDate": "2016-01-12",
+            "totalEpisodes": 55,
+            "productionEnded": true
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 10,
             "provider": "TMDB",
-            "status": "UNKNOWN"
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -1182,7 +1238,9 @@
             ],
             "overview": "Ishaan Awasthi is an eight-year-old whose world is filled with wonders that no one else seems to appreciate. Colours, fish, dogs, and kites don't seem important to the adults, who are much more interested in things like homework, marks, and neatness. Ishaan cannot seem to get anything right in class; he is then sent to boarding school, where his life changes forever.",
             "posterPath": "/puHRt6Raovm5ujGCdwLWvRv4NHU.jpg",
-            "releaseDate": "2007-12-21"
+            "releaseDate": "2007-12-21",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1217,7 +1275,9 @@
             ],
             "overview": "Lara Jean's love life goes from imaginary to out of control when her secret letters to every boy she's ever fallen for are mysteriously mailed out.",
             "posterPath": "/hKHZhUbIyUAjcSrqJThFGYIR6kI.jpg",
-            "releaseDate": "2018-08-17"
+            "releaseDate": "2018-08-17",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1249,7 +1309,9 @@
             "genres": [],
             "overview": "A drama variety show by Chocolate Planet x Europe Kikaku x NMB48",
             "posterPath": "/gPXUy3RmUMwrgeUxyLerJUB7vUS.jpg",
-            "releaseDate": "2019-04-22"
+            "releaseDate": "2019-04-22",
+            "totalEpisodes": 24,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -1278,7 +1340,9 @@
             ],
             "overview": "A prosperous young Indian man falls in love with his servant, a widow with the dream of becoming a fashion designer.",
             "posterPath": "/1xlh1jh9Lxz4OzusFKeljqoRxjL.jpg",
-            "releaseDate": "2018-09-20"
+            "releaseDate": "2018-09-20",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1314,7 +1378,9 @@
             ],
             "overview": "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century at New York's annual Met Gala.",
             "posterPath": "/MvYpKlpFukTivnlBhizGbkAe3v.jpg",
-            "releaseDate": "2018-06-07"
+            "releaseDate": "2018-06-07",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1350,7 +1416,9 @@
             ],
             "overview": "An Indian intelligence agent journeys to a war-torn coastal island to break a resolute rebel group and meets a passionate journalist.",
             "posterPath": "/iQa81y965LtFp5CTYgcYeuEHAg4.jpg",
-            "releaseDate": "2013-08-23"
+            "releaseDate": "2013-08-23",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1386,7 +1454,9 @@
             ],
             "overview": "Housewife Dilek suddenly starts to feel the presence of something abnormal in her house. Her husband Omer refuses to agree, and the situation worsens. The couple discover that an ancient paranormal creature called Jinn has cursed on Dilek. They seek a cure but instead they learn of Dilek's demons.",
             "posterPath": "/qTxE2jlADPgkgiaxDwBaus2evPS.jpg",
-            "releaseDate": "2014-09-12"
+            "releaseDate": "2014-09-12",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1421,7 +1491,9 @@
             ],
             "overview": "A disillusioned Delhi wife (Dolly), and her new-in-town cousin (Kitty), navigate damning secrets, dreams and their thorny dynamic on their respective roads to freedom.",
             "posterPath": "/jGXdE7Qe2Sgth64GVgnhnMF79NJ.jpg",
-            "releaseDate": "2020-09-18"
+            "releaseDate": "2020-09-18",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1456,7 +1528,9 @@
             ],
             "overview": "Inspired by the life of a fearless young officer who made history by becoming the first Indian female Air Force officer to fly in a combat zone during the 1999 Kargil War",
             "posterPath": "/llWz6LbVpGPChnNnhAiGJyPMDwP.jpg",
-            "releaseDate": "2020-07-23"
+            "releaseDate": "2020-07-23",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",
@@ -1490,7 +1564,9 @@
             ],
             "overview": "In his 5th stand-up special, Paavam (Innocent) comedian Kenny Sebastian talks about moving cities, his parents and why he is a former nice guy.",
             "posterPath": "/nJGam4JG0sd6GHlutjA61KEEI7V.jpg",
-            "releaseDate": "2017-04-23"
+            "releaseDate": "2017-04-23",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
         "progress": {
             "type": "MOVIE",

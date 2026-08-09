@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -24,6 +25,12 @@ import java.util.concurrent.ConcurrentHashMap;
 /** TMDb v3 provider using the official API Read Access Token bearer authentication. */
 public final class TmdbMetadataProvider implements MetadataProvider {
     private static final String API_ROOT = "https://api.themoviedb.org/3";
+    // Without these, a stalled connection or an unresponsive server (including a soft rate-limit
+    // that never sends a response instead of returning 429) blocks java.net.http.HttpClient
+    // indefinitely — there is no default timeout. A single hung request can then stall the entire
+    // synchronous, single-threaded import for hours with no way to recover.
+    private static final Duration CONNECT_TIMEOUT = Duration.ofSeconds(15);
+    private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(30);
     private final HttpClient client;
     private final String token;
     private final ObjectMapper mapper;
@@ -41,7 +48,10 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      * @param apiReadAccessToken TMDb API Read Access Token
      */
     public TmdbMetadataProvider(String apiReadAccessToken) {
-        this(HttpClient.newHttpClient(), apiReadAccessToken, new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
+        this(
+                HttpClient.newBuilder().connectTimeout(CONNECT_TIMEOUT).build(),
+                apiReadAccessToken,
+                new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS));
     }
 
     /**
@@ -73,11 +83,18 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         }
         String mediaType = selected.path("media_type").asText();
         long id = selected.path("id").asLong();
-        ShowMetadata metadata = toMetadata(request('/' + mediaType + '/' + id), mediaType);
+        JsonNode details = request('/' + mediaType + '/' + id);
+        ShowMetadata metadata = toMetadata(details, mediaType);
         if ("tv".equals(mediaType) && id > 0) {
             rememberSeriesMapping(title, id);
             if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
                 rememberSeriesMapping(metadata.title(), id);
+            }
+            // The details response already carries number_of_seasons, so seed the same cache
+            // seasonCount() uses to avoid an identical second /tv/{id} request the first time
+            // resolveEpisodeAnySeason needs a season count for this series.
+            if (details.hasNonNull("number_of_seasons")) {
+                seasonCountBySeriesId.putIfAbsent(id, details.path("number_of_seasons").asInt());
             }
         }
         return Optional.of(metadata);
@@ -290,6 +307,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         HttpRequest request = HttpRequest.newBuilder(URI.create(API_ROOT + endpoint))
                 .header("Accept", "application/json")
                 .header("Authorization", "Bearer " + token)
+                .timeout(REQUEST_TIMEOUT)
                 .GET()
                 .build();
         try {
@@ -315,7 +333,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     }
 
     /** Maps a TMDb details document to the provider-neutral metadata model. */
-    private static ShowMetadata toMetadata(JsonNode details, String mediaType) {
+    static ShowMetadata toMetadata(JsonNode details, String mediaType) {
         List<String> genres = new ArrayList<>();
         details.path("genres").forEach(genre -> genres.add(genre.path("name").asText()));
         String title = "tv".equals(mediaType)
@@ -324,6 +342,12 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         String date = "tv".equals(mediaType)
                 ? details.path("first_air_date").asText()
                 : details.path("release_date").asText();
+        Integer totalEpisodes = "tv".equals(mediaType) && details.hasNonNull("number_of_episodes")
+                ? details.path("number_of_episodes").asInt()
+                : null;
+        Boolean productionEnded = "tv".equals(mediaType) && details.hasNonNull("status")
+                ? isEndedStatus(details.path("status").asText())
+                : null;
         return new ShowMetadata(
                 "TMDB",
                 details.path("id").asLong(),
@@ -332,7 +356,17 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 genres,
                 nullable(details, "overview"),
                 nullable(details, "poster_path"),
-                date(date));
+                date(date),
+                totalEpisodes,
+                productionEnded);
+    }
+
+    /**
+     * TMDb's TV "status" field distinguishes a finished run ("Ended", "Canceled") from one still
+     * releasing new episodes or seasons ("Returning Series", "In Production", "Planned", "Pilot").
+     */
+    private static boolean isEndedStatus(String status) {
+        return "Ended".equalsIgnoreCase(status) || "Canceled".equalsIgnoreCase(status);
     }
 
     /** Encodes one value for a TMDb query string. */

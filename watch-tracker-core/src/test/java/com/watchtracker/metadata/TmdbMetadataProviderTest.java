@@ -86,6 +86,101 @@ class TmdbMetadataProviderTest {
         assertThat(selected).isNull();
     }
 
+    @Test
+    void mapsTotalEpisodesAndEndedStatusForATvSeries() throws Exception {
+        JsonNode details = readResults(
+                """
+                {
+                    "id": 70523,
+                    "name": "Dark",
+                    "genres": [{"name": "Drama"}],
+                    "number_of_episodes": 26,
+                    "status": "Ended"
+                }
+                """);
+
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+
+        assertThat(metadata.totalEpisodes()).isEqualTo(26);
+        assertThat(metadata.productionEnded()).isTrue();
+    }
+
+    @Test
+    void mapsStillAiringSeriesAsNotEnded() throws Exception {
+        JsonNode details = readResults(
+                """
+                {
+                    "id": 66732,
+                    "name": "Stranger Things",
+                    "genres": [{"name": "Drama"}],
+                    "number_of_episodes": 42,
+                    "status": "Returning Series"
+                }
+                """);
+
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+
+        assertThat(metadata.totalEpisodes()).isEqualTo(42);
+        assertThat(metadata.productionEnded()).isFalse();
+    }
+
+    @Test
+    void treatsCanceledAsEndedJustLikeEnded() throws Exception {
+        JsonNode details = readResults(
+                """
+                {
+                    "id": 1,
+                    "name": "Some Show",
+                    "genres": [],
+                    "number_of_episodes": 8,
+                    "status": "Canceled"
+                }
+                """);
+
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+
+        assertThat(metadata.productionEnded()).isTrue();
+    }
+
+    @Test
+    void leavesTotalEpisodesAndProductionEndedNullWhenAbsentFromTheResponse() throws Exception {
+        JsonNode details = readResults(
+                """
+                {
+                    "id": 70523,
+                    "name": "Dark",
+                    "genres": [{"name": "Drama"}]
+                }
+                """);
+
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+
+        assertThat(metadata.totalEpisodes()).isNull();
+        assertThat(metadata.productionEnded()).isNull();
+    }
+
+    @Test
+    void leavesTotalEpisodesAndProductionEndedNullForMovies() throws Exception {
+        JsonNode details = readResults(
+                """
+                {
+                    "id": 27205,
+                    "title": "Inception",
+                    "genres": [{"name": "Sci-Fi"}],
+                    "number_of_episodes": 999,
+                    "status": "Released"
+                }
+                """);
+
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "movie");
+
+        // number_of_episodes/status are TV-only TMDb fields; even if a movie response happened to
+        // carry stray values under those keys, a movie has no episode count to report.
+        assertThat(metadata.totalEpisodes()).isNull();
+        assertThat(metadata.productionEnded()).isNull();
+        assertThat(metadata.type()).isEqualTo(com.watchtracker.model.ShowType.MOVIE);
+    }
+
     private JsonNode readResults(String json) throws Exception {
         return mapper.readTree(json);
     }
