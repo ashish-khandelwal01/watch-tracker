@@ -93,7 +93,9 @@
             ],
             "overview": "An author with severe antisocial tendencies learns to confront her deep emotional wounds when she meets a stranger who challenges her cold facade.",
             "posterPath": "/7rQ7E7u0y8VJgnUeDT6oF1J32Gu.jpg",
-            "releaseDate": "2025-07-21"
+            "releaseDate": "2025-07-21",
+            "totalEpisodes": 80,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -123,7 +125,9 @@
             ],
             "overview": "Bob Lee Swagger is an expert marksman living in exile who is coaxed back into action after learning of a plot to kill the president.",
             "posterPath": "/oMmqtafm6Rdlka1ejJeC9BDWzyO.jpg",
-            "releaseDate": "2016-11-15"
+            "releaseDate": "2016-11-15",
+            "totalEpisodes": 31,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -168,7 +172,9 @@
             ],
             "overview": "Ko Himi (Yuko Takeuchi) works as a lawyer and she is also an expert in crisis management. Her clients are women who are trapped in scandals. Ko Himi never gives up on her clients and does whatever is necessary for justice to take place.",
             "posterPath": "/4GiYfWgNyxYL8EuKRo3PaNRjp4B.jpg",
-            "releaseDate": "2019-01-10"
+            "releaseDate": "2019-01-10",
+            "totalEpisodes": 10,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -198,7 +204,9 @@
             ],
             "overview": "This documentary series examines the Einsatzgruppen, Nazis responsible for the mass murder of Jews, Romani and Soviet prisoners in Eastern Europe.",
             "posterPath": "/xFaeM8jog23VMOE8g7ZLcx8oArm.jpg",
-            "releaseDate": "2009-04-16"
+            "releaseDate": "2009-04-16",
+            "totalEpisodes": 4,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -228,7 +236,9 @@
             ],
             "overview": "Robert McCall is a former agent of a secret government agency who is now running his own private crime fighting operation where he fashions himself as \"The Equalizer.\" It is a service for victims of the system who have exhausted all possible means of seeking justice and have nowhere to go. McCall promises to even out the odds for them.",
             "posterPath": "/7nrKPxGJWYe5cacNN9AV9bVplNZ.jpg",
-            "releaseDate": "1985-09-18"
+            "releaseDate": "1985-09-18",
+            "totalEpisodes": 88,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -258,7 +268,9 @@
             ],
             "overview": "Agents Napoleon Solo and Illya Kuryakin work for a secret intelligence service working under the auspices of the U.N.\n\nTheir immediate superior is Mr. Waverly.\n\nTogether  they operate out of a secret base beneath the streets of New York City, and accesses through several cover business such as Del Floria's Tailor Shop and the Masque Club.\n\nThis secret intelligence service is called U.N.C.L.E.\n\nUnited Network Command for Law and Enforcement.",
             "posterPath": "/a0nMOwNZXyJrMTPoaCzJJZeT0Yl.jpg",
-            "releaseDate": "1964-09-22"
+            "releaseDate": "1964-09-22",
+            "totalEpisodes": 105,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -289,7 +301,9 @@
             ],
             "overview": "Judy and Peter Shepherd are two kids that found a board game called \"Jumanji\". With each turn, the two of them are given a \"game clue\" and then sucked into a dangerous jungle until they solve their clue. There they meet Alan Parrish, who was trapped in the Jumanji jungle because he had never seen his clue.",
             "posterPath": "/2s0v5wRdbJGBMrLHxr9WB2rPUJI.jpg",
-            "releaseDate": "1996-09-08"
+            "releaseDate": "1996-09-08",
+            "totalEpisodes": 40,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -317,7 +331,9 @@
             ],
             "overview": "Gabriel Iglesias hosts Stand-Up Revolution, featuring performances by Fluffy's funniest up-and-coming comedian friends.",
             "posterPath": "https://static.tvmaze.com/uploads/images/original_untouched/22/55325.jpg",
-            "releaseDate": "2011-10-06"
+            "releaseDate": "2011-10-06",
+            "totalEpisodes": 19,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -344,6 +360,7 @@
             "id": "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
             "title": "The Order",
             "aliases": [
+                "The Order: Season 2: Fear Itself, Part 2",
                 "The Order: Season 1: Finals: Part 1",
                 "The Order: Season 2: Spring Outbreak, Part 1",
                 "The Order: Season 2: Spring Outbreak, Part 2",
@@ -362,8 +379,7 @@
                 "The Order: Season 1: Undeclared: Part 1",
                 "The Order: Season 1: Undeclared: Part 2",
                 "The Order: Season 1: Hell Week: Part 1",
-                "The Order: Season 1: Finals: Part 2",
-                "The Order: Season 2: Fear Itself, Part 2"
+                "The Order: Season 1: Finals: Part 2"
             ],
             "type": "SERIES",
             "firstWatched": "2020-12-12T00:00:00",
@@ -384,7 +400,9 @@
             ],
             "overview": "Out to avenge his mother's death, a college student pledges a secret order and lands in a war between werewolves and practitioners of dark magic.",
             "posterPath": "/yMPjmuSd5Fac8YMNOwofGALQWjR.jpg",
-            "releaseDate": "2019-03-07"
+            "releaseDate": "2019-03-07",
+            "totalEpisodes": 20,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -450,7 +468,9 @@
             ],
             "overview": "A motley group of London con artists pull of a series of daring and intricate stings.",
             "posterPath": "/xty7kinvhVH3RzMdjNQSpJj2pEm.jpg",
-            "releaseDate": "2004-02-24"
+            "releaseDate": "2004-02-24",
+            "totalEpisodes": 48,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -478,7 +498,9 @@
             ],
             "overview": "Shu Tajimage happens to meet Fumiyo Bessho, a former high school senior, by chance. He is a popular guy with many girlfriends. But he has to end these relationships out of necessity. After hearing his story, Fumiyo unintentionally mutters that this situation is exactly like Osamu Dazai's unfinished novel 'Goodbye'. Shu is moved by the queer coincidence.",
             "posterPath": "/h6UCQSBEijvK753xPahdSEMi2Vx.jpg",
-            "releaseDate": "2018-07-14"
+            "releaseDate": "2018-07-14",
+            "totalEpisodes": 12,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -507,7 +529,9 @@
             ],
             "overview": "The arrival of a charismatic young priest brings glorious miracles, ominous mysteries and renewed religious fervor to a dying town desperate to believe.",
             "posterPath": "/3eVSQJdiBin6A7F7nsg62eJFf0Y.jpg",
-            "releaseDate": "2021-09-24"
+            "releaseDate": "2021-09-24",
+            "totalEpisodes": 7,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -573,7 +597,9 @@
             ],
             "overview": "The misadventures of a divorced mother, two teenage daughters, and their new building superintendent in Indianapolis.",
             "posterPath": "/zheJWmmDRUYuApz83ZVrrPUjL2F.jpg",
-            "releaseDate": "1975-12-16"
+            "releaseDate": "1975-12-16",
+            "totalEpisodes": 210,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -603,7 +629,9 @@
             ],
             "overview": "The Legend of Tarzan picks up where the 1999 feature film left off, with the title character adjusting to his new role as leader of the apes following Kerchak's death, and Jane adjusting to life in the jungle. Rounding out the cast are Jane's father, Professor Archimedes Porter; Tantor, the germophobic elephant; and Terk, a wisecracking female gorilla and Tarzan's old wrestling buddy.",
             "posterPath": "/w5mGLHBT59nFilSPgd5TgJnZ1ix.jpg",
-            "releaseDate": "2001-09-03"
+            "releaseDate": "2001-09-03",
+            "totalEpisodes": 39,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -632,7 +660,9 @@
             ],
             "overview": "The adventures of the elite G.I. Joe unit, whose members: Duke, Snake Eyes, Scarlett, Roadblock, Tunnel Rat and Ripcord were charged with crimes they did not commit. In order to clear themselves of the charges, they must expose the real culprits, who belong to the powerful corporation COBRA Industries.",
             "posterPath": "/sRGqn7kzeQOVUdRdYGRZlYDObdu.jpg",
-            "releaseDate": "2010-11-26"
+            "releaseDate": "2010-11-26",
+            "totalEpisodes": 26,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -660,7 +690,9 @@
             ],
             "overview": "",
             "posterPath": "/5TmabqunDqG9d56gBOTVcIrIa5I.jpg",
-            "releaseDate": "2000-02-25"
+            "releaseDate": "2000-02-25",
+            "totalEpisodes": 543,
+            "productionEnded": false
         },
         "progress": null
     },
@@ -748,15 +780,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 298893,
+            "providerId": 104690,
             "title": "Naked",
             "type": "SERIES",
             "genres": [
                 "Drama"
             ],
-            "overview": "Marie and Luis meet at a costume party and immediately fall for each other. What begins as a dream of true love increasingly turns into a nightmare. Because Luis is addicted to sex. And Marie is addicted to Luis.",
-            "posterPath": "/4sALwFbEvQNumPbwHVYiU9NGhe.jpg",
-            "releaseDate": "2025-10-01"
+            "overview": "Eylül lives with her grandmother and earns her living by escort. All she wants is to save enough money, move to Wales and create a new life there. One night she is summoned to a bachelor party of a group...",
+            "posterPath": "/3Yq5dXQFheq1iH8uIPjc2kb3qxc.jpg",
+            "releaseDate": "2020-06-11",
+            "totalEpisodes": 16,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -786,7 +820,9 @@
             ],
             "overview": "The space family Robinson is sent on a five-year mission to find a new planet to colonise. The voyage is sabotaged time and again by an inept stowaway, Dr. Zachary Smith. The family's spaceship, Jupiter II, also carries a friendly robot who endures an endless stream of abuse from Dr. Smith, but is a trusted companion of young Will Robinson",
             "posterPath": "/f7xArCMZPBW7SoCsqsOXvc3X8Ry.jpg",
-            "releaseDate": "1965-09-15"
+            "releaseDate": "1965-09-15",
+            "totalEpisodes": 83,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -812,7 +848,9 @@
             "genres": [],
             "overview": "A drama variety show by Chocolate Planet x Europe Kikaku x NMB48",
             "posterPath": "/gPXUy3RmUMwrgeUxyLerJUB7vUS.jpg",
-            "releaseDate": "2019-04-22"
+            "releaseDate": "2019-04-22",
+            "totalEpisodes": 24,
+            "productionEnded": true
         },
         "progress": null
     },
@@ -840,7 +878,9 @@
             ],
             "overview": "The current mayor of the city of Sineozyorsk, Arkadiy Anikeyev, is caught taking a bribe on an especially large scale, after which, by a court decision, he is placed under house arrest and must stay for a long time at his place of residence in a communal apartment. Arkadiy is abandoned by his wife, to whom all the property was recorded. Once in a communal apartment, Anikeyev runs into Ivan Samsonov, with whom they were neighbors in a communal apartment in childhood. Leaving aside disagreements, Anikeyev decides to help Samsonov become the new mayor of Sineozyorsk, so that he will help to remove all charges from him",
             "posterPath": "/qCEY9RtEaGeywEAd9eVVNBBGKck.jpg",
-            "releaseDate": "2018-08-16"
+            "releaseDate": "2018-08-16",
+            "totalEpisodes": 12,
+            "productionEnded": true
         },
         "progress": null
     }
