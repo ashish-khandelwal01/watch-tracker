@@ -302,7 +302,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 seriesId, id -> request("/tv/" + id).path("number_of_seasons").asInt());
     }
 
-    /** Executes an authenticated TMDb request. */
+    /** Executes an authenticated TMDb request, retrying transient failures up to 3 attempts. */
     private JsonNode request(String endpoint) {
         HttpRequest request = HttpRequest.newBuilder(URI.create(API_ROOT + endpoint))
                 .header("Accept", "application/json")
@@ -310,26 +310,40 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 .timeout(REQUEST_TIMEOUT)
                 .GET()
                 .build();
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 404) {
-                // A missing season or series is an expected outcome, not a failure: providers
-                // sometimes group a source platform's containers differently (for example, five
-                // Netflix "Parts" merged into three TMDb seasons), so season 4 or 5 legitimately
-                // does not exist here. Treat it like TVMaze's empty-array response so the caller
-                // sees an ordinary miss and the provider fallback chain can proceed.
-                return mapper.createArrayNode();
+        final int maxAttempts = 3;
+        IOException lastIo = null;
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                if (response.statusCode() == 404) {
+                    // A missing season or series is an expected outcome, not a failure: providers
+                    // sometimes group a source platform's containers differently (for example, five
+                    // Netflix "Parts" merged into three TMDb seasons), so season 4 or 5 legitimately
+                    // does not exist here. Treat it like TVMaze's empty-array response so the caller
+                    // sees an ordinary miss and the provider fallback chain can proceed.
+                    return mapper.createArrayNode();
+                }
+                if (response.statusCode() < 200 || response.statusCode() >= 300) {
+                    throw new IllegalStateException("TMDb request failed with HTTP " + response.statusCode());
+                }
+                return mapper.readTree(response.body());
+            } catch (IOException exception) {
+                lastIo = exception;
+                // Retry on timeouts and other transient I/O failures (including soft rate-limits
+                // that never send a response). Permanent HTTP errors are thrown above and are not
+                // retried. After maxAttempts the exception is rethrown so FallbackMetadataProvider
+                // can treat it as a primary miss and try TVMaze.
+                if (attempt == maxAttempts) {
+                    throw new IllegalStateException(
+                            "Unable to call TMDb after " + maxAttempts + " attempts", exception);
+                }
+            } catch (InterruptedException exception) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException("TMDb request was interrupted", exception);
             }
-            if (response.statusCode() < 200 || response.statusCode() >= 300) {
-                throw new IllegalStateException("TMDb request failed with HTTP " + response.statusCode());
-            }
-            return mapper.readTree(response.body());
-        } catch (IOException exception) {
-            throw new IllegalStateException("Unable to call TMDb", exception);
-        } catch (InterruptedException exception) {
-            Thread.currentThread().interrupt();
-            throw new IllegalStateException("TMDb request was interrupted", exception);
         }
+        // Unreachable: loop always returns or throws, but keeps the compiler happy.
+        throw new IllegalStateException("Unable to call TMDb after " + maxAttempts + " attempts", lastIo);
     }
 
     /** Maps a TMDb details document to the provider-neutral metadata model. */

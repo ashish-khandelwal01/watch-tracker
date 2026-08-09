@@ -49,7 +49,7 @@ public final class MetadataEnrichmentService {
     public List<EnrichedShow> enrich(List<Show> shows) {
         Objects.requireNonNull(shows, "shows must not be null");
         return shows.stream()
-                .map(show -> new EnrichedShow(show, provider.findByTitle(show.title()), Optional.empty()))
+                .map(show -> new EnrichedShow(show, findByTitleSafely(show.title()), Optional.empty()))
                 .toList();
     }
 
@@ -180,12 +180,14 @@ public final class MetadataEnrichmentService {
         }
 
         // If the cache had no entry, fall back to the provider which will consult cache and delegate.
+        // Provider timeouts/failures after retries must not abort the whole import: treat them as
+        // a miss so this show is left without metadata and the rest of the run continues.
         if (metadata.isEmpty()) {
-            metadata = provider.findByTitle(originalTitle);
+            metadata = findByTitleSafely(originalTitle);
             if (metadata.isEmpty() && originalTitle.toLowerCase(Locale.ROOT).contains("limited series")) {
                 String cleaned = stripLimitedSeries(originalTitle);
                 if (!cleaned.isBlank() && !cleaned.equals(originalTitle)) {
-                    metadata = provider.findByTitle(cleaned);
+                    metadata = findByTitleSafely(cleaned);
                     matchedAfterStrip = metadata.isPresent();
                 }
             }
@@ -263,6 +265,22 @@ public final class MetadataEnrichmentService {
     private static String stripLimitedSeries(String title) {
         if (title == null) return null;
         return LIMITED_SERIES_TRAILING.matcher(title).replaceAll("").trim();
+    }
+
+    /**
+     * Looks up metadata for a title. Any provider failure (timeout after retries, HTTP error,
+     * etc.) is treated as a miss so a single unreachable API cannot abort the entire import.
+     */
+    private Optional<ShowMetadata> findByTitleSafely(String title) {
+        try {
+            return provider.findByTitle(title);
+        } catch (RuntimeException exception) {
+            diagnostics.failure(
+                    DiagnosticsStage.METADATA_PROVIDER,
+                    title,
+                    "Metadata provider failed: " + exception.getMessage());
+            return Optional.empty();
+        }
     }
 
     /** True when nothing that could affect provider resolution has changed since the previous run. */
@@ -426,11 +444,11 @@ public final class MetadataEnrichmentService {
         if (metadata.isPresent()) {
             long providerId = metadata.get().providerId();
             if (named.season() != null) {
-                resolved = provider.resolveEpisode(providerId, named.season(), named.episodeTitle());
+                resolved = resolveEpisodeSafely(providerId, named.season(), named.episodeTitle());
             }
             if (resolved.isEmpty()) {
                 // Same series, full guide — in-memory season cache reuses any season already fetched.
-                resolved = provider.resolveEpisodeAnySeason(providerId, named.episodeTitle());
+                resolved = resolveEpisodeAnySeasonSafely(providerId, named.episodeTitle());
             }
             if (resolved.isPresent()) {
                 resolutionPath = "providerId";
@@ -439,10 +457,10 @@ public final class MetadataEnrichmentService {
             String lookupTitle = lookupTitleForResolution(show.title(), metadata);
             searched.put("lookupTitle", lookupTitle);
             if (named.season() != null) {
-                resolved = provider.resolveEpisode(lookupTitle, named.season(), named.episodeTitle());
+                resolved = resolveEpisodeSafely(lookupTitle, named.season(), named.episodeTitle());
             }
             if (resolved.isEmpty()) {
-                resolved = provider.resolveEpisodeAnySeason(lookupTitle, named.episodeTitle());
+                resolved = resolveEpisodeAnySeasonSafely(lookupTitle, named.episodeTitle());
             }
             if (resolved.isPresent()) {
                 resolutionPath = "lookupTitle";
@@ -469,6 +487,42 @@ public final class MetadataEnrichmentService {
         }
         diagnostics.failure(DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
         return Optional.empty();
+    }
+
+    /** Resolves an episode by title; provider failures are treated as misses. */
+    private Optional<WatchProgress> resolveEpisodeSafely(String showTitle, int season, String episodeTitle) {
+        try {
+            return provider.resolveEpisode(showTitle, season, episodeTitle);
+        } catch (RuntimeException exception) {
+            return Optional.empty();
+        }
+    }
+
+    /** Resolves an episode by provider id; provider failures are treated as misses. */
+    private Optional<WatchProgress> resolveEpisodeSafely(long providerId, int season, String episodeTitle) {
+        try {
+            return provider.resolveEpisode(providerId, season, episodeTitle);
+        } catch (RuntimeException exception) {
+            return Optional.empty();
+        }
+    }
+
+    /** Resolves an episode any-season by title; provider failures are treated as misses. */
+    private Optional<WatchProgress> resolveEpisodeAnySeasonSafely(String showTitle, String episodeTitle) {
+        try {
+            return provider.resolveEpisodeAnySeason(showTitle, episodeTitle);
+        } catch (RuntimeException exception) {
+            return Optional.empty();
+        }
+    }
+
+    /** Resolves an episode any-season by provider id; provider failures are treated as misses. */
+    private Optional<WatchProgress> resolveEpisodeAnySeasonSafely(long providerId, String episodeTitle) {
+        try {
+            return provider.resolveEpisodeAnySeason(providerId, episodeTitle);
+        } catch (RuntimeException exception) {
+            return Optional.empty();
+        }
     }
 
     /**

@@ -45,6 +45,7 @@
             "id": "77292546-2e92-3423-b77a-dbcf04d6bb78",
             "title": "My Lovely Liar",
             "aliases": [
+                "My Lovely Liar: Episode 1",
                 "My Lovely Liar: Episode 2",
                 "My Lovely Liar: Episode 3",
                 "My Lovely Liar: Episode 4",
@@ -54,8 +55,7 @@
                 "My Lovely Liar: Episode 8",
                 "My Lovely Liar: Episode 9",
                 "My Lovely Liar: Episode 10",
-                "My Lovely Liar: Episode 11",
-                "My Lovely Liar: Episode 1"
+                "My Lovely Liar: Episode 11"
             ],
             "type": "SERIES",
             "firstWatched": "2026-07-22T00:00:00",
@@ -247,6 +247,7 @@
             "id": "fc9d8116-6a68-3e57-9620-b38d17299ed3",
             "title": "Warrior Nun",
             "aliases": [
+                "Warrior Nun: Season 1: Psalm 46:5",
                 "Warrior Nun: Season 1: Revelation 2:10",
                 "Warrior Nun: Season 1: Matthew 7:13",
                 "Warrior Nun: Season 2: Jeremiah 29:13",
@@ -263,8 +264,7 @@
                 "Warrior Nun: Season 1: Proverbs 14:1",
                 "Warrior Nun: Season 2: Psalms 116:15",
                 "Warrior Nun: Season 1: Proverbs 31:25",
-                "Warrior Nun: Season 1: Ecclesiasticus 26:9-10",
-                "Warrior Nun: Season 1: Psalm 46:5"
+                "Warrior Nun: Season 1: Ecclesiasticus 26:9-10"
             ],
             "type": "SERIES",
             "firstWatched": "2020-07-11T00:00:00",
@@ -302,6 +302,7 @@
             "id": "dc858a37-5412-3bf9-859e-1f03a52a04d1",
             "title": "Heroes",
             "aliases": [
+                "Heroes: Season 1: Genesis",
                 "Heroes: Season 1: How to Stop an Exploding Man",
                 "Heroes: Season 1: Unexpected",
                 "Heroes: Season 1: Nothing to Hide",
@@ -327,8 +328,7 @@
                 "Heroes: Season 1: Five Years Gone",
                 "Heroes: Season 2: Four Months Later",
                 "Heroes: Season 1: Seven Minutes to Midnight",
-                "Heroes: Season 1: Company Man",
-                "Heroes: Season 1: Genesis"
+                "Heroes: Season 1: Company Man"
             ],
             "type": "SERIES",
             "firstWatched": "2026-07-05T00:00:00",
@@ -534,6 +534,7 @@
             "id": "d9b21668-edc6-34ab-938c-725cc5d377ac",
             "title": "The Lincoln Lawyer",
             "aliases": [
+                "The Lincoln Lawyer: Season 1: He Rides Again",
                 "The Lincoln Lawyer: Season 1: The Uncanny Valley",
                 "The Lincoln Lawyer: Season 4: The Law Of Innocence",
                 "The Lincoln Lawyer: Season 2: Suspicious Minds",
@@ -572,8 +573,7 @@
                 "The Lincoln Lawyer: Season 1: The Magic Bullet",
                 "The Lincoln Lawyer: Season 2: Cui Bono",
                 "The Lincoln Lawyer: Season 4: Baja",
-                "The Lincoln Lawyer: Season 1: Bent",
-                "The Lincoln Lawyer: Season 1: He Rides Again"
+                "The Lincoln Lawyer: Season 1: Bent"
             ],
             "type": "SERIES",
             "firstWatched": "2023-08-20T00:00:00",
@@ -610,6 +610,7 @@
             "id": "fb68efe5-d49a-3021-8f19-0a39489e4f88",
             "title": "Bridgerton",
             "aliases": [
+                "Bridgerton: Season 4: Dance in the Country",
                 "Bridgerton: Season 2: Victory",
                 "Bridgerton: Season 2: Off to the Races",
                 "Bridgerton: Season 4: The Waltz",
@@ -640,8 +641,7 @@
                 "Bridgerton: Season 2: The Choice",
                 "Bridgerton: Season 3: Tick Tock",
                 "Bridgerton: Season 3: Out of the Shadows",
-                "Bridgerton: Season 2: The Viscount Who Loved Me",
-                "Bridgerton: Season 4: Dance in the Country"
+                "Bridgerton: Season 2: The Viscount Who Loved Me"
             ],
             "type": "SERIES",
             "firstWatched": "2021-01-08T00:00:00",
@@ -677,12 +677,12 @@
             "id": "2a2f50aa-b609-30d6-b2c2-07c30e45d55d",
             "title": "Teach You a Lesson: Limited Series",
             "aliases": [
+                "Teach You a Lesson: Limited Series: Episode 4",
                 "Teach You a Lesson: Limited Series: Episode 5",
                 "Teach You a Lesson: Limited Series: Episode 6",
                 "Teach You a Lesson: Limited Series: Episode 1",
                 "Teach You a Lesson: Limited Series: Episode 2",
-                "Teach You a Lesson: Limited Series: Episode 3",
-                "Teach You a Lesson: Limited Series: Episode 4"
+                "Teach You a Lesson: Limited Series: Episode 3"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2026-06-15T00:00:00",
@@ -720,6 +720,7 @@
             "id": "a18366b2-17eb-3811-ad18-86e4f4f865b2",
             "title": "Dark",
             "aliases": [
+                "Dark: Season 3: Between the Time",
                 "Dark: Season 1: Secrets",
                 "Dark: Season 1: Double Lives",
                 "Dark: Season 3: The Paradise",
@@ -742,8 +743,7 @@
                 "Dark: Season 3: Life and Death",
                 "Dark: Season 1: Alpha and Omega",
                 "Dark: Season 3: Adam and Eva",
-                "Dark: Season 2: Endings and Beginnings",
-                "Dark: Season 3: Between the Time"
+                "Dark: Season 2: Endings and Beginnings"
             ],
             "type": "SERIES",
             "firstWatched": "2020-05-23T00:00:00",
@@ -1257,6 +1257,8 @@
             "id": "eec7c999-1f1a-3374-b6cd-5ff500ce158d",
             "title": "Brooklyn Nine-Nine",
             "aliases": [
+                "Brooklyn Nine-Nine: Season 6: A Tale of Two Bandits",
+                "Brooklyn Nine-Nine: Season 1: The Ebony Falcon",
                 "Brooklyn Nine-Nine: Season 6: Four Movements",
                 "Brooklyn Nine-Nine: Season 2: Halloween II",
                 "Brooklyn Nine-Nine: Season 7: Trying",
@@ -1407,9 +1409,7 @@
                 "Brooklyn Nine-Nine: Season 5: Show Me Going",
                 "Brooklyn Nine-Nine: Season 2: Windbreaker City",
                 "Brooklyn Nine-Nine: Season 7: Dillman",
-                "Brooklyn Nine-Nine: Season 3: Yippie Kayak",
-                "Brooklyn Nine-Nine: Season 6: A Tale of Two Bandits",
-                "Brooklyn Nine-Nine: Season 1: The Ebony Falcon"
+                "Brooklyn Nine-Nine: Season 3: Yippie Kayak"
             ],
             "type": "SERIES",
             "firstWatched": "2022-08-13T00:00:00",
@@ -1818,6 +1818,7 @@
             "id": "08976a5e-55c2-3adb-9eef-d25049b94f25",
             "title": "A Man on the Inside",
             "aliases": [
+                "A Man on the Inside: Season 2: Family Weekend",
                 "A Man on the Inside: Season 2: Extracurriculars",
                 "A Man on the Inside: Season 2: Spirit Week",
                 "A Man on the Inside: Season 1: The Spy Who Came in from the Cold",
@@ -1832,8 +1833,7 @@
                 "A Man on the Inside: Season 2: Orientation",
                 "A Man on the Inside: Season 1: From Russian Hill with Love",
                 "A Man on the Inside: Season 2: Major Declaration",
-                "A Man on the Inside: Season 2: Group Project",
-                "A Man on the Inside: Season 2: Family Weekend"
+                "A Man on the Inside: Season 2: Group Project"
             ],
             "type": "SERIES",
             "firstWatched": "2024-11-22T00:00:00",
@@ -2313,6 +2313,7 @@
             "id": "796c1635-89f2-3537-be17-1842f37265d5",
             "title": "Wednesday",
             "aliases": [
+                "Wednesday: Season 2: Woe Me the Money",
                 "Wednesday: Season 2: Here We Woe Again",
                 "Wednesday: Season 1: Woe Is the Loneliest Number",
                 "Wednesday: Season 1: You Reap What You Woe",
@@ -2327,8 +2328,7 @@
                 "Wednesday: Season 2: Hyde and Woe Seek",
                 "Wednesday: Season 1: A Murder of Woes",
                 "Wednesday: Season 1: Quid Pro Woe",
-                "Wednesday: Season 2: This Means Woe",
-                "Wednesday: Season 2: Woe Me the Money"
+                "Wednesday: Season 2: This Means Woe"
             ],
             "type": "SERIES",
             "firstWatched": "2023-03-03T00:00:00",
@@ -2405,6 +2405,7 @@
             "id": "a882d6c6-ef5d-376d-bdb0-edf01003d7ed",
             "title": "Her Private Life: Limited Series",
             "aliases": [
+                "Her Private Life: Limited Series: Episode 12",
                 "Her Private Life: Limited Series: Episode 13",
                 "Her Private Life: Limited Series: Episode 14",
                 "Her Private Life: Limited Series: Episode 15",
@@ -2419,8 +2420,7 @@
                 "Her Private Life: Limited Series: Episode 8",
                 "Her Private Life: Limited Series: Episode 9",
                 "Her Private Life: Limited Series: Episode 10",
-                "Her Private Life: Limited Series: Episode 11",
-                "Her Private Life: Limited Series: Episode 12"
+                "Her Private Life: Limited Series: Episode 11"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-08T00:00:00",
@@ -2771,6 +2771,7 @@
             "id": "779a5aa6-458a-3f49-a5d4-b94bad0350b7",
             "title": "Clean With Passion For Now: Limited Series",
             "aliases": [
+                "Clean With Passion For Now: Limited Series: Episode 4",
                 "Clean With Passion For Now: Limited Series: Episode 5",
                 "Clean With Passion For Now: Limited Series: Episode 6",
                 "Clean With Passion For Now: Limited Series: Episode 7",
@@ -2785,8 +2786,7 @@
                 "Clean With Passion For Now: Limited Series: Episode 16",
                 "Clean With Passion For Now: Limited Series: Episode 1",
                 "Clean With Passion For Now: Limited Series: Episode 2",
-                "Clean With Passion For Now: Limited Series: Episode 3",
-                "Clean With Passion For Now: Limited Series: Episode 4"
+                "Clean With Passion For Now: Limited Series: Episode 3"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2025-01-23T00:00:00",
@@ -2936,6 +2936,7 @@
             "id": "a27eb0c5-b604-3d62-8866-76768073cb7f",
             "title": "King the Land: Limited Series",
             "aliases": [
+                "King the Land: Limited Series: Episode 13",
                 "King the Land: Limited Series: Episode 14",
                 "King the Land: Limited Series: Episode 15",
                 "King the Land: Limited Series: Episode 16",
@@ -2950,8 +2951,7 @@
                 "King the Land: Limited Series: Episode 9",
                 "King the Land: Limited Series: Episode 10",
                 "King the Land: Limited Series: Episode 11",
-                "King the Land: Limited Series: Episode 12",
-                "King the Land: Limited Series: Episode 13"
+                "King the Land: Limited Series: Episode 12"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-13T00:00:00",
@@ -2988,12 +2988,12 @@
             "id": "34e86d7e-1356-364e-a8e4-cfe4fef40aac",
             "title": "The Trauma Code: Heroes on Call",
             "aliases": [
+                "The Trauma Code: Heroes on Call: Enter Doctor Maniac",
                 "The Trauma Code: Heroes on Call: The Birth of Protégé No.1",
                 "The Trauma Code: Heroes on Call: Keep On Running",
                 "The Trauma Code: Heroes on Call: Closer Than You Think",
                 "The Trauma Code: Heroes on Call: Code Black",
-                "The Trauma Code: Heroes on Call: Reasons for Not Giving Up",
-                "The Trauma Code: Heroes on Call: Enter Doctor Maniac"
+                "The Trauma Code: Heroes on Call: Reasons for Not Giving Up"
             ],
             "type": "SERIES",
             "firstWatched": "2025-02-18T00:00:00",
@@ -3066,6 +3066,7 @@
             "id": "c7a3a182-d4f4-330f-a50d-237cb550dd30",
             "title": "Inheritors: Limited Series",
             "aliases": [
+                "Inheritors: Limited Series: Episode 1",
                 "Inheritors: Limited Series: Episode 2",
                 "Inheritors: Limited Series: Episode 3",
                 "Inheritors: Limited Series: Episode 4",
@@ -3076,8 +3077,7 @@
                 "Inheritors: Limited Series: Episode 9",
                 "Inheritors: Limited Series: Episode 10",
                 "Inheritors: Limited Series: Episode 11",
-                "Inheritors: Limited Series: Episode 12",
-                "Inheritors: Limited Series: Episode 1"
+                "Inheritors: Limited Series: Episode 12"
             ],
             "type": "MOVIE",
             "firstWatched": "2025-01-04T00:00:00",
@@ -3839,12 +3839,12 @@
             "id": "89925b9b-279d-3ec8-8780-a00a794d6c1d",
             "title": "Culinary Class Wars",
             "aliases": [
+                "Culinary Class Wars: Season 1: Episode 2",
                 "Culinary Class Wars: Season 1: Episode 3",
                 "Culinary Class Wars: Season 1: Episode 4",
                 "Culinary Class Wars: Season 1: Episode 5",
                 "Culinary Class Wars: Season 1: Episode 6",
-                "Culinary Class Wars: Season 1: Episode 1",
-                "Culinary Class Wars: Season 1: Episode 2"
+                "Culinary Class Wars: Season 1: Episode 1"
             ],
             "type": "SERIES",
             "firstWatched": "2024-09-25T00:00:00",
@@ -4331,6 +4331,7 @@
             "id": "f81ab74e-e4d3-392e-a1c1-e31564ca8f39",
             "title": "Something in the Rain: Limited Series",
             "aliases": [
+                "Something in the Rain: Limited Series: Episode 9",
                 "Something in the Rain: Limited Series: Episode 3",
                 "Something in the Rain: Limited Series: Episode 10",
                 "Something in the Rain: Limited Series: Episode 11",
@@ -4345,8 +4346,7 @@
                 "Something in the Rain: Limited Series: Episode 5",
                 "Something in the Rain: Limited Series: Episode 6",
                 "Something in the Rain: Limited Series: Episode 7",
-                "Something in the Rain: Limited Series: Episode 8",
-                "Something in the Rain: Limited Series: Episode 9"
+                "Something in the Rain: Limited Series: Episode 8"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-10-13T00:00:00",
@@ -4665,6 +4665,7 @@
             "id": "9abc378f-6814-3ecf-8e8e-7977bdcb06d8",
             "title": "Because This Is My First Life: Limited Series",
             "aliases": [
+                "Because This Is My First Life: Limited Series: Episode 3",
                 "Because This Is My First Life: Limited Series: Episode 4",
                 "Because This Is My First Life: Limited Series: Episode 5",
                 "Because This Is My First Life: Limited Series: Episode 6",
@@ -4679,8 +4680,7 @@
                 "Because This Is My First Life: Limited Series: Episode 15",
                 "Because This Is My First Life: Limited Series: Episode 16",
                 "Because This Is My First Life: Limited Series: Episode 1",
-                "Because This Is My First Life: Limited Series: Episode 2",
-                "Because This Is My First Life: Limited Series: Episode 3"
+                "Because This Is My First Life: Limited Series: Episode 2"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-10-04T00:00:00",
@@ -4994,6 +4994,10 @@
             "id": "3d594614-f445-36b0-8014-e9b77730b833",
             "title": "Friends",
             "aliases": [
+                "Friends: Season 3: The One with the Football",
+                "Friends: Season 4: The One with the Embryos",
+                "Friends: Season 10: The One with Ross's Tan",
+                "Friends: Season 2: The One Where Old Yeller Dies",
                 "Friends: Season 4: The One with Joey's New Girlfriend",
                 "Friends: Season 2: The One Where Ross Finds Out",
                 "Friends: Season 3: The One Where Ross & Rachel Take a Break",
@@ -5220,11 +5224,7 @@
                 "Friends: Season 8: The One with the Stain",
                 "Friends: Season 6: The One with Joey's Porsche",
                 "Friends: Season 9: The One with the Memorial Service",
-                "Friends: Season 8: The One Where Joey Tells Rachel",
-                "Friends: Season 3: The One with the Football",
-                "Friends: Season 4: The One with the Embryos",
-                "Friends: Season 10: The One with Ross's Tan",
-                "Friends: Season 2: The One Where Old Yeller Dies"
+                "Friends: Season 8: The One Where Joey Tells Rachel"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-27T00:00:00",
@@ -5532,12 +5532,12 @@
             "id": "4228a10a-a805-31cf-9a79-caecc1dd3a56",
             "title": "Welcome to Samdal-ri: Limited Series",
             "aliases": [
+                "Welcome to Samdal-ri: Limited Series: Tears of the Dragon",
                 "Welcome to Samdal-ri: Limited Series: Like Wild Birds, Soaring, Dreaming, Descending",
                 "Welcome to Samdal-ri: Limited Series: I See You",
                 "Welcome to Samdal-ri: Limited Series: The Rotten Apple of My Eye",
                 "Welcome to Samdal-ri: Limited Series: The Dreams by Cho Yong-pil",
-                "Welcome to Samdal-ri: Limited Series: The Soulmates' History",
-                "Welcome to Samdal-ri: Limited Series: Tears of the Dragon"
+                "Welcome to Samdal-ri: Limited Series: The Soulmates' History"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-23T00:00:00",
@@ -5574,6 +5574,7 @@
             "id": "67c018d4-ed00-371e-b093-6321efd31add",
             "title": "Extraordinary Attorney Woo",
             "aliases": [
+                "Extraordinary Attorney Woo: The Wedding Dress That Slipped Off",
                 "Extraordinary Attorney Woo: The Pied Piper",
                 "Extraordinary Attorney Woo: The Strife of the Three Brothers",
                 "Extraordinary Attorney Woo: A Tale About Sodeok-dong I",
@@ -5588,8 +5589,7 @@
                 "Extraordinary Attorney Woo: Extraordinary Attorney Woo",
                 "Extraordinary Attorney Woo: A Tale About Sodeok-dong II",
                 "Extraordinary Attorney Woo: Though Unusual and Peculiar",
-                "Extraordinary Attorney Woo: If I Were a Whale...",
-                "Extraordinary Attorney Woo: The Wedding Dress That Slipped Off"
+                "Extraordinary Attorney Woo: If I Were a Whale..."
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-15T00:00:00",
@@ -6170,6 +6170,7 @@
             "id": "ef341d57-4955-3f82-8b74-dfec407af672",
             "title": "Run On",
             "aliases": [
+                "Run On: Episode 2",
                 "Run On: Episode 3",
                 "Run On: Episode 4",
                 "Run On: Episode 5",
@@ -6184,8 +6185,7 @@
                 "Run On: Episode 14",
                 "Run On: Episode 15",
                 "Run On: Episode 16",
-                "Run On: Episode 1",
-                "Run On: Episode 2"
+                "Run On: Episode 1"
             ],
             "type": "SERIES",
             "firstWatched": "2024-07-05T00:00:00",
@@ -6370,6 +6370,7 @@
             "id": "da051a97-5152-32ac-9c25-ed5031d73ea7",
             "title": "Doctor Slump: Limited Series",
             "aliases": [
+                "Doctor Slump: Limited Series: Episode 8",
                 "Doctor Slump: Limited Series: Episode 7",
                 "Doctor Slump: Limited Series: Episode 1",
                 "Doctor Slump: Limited Series: Episode 2",
@@ -6384,8 +6385,7 @@
                 "Doctor Slump: Limited Series: Episode 14",
                 "Doctor Slump: Limited Series: Episode 9",
                 "Doctor Slump: Limited Series: Episode 16",
-                "Doctor Slump: Limited Series: Episode 15",
-                "Doctor Slump: Limited Series: Episode 8"
+                "Doctor Slump: Limited Series: Episode 15"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-02T00:00:00",
@@ -6459,6 +6459,7 @@
             "id": "35aeb13e-0cae-3b04-8a11-4d30785bc617",
             "title": "Crash Landing on You: Limited Series",
             "aliases": [
+                "Crash Landing on You: Limited Series: Episode 16",
                 "Crash Landing on You: Limited Series: Episode 1",
                 "Crash Landing on You: Limited Series: Episode 2",
                 "Crash Landing on You: Limited Series: Episode 3",
@@ -6473,8 +6474,7 @@
                 "Crash Landing on You: Limited Series: Episode 12",
                 "Crash Landing on You: Limited Series: Episode 13",
                 "Crash Landing on You: Limited Series: Episode 14",
-                "Crash Landing on You: Limited Series: Episode 15",
-                "Crash Landing on You: Limited Series: Episode 16"
+                "Crash Landing on You: Limited Series: Episode 15"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-06-21T00:00:00",
@@ -6659,6 +6659,7 @@
             "id": "fdb19052-351d-3791-a75f-e53512fe84cf",
             "title": "Queen of Tears: Limited Series",
             "aliases": [
+                "Queen of Tears: Limited Series: Episode 16",
                 "Queen of Tears: Limited Series: Episode 15",
                 "Queen of Tears: Limited Series: Episode 1",
                 "Queen of Tears: Limited Series: Episode 2",
@@ -6673,8 +6674,7 @@
                 "Queen of Tears: Limited Series: Episode 14",
                 "Queen of Tears: Limited Series: Episode 10",
                 "Queen of Tears: Limited Series: Episode 9",
-                "Queen of Tears: Limited Series: Episode 8",
-                "Queen of Tears: Limited Series: Episode 16"
+                "Queen of Tears: Limited Series: Episode 8"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-06-23T00:00:00",
@@ -6787,6 +6787,7 @@
             "id": "d56c8ee3-408f-37f3-93eb-eb20cdd90555",
             "title": "The King: Eternal Monarch",
             "aliases": [
+                "The King: Eternal Monarch: Episode 1",
                 "The King: Eternal Monarch: Episode 2",
                 "The King: Eternal Monarch: Episode 3",
                 "The King: Eternal Monarch: Episode 4",
@@ -6801,8 +6802,7 @@
                 "The King: Eternal Monarch: Episode 13",
                 "The King: Eternal Monarch: Episode 14",
                 "The King: Eternal Monarch: Episode 15",
-                "The King: Eternal Monarch: Episode 16",
-                "The King: Eternal Monarch: Episode 1"
+                "The King: Eternal Monarch: Episode 16"
             ],
             "type": "SERIES",
             "firstWatched": "2024-06-14T00:00:00",
@@ -6839,6 +6839,7 @@
             "id": "cc0864c4-bdcb-3349-8927-7d39dd9ff17d",
             "title": "MINDHUNTER",
             "aliases": [
+                "MINDHUNTER: Season 2: Episode 6",
                 "MINDHUNTER: Season 2: Episode 7",
                 "MINDHUNTER: Season 2: Episode 8",
                 "MINDHUNTER: Season 2: Episode 9",
@@ -6856,8 +6857,7 @@
                 "MINDHUNTER: Season 2: Episode 2",
                 "MINDHUNTER: Season 2: Episode 3",
                 "MINDHUNTER: Season 2: Episode 4",
-                "MINDHUNTER: Season 2: Episode 5",
-                "MINDHUNTER: Season 2: Episode 6"
+                "MINDHUNTER: Season 2: Episode 5"
             ],
             "type": "SERIES",
             "firstWatched": "2021-05-31T00:00:00",
@@ -7827,6 +7827,9 @@
             "id": "369a2600-663e-3391-90cc-4e2acc490561",
             "title": "The Big Bang Theory",
             "aliases": [
+                "The Big Bang Theory: Season 5: The Speckerman Recurrence",
+                "The Big Bang Theory: Season 2: The Cushion Saturation",
+                "The Big Bang Theory: Season 2: The Monopolar Expedition",
                 "The Big Bang Theory: Season 11: The Neonatal Nomenclature",
                 "The Big Bang Theory: Season 9: The Line Substitution Solution",
                 "The Big Bang Theory: Season 12: The Conjugal Configuration",
@@ -8102,10 +8105,7 @@
                 "The Big Bang Theory: Season 1: The Pancake Batter Anomaly",
                 "The Big Bang Theory: Season 2: The White Asparagus Triangulation",
                 "The Big Bang Theory: Season 4: The Roommate Transmogrification",
-                "The Big Bang Theory: Season 12: The Grant Allocation Derivation",
-                "The Big Bang Theory: Season 5: The Speckerman Recurrence",
-                "The Big Bang Theory: Season 2: The Cushion Saturation",
-                "The Big Bang Theory: Season 2: The Monopolar Expedition"
+                "The Big Bang Theory: Season 12: The Grant Allocation Derivation"
             ],
             "type": "SERIES",
             "firstWatched": "2020-12-22T00:00:00",
@@ -9621,6 +9621,7 @@
             "id": "673a999f-1b39-3c36-909b-b0d8a3dbb27f",
             "title": "Kung Fu Panda: The Dragon Knight",
             "aliases": [
+                "Kung Fu Panda: The Dragon Knight: Season 1: The Lotus",
                 "Kung Fu Panda: The Dragon Knight: Season 3: The Last Dumont",
                 "Kung Fu Panda: The Dragon Knight: Season 2: Hide the Lightening",
                 "Kung Fu Panda: The Dragon Knight: Season 1: A Thread in the Dark",
@@ -9661,8 +9662,7 @@
                 "Kung Fu Panda: The Dragon Knight: Season 3: The Bog-ey Man of Festermouth",
                 "Kung Fu Panda: The Dragon Knight: Season 1: The Knight's Code",
                 "Kung Fu Panda: The Dragon Knight: Season 2: An Uphill Battle",
-                "Kung Fu Panda: The Dragon Knight: Season 2: The Mad Scientist",
-                "Kung Fu Panda: The Dragon Knight: Season 1: The Lotus"
+                "Kung Fu Panda: The Dragon Knight: Season 2: The Mad Scientist"
             ],
             "type": "SERIES",
             "firstWatched": "2022-07-14T00:00:00",
@@ -10662,12 +10662,12 @@
             "id": "f4ca65f7-a002-39d9-85b0-fece1daec47a",
             "title": "Comedy Premium League",
             "aliases": [
+                "Comedy Premium League: Episode 1",
                 "Comedy Premium League: Episode 2",
                 "Comedy Premium League: Episode 3",
                 "Comedy Premium League: Episode 4",
                 "Comedy Premium League: Episode 5",
-                "Comedy Premium League: Episode 6",
-                "Comedy Premium League: Episode 1"
+                "Comedy Premium League: Episode 6"
             ],
             "type": "SERIES",
             "firstWatched": "2023-10-29T00:00:00",
@@ -12961,6 +12961,7 @@
             "id": "1a752bde-ac2d-3e4e-a598-be47491cbff6",
             "title": "Superstore",
             "aliases": [
+                "Superstore: Season 2: Mateo's Last Day",
                 "Superstore: Season 2: Tornado",
                 "Superstore: Season 4: Toxic Workplace",
                 "Superstore: Season 1: Shoplifter",
@@ -13020,8 +13021,7 @@
                 "Superstore: Season 3: Aftermath",
                 "Superstore: Season 4: Costume Competition",
                 "Superstore: Season 1: Shots and Salsa",
-                "Superstore: Season 4: Delivery Day",
-                "Superstore: Season 2: Mateo's Last Day"
+                "Superstore: Season 4: Delivery Day"
             ],
             "type": "SERIES",
             "firstWatched": "2022-12-15T00:00:00",
@@ -13405,6 +13405,7 @@
             "id": "5ca70c0d-b671-358d-ad98-921cb2eaf16c",
             "title": "New Amsterdam",
             "aliases": [
+                "New Amsterdam: Season 1: Boundaries",
                 "New Amsterdam: Season 2: The Karman Line",
                 "New Amsterdam: Season 1: Three Dots",
                 "New Amsterdam: Season 2: Your Turn",
@@ -13443,8 +13444,7 @@
                 "New Amsterdam: Season 1: As Long as It Takes",
                 "New Amsterdam: Season 2: The Big Picture",
                 "New Amsterdam: Season 1: King of Swords",
-                "New Amsterdam: Season 1: Sanctuary",
-                "New Amsterdam: Season 1: Boundaries"
+                "New Amsterdam: Season 1: Sanctuary"
             ],
             "type": "SERIES",
             "firstWatched": "2022-12-10T00:00:00",
@@ -13677,6 +13677,7 @@
             "id": "90e68c18-3567-318b-b67a-bc0dafe7d075",
             "title": "Young Sheldon",
             "aliases": [
+                "Young Sheldon: Season 4: A Docent, a Little Lady and a Bouncer Named Dalton",
                 "Young Sheldon: Season 1: Potato Salad, a Broomstick, and Dad's Whiskey",
                 "Young Sheldon: Season 2: A Race of Superhumans and a Letter to Alf",
                 "Young Sheldon: Season 2: Seven Deadly Sins and a Small Carl Sagan",
@@ -13759,8 +13760,7 @@
                 "Young Sheldon: Season 1: A Patch, a Modem, and a Zantac®",
                 "Young Sheldon: Season 4: A Pager, a Club and a Cranky Bag of Wrinkles",
                 "Young Sheldon: Season 4: Graduation",
-                "Young Sheldon: Season 4: A Musty Crypt and a Stick to Pee On",
-                "Young Sheldon: Season 4: A Docent, a Little Lady and a Bouncer Named Dalton"
+                "Young Sheldon: Season 4: A Musty Crypt and a Stick to Pee On"
             ],
             "type": "SERIES",
             "firstWatched": "2022-07-20T00:00:00",
@@ -13842,6 +13842,7 @@
             "id": "2c3bb098-d5e3-3a50-8602-6f1a7d891ad3",
             "title": "Family Reunion",
             "aliases": [
+                "Family Reunion: Part 4: Remember When the Trick Wasn’t a Treat?",
                 "Family Reunion: Part 5: Remember Our 20 Acres and a Deed?",
                 "Family Reunion: Part 5: Remember Stompin' the Yard?",
                 "Family Reunion: Part 5: Remember the New Beginning?",
@@ -13884,8 +13885,7 @@
                 "Family Reunion: Part 1: Remember Charlie Wilson?",
                 "Family Reunion: Part 3: Remember When the Glass Passed?",
                 "Family Reunion: Part 2: Remember When Shaka Got Beat Up?",
-                "Family Reunion: Part 3: Remember the False Idol?",
-                "Family Reunion: Part 4: Remember When the Trick Wasn’t a Treat?"
+                "Family Reunion: Part 3: Remember the False Idol?"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-05T00:00:00",
@@ -14428,6 +14428,8 @@
             "id": "85c3ace8-4bcc-3598-ab6e-9774563114f5",
             "title": "Chicago Med",
             "aliases": [
+                "Chicago Med: Season 4: All the Lonely People",
+                "Chicago Med: Season 3: Naughty Or Nice",
                 "Chicago Med: Season 3: Ties that Bind",
                 "Chicago Med: Season 4: Heavy is the Head",
                 "Chicago Med: Season 2: Uncharted Territory",
@@ -14508,9 +14510,7 @@
                 "Chicago Med: Season 2: Monday Mourning",
                 "Chicago Med: Hearts",
                 "Chicago Med: Season 4: Forever Hold Your Peace",
-                "Chicago Med: Season 3: Best Laid Plans",
-                "Chicago Med: Season 4: All the Lonely People",
-                "Chicago Med: Season 3: Naughty Or Nice"
+                "Chicago Med: Season 3: Best Laid Plans"
             ],
             "type": "SERIES",
             "firstWatched": "2022-07-16T00:00:00",
@@ -14584,6 +14584,7 @@
             "id": "7c9a179e-5555-37f1-a354-6fa422d8a77f",
             "title": "One Day at a Time",
             "aliases": [
+                "One Day at a Time: Season 2: Hello, Penelope",
                 "One Day at a Time: Season 2: What Happened",
                 "One Day at a Time: Season 3: The Man",
                 "One Day at a Time: Season 1: The Death of Mrs. Resnick",
@@ -14621,8 +14622,7 @@
                 "One Day at a Time: Season 1: Viva Cuba",
                 "One Day at a Time: Season 1: Hold, Please",
                 "One Day at a Time: Season 3: Ghosts",
-                "One Day at a Time: Season 2: Homecoming",
-                "One Day at a Time: Season 2: Hello, Penelope"
+                "One Day at a Time: Season 2: Homecoming"
             ],
             "type": "SERIES",
             "firstWatched": "2021-02-23T00:00:00",
@@ -14765,6 +14765,7 @@
             "id": "fb34cba6-a705-3273-b8b1-38d064bf9c97",
             "title": "The Bureau of Magical Things",
             "aliases": [
+                "The Bureau of Magical Things: Season 2: The Heist",
                 "The Bureau of Magical Things: Aisle 13",
                 "The Bureau of Magical Things: On the Chase",
                 "The Bureau of Magical Things: Season 2: The Big Sneeze",
@@ -14803,8 +14804,7 @@
                 "The Bureau of Magical Things: Season 2: The Key to the Past",
                 "The Bureau of Magical Things: Season 2: Mirror Image",
                 "The Bureau of Magical Things: Uncharted Waters",
-                "The Bureau of Magical Things: Season 2: Almost Famous",
-                "The Bureau of Magical Things: Season 2: The Heist"
+                "The Bureau of Magical Things: Season 2: Almost Famous"
             ],
             "type": "SERIES",
             "firstWatched": "2021-08-26T00:00:00",
@@ -14998,12 +14998,12 @@
             "id": "1d7408b8-73db-3374-a1f6-a447402073bf",
             "title": "The Good Doctor",
             "aliases": [
+                "The Good Doctor: Season 4: Venga",
                 "The Good Doctor: Season 4: Newbies",
                 "The Good Doctor: Season 4: Letting Go",
                 "The Good Doctor: Season 4: Forgive or Forget",
                 "The Good Doctor: Season 4: Parenting",
-                "The Good Doctor: Season 4: Vamos",
-                "The Good Doctor: Season 4: Venga"
+                "The Good Doctor: Season 4: Vamos"
             ],
             "type": "SERIES",
             "firstWatched": "2022-03-05T00:00:00",
@@ -15075,6 +15075,7 @@
             "id": "214ec357-7a95-3079-b2d7-7c5b4bd2219e",
             "title": "How to Get Away With Murder",
             "aliases": [
+                "How to Get Away With Murder: Season 3: He Made a Terrible Mistake",
                 "How to Get Away With Murder: Season 2: Skanks Get Shanked",
                 "How to Get Away With Murder: Season 2: She's Dying",
                 "How to Get Away With Murder: Season 4: It's for the Greater Good",
@@ -15121,8 +15122,7 @@
                 "How to Get Away With Murder: Kill Me, Kill Me, Kill Me",
                 "How to Get Away With Murder: Season 2: Meet Bonnie",
                 "How to Get Away With Murder: Season 2: She Hates Us",
-                "How to Get Away With Murder: Season 3: Wes",
-                "How to Get Away With Murder: Season 3: He Made a Terrible Mistake"
+                "How to Get Away With Murder: Season 3: Wes"
             ],
             "type": "SERIES",
             "firstWatched": "2020-09-13T00:00:00",
@@ -15872,6 +15872,7 @@
             "id": "6f9ed042-3102-3f5d-bd8d-120d2695ff5d",
             "title": "Never Have I Ever",
             "aliases": [
+                "Never Have I Ever: Season 1: ... started a nuclear war",
                 "Never Have I Ever: Season 1: ... had sex with Paxton Hall-Yoshida",
                 "Never Have I Ever: Season 1: Pilot",
                 "Never Have I Ever: Season 2: ... been a playa",
@@ -15881,8 +15882,7 @@
                 "Never Have I Ever: Season 1: ... had to be on my best behavior",
                 "Never Have I Ever: Season 1: ... felt super Indian",
                 "Never Have I Ever: Season 1: ... gotten drunk with the popular kids",
-                "Never Have I Ever: Season 1: ... said I'm sorry",
-                "Never Have I Ever: Season 1: ... started a nuclear war"
+                "Never Have I Ever: Season 1: ... said I'm sorry"
             ],
             "type": "SERIES",
             "firstWatched": "2020-05-16T00:00:00",
@@ -16411,6 +16411,7 @@
             "id": "922eba9a-688d-30f8-9d9b-5c7e29be8a66",
             "title": "Two and a Half Men",
             "aliases": [
+                "Two and a Half Men: Season 3: The Spit-Covered Cobbler",
                 "Two and a Half Men: Season 2: Salmon Under My Sweater",
                 "Two and a Half Men: Season 3: And the Plot Moistens",
                 "Two and a Half Men: Did You Check with the Captain of the Flying Monkeys?",
@@ -16483,8 +16484,7 @@
                 "Two and a Half Men: Phase One, Complete",
                 "Two and a Half Men: If They Do Go Either Way, They're Usually Fake",
                 "Two and a Half Men: Season 2: Those Big Pink Things with Coconut",
-                "Two and a Half Men: That Was Saliva, Alan",
-                "Two and a Half Men: Season 3: The Spit-Covered Cobbler"
+                "Two and a Half Men: That Was Saliva, Alan"
             ],
             "type": "SERIES",
             "firstWatched": "2021-05-11T00:00:00",
@@ -17089,12 +17089,12 @@
             "id": "984c86e7-c4ff-3f36-b65c-596b1c41392d",
             "title": "Good Witch",
             "aliases": [
+                "Good Witch: Season 1: All in the Family",
                 "Good Witch: Season 1: Apologies and Remembrances",
                 "Good Witch: Season 1: Running Scared",
                 "Good Witch: Season 1: The Truth About Lies",
                 "Good Witch: Season 1: Starting Over … Again",
-                "Good Witch: Season 1: Do the Right Thing",
-                "Good Witch: Season 1: All in the Family"
+                "Good Witch: Season 1: Do the Right Thing"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-03T00:00:00",
@@ -17500,6 +17500,7 @@
             "id": "33440936-c4db-36b2-ba47-e7f4ff5f862c",
             "title": "Snowpiercer",
             "aliases": [
+                "Snowpiercer: Season 2: Smolder to Life",
                 "Snowpiercer: Season 2: A Single Trade",
                 "Snowpiercer: Season 1: First, the Weather Changed",
                 "Snowpiercer: Season 1: Trouble Comes Sideways",
@@ -17514,8 +17515,7 @@
                 "Snowpiercer: Season 1: These Are His Revolutions",
                 "Snowpiercer: Season 1: Prepare to Brace",
                 "Snowpiercer: Season 2: The Time of Two Engines",
-                "Snowpiercer: Season 1: The Train Demanded Blood",
-                "Snowpiercer: Season 2: Smolder to Life"
+                "Snowpiercer: Season 1: The Train Demanded Blood"
             ],
             "type": "SERIES",
             "firstWatched": "2020-08-09T00:00:00",
@@ -18621,6 +18621,7 @@
             "id": "08b6d232-f558-3e55-94ab-cef9ff9f27a7",
             "title": "Titans",
             "aliases": [
+                "Titans: Season 2: Fallen",
                 "Titans: Season 1: Titans",
                 "Titans: Season 2: Jericho",
                 "Titans: Season 1: The Asylum",
@@ -18643,8 +18644,7 @@
                 "Titans: Season 2: Faux-Hawk",
                 "Titans: Season 2: Bruce Wayne",
                 "Titans: Season 2: Atonement",
-                "Titans: Season 2: Nightwing",
-                "Titans: Season 2: Fallen"
+                "Titans: Season 2: Nightwing"
             ],
             "type": "SERIES",
             "firstWatched": "2021-01-08T00:00:00",
@@ -19615,6 +19615,7 @@
             "id": "03c20535-af68-3097-a5f9-c14cbb8ce298",
             "title": "House of Cards",
             "aliases": [
+                "House of Cards: Season 5: Chapter 57",
                 "House of Cards: Season 4: Chapter 43",
                 "House of Cards: Season 4: Chapter 44",
                 "House of Cards: Season 4: Chapter 45",
@@ -19630,8 +19631,7 @@
                 "House of Cards: Season 4: Chapter 51",
                 "House of Cards: Season 4: Chapter 52",
                 "House of Cards: Season 5: Chapter 58",
-                "House of Cards: Season 5: Chapter 59",
-                "House of Cards: Season 5: Chapter 57"
+                "House of Cards: Season 5: Chapter 59"
             ],
             "type": "SERIES",
             "firstWatched": "2020-07-15T00:00:00",
@@ -20481,12 +20481,12 @@
             "id": "4e0128ab-ac9b-3aa5-a516-de33f59b8938",
             "title": "Into the Night",
             "aliases": [
+                "Into the Night: Season 1: Rik",
                 "Into the Night: Season 1: Mathieu",
                 "Into the Night: Season 1: Jakub",
                 "Into the Night: Season 1: Ayaz",
                 "Into the Night: Season 1: Sylvie",
-                "Into the Night: Season 1: Terenzio",
-                "Into the Night: Season 1: Rik"
+                "Into the Night: Season 1: Terenzio"
             ],
             "type": "SERIES",
             "firstWatched": "2020-07-14T00:00:00",
@@ -20559,12 +20559,12 @@
             "id": "c79f034d-0174-307f-825a-0e523b7a76d5",
             "title": "Bodyguard",
             "aliases": [
+                "Bodyguard: Episode 1",
                 "Bodyguard: Episode 2",
                 "Bodyguard: Episode 3",
                 "Bodyguard: Episode 4",
                 "Bodyguard: Episode 5",
-                "Bodyguard: Episode 6",
-                "Bodyguard: Episode 1"
+                "Bodyguard: Episode 6"
             ],
             "type": "SERIES",
             "firstWatched": "2020-06-26T00:00:00",

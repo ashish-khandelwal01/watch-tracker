@@ -293,28 +293,41 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         });
     }
 
-    /** Executes a TVMaze search request. */
+    /** Executes a TVMaze request, retrying transient failures up to 3 attempts. */
     private JsonNode request(String endpoint) {
         HttpRequest request = HttpRequest.newBuilder(URI.create(apiRoot + endpoint))
                 .header("Accept", "application/json")
                 .timeout(requestTimeout)
                 .GET()
                 .build();
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 404) {
-                return mapper.createArrayNode();
+        final int maxAttempts = 3;
+        IOException lastIo = null;
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                if (response.statusCode() == 404) {
+                    return mapper.createArrayNode();
+                }
+                if (response.statusCode() < 200 || response.statusCode() >= 300) {
+                    throw new IllegalStateException("TVMaze request failed with HTTP " + response.statusCode());
+                }
+                return mapper.readTree(response.body());
+            } catch (IOException exception) {
+                lastIo = exception;
+                // Retry on timeouts and other transient I/O failures. Permanent HTTP errors are
+                // thrown above and are not retried. After maxAttempts the exception is rethrown so
+                // callers (including FallbackMetadataProvider) can degrade gracefully.
+                if (attempt == maxAttempts) {
+                    throw new IllegalStateException(
+                            "Unable to call TVMaze after " + maxAttempts + " attempts", exception);
+                }
+            } catch (InterruptedException exception) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException("TVMaze request was interrupted", exception);
             }
-            if (response.statusCode() < 200 || response.statusCode() >= 300) {
-                throw new IllegalStateException("TVMaze request failed with HTTP " + response.statusCode());
-            }
-            return mapper.readTree(response.body());
-        } catch (IOException exception) {
-            throw new IllegalStateException("Unable to call TVMaze", exception);
-        } catch (InterruptedException exception) {
-            Thread.currentThread().interrupt();
-            throw new IllegalStateException("TVMaze request was interrupted", exception);
         }
+        // Unreachable: loop always returns or throws, but keeps the compiler happy.
+        throw new IllegalStateException("Unable to call TVMaze after " + maxAttempts + " attempts", lastIo);
     }
 
     /** Maps TVMaze's nested search result to the provider-neutral metadata model. */
