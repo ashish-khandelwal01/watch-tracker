@@ -76,6 +76,42 @@
     },
     {
         "show": {
+            "id": "fb729c84-66e1-3015-997b-bfc7cee17b4d",
+            "title": "Predators",
+            "aliases": [
+                "Predators: Polar Bear"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2024-12-21T00:00:00",
+            "lastWatched": "2024-12-21T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1175836,
+            "title": "Predators of the Wild: Polar Bear",
+            "type": "MOVIE",
+            "genres": [
+                "Documentary"
+            ],
+            "overview": "Polar bear… immensely powerful, ferociously cunning, lethally equipped for devastating exploitation of its frozen realm. Legendary for its endurance, hunting prowess and awesome strength, it is the largest and most formidable land predator of the planet’s most brutally unforgiving environment.  Venture into the trackless Arctic wastes to witness the uncanny survival strategies developed by this magnificent creature – tactics honed to a killing edge during 250,000 years of adaptation to its icy kingdom. See why the largest of these fearsome bears, weighing more than two full-grown lions, stands as the undisputed predatory monarch of a pristine, unconquered land where man still ventures at his peril.",
+            "posterPath": "/yYaO5ryNcbt1Wfeu1GmOEzP5fAP.jpg",
+            "releaseDate": "1993-01-01",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
             "title": "Matt Rife",
             "aliases": [
@@ -116,6 +152,53 @@
             "id": "eb632e99-1b64-31be-a504-27a182277a60",
             "title": "House, M.D.",
             "aliases": [
+                "House, M.D.: Season 2: All In",
+                "House, M.D.: Season 4: Ugly",
+                "House, M.D.: Season 5: Locked In",
+                "House, M.D.: Season 1: Pilot",
+                "House, M.D.: Season 4: No More Mr. Nice Guy",
+                "House, M.D.: Season 2: Distractions",
+                "House, M.D.: Season 5: Painless",
+                "House, M.D.: Season 1: Honeymoon",
+                "House, M.D.: Season 2: House vs. God",
+                "House, M.D.: Season 2: The Mistake",
+                "House, M.D.: Season 1: Kids",
+                "House, M.D.: Season 5: Not Cancer",
+                "House, M.D.: Season 2: Need to Know",
+                "House, M.D.: Season 3: Resignation",
+                "House, M.D.: Season 6: Known Unknowns",
+                "House, M.D.: Season 6: Broken: Part 1",
+                "House, M.D.: Season 6: Broken: Part 2",
+                "House, M.D.: Season 2: Sex Kills",
+                "House, M.D.: Season 1: Maternity",
+                "House, M.D.: Season 7: Family Practice",
+                "House, M.D.: Season 5: Let Them Eat Cake",
+                "House, M.D.: Season 3: Cane and Able",
+                "House, M.D.: Season 2: Euphoria: Part 1",
+                "House, M.D.: Season 2: Euphoria: Part 2",
+                "House, M.D.: Season 2: Safe",
+                "House, M.D.: Season 2: Skin Deep",
+                "House, M.D.: Season 4: Alone",
+                "House, M.D.: Season 7: Unwritten",
+                "House, M.D.: Season 2: No Reason",
+                "House, M.D.: Season 1: Sports Medicine",
+                "House, M.D.: Season 4: You Don't Want to Know",
+                "House, M.D.: Season 1: Histories",
+                "House, M.D.: Season 5: Big Baby",
+                "House, M.D.: Season 3: Meaning",
+                "House, M.D.: Season 6: The Choice",
+                "House, M.D.: Season 3: Informed Consent",
+                "House, M.D.: Season 2: Acceptance",
+                "House, M.D.: Season 2: Autopsy",
+                "House, M.D.: Season 2: Forever",
+                "House, M.D.: Season 6: Moving the Chains",
+                "House, M.D.: Season 6: Baggage",
+                "House, M.D.: Season 3: Fools for Love",
+                "House, M.D.: Season 4: It's a Wonderful Lie",
+                "House, M.D.: Season 3: Act Your Age",
+                "House, M.D.: Season 5: Simple Explanation",
+                "House, M.D.: Season 2: Deception",
+                "House, M.D.: Season 7: Massage Therapy",
                 "House, M.D.: Season 1: Detox",
                 "House, M.D.: Season 5: Adverse Events",
                 "House, M.D.: Season 2: Hunting",
@@ -214,56 +297,9 @@
                 "House, M.D.: Season 6: Epic Fail",
                 "House, M.D.: Season 5: Lucky Thirteen",
                 "House, M.D.: Season 5: House Divided",
-                "House, M.D.: Season 8: Chase",
-                "House, M.D.: Season 2: All In",
-                "House, M.D.: Season 4: Ugly",
-                "House, M.D.: Season 5: Locked In",
-                "House, M.D.: Season 1: Pilot",
-                "House, M.D.: Season 4: No More Mr. Nice Guy",
-                "House, M.D.: Season 2: Distractions",
-                "House, M.D.: Season 5: Painless",
-                "House, M.D.: Season 1: Honeymoon",
-                "House, M.D.: Season 2: House vs. God",
-                "House, M.D.: Season 2: The Mistake",
-                "House, M.D.: Season 1: Kids",
-                "House, M.D.: Season 5: Not Cancer",
-                "House, M.D.: Season 2: Need to Know",
-                "House, M.D.: Season 3: Resignation",
-                "House, M.D.: Season 6: Known Unknowns",
-                "House, M.D.: Season 6: Broken: Part 1",
-                "House, M.D.: Season 6: Broken: Part 2",
-                "House, M.D.: Season 2: Sex Kills",
-                "House, M.D.: Season 1: Maternity",
-                "House, M.D.: Season 7: Family Practice",
-                "House, M.D.: Season 5: Let Them Eat Cake",
-                "House, M.D.: Season 3: Cane and Able",
-                "House, M.D.: Season 2: Euphoria: Part 1",
-                "House, M.D.: Season 2: Euphoria: Part 2",
-                "House, M.D.: Season 2: Safe",
-                "House, M.D.: Season 2: Skin Deep",
-                "House, M.D.: Season 4: Alone",
-                "House, M.D.: Season 7: Unwritten",
-                "House, M.D.: Season 2: No Reason",
-                "House, M.D.: Season 1: Sports Medicine",
-                "House, M.D.: Season 4: You Don't Want to Know",
-                "House, M.D.: Season 1: Histories",
-                "House, M.D.: Season 5: Big Baby",
-                "House, M.D.: Season 3: Meaning",
-                "House, M.D.: Season 6: The Choice",
-                "House, M.D.: Season 3: Informed Consent",
-                "House, M.D.: Season 2: Acceptance",
-                "House, M.D.: Season 2: Autopsy",
-                "House, M.D.: Season 2: Forever",
-                "House, M.D.: Season 6: Moving the Chains",
-                "House, M.D.: Season 6: Baggage",
-                "House, M.D.: Season 3: Fools for Love",
-                "House, M.D.: Season 4: It's a Wonderful Lie",
-                "House, M.D.: Season 3: Act Your Age",
-                "House, M.D.: Season 5: Simple Explanation",
-                "House, M.D.: Season 2: Deception",
-                "House, M.D.: Season 7: Massage Therapy"
+                "House, M.D.: Season 8: Chase"
             ],
-            "type": "DOCUMENTARY",
+            "type": "SERIES",
             "firstWatched": "2024-02-13T00:00:00",
             "lastWatched": "2024-11-11T00:00:00",
             "highestSeasonSeen": 8,
@@ -272,15 +308,53 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 1568278,
-            "title": "House M.D.: The Doctor Directs",
+            "providerId": 1408,
+            "title": "House",
+            "type": "SERIES",
+            "genres": [
+                "Drama"
+            ],
+            "overview": "Dr. Gregory House, a drug-addicted, unconventional, misanthropic medical genius, leads a team of diagnosticians at the fictional Princeton–Plainsboro Teaching Hospital in New Jersey.",
+            "posterPath": "/3Cz7ySOQJmqiuTdrc6CY0r65yDI.jpg",
+            "releaseDate": "2004-11-16",
+            "totalEpisodes": 176,
+            "productionEnded": true
+        },
+        "progress": {
+            "type": "SERIES",
+            "season": 8,
+            "episode": 12,
+            "provider": "TMDB",
+            "status": "IN_PROGRESS"
+        }
+    },
+    {
+        "show": {
+            "id": "6f2de25e-e6c0-302b-9b25-f1b4fc64279f",
+            "title": "Transformers",
+            "aliases": [
+                "Transformers: Rise of the Beasts"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-09-01T00:00:00",
+            "lastWatched": "2024-09-01T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 667538,
+            "title": "Transformers: Rise of the Beasts",
             "type": "MOVIE",
             "genres": [
-                "Documentary"
+                "Science Fiction",
+                "Adventure",
+                "Action"
             ],
-            "overview": "Hugh Laurie invites you onto the set of House M.D. for a behind-the-scenes look at the making of a landmark episode. Fans of the show are brought right into the very centre of the production, showcasing the complex challenges faced by the cast and crew, as well as the creativity that inspires the award-winning team on a daily basis.",
-            "posterPath": "/9YD8o7xuGUymr2ZFisTI0AKewBm.jpg",
-            "releaseDate": "2012-08-21",
+            "overview": "When a new threat capable of destroying the entire planet emerges, Optimus Prime and the Autobots must team up with a powerful faction known as the Maximals. With the fate of humanity hanging in the balance, humans Noah and Elena will do whatever it takes to help the Transformers as they engage in the ultimate battle to save Earth.",
+            "posterPath": "/gPbM0MK8CP8A174rmUwGsADNYKD.jpg",
+            "releaseDate": "2023-06-06",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -386,18 +460,17 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 207703,
-            "title": "Kingsman: The Secret Service",
+            "providerId": 476669,
+            "title": "The King's Man",
             "type": "MOVIE",
             "genres": [
-                "Crime",
-                "Comedy",
                 "Action",
-                "Adventure"
+                "Adventure",
+                "Thriller"
             ],
-            "overview": "The story of a super-secret spy organization that recruits an unrefined but promising street kid into the agency's ultra-competitive training program just as a global threat emerges from a twisted tech genius.",
-            "posterPath": "/17i5YPTfHOjXoieArpATWGRhLj1.jpg",
-            "releaseDate": "2015-01-24",
+            "overview": "As a collection of history's worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them.",
+            "posterPath": "/aq4Pwv5Xeuvj6HZKtxyd23e6bE9.jpg",
+            "releaseDate": "2021-12-22",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -414,12 +487,6 @@
             "id": "d0583c0c-b3ac-336d-a52e-cb11db4aceea",
             "title": "Beauty Inside: Limited Series",
             "aliases": [
-                "Beauty Inside: Limited Series: Episode 16",
-                "Beauty Inside: Limited Series: Episode 1",
-                "Beauty Inside: Limited Series: Episode 2",
-                "Beauty Inside: Limited Series: Episode 3",
-                "Beauty Inside: Limited Series: Episode 4",
-                "Beauty Inside: Limited Series: Episode 5",
                 "Beauty Inside: Limited Series: Episode 6",
                 "Beauty Inside: Limited Series: Episode 7",
                 "Beauty Inside: Limited Series: Episode 8",
@@ -429,7 +496,13 @@
                 "Beauty Inside: Limited Series: Episode 12",
                 "Beauty Inside: Limited Series: Episode 13",
                 "Beauty Inside: Limited Series: Episode 14",
-                "Beauty Inside: Limited Series: Episode 15"
+                "Beauty Inside: Limited Series: Episode 15",
+                "Beauty Inside: Limited Series: Episode 16",
+                "Beauty Inside: Limited Series: Episode 1",
+                "Beauty Inside: Limited Series: Episode 2",
+                "Beauty Inside: Limited Series: Episode 3",
+                "Beauty Inside: Limited Series: Episode 4",
+                "Beauty Inside: Limited Series: Episode 5"
             ],
             "type": "LIMITED_SERIES",
             "firstWatched": "2024-07-11T00:00:00",
@@ -500,6 +573,45 @@
     },
     {
         "show": {
+            "id": "aaf1ff9b-4932-35a0-97c4-8f5268b0aae4",
+            "title": "Jack Reacher",
+            "aliases": [
+                "Jack Reacher: Never Go Back"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-06-13T00:00:00",
+            "lastWatched": "2024-06-13T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 343611,
+            "title": "Jack Reacher: Never Go Back",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Thriller",
+                "Drama",
+                "Crime"
+            ],
+            "overview": "Years after resigning command of an elite military police unit, the nomadic, righter-of-wrongs Reacher is drawn back into the life he left behind when his friend and successor, Major Susan Turner is framed for espionage. Reacher will stop at nothing to prove her innocence and to expose the real perpetrators behind the killings of his former soldiers.",
+            "posterPath": "/cOg3UT2NYWHZxp41vpxAnVCOC4M.jpg",
+            "releaseDate": "2016-10-19",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "b72a95cc-cdff-3935-83e8-93a2b4c729f8",
             "title": "A Wednesday",
             "aliases": [
@@ -524,6 +636,42 @@
             "overview": "Prakash Rathod, a retired police commissioner recounts the most memorable case of his career wherein he was informed about a bomb scare in Mumbai by an ordinary commoner.",
             "posterPath": "/gVUSxtJM3arL5VIUIRNYde20EF0.jpg",
             "releaseDate": "2008-09-05",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "b3981442-cbd0-3556-9e85-05add5b83593",
+            "title": "The Final",
+            "aliases": [
+                "The Final: Attack on Wembley"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2024-05-25T00:00:00",
+            "lastWatched": "2024-05-25T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1263766,
+            "title": "The Final: Attack on Wembley",
+            "type": "MOVIE",
+            "genres": [
+                "Documentary"
+            ],
+            "overview": "As England reach the final of the Euros at last, 6,000 ticketless football fans storm Wembley stadium, leaving destruction in their wake.",
+            "posterPath": "/6XQ1WAbqhBMrEB1UAEiB8Hpy5Ge.jpg",
+            "releaseDate": "2024-05-07",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -562,6 +710,44 @@
             "overview": "In 2001, somewhere in rural India, two young brides get accidentally swapped on a train. In the ensuing chaos, they both encounter a host of colourful characters, resulting in hilarious and unexpected consequences.",
             "posterPath": "/yXt07MYeiyQRzS69PMHy0BPjCGP.jpg",
             "releaseDate": "2024-03-01",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "f8582dea-46ef-3f4b-9c5f-bda356eefbce",
+            "title": "Spider-Man",
+            "aliases": [
+                "Spider-Man: No Way Home"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-05-01T00:00:00",
+            "lastWatched": "2024-05-01T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 634649,
+            "title": "Spider-Man: No Way Home",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Science Fiction"
+            ],
+            "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+            "posterPath": "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+            "releaseDate": "2021-12-15",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -653,6 +839,45 @@
     },
     {
         "show": {
+            "id": "fedd5973-496e-3a7e-875d-eb421e1b6617",
+            "title": "The Pirates",
+            "aliases": [
+                "The Pirates: The Last Royal Treasure"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-02-27T00:00:00",
+            "lastWatched": "2024-02-27T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 591120,
+            "title": "The Pirates: The Last Royal Treasure",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Adventure",
+                "Comedy",
+                "Fantasy"
+            ],
+            "overview": "A gutsy crew of Joseon pirates and bandits battle stormy waters, puzzling clues and militant rivals in search of royal gold lost at sea.",
+            "posterPath": "/50UQeTrUM7ErXzkvqCsV6EXcM3g.jpg",
+            "releaseDate": "2022-01-26",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "f8017b98-9a80-3728-bd1b-7df910a2b180",
             "title": "Kathal - A Jackfruit Mystery",
             "aliases": [
@@ -727,6 +952,45 @@
     },
     {
         "show": {
+            "id": "64eb6697-23ca-3198-bf03-e34cca705c80",
+            "title": "Mechanic",
+            "aliases": [
+                "Mechanic: Resurrection"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-01-07T00:00:00",
+            "lastWatched": "2024-01-07T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 278924,
+            "title": "Mechanic: Resurrection",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Crime",
+                "Thriller",
+                "Adventure"
+            ],
+            "overview": "Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents.",
+            "posterPath": "/bG3Q6EFcngpPn7uPuQTzTuq9DgV.jpg",
+            "releaseDate": "2016-08-25",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "7a01f844-440a-3619-beb7-b453f774dab6",
             "title": "Lagaan",
             "aliases": [
@@ -741,17 +1005,13 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 19666,
-            "title": "Lagaan: Once Upon a Time in India",
+            "providerId": 829332,
+            "title": "Lagaan: The Thrill of Victory",
             "type": "MOVIE",
-            "genres": [
-                "Adventure",
-                "Drama",
-                "History"
-            ],
-            "overview": "The year is 1893 and India is under British occupation. In a small village, the tyrannical Captain Russell has imposed an unprecedented land tax on its citizens. Outraged, Bhuvan, a rebellious farmer, rallies the villagers to publicly oppose the tax. Russell offers a novel way to settle the dispute: he challenges Bhuvan and his men to a game of cricket, a sport completely foreign to India. If Bhuvan and his men can defeat Russell's team, the tax will be repealed.",
-            "posterPath": "/yNX9lFRAFeNLNRIXdqZK9gYrYKa.jpg",
-            "releaseDate": "2001-06-15",
+            "genres": [],
+            "overview": "Join Bhuvan and his team in a game of cricket against the British Raj from the superhit movie Lagaan. Set amidst an idyllic village and surrounded by rocky terrain and farms you get to be in the game with a motion simulator based ride that gives you the best point of view of a moving cricket ball.",
+            "posterPath": "/jZQvD7w8fsNu8iNU24aNF0TuN7Q.jpg",
+            "releaseDate": "2016-11-17",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -814,12 +1074,12 @@
             "id": "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
             "title": "Five Star Chef",
             "aliases": [
-                "Five Star Chef: Episode 4",
-                "Five Star Chef: Episode 5",
-                "Five Star Chef: Episode 6",
                 "Five Star Chef: Episode 1",
                 "Five Star Chef: Episode 2",
-                "Five Star Chef: Episode 3"
+                "Five Star Chef: Episode 3",
+                "Five Star Chef: Episode 4",
+                "Five Star Chef: Episode 5",
+                "Five Star Chef: Episode 6"
             ],
             "type": "SERIES",
             "firstWatched": "2023-11-27T00:00:00",
@@ -852,6 +1112,43 @@
     },
     {
         "show": {
+            "id": "6680f59e-803b-3cc6-a12b-a087614fe065",
+            "title": "The Babysitter",
+            "aliases": [
+                "The Babysitter: Killer Queen"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-06-28T00:00:00",
+            "lastWatched": "2023-06-28T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 623491,
+            "title": "The Babysitter: Killer Queen",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy",
+                "Horror"
+            ],
+            "overview": "Two years after defeating a satanic cult led by his babysitter Bee, Cole's trying to forget his past and focus on surviving high school. But when old enemies unexpectedly return, Cole will once again have to outsmart the forces of evil.",
+            "posterPath": "/imy1OoT1xddt2kqw6hhc4v01e8i.jpg",
+            "releaseDate": "2020-09-10",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "8870613d-d4a2-3b38-ba96-1ebb36f0939f",
             "title": "Gabriel Fluffy Iglesias",
             "aliases": [
@@ -866,16 +1163,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 185440,
-            "title": "Gabriel Iglesias: Aloha Fluffy",
+            "providerId": 573911,
+            "title": "Gabriel \"Fluffy\" Iglesias: One Show Fits All",
             "type": "MOVIE",
             "genres": [
-                "Comedy",
-                "TV Movie"
+                "Comedy"
             ],
-            "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
-            "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
-            "releaseDate": "2013-04-13",
+            "overview": "Gabriel \"Fluffy\" Iglesias discusses his teenage son and encounters with Snoop Dogg, Chris Rock and Vicente Fernández in this stand-up special for 2019.",
+            "posterPath": "/jUt2Zz7sClVIG1co2V9D9iSLN93.jpg",
+            "releaseDate": "2019-01-20",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -956,6 +1252,46 @@
     },
     {
         "show": {
+            "id": "c880d3c8-945e-3fc3-92e9-89bd90a2cbf0",
+            "title": "Dragons",
+            "aliases": [
+                "Dragons: Dawn of the Dragon Racers"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 298115,
+            "title": "Dragons: Dawn of the Dragon Racers",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family",
+                "Adventure",
+                "Comedy",
+                "Fantasy"
+            ],
+            "overview": "A hunt for a lost sheep turns into a competition between Hiccup and friends as they compete to become the first Dragon Racing champion of Berk.",
+            "posterPath": "/sgOXOQyPIjeMi1bnWu1r0CzLsZD.jpg",
+            "releaseDate": "2014-11-01",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "6ed715b5-417c-3e13-b325-c6e30e1bec4d",
             "title": "DreamWorks How to Train Your Dragon Legends: Play All Two",
             "aliases": [
@@ -1020,6 +1356,43 @@
             "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
             "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
             "releaseDate": "2010-11-15",
+            "totalEpisodes": null,
+            "productionEnded": null
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "d97f6434-af82-3536-a02f-0cb58e5c8a6d",
+            "title": "365 Days",
+            "aliases": [
+                "365 Days: This Day"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-05-08T00:00:00",
+            "lastWatched": "2022-05-08T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 829557,
+            "title": "365 Days: This Day",
+            "type": "MOVIE",
+            "genres": [
+                "Romance",
+                "Drama"
+            ],
+            "overview": "Laura and Massimo are back and hotter than ever. But the reunited couple's new beginning is complicated by Massimo’s family ties and a mysterious man who enters Laura’s life to win her heart and trust, at any cost.",
+            "posterPath": "/7qU0SOVcQ8BTJLodcAlulUAG16C.jpg",
+            "releaseDate": "2022-04-26",
             "totalEpisodes": null,
             "productionEnded": null
         },
@@ -1113,7 +1486,7 @@
             "aliases": [
                 "G.I. Joe: Retaliation"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2021-05-31T00:00:00",
             "lastWatched": "2021-05-31T00:00:00",
             "highestSeasonSeen": null,
@@ -1122,20 +1495,28 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 33163,
-            "title": "G.I. Joe: Renegades",
-            "type": "SERIES",
+            "providerId": 72559,
+            "title": "G.I. Joe: Retaliation",
+            "type": "MOVIE",
             "genres": [
-                "Action & Adventure",
-                "Animation"
+                "Action",
+                "Science Fiction",
+                "Adventure",
+                "Thriller"
             ],
-            "overview": "The adventures of the elite G.I. Joe unit, whose members: Duke, Snake Eyes, Scarlett, Roadblock, Tunnel Rat and Ripcord were charged with crimes they did not commit. In order to clear themselves of the charges, they must expose the real culprits, who belong to the powerful corporation COBRA Industries.",
-            "posterPath": "/sRGqn7kzeQOVUdRdYGRZlYDObdu.jpg",
-            "releaseDate": "2010-11-26",
-            "totalEpisodes": 26,
-            "productionEnded": true
+            "overview": "Framed for crimes against the country, the G.I. Joe team is terminated by Presidential order. This forces the G.I. Joes into not only fighting their mortal enemy Cobra; they are forced to contend with threats from within the government that jeopardize their very existence.",
+            "posterPath": "/3rWIZMzTKcCtV0eHJ70Z4Ru659f.jpg",
+            "releaseDate": "2013-03-27",
+            "totalEpisodes": null,
+            "productionEnded": null
         },
-        "progress": null
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
     },
     {
         "show": {
@@ -1172,16 +1553,16 @@
             "id": "40159be8-d3df-392c-8eed-99e3caf83e75",
             "title": "Shadowhunters: The Mortal Instruments",
             "aliases": [
-                "Shadowhunters: The Mortal Instruments: Rise Up",
-                "Shadowhunters: The Mortal Instruments: Major Arcana",
-                "Shadowhunters: The Mortal Instruments: Bad Blood",
-                "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
-                "Shadowhunters: The Mortal Instruments: This World Inverted",
                 "Shadowhunters: The Mortal Instruments: Dead Man's Party",
                 "Shadowhunters: The Mortal Instruments: Of Men and Angels",
                 "Shadowhunters: The Mortal Instruments: Raising Hell",
                 "Shadowhunters: The Mortal Instruments: Moo Shu to Go",
-                "Shadowhunters: The Mortal Instruments: The Mortal Cup"
+                "Shadowhunters: The Mortal Instruments: The Mortal Cup",
+                "Shadowhunters: The Mortal Instruments: Rise Up",
+                "Shadowhunters: The Mortal Instruments: Major Arcana",
+                "Shadowhunters: The Mortal Instruments: Bad Blood",
+                "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy",
+                "Shadowhunters: The Mortal Instruments: This World Inverted"
             ],
             "type": "SERIES",
             "firstWatched": "2021-04-15T00:00:00",
@@ -1556,15 +1937,15 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 453764,
-            "title": "Kenny Sebastian: Don't Be That Guy",
+            "providerId": 707504,
+            "title": "Kenny Sebastian: The Most Interesting Person in the Room",
             "type": "MOVIE",
             "genres": [
                 "Comedy"
             ],
-            "overview": "In his 5th stand-up special, Paavam (Innocent) comedian Kenny Sebastian talks about moving cities, his parents and why he is a former nice guy.",
-            "posterPath": "/nJGam4JG0sd6GHlutjA61KEEI7V.jpg",
-            "releaseDate": "2017-04-23",
+            "overview": "Fusing his musical and stand-up chops, Kenny Sebastian gets analytical about frumpy footwear, flightless birds and his fear of not being funny enough.",
+            "posterPath": "/6OL1wR6YonDJDoLWrcviDfyZtOy.jpg",
+            "releaseDate": "2020-05-29",
             "totalEpisodes": null,
             "productionEnded": null
         },
