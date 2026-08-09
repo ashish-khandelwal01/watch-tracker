@@ -26,7 +26,7 @@ catalogue of show names. Grouping then produces one `Show` per canonical title.
 ## Extension points and roadmap
 
 New platforms can implement an importer that creates `WatchEvent` values, then reuse
-the normalizer and show builder. Future work includes PostgreSQL persistence, a Spring
+the normalizer and show builder. Future work includes MongoDB persistence, a Spring
 Boot dashboard, account security, recommendations, and additional streaming importers.
 
 ## Optional TMDb and TVMaze metadata enrichment
