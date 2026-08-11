@@ -98,6 +98,45 @@ class TmdbMetadataProviderTest {
     }
 
     @Test
+    void distinguishesTitlesThatDifferOnlyByANonAsciiCharacter() throws Exception {
+        // Reproduces the real "The Accountant" / "The Accountant²" mismatch: the superscript "2"
+        // was previously stripped by ASCII-only normalization, making the two titles register as
+        // an identical exact match and letting the sequel win over the original by search order.
+        JsonNode results = readResults(
+                """
+                [
+                    {"media_type": "movie", "id": 1, "title": "The Accountant²"},
+                    {"media_type": "movie", "id": 2, "title": "The Accountant"}
+                ]
+                """);
+
+        JsonNode selected = TmdbMetadataProvider.selectBestMatch(results, "The Accountant");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(2);
+    }
+
+    @Test
+    void keepsTheFirstExactMatchEvenWhenALaterCandidateReleasedMoreRecently() throws Exception {
+        // Regression guard: a previous version of this method tried to break ties between multiple
+        // exact matches by preferring the more recently released one (e.g. a streaming-era reboot
+        // over a same-titled decades-old original). That was reverted after real data showed it
+        // overwhelmingly picking wrong, obscure, recently-added lookalikes over famous, correct
+        // matches — "Twilight", "Back to the Future", and "Catch Me If You Can" among them. This
+        // pins down that the simple first-exact-match behavior stays in place.
+        JsonNode results = readResults(
+                """
+                [
+                    {"media_type": "movie", "id": 1, "title": "Twilight", "release_date": "2008-11-21"},
+                    {"media_type": "tv", "id": 2, "title": "Twilight", "release_date": "2023-06-29"}
+                ]
+                """);
+
+        JsonNode selected = TmdbMetadataProvider.selectBestMatch(results, "Twilight");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(1);
+    }
+
+    @Test
     void skipsNonTvMovieResultsAndInvalidIdsEntirely() throws Exception {
         JsonNode results = readResults(
                 """

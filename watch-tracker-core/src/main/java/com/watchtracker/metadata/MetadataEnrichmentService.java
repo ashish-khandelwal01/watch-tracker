@@ -19,6 +19,10 @@ import java.util.regex.Pattern;
 public final class MetadataEnrichmentService {
     private final MetadataProvider provider;
     private final DiagnosticsCollector diagnostics;
+    // A single show taking this long almost always means a provider call stalled/retried rather
+    // than normal processing cost — see enrich(...) for how this is used.
+    private static final long SLOW_SHOW_THRESHOLD_MILLIS = 5_000;
+    private static final int PROGRESS_LOG_INTERVAL = 25;
 
     /**
      * Creates a service using the supplied metadata provider.
@@ -84,7 +88,28 @@ public final class MetadataEnrichmentService {
         Objects.requireNonNull(shows, "shows must not be null");
         Objects.requireNonNull(events, "events must not be null");
         Objects.requireNonNull(previous, "previous must not be null");
-        return shows.stream().map(show -> enrichOne(show, events, previous)).toList();
+        List<EnrichedShow> results = new java.util.ArrayList<>(shows.size());
+        long runStart = System.nanoTime();
+        for (int i = 0; i < shows.size(); i++) {
+            Show show = shows.get(i);
+            long showStart = System.nanoTime();
+            EnrichedShow result = enrichOne(show, events, previous);
+            long showMillis = (System.nanoTime() - showStart) / 1_000_000;
+            double totalElapsedSeconds = (System.nanoTime() - runStart) / 1_000_000_000.0;
+            // A per-show duration this long almost always means a provider call stalled or was
+            // retried against a slow/throttled endpoint rather than the show itself being expensive
+            // to process — flag it plainly so a long run can be attributed to specific shows instead
+            // of looking like uniform, unexplained slowness.
+            if (showMillis >= SLOW_SHOW_THRESHOLD_MILLIS) {
+                System.err.printf(
+                        "[%d/%d] SLOW SHOW: '%s' took %d ms (%.1f s elapsed total)%n",
+                        i + 1, shows.size(), show.title(), showMillis, totalElapsedSeconds);
+            } else if ((i + 1) % PROGRESS_LOG_INTERVAL == 0 || i + 1 == shows.size()) {
+                System.err.printf("[%d/%d] enriched (%.1f s elapsed)%n", i + 1, shows.size(), totalElapsedSeconds);
+            }
+            results.add(result);
+        }
+        return results;
     }
 
     /** Reuses a previous result when nothing that could affect it has changed, else resolves fresh. */

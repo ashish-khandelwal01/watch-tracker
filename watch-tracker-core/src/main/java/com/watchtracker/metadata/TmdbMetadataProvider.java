@@ -31,6 +31,10 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     // synchronous, single-threaded import for hours with no way to recover.
     private static final Duration CONNECT_TIMEOUT = Duration.ofSeconds(15);
     private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(30);
+    // Any single call taking longer than this is logged to stderr, since it's either an outright
+    // timeout (a strong signal of provider-side throttling) or a slow-but-successful response —
+    // both are worth surfacing when diagnosing an unexpectedly long run.
+    private static final long SLOW_CALL_THRESHOLD_MILLIS = 5_000;
     private final HttpClient client;
     private final String token;
     private final ObjectMapper mapper;
@@ -125,7 +129,15 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      *
      * <p>This prefers the first result whose own title exactly matches the query
      * (case/punctuation-insensitive, via {@link #sameTitle}), scanning every candidate rather than
-     * stopping at the first TV/movie hit.
+     * stopping at the first TV/movie hit. (An earlier version of this method tried to break ties
+     * between multiple exact matches by preferring whichever released most recently — e.g. to prefer
+     * a streaming-era reboot over a same-titled decades-old original. In practice this did far more
+     * harm than good: TMDb has no shortage of small, recently-added, or foreign productions that
+     * happen to share an exact title with a famous movie or show, and "most recent" walked straight
+     * into them — turning correct matches for "Twilight", "Heroes", "Back to the Future", "Catch Me
+     * If You Can" and more into obscure, barely-watched lookalikes. That approach was reverted;
+     * ambiguous same-titled catalog entries are left as a first-match pick like any other, and are a
+     * better fit for manual correction than another blanket heuristic.)
      *
      * <p>When no exact match exists, a plain "first TV/movie hit" fallback can still pick a badly
      * wrong result: TMDb's text relevance can rank a tangentially-titled result (e.g. a making-of
@@ -336,8 +348,10 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         final int maxAttempts = 3;
         IOException lastIo = null;
         for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            long attemptStart = System.nanoTime();
             try {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                logSlowCall("TMDb", endpoint, attempt, attemptStart, response.statusCode());
                 if (response.statusCode() == 404) {
                     // A missing season or series is an expected outcome, not a failure: providers
                     // sometimes group a source platform's containers differently (for example, five
@@ -351,6 +365,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 }
                 return mapper.readTree(response.body());
             } catch (IOException exception) {
+                logSlowCall("TMDb", endpoint, attempt, attemptStart, -1);
                 lastIo = exception;
                 // Retry on timeouts and other transient I/O failures (including soft rate-limits
                 // that never send a response). Permanent HTTP errors are thrown above and are not
@@ -367,6 +382,24 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         }
         // Unreachable: loop always returns or throws, but keeps the compiler happy.
         throw new IllegalStateException("Unable to call TMDb after " + maxAttempts + " attempts", lastIo);
+    }
+
+    /**
+     * Logs a single call's timing to stderr whenever it's slow enough to be a candidate explanation
+     * for an unexpectedly long run — either a full-length timeout (a strong signal of provider-side
+     * throttling that silently withholds a response rather than returning HTTP 429, since that's the
+     * only way a single attempt reaches the configured request timeout) or just a slow-but-successful
+     * response. A statusCode of -1 means the attempt failed with an I/O exception (timeout,
+     * connection reset, etc.) rather than receiving a response at all.
+     */
+    private static void logSlowCall(String provider, String endpoint, int attempt, long attemptStartNanos, int statusCode) {
+        long millis = (System.nanoTime() - attemptStartNanos) / 1_000_000;
+        if (millis < SLOW_CALL_THRESHOLD_MILLIS) {
+            return;
+        }
+        String outcome = statusCode < 0 ? "TIMED OUT / I/O ERROR" : "HTTP " + statusCode;
+        System.err.printf(
+                "  [%s] SLOW CALL: %s (attempt %d) took %d ms -> %s%n", provider, endpoint, attempt, millis, outcome);
     }
 
     /** Maps a TMDb details document to the provider-neutral metadata model. */
@@ -431,7 +464,15 @@ public final class TmdbMetadataProvider implements MetadataProvider {
 
     /** Produces a comparison key for external episode titles. */
     private static String normalizeTitle(String title) {
-        return title == null ? "" : title.toLowerCase(java.util.Locale.ROOT).replaceAll("[^\\p{Alnum}]", "");
+        // \p{Alnum} is a POSIX class that only matches US-ASCII letters/digits unless Java's
+        // UNICODE_CHARACTER_CLASS flag is set, which this pattern doesn't set. That silently drops
+        // any non-ASCII character instead of preserving it — including things like the superscript
+        // "²" in "The Accountant²", which vanishes entirely and leaves the same normalized string as
+        // "The Accountant", making two different movies register as an exact title match. \p{L}
+        // (Unicode letter) and \p{N} (Unicode number, which includes superscript/subscript digits)
+        // are true Unicode property escapes and match consistently regardless of that flag, so
+        // meaningful characters are kept instead of erased.
+        return title == null ? "" : title.toLowerCase(java.util.Locale.ROOT).replaceAll("[^\\p{L}\\p{N}]", "");
     }
 
     /** Parses a provider date while treating absent or invalid data as unavailable. */

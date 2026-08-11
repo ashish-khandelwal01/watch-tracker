@@ -46,6 +46,43 @@ class TvMazeMetadataProviderTest {
     }
 
     @Test
+    void distinguishesNamesThatDifferOnlyByANonAsciiCharacter() throws Exception {
+        // The "²" is a Unicode number character, not ASCII alnum; ASCII-only normalization used to
+        // strip it entirely, making these two register as the same name.
+        JsonNode results = readResults(
+                """
+                [
+                    {"score": 9.0, "show": {"id": 1, "name": "The Accountant²"}},
+                    {"score": 5.0, "show": {"id": 2, "name": "The Accountant"}}
+                ]
+                """);
+
+        JsonNode selected = TvMazeMetadataProvider.selectBestMatch(results, "The Accountant");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(2);
+    }
+
+    @Test
+    void keepsTheFirstExactMatchEvenWhenALaterCandidatePremieredMoreRecently() throws Exception {
+        // Regression guard: a previous version of this method tried to break ties between multiple
+        // exact matches by preferring the more recently premiered one (e.g. a streaming-era reboot
+        // over a same-titled decades-old original). That was reverted after real data showed it
+        // overwhelmingly picking wrong, obscure, recently-added lookalikes over famous, correct
+        // matches. This pins down that the simple first-exact-match behavior stays in place.
+        JsonNode results = readResults(
+                """
+                [
+                    {"score": 9.0, "show": {"id": 1, "name": "Heroes", "premiered": "2006-09-25"}},
+                    {"score": 5.0, "show": {"id": 2, "name": "Heroes", "premiered": "2022-05-23"}}
+                ]
+                """);
+
+        JsonNode selected = TvMazeMetadataProvider.selectBestMatch(results, "Heroes");
+
+        assertThat(selected.path("id").asLong()).isEqualTo(1);
+    }
+
+    @Test
     void exactMatchComparisonIgnoresCaseAndPunctuation() throws Exception {
         JsonNode results = readResults(
                 """
