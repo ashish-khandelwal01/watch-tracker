@@ -12,6 +12,8 @@ import com.watchtracker.metadata.JsonEnrichedShowSnapshot;
 import com.watchtracker.metadata.MetadataEnrichmentService;
 import com.watchtracker.metadata.MetadataProvider;
 import com.watchtracker.metadata.PreviousEnrichmentSnapshot;
+import com.watchtracker.metadata.ReviewItem;
+import com.watchtracker.metadata.ReviewQueueBuilder;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.WatchEvent;
 import com.watchtracker.normalizer.TitleNormalizer;
@@ -63,6 +65,13 @@ public final class WatchTrackerApplication {
 
                     exporter.exportEnrichedJson(enriched, output);
                     System.out.printf("Enriched JSON written to %s.%n", output);
+
+                    List<ReviewItem> reviewQueue = ReviewQueueBuilder.build(enriched);
+                    Path reviewQueueFile = output.resolveSibling("review-queue.json");
+                    exporter.exportReviewQueue(reviewQueue, reviewQueueFile);
+                    System.out.printf(
+                            "Review queue written to %s (%d of %d shows flagged for manual review).%n",
+                            reviewQueueFile, reviewQueue.size(), enriched.size());
                 } else {
                     exporter.exportJson(shows, output);
                 }

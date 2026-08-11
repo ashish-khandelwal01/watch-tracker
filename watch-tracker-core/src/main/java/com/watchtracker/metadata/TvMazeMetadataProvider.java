@@ -95,6 +95,7 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         if (selected == null) {
             return Optional.empty();
         }
+        MatchConfidence confidence = classifyMatchConfidence(selected, title);
         long id = selected.path("id").asLong();
         // TVMaze's search result doesn't carry a total episode count directly (unlike TMDb's
         // /tv/{id} response), so this costs an extra request here — but it's cached by
@@ -104,7 +105,7 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         // metadata match, which has already succeeded by this point. Worst case, totalEpisodes
         // stays null and completion status is reported as UNKNOWN for this show.
         Integer totalEpisodes = id > 0 ? totalEpisodesOrNull(id) : null;
-        ShowMetadata metadata = toMetadata(selected, totalEpisodes);
+        ShowMetadata metadata = toMetadata(selected, totalEpisodes, confidence);
         rememberSeriesMapping(title, metadata.providerId());
         if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
             rememberSeriesMapping(metadata.title(), metadata.providerId());
@@ -288,6 +289,33 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         return closestRelated != null ? closestRelated : fallback;
     }
 
+    /**
+     * Classifies how confidently {@code selected} was matched to {@code queryTitle}, mirroring the
+     * tiers {@link #selectBestMatch} uses internally. Kept as a separate, idempotent classification
+     * step — rather than having {@code selectBestMatch} return the tier directly — so the existing
+     * callers and tests that only need the matched node are unaffected; this is called once, only on
+     * the single already-selected node, so re-deriving the tier costs one more string comparison, not
+     * a second scan of the results.
+     *
+     * @param selected the node {@link #selectBestMatch} returned; must not be {@code null}
+     * @param queryTitle the title that was searched for
+     * @return which tier produced this match
+     */
+    static MatchConfidence classifyMatchConfidence(JsonNode selected, String queryTitle) {
+        String showName = selected.path("name").asText();
+        if (sameTitle(showName, queryTitle)) {
+            return MatchConfidence.EXACT;
+        }
+        String normalizedQuery = normalizeTitle(queryTitle);
+        String normalizedName = normalizeTitle(showName);
+        if (!normalizedQuery.isEmpty()
+                && !normalizedName.isEmpty()
+                && (normalizedName.contains(normalizedQuery) || normalizedQuery.contains(normalizedName))) {
+            return MatchConfidence.CLOSEST_RELATED;
+        }
+        return MatchConfidence.FIRST_RESULT_FALLBACK;
+    }
+
     /** Resolves and caches the TVMaze show id for a title, fetching it at most once per title. */
     private long showId(String showTitle) {
         return showIdByTitle.computeIfAbsent(showTitle, title -> {
@@ -386,7 +414,7 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
     }
 
     /** Maps TVMaze's nested search result to the provider-neutral metadata model. */
-    static ShowMetadata toMetadata(JsonNode show, Integer totalEpisodes) {
+    static ShowMetadata toMetadata(JsonNode show, Integer totalEpisodes, MatchConfidence confidence) {
         List<String> genres = new ArrayList<>();
         show.path("genres").forEach(genre -> genres.add(genre.asText()));
         Boolean productionEnded = show.hasNonNull("status") ? isEndedStatus(show.path("status").asText()) : null;
@@ -400,7 +428,8 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
                 nullable(show.path("image"), "original"),
                 date(nullable(show, "premiered")),
                 totalEpisodes,
-                productionEnded);
+                productionEnded,
+                confidence);
     }
 
     /**

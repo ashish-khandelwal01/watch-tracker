@@ -174,7 +174,7 @@ class TmdbMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv", null);
 
         assertThat(metadata.totalEpisodes()).isEqualTo(26);
         assertThat(metadata.productionEnded()).isTrue();
@@ -193,7 +193,7 @@ class TmdbMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv", null);
 
         assertThat(metadata.totalEpisodes()).isEqualTo(42);
         assertThat(metadata.productionEnded()).isFalse();
@@ -212,7 +212,7 @@ class TmdbMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv", null);
 
         assertThat(metadata.productionEnded()).isTrue();
     }
@@ -228,7 +228,7 @@ class TmdbMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv");
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "tv", null);
 
         assertThat(metadata.totalEpisodes()).isNull();
         assertThat(metadata.productionEnded()).isNull();
@@ -247,7 +247,7 @@ class TmdbMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "movie");
+        ShowMetadata metadata = TmdbMetadataProvider.toMetadata(details, "movie", null);
 
         // number_of_episodes/status are TV-only TMDb fields; even if a movie response happened to
         // carry stray values under those keys, a movie has no episode count to report.

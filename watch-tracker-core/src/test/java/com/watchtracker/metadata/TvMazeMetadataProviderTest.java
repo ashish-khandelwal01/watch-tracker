@@ -164,7 +164,7 @@ class TvMazeMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, 62);
+        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, 62, null);
 
         assertThat(metadata.totalEpisodes()).isEqualTo(62);
         assertThat(metadata.productionEnded()).isTrue();
@@ -182,7 +182,7 @@ class TvMazeMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, 10);
+        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, 10, null);
 
         assertThat(metadata.productionEnded()).isFalse();
     }
@@ -201,7 +201,7 @@ class TvMazeMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, null);
+        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, null, null);
 
         assertThat(metadata.productionEnded()).isFalse();
     }
@@ -217,7 +217,7 @@ class TvMazeMetadataProviderTest {
                 }
                 """);
 
-        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, null);
+        ShowMetadata metadata = TvMazeMetadataProvider.toMetadata(show, null, null);
 
         assertThat(metadata.productionEnded()).isNull();
         assertThat(metadata.totalEpisodes()).isNull();

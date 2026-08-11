@@ -85,10 +85,11 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         if (selected == null) {
             return Optional.empty();
         }
+        MatchConfidence confidence = classifyMatchConfidence(selected, title);
         String mediaType = selected.path("media_type").asText();
         long id = selected.path("id").asLong();
         JsonNode details = request('/' + mediaType + '/' + id);
-        ShowMetadata metadata = toMetadata(details, mediaType);
+        ShowMetadata metadata = toMetadata(details, mediaType, confidence);
         if ("tv".equals(mediaType) && id > 0) {
             rememberSeriesMapping(title, id);
             if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
@@ -187,6 +188,34 @@ public final class TmdbMetadataProvider implements MetadataProvider {
             }
         }
         return closestRelated != null ? closestRelated : fallback;
+    }
+
+    /**
+     * Classifies how confidently {@code selected} was matched to {@code queryTitle}, mirroring the
+     * tiers {@link #selectBestMatch} uses internally. Kept as a separate, idempotent classification
+     * step — rather than having {@code selectBestMatch} return the tier directly — so the existing
+     * callers and tests that only need the matched node are unaffected; this is called once, only on
+     * the single already-selected node, so re-deriving the tier costs one more string comparison, not
+     * a second scan of the results.
+     *
+     * @param selected the node {@link #selectBestMatch} returned; must not be {@code null}
+     * @param queryTitle the title that was searched for
+     * @return which tier produced this match
+     */
+    static MatchConfidence classifyMatchConfidence(JsonNode selected, String queryTitle) {
+        String mediaType = selected.path("media_type").asText();
+        String resultTitle = "tv".equals(mediaType) ? selected.path("name").asText() : selected.path("title").asText();
+        if (sameTitle(resultTitle, queryTitle)) {
+            return MatchConfidence.EXACT;
+        }
+        String normalizedQuery = normalizeTitle(queryTitle);
+        String normalizedResult = normalizeTitle(resultTitle);
+        if (!normalizedQuery.isEmpty()
+                && !normalizedResult.isEmpty()
+                && (normalizedResult.contains(normalizedQuery) || normalizedQuery.contains(normalizedResult))) {
+            return MatchConfidence.CLOSEST_RELATED;
+        }
+        return MatchConfidence.FIRST_RESULT_FALLBACK;
     }
 
     /**
@@ -403,7 +432,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
     }
 
     /** Maps a TMDb details document to the provider-neutral metadata model. */
-    static ShowMetadata toMetadata(JsonNode details, String mediaType) {
+    static ShowMetadata toMetadata(JsonNode details, String mediaType, MatchConfidence confidence) {
         List<String> genres = new ArrayList<>();
         details.path("genres").forEach(genre -> genres.add(genre.path("name").asText()));
         String title = "tv".equals(mediaType)
@@ -428,7 +457,8 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 nullable(details, "poster_path"),
                 date(date),
                 totalEpisodes,
-                productionEnded);
+                productionEnded,
+                confidence);
     }
 
     /**

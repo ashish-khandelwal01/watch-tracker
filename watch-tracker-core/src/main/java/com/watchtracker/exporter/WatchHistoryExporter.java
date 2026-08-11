@@ -96,6 +96,32 @@ public final class WatchHistoryExporter {
     }
 
     /**
+     * Writes shows flagged for manual review as a JSON array. Unlike {@link #exportEnrichedJson},
+     * this only contains shows a {@link com.watchtracker.metadata.ReviewReason} applies to — it's a
+     * short, actionable list, not a dump of every show.
+     *
+     * @param items flagged shows to export, e.g. from {@link com.watchtracker.metadata.ReviewQueueBuilder#build}
+     * @param output destination JSON file
+     */
+    public void exportReviewQueue(List<com.watchtracker.metadata.ReviewItem> items, Path output) {
+        Objects.requireNonNull(items, "items must not be null");
+        Objects.requireNonNull(output, "output must not be null");
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(output.toFile(), items);
+            diagnostics.success(
+                    DiagnosticsStage.EXPORTER,
+                    "Export",
+                    "Review queue export successful",
+                    null,
+                    java.util.Map.of("count", items.size(), "path", output.toString()));
+        } catch (IOException exception) {
+            diagnostics.failure(
+                    DiagnosticsStage.EXPORTER, "Export", "Failed to export review queue: " + exception.getMessage());
+            throw new IllegalStateException("Unable to export review queue to " + output, exception);
+        }
+    }
+
+    /**
      * Writes a compact, spreadsheet-friendly CSV representation of show aggregates.
      *
      * @param shows aggregates to export
