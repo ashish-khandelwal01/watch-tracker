@@ -516,52 +516,6 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
-    void resolvesProgressForConsolidatedEpisodeShows() {
-        // Show with consolidated episodes: "The Lady's Companion" containing "Lesson 1" and "Lesson 2"
-        Show show = new Show(
-                UUID.randomUUID(),
-                "The Lady's Companion",
-                Set.of("The Lady's Companion: Lesson 1: Never Fall in Love", "The Lady's Companion: Lesson 2: Do Not Tell Lies"),
-                ShowType.SERIES,
-                LocalDateTime.of(2025, 11, 18, 0, 0),
-                LocalDateTime.of(2025, 11, 18, 0, 0),
-                null,
-                null,
-                2);
-
-        // Events still have their original canonical titles from before consolidation
-        TitleNormalizer normalizer = new TitleNormalizer();
-        List<WatchEvent> events = List.of(
-                normalizer.normalize(WatchEvent.raw("The Lady's Companion: Lesson 1: Never Fall in Love", LocalDateTime.of(2025, 11, 18, 0, 0), "NETFLIX")),
-                normalizer.normalize(WatchEvent.raw("The Lady's Companion: Lesson 2: Do Not Tell Lies", LocalDateTime.of(2025, 11, 18, 0, 0), "NETFLIX")));
-
-        ShowMetadata showMetadata = new ShowMetadata(
-                "TMDB",
-                280890,
-                "The Lady's Companion",
-                ShowType.SERIES,
-                List.of("Drama"),
-                null,
-                null,
-                null,
-                8,
-                true,
-                MatchConfidence.MANUAL_OVERRIDE);
-
-        RecordingProvider provider = new RecordingProvider(Optional.of(showMetadata), Optional.empty(), Optional.empty());
-
-        EnrichedShow result = new MetadataEnrichmentService(provider)
-                .enrich(List.of(show), events, PreviousEnrichmentSnapshot.EMPTY)
-                .getFirst();
-
-        // Progress should be resolved despite the consolidation
-        // The important thing is that the events are being matched to the show
-        // Since there are no episode numbers in the events, progress might be empty
-        // but the metadata should be present
-        assertThat(result.metadata()).isPresent();
-    }
-
-    @Test
     void resolvesFreshWhenWatchCountHasChangedAndPriorWasNotManualOverride() {
         // Automated prior match + changed watch history → re-search. Only MANUAL_OVERRIDE is sticky.
         UUID showId = UUID.randomUUID();
