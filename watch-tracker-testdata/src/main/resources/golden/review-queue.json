@@ -1,7 +1,7 @@
 [ {
   "showId" : "e91b944d-5703-31d6-9ccf-31b7d9c0b94c",
   "title" : "The Lady's Companion",
-  "aliases" : [ "The Lady's Companion: Lesson 2: Do Not Tell Lies", "The Lady's Companion: Lesson 1: Never Fall in Love" ],
+  "aliases" : [ "The Lady's Companion: Lesson 1: Never Fall in Love", "The Lady's Companion: Lesson 2: Do Not Tell Lies" ],
   "watchCount" : 2,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -13,7 +13,7 @@
 }, {
   "showId" : "99594ea7-bd02-3fab-b745-b81b989fcab4",
   "title" : "Gabriel Iglesias",
-  "aliases" : [ "Gabriel Iglesias: Legend of Fluffy", "Gabriel Iglesias: Stadium Fluffy" ],
+  "aliases" : [ "Gabriel Iglesias: Stadium Fluffy", "Gabriel Iglesias: Legend of Fluffy" ],
   "watchCount" : 2,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -37,7 +37,7 @@
 }, {
   "showId" : "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
   "title" : "Matt Rife",
-  "aliases" : [ "Matt Rife: Natural Selection", "Matt Rife: Lucid - A Crowd Work Special" ],
+  "aliases" : [ "Matt Rife: Lucid - A Crowd Work Special", "Matt Rife: Natural Selection" ],
   "watchCount" : 2,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -56,7 +56,7 @@
 }, {
   "showId" : "fb2564a3-08ff-347b-bd7b-b087524077d5",
   "title" : "Einsatzgruppen: The Nazi Death Squads",
-  "aliases" : [ "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)", "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)" ],
+  "aliases" : [ "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)", "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)" ],
   "watchCount" : 2,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -80,7 +80,7 @@
 }, {
   "showId" : "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
   "title" : "Five Star Chef",
-  "aliases" : [ "Five Star Chef: Episode 1", "Five Star Chef: Episode 2", "Five Star Chef: Episode 3", "Five Star Chef: Episode 4", "Five Star Chef: Episode 5", "Five Star Chef: Episode 6" ],
+  "aliases" : [ "Five Star Chef: Episode 5", "Five Star Chef: Episode 4", "Five Star Chef: Episode 3", "Five Star Chef: Episode 2", "Five Star Chef: Episode 1", "Five Star Chef: Episode 6" ],
   "watchCount" : 6,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -128,14 +128,14 @@
 }, {
   "showId" : "ad251274-f85a-38ea-931f-a9fe4057a4b0",
   "title" : "Black Lightning: LaWanda",
-  "aliases" : [ "Black Lightning: LaWanda: The Book of Hope", "Black Lightning: LaWanda: The Book of Burial" ],
+  "aliases" : [ "Black Lightning: LaWanda: The Book of Burial", "Black Lightning: LaWanda: The Book of Hope" ],
   "watchCount" : 2,
   "reasons" : [ "NO_METADATA_MATCH" ],
   "currentMatch" : null
 }, {
   "showId" : "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
   "title" : "The Order",
-  "aliases" : [ "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Finals: Part 2", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2" ],
+  "aliases" : [ "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1" ],
   "watchCount" : 20,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -159,7 +159,7 @@
 }, {
   "showId" : "1d2544e6-15ab-3abf-aa51-658c33cbcdce",
   "title" : "DreamWorks How to Train Your Dragon Legends",
-  "aliases" : [ "DreamWorks How to Train Your Dragon Legends: Book of Dragons", "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper" ],
+  "aliases" : [ "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper", "DreamWorks How to Train Your Dragon Legends: Book of Dragons" ],
   "watchCount" : 2,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -171,7 +171,7 @@
 }, {
   "showId" : "eece3028-137a-3b3e-8057-b49c45c17b4f",
   "title" : "DreamWorks Kung Fu Panda Awesome Secrets",
-  "aliases" : [ "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five", "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters" ],
+  "aliases" : [ "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters", "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five" ],
   "watchCount" : 2,
   "reasons" : [ "NO_METADATA_MATCH" ],
   "currentMatch" : null
@@ -192,18 +192,6 @@
     "provider" : "TMDB",
     "providerId" : 3764,
     "title" : "Hustle",
-    "confidence" : "EXACT"
-  }
-}, {
-  "showId" : "6fc42223-3a40-375a-9f02-8e11c3cd1140",
-  "title" : "Goodbye",
-  "aliases" : [ "Goodbye" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 87433,
-    "title" : "Goodbye",
     "confidence" : "EXACT"
   }
 }, {
@@ -231,22 +219,10 @@
     "confidence" : "CLOSEST_RELATED"
   }
 }, {
-  "showId" : "0f9197b3-e286-3752-a984-831949087332",
-  "title" : "Little",
-  "aliases" : [ "Little" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH", "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 312032,
-    "title" : "Little Fox",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
   "showId" : "e2574b49-487b-34b3-a46a-af11b6aaa88a",
   "title" : "GAME ON: A Comedy Crossover Event",
-  "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games" ],
-  "watchCount" : 3,
+  "aliases" : [ "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games", "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort" ],
+  "watchCount" : 4,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
     "provider" : "TMDB",
@@ -254,10 +230,10 @@
     "title" : "GAME ON: A Comedy Crossover Event",
     "confidence" : "MANUAL_OVERRIDE"
   }
-},{
+}, {
   "showId" : "d7454aa0-13ed-3fe5-bc28-dadb6de085cb",
   "title" : "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series",
-  "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race" ],
+  "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century" ],
   "watchCount" : 4,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
