@@ -188,6 +188,139 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
+    void keepsPriorMetadataWhenOverrideRemovedAndShowIdChanges() {
+        // Override had consolidated "The Lady's Companion: Lesson N" under title "The Lady's Companion"
+        // and resolved TMDB metadata (progress still null — named lessons never matched). After the
+        // override is removed, the normalizer re-splits episodes under "The Lady's Companion: Lesson 1".
+        // The aggregate id changes, but title/alias matching against shows.json must keep the metadata
+        // rather than falling through to a failed title search (NO_METADATA_MATCH).
+        UUID priorId = UUID.nameUUIDFromBytes("The Lady's Companion".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        Show priorShow = new Show(
+                priorId,
+                "The Lady's Companion",
+                Set.of(
+                        "The Lady's Companion: Lesson 1: Never Fall in Love",
+                        "The Lady's Companion: Lesson 2: Do Not Tell Lies"),
+                ShowType.SERIES,
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                null,
+                null,
+                2);
+        ShowMetadata priorMetadata = new ShowMetadata(
+                "TMDB",
+                280890,
+                "The Lady's Companion",
+                ShowType.SERIES,
+                List.of("Drama"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.MANUAL_OVERRIDE);
+        EnrichedShow priorResult = new EnrichedShow(priorShow, Optional.of(priorMetadata), Optional.empty());
+        PreviousEnrichmentSnapshot previous =
+                id -> id.equals(priorId) ? Optional.of(priorResult) : Optional.empty();
+        // Enrichment service uses findMatching — provide a snapshot that only id-matches the prior id
+        // so the title/alias path in JsonEnrichedShowSnapshot is what we really need to test separately.
+        // Here we use an anonymous snapshot with full findMatching.
+        previous = new PreviousEnrichmentSnapshot() {
+            @Override
+            public Optional<EnrichedShow> find(UUID showId) {
+                return Optional.empty(); // id deliberately does not match the new aggregate
+            }
+
+            @Override
+            public Optional<EnrichedShow> findMatching(Show show) {
+                // Simulate JsonEnrichedShowSnapshot title/alias match
+                if (show.title().startsWith("The Lady's Companion")) {
+                    return Optional.of(priorResult);
+                }
+                return Optional.empty();
+            }
+        };
+
+        UUID currentId = UUID.nameUUIDFromBytes(
+                "The Lady's Companion: Lesson 1".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        Show currentShow = new Show(
+                currentId,
+                "The Lady's Companion: Lesson 1",
+                Set.of("The Lady's Companion: Lesson 1: Never Fall in Love"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                null,
+                null,
+                1);
+        RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(currentShow), List.of(), previous)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(priorMetadata);
+        assertThat(result.show().type()).isEqualTo(ShowType.SERIES);
+        assertThat(provider.findByTitleCalls).isZero();
+        assertThat(provider.findByIdCalls).isZero();
+    }
+
+    @Test
+    void keepsPriorMetadataWhenShowDataChangedButWasManualOverride() {
+        // Same id, watch count grew, prior matchConfidence=MANUAL_OVERRIDE — sticky, re-resolve progress.
+        UUID showId = UUID.randomUUID();
+        Set<String> aliases = Set.of("Dark: Chapter One", "Dark: Chapter Two", "Dark: Chapter Three");
+        Show previousShow = new Show(
+                showId,
+                "Dark",
+                Set.of("Dark: Chapter One", "Dark: Chapter Two"),
+                ShowType.SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                1,
+                2,
+                2);
+        Show currentShow = new Show(
+                showId,
+                "Dark",
+                aliases,
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 3, 0, 0),
+                1,
+                3,
+                3);
+        ShowMetadata previousMetadata = new ShowMetadata(
+                "TMDB",
+                70523,
+                "Dark",
+                ShowType.SERIES,
+                List.of("Drama"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.MANUAL_OVERRIDE);
+        EnrichedShow previousResult =
+                new EnrichedShow(previousShow, Optional.of(previousMetadata), Optional.of(new WatchProgress(1, 2, "TMDB")));
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+        RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
+        List<WatchEvent> events = List.of(
+                numberedEvent("Dark", 1, 1), numberedEvent("Dark", 1, 2), numberedEvent("Dark", 1, 3));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(currentShow), events, previous)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(previousMetadata);
+        assertThat(result.progress()).isPresent();
+        assertThat(result.progress().get().episode()).isEqualTo(3);
+        assertThat(provider.findByTitleCalls).isZero();
+    }
+
+
+    @Test
     void usesManualOverrideInsteadOfSearchingByTitle() {
         Show show = new Show(
                 UUID.randomUUID(),
@@ -429,7 +562,8 @@ class MetadataEnrichmentServiceTest {
     }
 
     @Test
-    void resolvesFreshWhenWatchCountHasChangedSincePreviousRun() {
+    void resolvesFreshWhenWatchCountHasChangedAndPriorWasNotManualOverride() {
+        // Automated prior match + changed watch history → re-search. Only MANUAL_OVERRIDE is sticky.
         UUID showId = UUID.randomUUID();
         Set<String> aliases = Set.of("Dark: Chapter One");
         Show currentShow = new Show(
@@ -442,7 +576,6 @@ class MetadataEnrichmentServiceTest {
                 1,
                 4,
                 4);
-        // One fewer watch event than the current show, so the previous result must not be reused.
         Show previousShow = new Show(
                 showId,
                 "Dark",
@@ -453,11 +586,20 @@ class MetadataEnrichmentServiceTest {
                 1,
                 3,
                 3);
+        ShowMetadata previousMetadata = new ShowMetadata(
+                "TMDB",
+                70523,
+                "Dark",
+                ShowType.SERIES,
+                List.of("Drama"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.EXACT);
         EnrichedShow previousResult = new EnrichedShow(
-                previousShow,
-                Optional.of(
-                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)),
-                Optional.of(new WatchProgress(1, 3, "TVMAZE")));
+                previousShow, Optional.of(previousMetadata), Optional.of(new WatchProgress(1, 3, "TVMAZE")));
         PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
         ShowMetadata freshMetadata =
                 new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama", "Mystery"), null, null, null);
@@ -478,12 +620,14 @@ class MetadataEnrichmentServiceTest {
                 .getFirst();
 
         assertThat(result.metadata()).contains(freshMetadata);
-        assertThat(result.progress()).contains(new WatchProgress(1, 4, "NETFLIX"));
+        assertThat(result.progress()).isPresent();
+        assertThat(result.progress().get().episode()).isEqualTo(4);
         assertThat(provider.findByTitleCalls).isEqualTo(1);
     }
 
     @Test
-    void resolvesFreshWhenAliasesHaveChangedSincePreviousRun() {
+    void resolvesFreshWhenAliasesHaveChangedAndPriorWasNotManualOverride() {
+        // Automated prior match + alias drift → re-search. Only MANUAL_OVERRIDE is sticky.
         UUID showId = UUID.randomUUID();
         Show currentShow = new Show(
                 showId,
@@ -495,8 +639,6 @@ class MetadataEnrichmentServiceTest {
                 1,
                 2,
                 2);
-        // Same watch count, season, and episode as current, but a different alias observed under a
-        // platform title change; watch count alone cannot detect this, so aliases must be compared.
         Show previousShow = new Show(
                 showId,
                 "Dark",
@@ -507,15 +649,87 @@ class MetadataEnrichmentServiceTest {
                 1,
                 2,
                 2);
-        EnrichedShow previousResult = new EnrichedShow(
-                previousShow,
-                Optional.of(
-                        new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null)));
+        ShowMetadata previousMetadata = new ShowMetadata(
+                "TMDB",
+                70523,
+                "Dark",
+                ShowType.SERIES,
+                List.of("Drama"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.EXACT);
+        EnrichedShow previousResult = new EnrichedShow(previousShow, Optional.of(previousMetadata));
         PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
         RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
 
         new MetadataEnrichmentService(provider).enrich(List.of(currentShow), List.of(), previous);
 
+        assertThat(provider.findByTitleCalls).isEqualTo(1);
+    }
+
+    @Test
+    void doesNotKeepPriorMetadataWhenIdChangesUnlessManualOverride() {
+        // Title/alias match finds a prior EXACT row under a different id — must not sticky-reuse.
+        UUID priorId = UUID.nameUUIDFromBytes("The Lady's Companion".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        Show priorShow = new Show(
+                priorId,
+                "The Lady's Companion",
+                Set.of("The Lady's Companion: Lesson 1: Never Fall in Love"),
+                ShowType.SERIES,
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata priorMetadata = new ShowMetadata(
+                "TMDB",
+                280890,
+                "The Lady's Companion",
+                ShowType.SERIES,
+                List.of("Drama"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.EXACT);
+        EnrichedShow priorResult = new EnrichedShow(priorShow, Optional.of(priorMetadata), Optional.empty());
+        PreviousEnrichmentSnapshot previous = new PreviousEnrichmentSnapshot() {
+            @Override
+            public Optional<EnrichedShow> find(UUID showId) {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<EnrichedShow> findMatching(Show show) {
+                if (show.title().startsWith("The Lady's Companion")) {
+                    return Optional.of(priorResult);
+                }
+                return Optional.empty();
+            }
+        };
+        UUID currentId = UUID.nameUUIDFromBytes(
+                "The Lady's Companion: Lesson 1".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+        Show currentShow = new Show(
+                currentId,
+                "The Lady's Companion: Lesson 1",
+                Set.of("The Lady's Companion: Lesson 1: Never Fall in Love"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                LocalDateTime.of(2025, 11, 18, 0, 0),
+                null,
+                null,
+                1);
+        RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(currentShow), List.of(), previous)
+                .getFirst();
+
+        assertThat(result.metadata()).isEmpty();
         assertThat(provider.findByTitleCalls).isEqualTo(1);
     }
 

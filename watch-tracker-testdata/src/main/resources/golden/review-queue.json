@@ -3,15 +3,25 @@
   "title" : "The Lady's Companion: Lesson 2",
   "aliases" : [ "The Lady's Companion: Lesson 2: Do Not Tell Lies" ],
   "watchCount" : 1,
-  "reasons" : [ "NO_METADATA_MATCH" ],
-  "currentMatch" : null
+  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
+  "currentMatch" : {
+    "provider" : "TMDB",
+    "providerId" : 280890,
+    "title" : "The Lady's Companion",
+    "confidence" : "MANUAL_OVERRIDE"
+  }
 }, {
   "showId" : "025c871f-03e6-3fe2-9a91-7a72dc3de025",
   "title" : "The Lady's Companion: Lesson 1",
   "aliases" : [ "The Lady's Companion: Lesson 1: Never Fall in Love" ],
   "watchCount" : 1,
-  "reasons" : [ "NO_METADATA_MATCH" ],
-  "currentMatch" : null
+  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
+  "currentMatch" : {
+    "provider" : "TMDB",
+    "providerId" : 280890,
+    "title" : "The Lady's Companion",
+    "confidence" : "MANUAL_OVERRIDE"
+  }
 }, {
   "showId" : "99594ea7-bd02-3fab-b745-b81b989fcab4",
   "title" : "Gabriel Iglesias",
@@ -49,18 +59,6 @@
     "confidence" : "CLOSEST_RELATED"
   }
 }, {
-  "showId" : "52ae6794-fd6d-3a73-8b9d-61a006fb5894",
-  "title" : "Kalki 2898 AD (Hindi)",
-  "aliases" : [ "Kalki 2898 AD (Hindi)" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 801688,
-    "title" : "Kalki 2898-AD",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
   "showId" : "46fbc427-5422-3e10-9491-c5b1bf60ba12",
   "title" : "Indian 2",
   "aliases" : [ "Indian 2" ],
@@ -94,7 +92,7 @@
 }, {
   "showId" : "d0583c0c-b3ac-336d-a52e-cb11db4aceea",
   "title" : "Beauty Inside: Limited Series",
-  "aliases" : [ "Beauty Inside: Limited Series: Episode 12", "Beauty Inside: Limited Series: Episode 11", "Beauty Inside: Limited Series: Episode 10", "Beauty Inside: Limited Series: Episode 9", "Beauty Inside: Limited Series: Episode 8", "Beauty Inside: Limited Series: Episode 7", "Beauty Inside: Limited Series: Episode 6", "Beauty Inside: Limited Series: Episode 5", "Beauty Inside: Limited Series: Episode 4", "Beauty Inside: Limited Series: Episode 3", "Beauty Inside: Limited Series: Episode 2", "Beauty Inside: Limited Series: Episode 1", "Beauty Inside: Limited Series: Episode 16", "Beauty Inside: Limited Series: Episode 15", "Beauty Inside: Limited Series: Episode 14", "Beauty Inside: Limited Series: Episode 13" ],
+  "aliases" : [ "Beauty Inside: Limited Series: Episode 10", "Beauty Inside: Limited Series: Episode 9", "Beauty Inside: Limited Series: Episode 8", "Beauty Inside: Limited Series: Episode 7", "Beauty Inside: Limited Series: Episode 6", "Beauty Inside: Limited Series: Episode 5", "Beauty Inside: Limited Series: Episode 4", "Beauty Inside: Limited Series: Episode 3", "Beauty Inside: Limited Series: Episode 2", "Beauty Inside: Limited Series: Episode 1", "Beauty Inside: Limited Series: Episode 16", "Beauty Inside: Limited Series: Episode 15", "Beauty Inside: Limited Series: Episode 14", "Beauty Inside: Limited Series: Episode 13", "Beauty Inside: Limited Series: Episode 12", "Beauty Inside: Limited Series: Episode 11" ],
   "watchCount" : 16,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -209,7 +207,7 @@
 }, {
   "showId" : "2222e589-9fc2-3096-9d1a-2ad6cd872c82",
   "title" : "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series",
-  "aliases" : [ "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 3", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 2", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 1", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 4" ],
+  "aliases" : [ "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 2", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 1", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 4", "The Railway Men - The Untold Story Of Bhopal 1984: Limited Series: Episode 3" ],
   "watchCount" : 4,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -269,7 +267,7 @@
 }, {
   "showId" : "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
   "title" : "Five Star Chef",
-  "aliases" : [ "Five Star Chef: Episode 2", "Five Star Chef: Episode 1", "Five Star Chef: Episode 6", "Five Star Chef: Episode 5", "Five Star Chef: Episode 4", "Five Star Chef: Episode 3" ],
+  "aliases" : [ "Five Star Chef: Episode 1", "Five Star Chef: Episode 6", "Five Star Chef: Episode 5", "Five Star Chef: Episode 4", "Five Star Chef: Episode 3", "Five Star Chef: Episode 2" ],
   "watchCount" : 6,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -324,7 +322,7 @@
 }, {
   "showId" : "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
   "title" : "The Order",
-  "aliases" : [ "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2" ],
+  "aliases" : [ "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2" ],
   "watchCount" : 20,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -410,7 +408,7 @@
 }, {
   "showId" : "7c9a179e-5555-37f1-a354-6fa422d8a77f",
   "title" : "One Day at a Time",
-  "aliases" : [ "One Day at a Time: Season 1: Hold, Please", "One Day at a Time: Season 1: Viva Cuba", "One Day at a Time: Season 2: Storage Wars", "One Day at a Time: Season 1: Strays", "One Day at a Time: Season 1: No Mass", "One Day at a Time: Season 2: Work Hard, Play Hard", "One Day at a Time: Season 2: Not Yet", "One Day at a Time: Season 1: Quinces", "One Day at a Time: Season 3: Outside", "One Day at a Time: Season 1: A Snowman's Tale", "One Day at a Time: Season 2: Exclusive", "One Day at a Time: Season 3: Benefit with Friends", "One Day at a Time: Season 3: The Funeral", "One Day at a Time: Season 2: The Turn", "One Day at a Time: Season 3: The First Time", "One Day at a Time: Season 2: Locked Down", "One Day at a Time: Season 3: A Penny and a Nicole", "One Day at a Time: Season 1: Bobos and Mamitas", "One Day at a Time: Season 1: One Lie at a Time", "One Day at a Time: Season 3: Hermanos", "One Day at a Time: Season 3: Nip It in the Bud", "One Day at a Time: Season 1: Sex Talk", "One Day at a Time: Season 3: Anxiety", "One Day at a Time: Season 2: Schooled", "One Day at a Time: Season 3: Drinking and Driving", "One Day at a Time: Season 2: To Zir, With Love", "One Day at a Time: Season 2: Roots", "One Day at a Time: Season 3: One Valentine's Day at a Time", "One Day at a Time: Season 2: Citizen Lydia", "One Day at a Time: Season 3: She Drives Me Crazy", "One Day at a Time: Season 1: Hurricane Victor", "One Day at a Time: Season 1: Pride & Prejudice", "One Day at a Time: Season 1: This Is It", "One Day at a Time: Season 1: The Death of Mrs. Resnick", "One Day at a Time: Season 3: The Man", "One Day at a Time: Season 2: What Happened", "One Day at a Time: Season 2: Hello, Penelope", "One Day at a Time: Season 2: Homecoming", "One Day at a Time: Season 3: Ghosts" ],
+  "aliases" : [ "One Day at a Time: Season 2: Work Hard, Play Hard", "One Day at a Time: Season 2: Not Yet", "One Day at a Time: Season 1: Quinces", "One Day at a Time: Season 3: Outside", "One Day at a Time: Season 1: A Snowman's Tale", "One Day at a Time: Season 2: Exclusive", "One Day at a Time: Season 3: Benefit with Friends", "One Day at a Time: Season 3: The Funeral", "One Day at a Time: Season 2: The Turn", "One Day at a Time: Season 3: The First Time", "One Day at a Time: Season 2: Locked Down", "One Day at a Time: Season 3: A Penny and a Nicole", "One Day at a Time: Season 1: Bobos and Mamitas", "One Day at a Time: Season 1: One Lie at a Time", "One Day at a Time: Season 3: Hermanos", "One Day at a Time: Season 3: Nip It in the Bud", "One Day at a Time: Season 1: Sex Talk", "One Day at a Time: Season 3: Anxiety", "One Day at a Time: Season 2: Schooled", "One Day at a Time: Season 3: Drinking and Driving", "One Day at a Time: Season 2: To Zir, With Love", "One Day at a Time: Season 2: Roots", "One Day at a Time: Season 3: One Valentine's Day at a Time", "One Day at a Time: Season 2: Citizen Lydia", "One Day at a Time: Season 3: She Drives Me Crazy", "One Day at a Time: Season 1: Hurricane Victor", "One Day at a Time: Season 1: Pride & Prejudice", "One Day at a Time: Season 1: This Is It", "One Day at a Time: Season 1: The Death of Mrs. Resnick", "One Day at a Time: Season 3: The Man", "One Day at a Time: Season 2: What Happened", "One Day at a Time: Season 2: Hello, Penelope", "One Day at a Time: Season 2: Homecoming", "One Day at a Time: Season 3: Ghosts", "One Day at a Time: Season 1: Hold, Please", "One Day at a Time: Season 1: Viva Cuba", "One Day at a Time: Season 2: Storage Wars", "One Day at a Time: Season 1: Strays", "One Day at a Time: Season 1: No Mass" ],
   "watchCount" : 39,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -470,7 +468,7 @@
 }, {
   "showId" : "40159be8-d3df-392c-8eed-99e3caf83e75",
   "title" : "Shadowhunters: The Mortal Instruments",
-  "aliases" : [ "Shadowhunters: The Mortal Instruments: The Mortal Cup", "Shadowhunters: The Mortal Instruments: Moo Shu to Go", "Shadowhunters: The Mortal Instruments: Raising Hell", "Shadowhunters: The Mortal Instruments: Of Men and Angels", "Shadowhunters: The Mortal Instruments: Dead Man's Party", "Shadowhunters: The Mortal Instruments: This World Inverted", "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy", "Shadowhunters: The Mortal Instruments: Bad Blood", "Shadowhunters: The Mortal Instruments: Major Arcana", "Shadowhunters: The Mortal Instruments: Rise Up" ],
+  "aliases" : [ "Shadowhunters: The Mortal Instruments: Moo Shu to Go", "Shadowhunters: The Mortal Instruments: Raising Hell", "Shadowhunters: The Mortal Instruments: Of Men and Angels", "Shadowhunters: The Mortal Instruments: Dead Man's Party", "Shadowhunters: The Mortal Instruments: This World Inverted", "Shadowhunters: The Mortal Instruments: The Descent Into Hell Isn't Easy", "Shadowhunters: The Mortal Instruments: Bad Blood", "Shadowhunters: The Mortal Instruments: Major Arcana", "Shadowhunters: The Mortal Instruments: Rise Up", "Shadowhunters: The Mortal Instruments: The Mortal Cup" ],
   "watchCount" : 10,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -570,7 +568,7 @@
 }, {
   "showId" : "d7454aa0-13ed-3fe5-bc28-dadb6de085cb",
   "title" : "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series",
-  "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race" ],
+  "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps" ],
   "watchCount" : 4,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {

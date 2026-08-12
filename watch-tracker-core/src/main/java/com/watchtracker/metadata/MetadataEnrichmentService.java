@@ -95,11 +95,14 @@ public final class MetadataEnrichmentService {
      * those fields means new watch history could shift the resolved episode position or the
      * matched provider title, so the show is resolved fresh.
      *
-     * <p>When a previous result is otherwise reusable but has metadata without resolved progress,
-     * metadata is kept and progress is resolved again from the current events. Missing progress is
-     * always re-attempted whenever metadata is available (prior snapshot, override, cache, or
-     * fresh provider match) — progress is never left null solely because an earlier run failed to
-     * resolve it.
+     * <p>Prior metadata with {@link MatchConfidence#MANUAL_OVERRIDE} is sticky: it is reused even
+     * if the show aggregate id changed (title/alias match against the prior export) or watch data
+     * shifted, and progress is resolved again from the current events. That is what keeps a
+     * human-confirmed match (e.g. Lady's Companion via overrides.json) from falling back to
+     * {@code NO_METADATA_MATCH} after the override is removed and episodes re-split under new
+     * titles. Automated matches are not sticky — they only fully reuse when the show is unchanged
+     * under the same id. Missing progress is always re-attempted when metadata is available and
+     * the prior row is otherwise eligible for reuse.
      *
      * @param shows show aggregates to enrich
      * @param events normalized source watch events
@@ -152,10 +155,22 @@ public final class MetadataEnrichmentService {
                     java.util.Map.of("provider", md.provider(), "id", md.providerId()));
         }
 
-        Optional<EnrichedShow> priorOpt = overrideMetadata.isPresent() ? Optional.empty() : previous.find(show.id());
+        // When an override is configured for this show it wins outright — prior results are
+        // ignored so a human correction can never be shadowed by a stale shows.json entry.
+        // Otherwise consult the previous export. Id match is preferred; title/alias matching is
+        // only used to recover prior rows whose aggregate id shifted (e.g. override removed and
+        // episodes re-split). Sticky reuse across id/data changes is restricted to metadata that
+        // was produced by a manual override ({@link MatchConfidence#MANUAL_OVERRIDE}) — automated
+        // matches are not sticky and re-resolve when the show is no longer unchanged.
+        Optional<EnrichedShow> priorOpt =
+                overrideMetadata.isPresent() ? Optional.empty() : previous.findMatching(show);
         if (priorOpt.isPresent()) {
             EnrichedShow prior = priorOpt.get();
-            if (unchangedSincePrevious(show, prior.show())) {
+            boolean sameId = prior.show().id().equals(show.id());
+            boolean unchanged = unchangedSincePrevious(show, prior.show());
+            boolean manualOverride = isManualOverrideMetadata(prior.metadata());
+
+            if (unchanged && sameId) {
                 // Nothing about the imported show changed. Prefer reusing prior work, but never
                 // leave progress unresolved when metadata is available — an earlier run may have
                 // matched the title and still failed episode resolution (or predated a progress fix).
@@ -165,19 +180,11 @@ public final class MetadataEnrichmentService {
                             show.title(),
                             "Previous snapshot present and unchanged but missing metadata and progress; resolving fresh");
                 } else if (prior.progress().isEmpty()) {
-                    // Metadata present, progress absent: keep metadata, re-resolve progress only.
-                    ShowMetadata md = prior.metadata().get();
-                    diagnostics.success(
-                            DiagnosticsStage.METADATA_PROVIDER,
-                            show.title(),
-                            "Reused cached metadata; re-resolving progress (previous run had none)",
-                            null,
-                            java.util.Map.of("provider", md.provider(), "id", md.providerId()));
-                    seedSeriesMappings(show.title(), md);
-                    ShowType mdType = resolveShowType(show, md);
-                    ShowType progressType = progressTypeFor(mdType, md);
-                    Optional<WatchProgress> progress = highestProgress(show, events, progressType, prior.metadata());
-                    return new EnrichedShow(withType(show, mdType), prior.metadata(), progress);
+                    return reuseMetadataResolveProgress(
+                            show,
+                            events,
+                            prior,
+                            "Reused cached metadata; re-resolving progress (previous run had none)");
                 } else {
                     // Emit diagnostics for cached metadata so diagnostics output reflects reused data.
                     if (prior.metadata().isPresent()) {
@@ -218,28 +225,49 @@ public final class MetadataEnrichmentService {
                     Show finalShow = withType(show, wp.type());
                     return new EnrichedShow(finalShow, prior.metadata(), prior.progress());
                 }
-            } else {
-                // Explain why the prior snapshot was not reused for easier debugging.
+            } else if (manualOverride) {
+                // Sticky only for human-confirmed overrides. After the override is removed from
+                // overrides.json, the shows.json row still carries matchConfidence=MANUAL_OVERRIDE;
+                // title/alias matching recovers it even when the aggregate id changed because
+                // episode titles are no longer consolidated. Automated matches are intentionally
+                // not sticky — they re-search when watch data or grouping changes.
+                String reason = sameId
+                        ? "Reused MANUAL_OVERRIDE metadata after show data changed; re-resolving progress"
+                        : "Reused MANUAL_OVERRIDE metadata via title/alias match (show id changed, e.g. override removed); re-resolving progress";
                 diagnostics.info(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
-                        "Previous snapshot present but show data changed; resolving fresh");
-                java.util.Map<String, Object> previousState = new java.util.LinkedHashMap<>();
-                previousState.put("previousHighestSeason", prior.show().highestSeasonSeen());
-                previousState.put("previousHighestEpisode", prior.show().highestEpisodeSeen());
-                previousState.put("previousWatchCount", prior.show().watchCount());
-                previousState.put("previousAliases", prior.show().aliases());
-                java.util.Map<String, Object> currentState = new java.util.LinkedHashMap<>();
-                currentState.put("currentHighestSeason", show.highestSeasonSeen());
-                currentState.put("currentHighestEpisode", show.highestEpisodeSeen());
-                currentState.put("currentWatchCount", show.watchCount());
-                currentState.put("currentAliases", show.aliases());
-                diagnostics.success(
+                        sameId
+                                ? "Previous MANUAL_OVERRIDE metadata present but show data changed; keeping it"
+                                : "Previous MANUAL_OVERRIDE metadata matched by title/alias (id differs); keeping it");
+                return reuseMetadataResolveProgress(show, events, prior, reason);
+            } else {
+                // Automated prior match, but show is no longer unchanged (or id shifted without a
+                // manual override) — resolve fresh.
+                diagnostics.info(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
-                        "Previous vs current",
-                        previousState,
-                        currentState);
+                        sameId
+                                ? "Previous snapshot present but show data changed; resolving fresh"
+                                : "Previous snapshot matched by title/alias but was not MANUAL_OVERRIDE; resolving fresh");
+                if (sameId) {
+                    java.util.Map<String, Object> previousState = new java.util.LinkedHashMap<>();
+                    previousState.put("previousHighestSeason", prior.show().highestSeasonSeen());
+                    previousState.put("previousHighestEpisode", prior.show().highestEpisodeSeen());
+                    previousState.put("previousWatchCount", prior.show().watchCount());
+                    previousState.put("previousAliases", prior.show().aliases());
+                    java.util.Map<String, Object> currentState = new java.util.LinkedHashMap<>();
+                    currentState.put("currentHighestSeason", show.highestSeasonSeen());
+                    currentState.put("currentHighestEpisode", show.highestEpisodeSeen());
+                    currentState.put("currentWatchCount", show.watchCount());
+                    currentState.put("currentAliases", show.aliases());
+                    diagnostics.success(
+                            DiagnosticsStage.METADATA_PROVIDER,
+                            show.title(),
+                            "Previous vs current",
+                            previousState,
+                            currentState);
+                }
             }
         }
 
@@ -375,6 +403,35 @@ public final class MetadataEnrichmentService {
         Show finalShow = metadata.isPresent() ? withType(show, mdType) : show;
         return new EnrichedShow(finalShow, metadata, progress);
 
+    }
+
+
+
+    /** True when prior metadata was produced by a human override ({@link MatchConfidence#MANUAL_OVERRIDE}). */
+    private static boolean isManualOverrideMetadata(Optional<ShowMetadata> metadata) {
+        return metadata.isPresent()
+                && metadata.get().matchConfidence() == MatchConfidence.MANUAL_OVERRIDE;
+    }
+
+    /**
+     * Keeps prior metadata, seeds series mappings, and always re-resolves progress from the
+     * current events. Used whenever a previous export already identified the provider entity but
+     * progress is missing, stale, or the aggregate id/title shifted (override removed).
+     */
+    private EnrichedShow reuseMetadataResolveProgress(
+            Show show, List<WatchEvent> events, EnrichedShow prior, String metadataMessage) {
+        ShowMetadata md = prior.metadata().get();
+        diagnostics.success(
+                DiagnosticsStage.METADATA_PROVIDER,
+                show.title(),
+                metadataMessage,
+                null,
+                java.util.Map.of("provider", md.provider(), "id", md.providerId()));
+        seedSeriesMappings(show.title(), md);
+        ShowType mdType = resolveShowType(show, md);
+        ShowType progressType = progressTypeFor(mdType, md);
+        Optional<WatchProgress> progress = highestProgress(show, events, progressType, prior.metadata());
+        return new EnrichedShow(withType(show, mdType), prior.metadata(), progress);
     }
 
     /**
