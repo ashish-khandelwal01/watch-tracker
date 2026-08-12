@@ -13310,7 +13310,7 @@
   "show" : {
     "id" : "e2574b49-487b-34b3-a46a-af11b6aaa88a",
     "title" : "GAME ON: A Comedy Crossover Event",
-    "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort" ],
+    "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games" ],
     "type" : "SERIES",
     "firstWatched" : "2021-04-09T00:00:00",
     "lastWatched" : "2021-04-09T00:00:00",
@@ -13329,33 +13329,7 @@
     "releaseDate" : "2020-08-10",
     "totalEpisodes" : 4,
     "productionEnded" : true,
-    "matchConfidence" : "LOW_CONFIDENCE_MATCH"
-  },
-  "progress" : null
-}, {
-  "show" : {
-    "id" : "28b6b9fe-49d7-33c9-b6e6-7fe4ed688b4c",
-    "title" : "GAME ON: A Comedy Crossover Event: The Big Show Show",
-    "aliases" : [ "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games" ],
-    "type" : "SERIES",
-    "firstWatched" : "2021-04-09T00:00:00",
-    "lastWatched" : "2021-04-09T00:00:00",
-    "highestSeasonSeen" : null,
-    "highestEpisodeSeen" : null,
-    "watchCount" : 1
-  },
-  "metadata" : {
-    "provider" : "TMDB",
-    "providerId" : 107304,
-    "title" : "GAME ON: A Comedy Crossover Event",
-    "type" : "SERIES",
-    "genres" : [ "Comedy", "Family" ],
-    "overview" : "Worlds collide in this special event featuring familiar faces, surprise cameos and stories of spirited competition from four different comedy series.",
-    "posterPath" : "/r9DHpKaqxT8kLGtUP6KPiwQZMYy.jpg",
-    "releaseDate" : "2020-08-10",
-    "totalEpisodes" : 4,
-    "productionEnded" : true,
-    "matchConfidence" : "LOW_CONFIDENCE_MATCH"
+    "matchConfidence" : "MANUAL_OVERRIDE"
   },
   "progress" : null
 }, {

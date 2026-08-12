@@ -245,28 +245,16 @@
 }, {
   "showId" : "e2574b49-487b-34b3-a46a-af11b6aaa88a",
   "title" : "GAME ON: A Comedy Crossover Event",
-  "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort" ],
+  "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games" ],
   "watchCount" : 3,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
     "provider" : "TMDB",
     "providerId" : 107304,
     "title" : "GAME ON: A Comedy Crossover Event",
-    "confidence" : "LOW_CONFIDENCE_MATCH"
+    "confidence" : "MANUAL_OVERRIDE"
   }
-}, {
-  "showId" : "28b6b9fe-49d7-33c9-b6e6-7fe4ed688b4c",
-  "title" : "GAME ON: A Comedy Crossover Event: The Big Show Show",
-  "aliases" : [ "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 107304,
-    "title" : "GAME ON: A Comedy Crossover Event",
-    "confidence" : "LOW_CONFIDENCE_MATCH"
-  }
-}, {
+},{
   "showId" : "d7454aa0-13ed-3fe5-bc28-dadb6de085cb",
   "title" : "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series",
   "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race" ],
