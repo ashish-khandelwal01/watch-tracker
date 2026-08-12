@@ -10,6 +10,7 @@ import com.watchtracker.metadata.EnrichedShow;
 import com.watchtracker.metadata.FileMetadataCache;
 import com.watchtracker.metadata.JsonEnrichedShowSnapshot;
 import com.watchtracker.metadata.MetadataEnrichmentService;
+import com.watchtracker.metadata.MetadataOverrideStore;
 import com.watchtracker.metadata.MetadataProvider;
 import com.watchtracker.metadata.PreviousEnrichmentSnapshot;
 import com.watchtracker.metadata.ReviewItem;
@@ -59,8 +60,15 @@ public final class WatchTrackerApplication {
             } else {
                 if (parsedArguments.useMetadata()) {
                     PreviousEnrichmentSnapshot previous = JsonEnrichedShowSnapshot.load(output);
+                    Path overridesFile = parsedArguments.overridesFile() != null
+                            ? parsedArguments.overridesFile()
+                            : output.resolveSibling("overrides.json");
+                    MetadataOverrideStore overrides = MetadataOverrideStore.load(overridesFile);
+                    if (overrides.size() > 0) {
+                        System.out.printf("Loaded %d manual override(s) from %s.%n", overrides.size(), overridesFile);
+                    }
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
-                                    metadataProvider(parsedArguments.cacheDirectory()), diagnostics)
+                                    metadataProvider(parsedArguments.cacheDirectory()), diagnostics, overrides)
                             .enrich(shows, events, previous);
 
                     exporter.exportEnrichedJson(enriched, output);
@@ -93,11 +101,13 @@ public final class WatchTrackerApplication {
     /** Prints the command-line usage contract to standard error. */
     private static void usage() {
         System.err.println(
-                "Usage: watch-tracker <netflix.csv> [shows.json|shows.csv] [--metadata] [--cache <directory>] [--diagnostics [<directory>]]");
+                "Usage: watch-tracker <netflix.csv> [shows.json|shows.csv] [--metadata] [--cache <directory>] "
+                        + "[--overrides <file>] [--diagnostics [<directory>]]");
     }
 
     /** Immutable parsing result for the command-line interface. */
-    private record Arguments(Path input, Path output, boolean useMetadata, Path cacheDirectory, Path diagnosticsFile) {
+    private record Arguments(
+            Path input, Path output, boolean useMetadata, Path cacheDirectory, Path diagnosticsFile, Path overridesFile) {
         private static final Path DEFAULT_CACHE = Path.of(".watch-tracker", "metadata-cache");
         private static final Path DEFAULT_DIAGNOSTICS = Path.of("build", "diagnostics");
 
@@ -108,6 +118,7 @@ public final class WatchTrackerApplication {
             boolean metadata = false;
             Path cache = DEFAULT_CACHE;
             Path diagnostics = null;
+            Path overrides = null;
             for (int index = 1; index < values.length; index++) {
                 switch (values[index]) {
                     case "--metadata", "--tmdb" -> metadata = true;
@@ -122,6 +133,12 @@ public final class WatchTrackerApplication {
                             throw new IllegalArgumentException("--cache requires a directory");
                         }
                         cache = Path.of(values[index]);
+                    }
+                    case "--overrides" -> {
+                        if (++index == values.length) {
+                            throw new IllegalArgumentException("--overrides requires a file path");
+                        }
+                        overrides = Path.of(values[index]);
                     }
                     default -> {
                         if (values[index].startsWith("--") || output != null) {
@@ -139,7 +156,7 @@ public final class WatchTrackerApplication {
                             .endsWith(".csv")) {
                 throw new IllegalArgumentException("Metadata enrichment is available only for JSON output");
             }
-            return new Arguments(input, output, metadata, cache, diagnostics);
+            return new Arguments(input, output, metadata, cache, diagnostics, overrides);
         }
     }
 }

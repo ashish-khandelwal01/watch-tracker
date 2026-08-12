@@ -70,6 +70,27 @@ public interface MetadataProvider {
     }
 
     /**
+     * Finds metadata for a provider id directly, bypassing title search entirely.
+     *
+     * <p>Used for manual corrections (see {@link MetadataOverride}): once a human has identified the
+     * correct provider entity, searching by title again would be redundant at best, and at worst
+     * could rank a different — wrong — result than the one already confirmed. The default
+     * implementation returns {@link Optional#empty()}; providers that support id-based lookup
+     * override it.
+     *
+     * @param provider which provider's id space this is (e.g. {@code "TMDB"} or {@code "TVMAZE"});
+     *     a provider that doesn't recognize the value returns {@link Optional#empty()} so a
+     *     multi-provider chain can try the next one
+     * @param mediaType {@code "movie"} or {@code "tv"} — meaningful only for providers (TMDb) whose
+     *     id space is split by media type; ignored by providers with a single id space (TVMaze)
+     * @param providerId the provider-specific identifier
+     * @return metadata for that exact entity, when found
+     */
+    default Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+        return Optional.empty();
+    }
+
+    /**
      * Seeds this provider's in-memory title → series-id map for the remainder of the run.
      *
      * <p>Call after a successful {@link #findByTitle} match so a later title-based episode resolve

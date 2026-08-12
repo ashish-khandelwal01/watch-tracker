@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 public final class MetadataEnrichmentService {
     private final MetadataProvider provider;
     private final DiagnosticsCollector diagnostics;
+    private final MetadataOverrideStore overrides;
     // A single show taking this long almost always means a provider call stalled/retried rather
     // than normal processing cost — see enrich(...) for how this is used.
     private static final long SLOW_SHOW_THRESHOLD_MILLIS = 5_000;
@@ -40,8 +41,23 @@ public final class MetadataEnrichmentService {
      * @param diagnostics diagnostics collector for recording resolution steps
      */
     public MetadataEnrichmentService(MetadataProvider provider, DiagnosticsCollector diagnostics) {
+        this(provider, diagnostics, MetadataOverrideStore.EMPTY);
+    }
+
+    /**
+     * Creates a service using the supplied metadata provider, diagnostics collector, and manual
+     * overrides.
+     *
+     * @param provider provider used to retrieve metadata
+     * @param diagnostics diagnostics collector for recording resolution steps
+     * @param overrides human-confirmed corrections consulted before any search, cache, or prior
+     *     snapshot — see {@link MetadataOverrideStore}
+     */
+    public MetadataEnrichmentService(
+            MetadataProvider provider, DiagnosticsCollector diagnostics, MetadataOverrideStore overrides) {
         this.provider = Objects.requireNonNull(provider, "provider must not be null");
         this.diagnostics = Objects.requireNonNull(diagnostics, "diagnostics must not be null");
+        this.overrides = Objects.requireNonNull(overrides, "overrides must not be null");
     }
 
     /**
@@ -114,7 +130,23 @@ public final class MetadataEnrichmentService {
 
     /** Reuses a previous result when nothing that could affect it has changed, else resolves fresh. */
     private EnrichedShow enrichOne(Show show, List<WatchEvent> events, PreviousEnrichmentSnapshot previous) {
-        Optional<EnrichedShow> priorOpt = previous.find(show.id());
+        // A manual override represents a human already confirming (or correcting) which provider
+        // entity this show is, so it takes precedence over everything else: a reused prior
+        // snapshot, the persistent cache, and a fresh search would all just reproduce the mismatch
+        // the override exists to fix. Checked first, before even consulting the prior snapshot, so
+        // a stale wrong snapshot can never outlive a correction.
+        Optional<ShowMetadata> overrideMetadata = resolveOverride(show.title());
+        if (overrideMetadata.isPresent()) {
+            ShowMetadata md = overrideMetadata.get();
+            diagnostics.success(
+                    DiagnosticsStage.METADATA_PROVIDER,
+                    show.title(),
+                    "Matched metadata from manual override",
+                    null,
+                    java.util.Map.of("provider", md.provider(), "id", md.providerId()));
+        }
+
+        Optional<EnrichedShow> priorOpt = overrideMetadata.isPresent() ? Optional.empty() : previous.find(show.id());
         if (priorOpt.isPresent()) {
             EnrichedShow prior = priorOpt.get();
             if (unchangedSincePrevious(show, prior.show())) {
@@ -158,7 +190,18 @@ public final class MetadataEnrichmentService {
                                 progressOut);
                     }
 
-                    return new EnrichedShow(show, prior.metadata(), prior.progress());
+                    Show finalShow = show;
+                    if (prior.progress().isPresent()) {
+                        // prior.progress().type() is the fully-resolved type from whenever this show
+                        // was last freshly resolved — already accounting for the documentary/
+                        // limited-series adjustments a fresh resolution applies — so reuse it directly
+                        // rather than re-deriving it here, keeping the two paths in sync by
+                        // construction instead of by keeping duplicated derivation logic consistent.
+                        finalShow = withType(show, prior.progress().get().type());
+                    } else if (prior.metadata().isPresent()) {
+                        finalShow = withType(show, prior.metadata().get().type());
+                    }
+                    return new EnrichedShow(finalShow, prior.metadata(), prior.progress());
                 }
             } else {
                 // Explain why the prior snapshot was not reused for easier debugging.
@@ -188,10 +231,12 @@ public final class MetadataEnrichmentService {
         // Fall through to fresh resolution when no prior snapshot or it differed.
         String originalTitle = show.title();
         boolean matchedAfterStrip = false;
-        Optional<ShowMetadata> metadata = Optional.empty();
+        Optional<ShowMetadata> metadata = overrideMetadata;
 
         // First, consult the persistent cache only (if available) for the original and stripped titles.
-        if (provider instanceof CachingMetadataProvider cmp) {
+        // Skipped entirely when an override already supplied metadata — a human's explicit correction
+        // should never be second-guessed by a title-keyed cache entry that predates it.
+        if (metadata.isEmpty() && provider instanceof CachingMetadataProvider cmp) {
             metadata = cmp.getFromCache(originalTitle);
             if (metadata.isEmpty() && originalTitle.toLowerCase(Locale.ROOT).contains("limited series")) {
                 String cleaned = stripLimitedSeries(originalTitle);
@@ -234,8 +279,15 @@ public final class MetadataEnrichmentService {
         // single retry title can't safely disambiguate which movie is which — that case needs the
         // shows to be un-merged at grouping time, which this per-show retry deliberately does not
         // attempt.
+        //
+        // Also skipped entirely when the metadata came from a manual override: a human already
+        // identified the exact right entity, so retrying with a different title risks overriding
+        // the override with a worse guess.
         boolean retriedWithFullTitle = false;
-        if (metadata.isPresent() && metadata.get().type() == ShowType.MOVIE && show.aliases().size() == 1) {
+        if (overrideMetadata.isEmpty()
+                && metadata.isPresent()
+                && metadata.get().type() == ShowType.MOVIE
+                && show.aliases().size() == 1) {
             String fullRawTitle = show.aliases().iterator().next();
             if (!fullRawTitle.equals(originalTitle)) {
                 Optional<ShowMetadata> fullTitleMetadata = findByTitleSafely(fullRawTitle);
@@ -264,7 +316,10 @@ public final class MetadataEnrichmentService {
             } else if (mdType == ShowType.SERIES && hasLimited) {
                 mdType = ShowType.LIMITED_SERIES;
             }
-            if (retriedWithFullTitle) {
+            if (overrideMetadata.isPresent()) {
+                // Already logged once, right when the override was detected — avoid a redundant
+                // second "matched" entry for the same show.
+            } else if (retriedWithFullTitle) {
                 diagnostics.success(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
@@ -310,21 +365,23 @@ public final class MetadataEnrichmentService {
                 ? ShowType.MOVIE
                 : mdType;
         Optional<WatchProgress> progress = highestProgress(show, events, progressType, metadata);
-        Show finalShow = show;
-        if (metadata.isPresent()) {
-            finalShow = new Show(
-                    show.id(),
-                    show.title(),
-                    show.aliases(),
-                    mdType,
-                    show.firstWatched(),
-                    show.lastWatched(),
-                    show.highestSeasonSeen(),
-                    show.highestEpisodeSeen(),
-                    show.watchCount());
-        }
+        Show finalShow = metadata.isPresent() ? withType(show, mdType) : show;
         return new EnrichedShow(finalShow, metadata, progress);
 
+    }
+
+    /** Returns a copy of {@code show} with its {@code type} replaced, all other fields unchanged. */
+    private static Show withType(Show show, ShowType type) {
+        return new Show(
+                show.id(),
+                show.title(),
+                show.aliases(),
+                type,
+                show.firstWatched(),
+                show.lastWatched(),
+                show.highestSeasonSeen(),
+                show.highestEpisodeSeen(),
+                show.watchCount());
     }
 
     private static final Pattern LIMITED_SERIES_TRAILING = Pattern.compile("(?i)\\s*:?\\s*limited series\\b\\s*$");
@@ -346,6 +403,43 @@ public final class MetadataEnrichmentService {
                     DiagnosticsStage.METADATA_PROVIDER,
                     title,
                     "Metadata provider failed: " + exception.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Resolves a manual override for a show's title, if one is configured, bypassing title search
+     * entirely in favor of the human-confirmed provider entity.
+     *
+     * <p>A configured-but-unresolvable override (a typo'd id, a since-removed entry, a transient
+     * provider failure) is treated as absent rather than propagated as an error: this show simply
+     * falls through to the normal resolution path, the same as if no override existed, rather than
+     * the whole import aborting over one bad correction.
+     */
+    private Optional<ShowMetadata> resolveOverride(String title) {
+        Optional<MetadataOverride> override = overrides.forTitle(title);
+        if (override.isEmpty()) {
+            return Optional.empty();
+        }
+        MetadataOverride o = override.get();
+        try {
+            Optional<ShowMetadata> resolved = provider.findById(o.provider(), o.mediaType(), o.providerId());
+            if (resolved.isEmpty()) {
+                diagnostics.failure(
+                        DiagnosticsStage.METADATA_PROVIDER,
+                        title,
+                        "Manual override configured but did not resolve (provider="
+                                + o.provider()
+                                + ", id="
+                                + o.providerId()
+                                + "); falling back to normal resolution");
+            }
+            return resolved;
+        } catch (RuntimeException exception) {
+            diagnostics.failure(
+                    DiagnosticsStage.METADATA_PROVIDER,
+                    title,
+                    "Manual override lookup failed: " + exception.getMessage() + "; falling back to normal resolution");
             return Optional.empty();
         }
     }

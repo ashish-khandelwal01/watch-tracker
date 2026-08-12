@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.watchtracker.diagnostics.DiagnosticsCollector;
 import com.watchtracker.diagnostics.DiagnosticsEntry;
 import com.watchtracker.diagnostics.DiagnosticsStage;
+import com.watchtracker.diagnostics.NoOpDiagnosticsCollector;
 import com.watchtracker.exporter.WatchHistoryExporter;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.ShowType;
@@ -106,6 +107,165 @@ class MetadataEnrichmentServiceTest {
         assertThat(result.progress()).contains(previousProgress);
         assertThat(provider.findByTitleCalls).isZero();
         assertThat(provider.resolveEpisodeCalls).isZero();
+        // Regression guard: the reused show's type must come from the resolved progress/metadata,
+        // not the freshly-rebuilt-this-run Show object, whose type always starts as UNKNOWN until
+        // enrichment sets it. A previous version of this reuse path returned the fresh show
+        // unchanged, silently reverting an already-resolved show's type back to UNKNOWN on every
+        // run where nothing about the show itself changed — while its progress still (correctly)
+        // reported the real type, since that value was just carried forward untouched. The more
+        // runs with unchanged watch history, the more shows this quietly broke.
+        assertThat(result.show().type()).isEqualTo(ShowType.SERIES);
+    }
+
+    @Test
+    void reusedShowTypeFallsBackToMetadataTypeWhenNoProgressWasResolved() {
+        // Same bug, different branch: a show can have resolved metadata but no resolved progress
+        // (e.g. episode titles never matched). The reuse path must still pull the type from
+        // somewhere other than the freshly-rebuilt-this-run Show, which starts as UNKNOWN.
+        UUID showId = UUID.randomUUID();
+        Show currentShow = new Show(
+                showId,
+                "It's Okay to Not Be Okay",
+                Set.of("It's Okay to Not Be Okay: The Lady In Red Shoes"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata previousMetadata = new ShowMetadata(
+                "TMDB", 241506, "It's Okay to Not Be Okay", ShowType.SERIES, List.of("Drama"), null, null, null);
+        EnrichedShow previousResult = new EnrichedShow(currentShow, Optional.of(previousMetadata), Optional.empty());
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+        RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(currentShow), List.of(), previous)
+                .getFirst();
+
+        assertThat(result.progress()).isEmpty();
+        assertThat(result.show().type()).isEqualTo(ShowType.SERIES);
+    }
+
+    @Test
+    void usesManualOverrideInsteadOfSearchingByTitle() {
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Kingsman",
+                Set.of("Kingsman: The Secret Service", "Kingsman: The Golden Circle"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                2);
+        ShowMetadata correctedMetadata = new ShowMetadata(
+                "TMDB",
+                9884,
+                "Kingsman: The Secret Service",
+                ShowType.MOVIE,
+                List.of("Action"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.MANUAL_OVERRIDE);
+        RecordingProvider provider =
+                new RecordingProvider(Optional.empty(), Optional.empty(), Optional.of(correctedMetadata));
+        MetadataOverrideStore overrides = MetadataOverrideStore.of(
+                List.of(new MetadataOverride("Kingsman", "TMDB", "movie", 9884)));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, new NoOpDiagnosticsCollector(), overrides)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(correctedMetadata);
+        assertThat(result.metadata().get().matchConfidence()).isEqualTo(MatchConfidence.MANUAL_OVERRIDE);
+        assertThat(result.show().type()).isEqualTo(ShowType.MOVIE);
+        // The whole point of an override is to skip search entirely — a human already identified
+        // the exact entity, so re-searching by title would just risk reintroducing the mismatch.
+        assertThat(provider.findByTitleCalls).isZero();
+        assertThat(provider.findByIdCalls).isEqualTo(1);
+        assertThat(provider.lastFindByIdProvider).isEqualTo("TMDB");
+        assertThat(provider.lastFindByIdMediaType).isEqualTo("movie");
+        assertThat(provider.lastFindByIdProviderId).isEqualTo(9884L);
+    }
+
+    @Test
+    void overrideTakesPrecedenceOverAnUnchangedPreviousSnapshot() {
+        // The whole point of an override is to correct a bad match. If an unchanged prior snapshot
+        // (with the old, wrong metadata) were consulted first, the override could never take
+        // effect on a show whose watch history hasn't changed since the bad match was made — which
+        // is exactly the common case, since the override exists because the match was already wrong.
+        UUID showId = UUID.randomUUID();
+        Show show = new Show(
+                showId,
+                "Kingsman",
+                Set.of("Kingsman: The Secret Service", "Kingsman: The Golden Circle"),
+                ShowType.MOVIE,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                2);
+        ShowMetadata wrongPriorMetadata = new ShowMetadata(
+                "TMDB", 12345, "The King's Man", ShowType.MOVIE, List.of("Action"), null, null, null);
+        EnrichedShow priorResult = new EnrichedShow(show, Optional.of(wrongPriorMetadata), Optional.empty());
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(priorResult) : Optional.empty();
+        ShowMetadata correctedMetadata = new ShowMetadata(
+                "TMDB",
+                9884,
+                "Kingsman: The Secret Service",
+                ShowType.MOVIE,
+                List.of("Action"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.MANUAL_OVERRIDE);
+        RecordingProvider provider =
+                new RecordingProvider(Optional.empty(), Optional.empty(), Optional.of(correctedMetadata));
+        MetadataOverrideStore overrides = MetadataOverrideStore.of(
+                List.of(new MetadataOverride("Kingsman", "TMDB", "movie", 9884)));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, new NoOpDiagnosticsCollector(), overrides)
+                .enrich(List.of(show), List.of(), previous)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(correctedMetadata);
+        assertThat(provider.findByIdCalls).isEqualTo(1);
+    }
+
+    @Test
+    void fallsBackToNormalResolutionWhenAnOverrideDoesNotResolve() {
+        // A typo'd id, a since-removed entry, or a transient provider failure on the override
+        // lookup must degrade to normal search rather than leaving the show permanently blank.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Some Show",
+                Set.of("Some Show"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        ShowMetadata fallbackMetadata =
+                new ShowMetadata("TMDB", 1, "Some Show", ShowType.MOVIE, List.of(), null, null, null);
+        // findByIdResult left empty: the override is configured but the lookup "fails".
+        RecordingProvider provider = new RecordingProvider(Optional.of(fallbackMetadata), Optional.empty());
+        MetadataOverrideStore overrides =
+                MetadataOverrideStore.of(List.of(new MetadataOverride("Some Show", "TMDB", "movie", 999)));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, new NoOpDiagnosticsCollector(), overrides)
+                .enrich(List.of(show), List.of(), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(fallbackMetadata);
+        assertThat(provider.findByIdCalls).isEqualTo(1);
+        assertThat(provider.findByTitleCalls).isEqualTo(1);
     }
 
     @Test
@@ -1205,12 +1365,25 @@ class MetadataEnrichmentServiceTest {
     private static final class RecordingProvider implements MetadataProvider {
         private final Optional<ShowMetadata> metadataToReturn;
         private final Optional<WatchProgress> episodeToReturn;
+        private final Optional<ShowMetadata> findByIdResult;
         private int findByTitleCalls;
         private int resolveEpisodeCalls;
+        private int findByIdCalls;
+        private String lastFindByIdProvider;
+        private String lastFindByIdMediaType;
+        private long lastFindByIdProviderId;
 
         RecordingProvider(Optional<ShowMetadata> metadataToReturn, Optional<WatchProgress> episodeToReturn) {
+            this(metadataToReturn, episodeToReturn, Optional.empty());
+        }
+
+        RecordingProvider(
+                Optional<ShowMetadata> metadataToReturn,
+                Optional<WatchProgress> episodeToReturn,
+                Optional<ShowMetadata> findByIdResult) {
             this.metadataToReturn = metadataToReturn;
             this.episodeToReturn = episodeToReturn;
+            this.findByIdResult = findByIdResult;
         }
 
         @Override
@@ -1223,6 +1396,15 @@ class MetadataEnrichmentServiceTest {
         public Optional<WatchProgress> resolveEpisode(String showTitle, int season, String episodeTitle) {
             resolveEpisodeCalls++;
             return episodeToReturn;
+        }
+
+        @Override
+        public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+            findByIdCalls++;
+            lastFindByIdProvider = provider;
+            lastFindByIdMediaType = mediaType;
+            lastFindByIdProviderId = providerId;
+            return findByIdResult;
         }
     }
 

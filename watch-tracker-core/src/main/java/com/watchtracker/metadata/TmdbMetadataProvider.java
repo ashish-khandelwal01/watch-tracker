@@ -89,11 +89,55 @@ public final class TmdbMetadataProvider implements MetadataProvider {
         String mediaType = selected.path("media_type").asText();
         long id = selected.path("id").asLong();
         JsonNode details = request('/' + mediaType + '/' + id);
+        return Optional.of(mapDetails(details, mediaType, id, confidence, title));
+    }
+
+    /**
+     * Finds metadata directly by TMDb id, bypassing search entirely — used for manual overrides
+     * where a human has already identified the correct entity.
+     *
+     * @param provider must be {@code "TMDB"} (case-insensitive); any other value returns
+     *     {@link Optional#empty()} so a multi-provider chain can try the next provider
+     * @param mediaType {@code "movie"} or anything else, which is treated as {@code "tv"} — TMDb's
+     *     id space is split by media type, so this must match the id's actual type
+     * @param providerId the TMDb id
+     * @return metadata for that entity, or {@link Optional#empty()} when the provider doesn't
+     *     match, the id is invalid, or TMDb has no such entity
+     */
+    @Override
+    public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+        if (!"TMDB".equalsIgnoreCase(provider) || providerId <= 0) {
+            return Optional.empty();
+        }
+        String resolvedMediaType = "movie".equalsIgnoreCase(mediaType) ? "movie" : "tv";
+        JsonNode details = request('/' + resolvedMediaType + '/' + providerId);
+        if (!details.hasNonNull("id") || details.path("id").asLong() <= 0) {
+            return Optional.empty();
+        }
+        return Optional.of(mapDetails(details, resolvedMediaType, providerId, MatchConfidence.MANUAL_OVERRIDE, null));
+    }
+
+    /**
+     * Maps a fetched TMDb details document to the provider-neutral metadata model and seeds the
+     * title → series-id cache used by later episode resolution, shared by both {@link #findByTitle}
+     * and {@link #findById}.
+     *
+     * @param details the {@code /tv/{id}} or {@code /movie/{id}} response
+     * @param mediaType {@code "tv"} or {@code "movie"}
+     * @param id the TMDb id, already known to be valid
+     * @param confidence how this match was found
+     * @param extraTitleToSeed an additional title to seed the id under (the original search query,
+     *     for {@link #findByTitle}), or {@code null} when there isn't one (as with {@link #findById})
+     */
+    private ShowMetadata mapDetails(
+            JsonNode details, String mediaType, long id, MatchConfidence confidence, String extraTitleToSeed) {
         ShowMetadata metadata = toMetadata(details, mediaType, confidence);
         if ("tv".equals(mediaType) && id > 0) {
-            rememberSeriesMapping(title, id);
-            if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
-                rememberSeriesMapping(metadata.title(), id);
+            rememberSeriesMapping(metadata.title(), id);
+            if (extraTitleToSeed != null
+                    && !extraTitleToSeed.isBlank()
+                    && !extraTitleToSeed.equals(metadata.title())) {
+                rememberSeriesMapping(extraTitleToSeed, id);
             }
             // The details response already carries number_of_seasons, so seed the same cache
             // seasonCount() uses to avoid an identical second /tv/{id} request the first time
@@ -102,7 +146,7 @@ public final class TmdbMetadataProvider implements MetadataProvider {
                 seasonCountBySeriesId.putIfAbsent(id, details.path("number_of_seasons").asInt());
             }
         }
-        return Optional.of(metadata);
+        return metadata;
     }
 
     /**

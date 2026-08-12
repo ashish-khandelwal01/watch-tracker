@@ -126,6 +126,22 @@ public final class CachingMetadataProvider implements MetadataProvider {
     }
 
     /**
+     * Finds metadata by provider id directly from the delegate, without consulting the persistent
+     * title-keyed cache. An override lookup is an explicit, human-confirmed request for one exact
+     * entity — serving a cached entry keyed by some title that predates the correction would defeat
+     * the point, so this always goes straight to the delegate.
+     *
+     * @param provider which provider's id space this is
+     * @param mediaType {@code "movie"} or {@code "tv"}, meaningful only to TMDb
+     * @param providerId the provider-specific identifier
+     * @return the delegate's result
+     */
+    @Override
+    public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+        return delegate.findById(provider, mediaType, providerId);
+    }
+
+    /**
      * Forwards title → series-id seeding to the delegate provider.
      *
      * @param title title key to associate

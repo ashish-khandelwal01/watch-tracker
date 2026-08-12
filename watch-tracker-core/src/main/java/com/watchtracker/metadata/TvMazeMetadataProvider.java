@@ -96,7 +96,44 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
             return Optional.empty();
         }
         MatchConfidence confidence = classifyMatchConfidence(selected, title);
-        long id = selected.path("id").asLong();
+        return Optional.of(mapShow(selected, confidence, title));
+    }
+
+    /**
+     * Finds metadata directly by TVMaze id, bypassing search entirely — used for manual overrides
+     * where a human has already identified the correct entity.
+     *
+     * @param provider must be {@code "TVMAZE"} (case-insensitive); any other value returns
+     *     {@link Optional#empty()} so a multi-provider chain can try the next provider
+     * @param mediaType ignored — TVMaze has a single, TV-only id space
+     * @param providerId the TVMaze show id
+     * @return metadata for that entity, or {@link Optional#empty()} when the provider doesn't
+     *     match, the id is invalid, or TVMaze has no such show
+     */
+    @Override
+    public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+        if (!"TVMAZE".equalsIgnoreCase(provider) || providerId <= 0) {
+            return Optional.empty();
+        }
+        JsonNode show = request("/shows/" + providerId);
+        if (!show.hasNonNull("id") || show.path("id").asLong() <= 0) {
+            return Optional.empty();
+        }
+        return Optional.of(mapShow(show, MatchConfidence.MANUAL_OVERRIDE, null));
+    }
+
+    /**
+     * Maps a fetched TVMaze show document to the provider-neutral metadata model and seeds the
+     * title → series-id cache used by later episode resolution, shared by both {@link #findByTitle}
+     * and {@link #findById}.
+     *
+     * @param show the TVMaze show document (from search or {@code /shows/{id}})
+     * @param confidence how this match was found
+     * @param extraTitleToSeed an additional title to seed the id under (the original search query,
+     *     for {@link #findByTitle}), or {@code null} when there isn't one (as with {@link #findById})
+     */
+    private ShowMetadata mapShow(JsonNode show, MatchConfidence confidence, String extraTitleToSeed) {
+        long id = show.path("id").asLong();
         // TVMaze's search result doesn't carry a total episode count directly (unlike TMDb's
         // /tv/{id} response), so this costs an extra request here — but it's cached by
         // episodesForShow, so a later named-episode resolution for the same show reuses it instead
@@ -105,12 +142,12 @@ public final class TvMazeMetadataProvider implements MetadataProvider {
         // metadata match, which has already succeeded by this point. Worst case, totalEpisodes
         // stays null and completion status is reported as UNKNOWN for this show.
         Integer totalEpisodes = id > 0 ? totalEpisodesOrNull(id) : null;
-        ShowMetadata metadata = toMetadata(selected, totalEpisodes, confidence);
-        rememberSeriesMapping(title, metadata.providerId());
-        if (metadata.title() != null && !metadata.title().isBlank() && !metadata.title().equals(title)) {
-            rememberSeriesMapping(metadata.title(), metadata.providerId());
+        ShowMetadata metadata = toMetadata(show, totalEpisodes, confidence);
+        rememberSeriesMapping(metadata.title(), metadata.providerId());
+        if (extraTitleToSeed != null && !extraTitleToSeed.isBlank() && !extraTitleToSeed.equals(metadata.title())) {
+            rememberSeriesMapping(extraTitleToSeed, metadata.providerId());
         }
-        return Optional.of(metadata);
+        return metadata;
     }
 
     /** Fetches a show's total episode count, degrading to {@code null} on any failure. */

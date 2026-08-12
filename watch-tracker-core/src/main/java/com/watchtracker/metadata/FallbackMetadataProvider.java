@@ -130,6 +130,22 @@ public final class FallbackMetadataProvider implements MetadataProvider {
     }
 
     /**
+     * Finds metadata by provider id, trying primary then fallback. Provider id namespaces differ
+     * (TMDb versus TVMaze) and each implementation returns {@link Optional#empty()} for a provider
+     * string it doesn't recognize, so exactly one of the two is expected to actually resolve it.
+     *
+     * @param provider which provider's id space this is
+     * @param mediaType {@code "movie"} or {@code "tv"}, meaningful only to TMDb
+     * @param providerId the provider-specific identifier
+     * @return the resolved metadata, from whichever delegate recognizes the provider
+     */
+    @Override
+    public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
+        Optional<ShowMetadata> primaryResult = tryPrimary(() -> primary.findById(provider, mediaType, providerId));
+        return primaryResult.isPresent() ? primaryResult : fallback.findById(provider, mediaType, providerId);
+    }
+
+    /**
      * Invokes a primary-provider call. Any runtime failure (timeout after retries, HTTP error,
      * etc.) is treated as an empty result so the fallback provider can still be used. The import
      * must not abort when only the primary is unreachable.

@@ -31,7 +31,9 @@ public final class ReviewQueueBuilder {
                 reasons.add(ReviewReason.NO_METADATA_MATCH);
             } else {
                 ShowMetadata metadata = enriched.metadata().get();
-                if (metadata.matchConfidence() != null && metadata.matchConfidence() != MatchConfidence.EXACT) {
+                boolean isTrustedMatch = metadata.matchConfidence() == MatchConfidence.EXACT
+                        || metadata.matchConfidence() == MatchConfidence.MANUAL_OVERRIDE;
+                if (metadata.matchConfidence() != null && !isTrustedMatch) {
                     reasons.add(ReviewReason.LOW_CONFIDENCE_MATCH);
                 }
                 if (enriched.progress().isEmpty()) {

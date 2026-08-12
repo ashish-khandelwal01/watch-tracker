@@ -10,6 +10,13 @@ package com.watchtracker.metadata;
  * M.D." resolving to an unrelated documentary short) have come from.
  */
 public enum MatchConfidence {
+    /**
+     * A human explicitly confirmed this exact provider entity via a {@link MetadataOverride},
+     * bypassing search entirely. The strongest possible signal — stronger than {@link #EXACT},
+     * since a title string matching exactly is still an automated guess, while this is a direct
+     * human decision.
+     */
+    MANUAL_OVERRIDE,
     /** The candidate's own title/name matched the query exactly (case/punctuation-insensitive). */
     EXACT,
     /**
