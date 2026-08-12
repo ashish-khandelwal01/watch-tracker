@@ -47,13 +47,6 @@
     "confidence" : "CLOSEST_RELATED"
   }
 }, {
-  "showId" : "9e9fe9fb-37bc-385a-9461-30f8d9793681",
-  "title" : "Merry Christmas (Hindi)",
-  "aliases" : [ "Merry Christmas (Hindi)" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_METADATA_MATCH" ],
-  "currentMatch" : null
-}, {
   "showId" : "fb2564a3-08ff-347b-bd7b-b087524077d5",
   "title" : "Einsatzgruppen: The Nazi Death Squads",
   "aliases" : [ "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)", "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)" ],
@@ -66,21 +59,9 @@
     "confidence" : "EXACT"
   }
 }, {
-  "showId" : "7a01f844-440a-3619-beb7-b453f774dab6",
-  "title" : "Lagaan",
-  "aliases" : [ "Lagaan" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 829332,
-    "title" : "Lagaan: The Thrill of Victory",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
   "showId" : "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
   "title" : "Five Star Chef",
-  "aliases" : [ "Five Star Chef: Episode 5", "Five Star Chef: Episode 4", "Five Star Chef: Episode 3", "Five Star Chef: Episode 2", "Five Star Chef: Episode 1", "Five Star Chef: Episode 6" ],
+  "aliases" : [ "Five Star Chef: Episode 6", "Five Star Chef: Episode 5", "Five Star Chef: Episode 4", "Five Star Chef: Episode 3", "Five Star Chef: Episode 2", "Five Star Chef: Episode 1" ],
   "watchCount" : 6,
   "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
   "currentMatch" : {
@@ -135,7 +116,7 @@
 }, {
   "showId" : "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
   "title" : "The Order",
-  "aliases" : [ "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1" ],
+  "aliases" : [ "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1" ],
   "watchCount" : 20,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -221,7 +202,7 @@
 }, {
   "showId" : "e2574b49-487b-34b3-a46a-af11b6aaa88a",
   "title" : "GAME ON: A Comedy Crossover Event",
-  "aliases" : [ "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games", "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort" ],
+  "aliases" : [ "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games", "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020" ],
   "watchCount" : 4,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
