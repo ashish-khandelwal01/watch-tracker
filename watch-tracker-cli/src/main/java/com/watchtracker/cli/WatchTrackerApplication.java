@@ -47,7 +47,21 @@ public final class WatchTrackerApplication {
                 .parse(parsedArguments.input()).stream()
                         .map(new TitleNormalizer(diagnostics)::normalize)
                         .toList();
-        List<Show> shows = new ShowBuilderService(diagnostics).build(events);
+        
+        // Load overrides early so ShowBuilderService can use them for consolidation
+        MetadataOverrideStore overrides = MetadataOverrideStore.EMPTY;
+        if (parsedArguments.output() != null && parsedArguments.useMetadata()) {
+            Path output = parsedArguments.output();
+            Path overridesFile = parsedArguments.overridesFile() != null
+                    ? parsedArguments.overridesFile()
+                    : output.resolveSibling("overrides.json");
+            overrides = MetadataOverrideStore.load(overridesFile);
+            if (overrides.size() > 0) {
+                System.out.printf("Loaded %d manual override(s) from %s.%n", overrides.size(), overridesFile);
+            }
+        }
+        
+        List<Show> shows = new ShowBuilderService(diagnostics, overrides).build(events);
         System.out.printf("Imported %d watch events across %d shows.%n", events.size(), shows.size());
         if (parsedArguments.output() != null) {
             Path output = parsedArguments.output();
@@ -60,13 +74,6 @@ public final class WatchTrackerApplication {
             } else {
                 if (parsedArguments.useMetadata()) {
                     PreviousEnrichmentSnapshot previous = JsonEnrichedShowSnapshot.load(output);
-                    Path overridesFile = parsedArguments.overridesFile() != null
-                            ? parsedArguments.overridesFile()
-                            : output.resolveSibling("overrides.json");
-                    MetadataOverrideStore overrides = MetadataOverrideStore.load(overridesFile);
-                    if (overrides.size() > 0) {
-                        System.out.printf("Loaded %d manual override(s) from %s.%n", overrides.size(), overridesFile);
-                    }
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
                                     metadataProvider(parsedArguments.cacheDirectory()), diagnostics, overrides)
                             .enrich(shows, events, previous);

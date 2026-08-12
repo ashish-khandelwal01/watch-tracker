@@ -98,8 +98,10 @@ public final class TmdbMetadataProvider implements MetadataProvider {
      *
      * @param provider must be {@code "TMDB"} (case-insensitive); any other value returns
      *     {@link Optional#empty()} so a multi-provider chain can try the next provider
-     * @param mediaType {@code "movie"} or anything else, which is treated as {@code "tv"} — TMDb's
-     *     id space is split by media type, so this must match the id's actual type
+     * @param mediaType {@code "movie"} or {@code "tv"} — TMDb's id space is split by media type, so
+     *     this must match the id's actual type. Any value other than {@code "movie"}
+     *     (case-insensitive) is treated as {@code "tv"} for backward compatibility; callers such as
+     *     {@link MetadataOverrideStore} normalize to one of those two before invoking this
      * @param providerId the TMDb id
      * @return metadata for that entity, or {@link Optional#empty()} when the provider doesn't
      *     match, the id is invalid, or TMDb has no such entity

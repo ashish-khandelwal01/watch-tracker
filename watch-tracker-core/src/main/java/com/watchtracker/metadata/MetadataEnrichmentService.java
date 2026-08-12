@@ -135,7 +135,7 @@ public final class MetadataEnrichmentService {
         // snapshot, the persistent cache, and a fresh search would all just reproduce the mismatch
         // the override exists to fix. Checked first, before even consulting the prior snapshot, so
         // a stale wrong snapshot can never outlive a correction.
-        Optional<ShowMetadata> overrideMetadata = resolveOverride(show.title());
+        Optional<ShowMetadata> overrideMetadata = resolveOverride(show);
         if (overrideMetadata.isPresent()) {
             ShowMetadata md = overrideMetadata.get();
             diagnostics.success(
@@ -408,16 +408,17 @@ public final class MetadataEnrichmentService {
     }
 
     /**
-     * Resolves a manual override for a show's title, if one is configured, bypassing title search
-     * entirely in favor of the human-confirmed provider entity.
+     * Resolves a manual override for a show, if one is configured, bypassing title search entirely
+     * in favor of the human-confirmed provider entity. Matching uses the show's canonical title and
+     * raw aliases — see {@link MetadataOverrideStore#forShow}.
      *
      * <p>A configured-but-unresolvable override (a typo'd id, a since-removed entry, a transient
      * provider failure) is treated as absent rather than propagated as an error: this show simply
      * falls through to the normal resolution path, the same as if no override existed, rather than
      * the whole import aborting over one bad correction.
      */
-    private Optional<ShowMetadata> resolveOverride(String title) {
-        Optional<MetadataOverride> override = overrides.forTitle(title);
+    private Optional<ShowMetadata> resolveOverride(Show show) {
+        Optional<MetadataOverride> override = overrides.forShow(show.title(), show.aliases());
         if (override.isEmpty()) {
             return Optional.empty();
         }
@@ -427,7 +428,7 @@ public final class MetadataEnrichmentService {
             if (resolved.isEmpty()) {
                 diagnostics.failure(
                         DiagnosticsStage.METADATA_PROVIDER,
-                        title,
+                        show.title(),
                         "Manual override configured but did not resolve (provider="
                                 + o.provider()
                                 + ", id="
@@ -438,7 +439,7 @@ public final class MetadataEnrichmentService {
         } catch (RuntimeException exception) {
             diagnostics.failure(
                     DiagnosticsStage.METADATA_PROVIDER,
-                    title,
+                    show.title(),
                     "Manual override lookup failed: " + exception.getMessage() + "; falling back to normal resolution");
             return Optional.empty();
         }
@@ -462,7 +463,7 @@ public final class MetadataEnrichmentService {
     private Optional<WatchProgress> highestProgress(Show show, List<WatchEvent> events, ShowType resolvedType, Optional<ShowMetadata> metadata) {
         if (resolvedType == ShowType.MOVIE) {
             List<WatchEvent> showEvents = events.stream()
-                    .filter(event -> show.title().equals(event.canonicalShow()))
+                    .filter(event -> belongsToShow(show, event))
                     .toList();
             if (!showEvents.isEmpty()) {
                 String providerName = metadata.isPresent() ? metadata.get().provider() : "NETFLIX";
@@ -476,7 +477,7 @@ public final class MetadataEnrichmentService {
         }
 
         List<WatchEvent> showEvents = events.stream()
-                .filter(event -> show.title().equals(event.canonicalShow()))
+                .filter(event -> belongsToShow(show, event))
                 .toList();
 
         ShowType progType = (resolvedType == null || resolvedType == ShowType.UNKNOWN) ? ShowType.SERIES : resolvedType;
@@ -548,6 +549,33 @@ public final class MetadataEnrichmentService {
                 java.util.Map.of("status", status));
 
         return Optional.of(finalProgress);
+    }
+
+    /**
+     * Determines if an event belongs to a show, accounting for show consolidation via manual overrides.
+     * An event belongs to a show if:
+     * 1. The show title equals the event's canonical show (original behavior)
+     * 2. The event's canonical show starts with the show title + ": " (consolidated episodes)
+     * 3. The event's raw title is in the show's aliases (consolidated by override)
+     */
+    private boolean belongsToShow(Show show, WatchEvent event) {
+        // Original behavior: exact match on canonical show
+        if (show.title().equals(event.canonicalShow())) {
+            return true;
+        }
+        
+        // Consolidated episodes: event's canonical show is "Show Title: Episode X"
+        // and show title is the base "Show Title"
+        if (event.canonicalShow() != null && event.canonicalShow().startsWith(show.title() + ": ")) {
+            return true;
+        }
+        
+        // Consolidated by override: event's raw title is in show's aliases
+        if (show.aliases().contains(event.rawTitle())) {
+            return true;
+        }
+        
+        return false;
     }
 
     /**
