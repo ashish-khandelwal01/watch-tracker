@@ -120,9 +120,9 @@ class MetadataEnrichmentServiceTest {
 
     @Test
     void reusedShowTypeFallsBackToMetadataTypeWhenNoProgressWasResolved() {
-        // Same bug, different branch: a show can have resolved metadata but no resolved progress
-        // (e.g. episode titles never matched). The reuse path must still pull the type from
-        // somewhere other than the freshly-rebuilt-this-run Show, which starts as UNKNOWN.
+        // Prior snapshot has metadata but no progress, and there are no watch events that can
+        // produce progress either. Metadata must still be reused (no title search) and the show
+        // type must come from that metadata, not the UNKNOWN type on the freshly built Show.
         UUID showId = UUID.randomUUID();
         Show currentShow = new Show(
                 showId,
@@ -144,8 +144,47 @@ class MetadataEnrichmentServiceTest {
                 .enrich(List.of(currentShow), List.of(), previous)
                 .getFirst();
 
+        assertThat(result.metadata()).contains(previousMetadata);
         assertThat(result.progress()).isEmpty();
         assertThat(result.show().type()).isEqualTo(ShowType.SERIES);
+        assertThat(provider.findByTitleCalls).isZero();
+    }
+
+    @Test
+    void reResolvesProgressFromPriorSnapshotWhenMetadataPresentButProgressWasNull() {
+        // Existing shows.json had a successful metadata match but null progress. On re-run with
+        // unchanged show data, metadata must be reused (no title search) while progress is
+        // resolved again from the current events.
+        UUID showId = UUID.randomUUID();
+        Set<String> aliases = Set.of("Dark: Season 1: Episode 1", "Dark: Season 1: Episode 2");
+        Show currentShow = new Show(
+                showId,
+                "Dark",
+                aliases,
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                1,
+                2,
+                2);
+        ShowMetadata previousMetadata =
+                new ShowMetadata("TMDB", 70523, "Dark", ShowType.SERIES, List.of("Drama"), null, null, null);
+        EnrichedShow previousResult =
+                new EnrichedShow(currentShow, Optional.of(previousMetadata), Optional.empty());
+        PreviousEnrichmentSnapshot previous = id -> id.equals(showId) ? Optional.of(previousResult) : Optional.empty();
+        RecordingProvider provider = new RecordingProvider(Optional.empty(), Optional.empty());
+        List<WatchEvent> events = List.of(numberedEvent("Dark", 1, 1), numberedEvent("Dark", 1, 2));
+
+        EnrichedShow result = new MetadataEnrichmentService(provider)
+                .enrich(List.of(currentShow), events, previous)
+                .getFirst();
+
+        assertThat(result.metadata()).contains(previousMetadata);
+        assertThat(result.progress()).isPresent();
+        assertThat(result.progress().get().season()).isEqualTo(1);
+        assertThat(result.progress().get().episode()).isEqualTo(2);
+        assertThat(result.show().type()).isEqualTo(ShowType.SERIES);
+        assertThat(provider.findByTitleCalls).isZero();
     }
 
     @Test
@@ -356,13 +395,13 @@ class MetadataEnrichmentServiceTest {
                 null,
                 null,
                 2);
-        
+
         // Events still have their original canonical titles from before consolidation
         TitleNormalizer normalizer = new TitleNormalizer();
         List<WatchEvent> events = List.of(
                 normalizer.normalize(WatchEvent.raw("The Lady's Companion: Lesson 1: Never Fall in Love", LocalDateTime.of(2025, 11, 18, 0, 0), "NETFLIX")),
                 normalizer.normalize(WatchEvent.raw("The Lady's Companion: Lesson 2: Do Not Tell Lies", LocalDateTime.of(2025, 11, 18, 0, 0), "NETFLIX")));
-        
+
         ShowMetadata showMetadata = new ShowMetadata(
                 "TMDB",
                 280890,
@@ -375,13 +414,13 @@ class MetadataEnrichmentServiceTest {
                 8,
                 true,
                 MatchConfidence.MANUAL_OVERRIDE);
-        
+
         RecordingProvider provider = new RecordingProvider(Optional.of(showMetadata), Optional.empty(), Optional.empty());
-        
+
         EnrichedShow result = new MetadataEnrichmentService(provider)
                 .enrich(List.of(show), events, PreviousEnrichmentSnapshot.EMPTY)
                 .getFirst();
-        
+
         // Progress should be resolved despite the consolidation
         // The important thing is that the events are being matched to the show
         // Since there are no episode numbers in the events, progress might be empty

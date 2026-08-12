@@ -95,6 +95,12 @@ public final class MetadataEnrichmentService {
      * those fields means new watch history could shift the resolved episode position or the
      * matched provider title, so the show is resolved fresh.
      *
+     * <p>When a previous result is otherwise reusable but has metadata without resolved progress,
+     * metadata is kept and progress is resolved again from the current events. Missing progress is
+     * always re-attempted whenever metadata is available (prior snapshot, override, cache, or
+     * fresh provider match) — progress is never left null solely because an earlier run failed to
+     * resolve it.
+     *
      * @param shows show aggregates to enrich
      * @param events normalized source watch events
      * @param previous a previous run's results, consulted before any provider call
@@ -150,12 +156,28 @@ public final class MetadataEnrichmentService {
         if (priorOpt.isPresent()) {
             EnrichedShow prior = priorOpt.get();
             if (unchangedSincePrevious(show, prior.show())) {
-                // If the prior snapshot contains no metadata AND no resolved progress, resolve fresh.
+                // Nothing about the imported show changed. Prefer reusing prior work, but never
+                // leave progress unresolved when metadata is available — an earlier run may have
+                // matched the title and still failed episode resolution (or predated a progress fix).
                 if (prior.metadata().isEmpty() && prior.progress().isEmpty()) {
                     diagnostics.info(
                             DiagnosticsStage.METADATA_PROVIDER,
                             show.title(),
                             "Previous snapshot present and unchanged but missing metadata and progress; resolving fresh");
+                } else if (prior.progress().isEmpty()) {
+                    // Metadata present, progress absent: keep metadata, re-resolve progress only.
+                    ShowMetadata md = prior.metadata().get();
+                    diagnostics.success(
+                            DiagnosticsStage.METADATA_PROVIDER,
+                            show.title(),
+                            "Reused cached metadata; re-resolving progress (previous run had none)",
+                            null,
+                            java.util.Map.of("provider", md.provider(), "id", md.providerId()));
+                    seedSeriesMappings(show.title(), md);
+                    ShowType mdType = resolveShowType(show, md);
+                    ShowType progressType = progressTypeFor(mdType, md);
+                    Optional<WatchProgress> progress = highestProgress(show, events, progressType, prior.metadata());
+                    return new EnrichedShow(withType(show, mdType), prior.metadata(), progress);
                 } else {
                     // Emit diagnostics for cached metadata so diagnostics output reflects reused data.
                     if (prior.metadata().isPresent()) {
@@ -171,36 +193,29 @@ public final class MetadataEnrichmentService {
                     }
 
                     // Emit diagnostics for cached resolved progress when present.
-                    if (prior.progress().isPresent()) {
-                        WatchProgress wp = prior.progress().get();
-                        java.util.Map<String, Object> progressOut = new java.util.LinkedHashMap<>();
-                        if (wp.season() != null) {
-                            progressOut.put("season", wp.season());
-                        }
-                        if (wp.episode() != null) {
-                            progressOut.put("episode", wp.episode());
-                        }
-                        progressOut.put("provider", wp.provider());
-                        progressOut.put("type", wp.type());
-                        diagnostics.success(
-                                DiagnosticsStage.PROGRESS_BUILDER,
-                                show.title(),
-                                "Reused cached highest resolved progress",
-                                null,
-                                progressOut);
+                    WatchProgress wp = prior.progress().get();
+                    java.util.Map<String, Object> progressOut = new java.util.LinkedHashMap<>();
+                    if (wp.season() != null) {
+                        progressOut.put("season", wp.season());
                     }
+                    if (wp.episode() != null) {
+                        progressOut.put("episode", wp.episode());
+                    }
+                    progressOut.put("provider", wp.provider());
+                    progressOut.put("type", wp.type());
+                    diagnostics.success(
+                            DiagnosticsStage.PROGRESS_BUILDER,
+                            show.title(),
+                            "Reused cached highest resolved progress",
+                            null,
+                            progressOut);
 
-                    Show finalShow = show;
-                    if (prior.progress().isPresent()) {
-                        // prior.progress().type() is the fully-resolved type from whenever this show
-                        // was last freshly resolved — already accounting for the documentary/
-                        // limited-series adjustments a fresh resolution applies — so reuse it directly
-                        // rather than re-deriving it here, keeping the two paths in sync by
-                        // construction instead of by keeping duplicated derivation logic consistent.
-                        finalShow = withType(show, prior.progress().get().type());
-                    } else if (prior.metadata().isPresent()) {
-                        finalShow = withType(show, prior.metadata().get().type());
-                    }
+                    // prior.progress().type() is the fully-resolved type from whenever this show
+                    // was last freshly resolved — already accounting for the documentary/
+                    // limited-series adjustments a fresh resolution applies — so reuse it directly
+                    // rather than re-deriving it here, keeping the two paths in sync by
+                    // construction instead of by keeping duplicated derivation logic consistent.
+                    Show finalShow = withType(show, wp.type());
                     return new EnrichedShow(finalShow, prior.metadata(), prior.progress());
                 }
             } else {
@@ -305,17 +320,7 @@ public final class MetadataEnrichmentService {
             // Residual C: seed title → id so any later title-based episode resolve in this run
             // reuses the matched series instead of ranking a different search hit first.
             seedSeriesMappings(originalTitle, md);
-            mdType = md.type();
-            boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
-                    || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
-            boolean hasDocumentaryGenre = md.genres().stream()
-                    .filter(g -> g != null)
-                    .anyMatch(g -> g.toLowerCase(Locale.ROOT).contains("documentary"));
-            if (hasDocumentaryGenre) {
-                mdType = ShowType.DOCUMENTARY;
-            } else if (mdType == ShowType.SERIES && hasLimited) {
-                mdType = ShowType.LIMITED_SERIES;
-            }
+            mdType = resolveShowType(show, md);
             if (overrideMetadata.isPresent()) {
                 // Already logged once, right when the override was detected — avoid a redundant
                 // second "matched" entry for the same show.
@@ -361,13 +366,46 @@ public final class MetadataEnrichmentService {
             diagnostics.failure(DiagnosticsStage.METADATA_PROVIDER, show.title(), "No metadata match found");
         }
 
-        ShowType progressType = (mdType == ShowType.DOCUMENTARY && metadata.isPresent() && metadata.get().type() == ShowType.MOVIE)
-                ? ShowType.MOVIE
-                : mdType;
+        // Always attempt progress resolution. When metadata is present (override, cache, or
+        // fresh match), episode resolution can use provider guides; when it is absent, numbered
+        // Netflix positions are still applied so progress is not dropped solely because title
+        // search failed.
+        ShowType progressType = metadata.isPresent() ? progressTypeFor(mdType, metadata.get()) : mdType;
         Optional<WatchProgress> progress = highestProgress(show, events, progressType, metadata);
         Show finalShow = metadata.isPresent() ? withType(show, mdType) : show;
         return new EnrichedShow(finalShow, metadata, progress);
 
+    }
+
+    /**
+     * Derives the show type used for export and progress from provider metadata, applying the
+     * same documentary / limited-series adjustments on every path (prior reuse, override, fresh).
+     */
+    private static ShowType resolveShowType(Show show, ShowMetadata md) {
+        ShowType mdType = md.type();
+        boolean hasLimited = show.title().toLowerCase(Locale.ROOT).contains("limited series")
+                || show.aliases().stream().anyMatch(a -> a.toLowerCase(Locale.ROOT).contains("limited series"));
+        boolean hasDocumentaryGenre = md.genres().stream()
+                .filter(g -> g != null)
+                .anyMatch(g -> g.toLowerCase(Locale.ROOT).contains("documentary"));
+        if (hasDocumentaryGenre) {
+            return ShowType.DOCUMENTARY;
+        }
+        if (mdType == ShowType.SERIES && hasLimited) {
+            return ShowType.LIMITED_SERIES;
+        }
+        return mdType;
+    }
+
+    /**
+     * Documentaries that the provider catalogued as movies are progressed as movies (no season /
+     * episode); every other type uses the resolved show type as-is.
+     */
+    private static ShowType progressTypeFor(ShowType mdType, ShowMetadata md) {
+        if (mdType == ShowType.DOCUMENTARY && md.type() == ShowType.MOVIE) {
+            return ShowType.MOVIE;
+        }
+        return mdType;
     }
 
     /** Returns a copy of {@code show} with its {@code type} replaced, all other fields unchanged. */
@@ -563,18 +601,18 @@ public final class MetadataEnrichmentService {
         if (show.title().equals(event.canonicalShow())) {
             return true;
         }
-        
+
         // Consolidated episodes: event's canonical show is "Show Title: Episode X"
         // and show title is the base "Show Title"
         if (event.canonicalShow() != null && event.canonicalShow().startsWith(show.title() + ": ")) {
             return true;
         }
-        
+
         // Consolidated by override: event's raw title is in show's aliases
         if (show.aliases().contains(event.rawTitle())) {
             return true;
         }
-        
+
         return false;
     }
 
