@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.watchtracker.model.Show;
+import com.watchtracker.model.ShowType;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -152,4 +154,37 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
     private static String normalizeKey(String value) {
         return value == null ? "" : value.trim().toLowerCase(Locale.ROOT);
     }
+
+    /**
+     * Rebuilds {@link MetadataOverride} entries from prior rows marked
+     * {@link MatchConfidence#MANUAL_OVERRIDE}. The provider's canonical title is preferred as the
+     * override key so episode-level Netflix titles still consolidate under one show (prefix match).
+     * The imported show title is also registered when it differs.
+     */
+    @Override
+    public List<MetadataOverride> manualOverrides() {
+        List<MetadataOverride> result = new ArrayList<>();
+        for (EnrichedShow enriched : all) {
+            if (enriched.metadata().isEmpty()) {
+                continue;
+            }
+            ShowMetadata md = enriched.metadata().get();
+            if (md.matchConfidence() != MatchConfidence.MANUAL_OVERRIDE) {
+                continue;
+            }
+            String mediaType = md.type() == ShowType.MOVIE ? "movie" : "tv";
+            // Provider title consolidates "Show: Lesson N" rows under "Show".
+            if (md.title() != null && !md.title().isBlank()) {
+                result.add(new MetadataOverride(md.title().trim(), md.provider(), mediaType, md.providerId()));
+            }
+            String showTitle = enriched.show().title();
+            if (showTitle != null
+                    && !showTitle.isBlank()
+                    && (md.title() == null || !showTitle.equalsIgnoreCase(md.title().trim()))) {
+                result.add(new MetadataOverride(showTitle.trim(), md.provider(), mediaType, md.providerId()));
+            }
+        }
+        return List.copyOf(result);
+    }
+
 }

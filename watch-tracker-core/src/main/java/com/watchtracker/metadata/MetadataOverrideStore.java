@@ -180,6 +180,41 @@ public final class MetadataOverrideStore {
     /**
      * @return how many overrides are loaded, for CLI reporting
      */
+
+    /**
+     * Returns a store that contains {@code sticky} overrides first, then this store's entries on
+     * top so <strong>file / explicit overrides win</strong> on the same title key.
+     *
+     * <p>Sticky overrides typically come from a previous {@code shows.json} where
+     * {@code matchConfidence} was {@link MatchConfidence#MANUAL_OVERRIDE}. Merging them back in
+     * keeps human confirmations above automated search even after the row is removed from
+     * {@code overrides.json}.
+     *
+     * @param sticky prior manual overrides (may be empty)
+     * @return merged store; this store's titles take precedence on conflict
+     */
+    public MetadataOverrideStore mergeWith(List<MetadataOverride> sticky) {
+        if (sticky == null || sticky.isEmpty()) {
+            return this;
+        }
+        Map<String, MetadataOverride> merged = new LinkedHashMap<>();
+        // Sticky first…
+        for (MetadataOverride raw : sticky) {
+            if (raw == null || raw.title() == null || raw.title().isBlank()) {
+                continue;
+            }
+            Optional<String> mediaType = normalizeMediaType(raw.mediaType());
+            if (mediaType.isEmpty()) {
+                continue;
+            }
+            String title = raw.title().trim();
+            merged.put(title, new MetadataOverride(title, raw.provider(), mediaType.get(), raw.providerId()));
+        }
+        // …then file overrides win on the same key.
+        merged.putAll(byTitle);
+        return new MetadataOverrideStore(Map.copyOf(merged));
+    }
+
     public int size() {
         return byTitle.size();
     }

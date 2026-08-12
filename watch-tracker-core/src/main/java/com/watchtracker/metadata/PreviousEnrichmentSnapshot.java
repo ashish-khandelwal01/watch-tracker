@@ -1,6 +1,7 @@
 package com.watchtracker.metadata;
 
 import com.watchtracker.model.Show;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,6 +32,11 @@ public interface PreviousEnrichmentSnapshot {
         public Optional<EnrichedShow> findMatching(Show show) {
             return Optional.empty();
         }
+
+        @Override
+        public List<MetadataOverride> manualOverrides() {
+            return List.of();
+        }
     };
 
     /**
@@ -56,5 +62,20 @@ public interface PreviousEnrichmentSnapshot {
             return Optional.empty();
         }
         return find(show.id());
+    }
+
+    /**
+     * Prior enrichment rows whose metadata was produced by a human override
+     * ({@link MatchConfidence#MANUAL_OVERRIDE}), re-hydrated as {@link MetadataOverride} values so
+     * they can be merged into {@link MetadataOverrideStore} on the next run.
+     *
+     * <p>This is how a manual override stays above automated matching even after it is removed from
+     * {@code overrides.json}: the previous {@code shows.json} export carries the confirmation, and
+     * the next run treats it as a live override for both grouping and metadata resolution.
+     *
+     * @return overrides derived from prior MANUAL_OVERRIDE rows; empty when none
+     */
+    default List<MetadataOverride> manualOverrides() {
+        return List.of();
     }
 }

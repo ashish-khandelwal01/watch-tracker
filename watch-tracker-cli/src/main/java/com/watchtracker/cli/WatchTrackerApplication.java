@@ -48,19 +48,31 @@ public final class WatchTrackerApplication {
                         .map(new TitleNormalizer(diagnostics)::normalize)
                         .toList();
         
-        // Load overrides early so ShowBuilderService can use them for consolidation
+        // Load overrides + prior MANUAL_OVERRIDE rows early so ShowBuilderService consolidates
+        // under human-confirmed titles, and enrichment treats those confirms above search.
+        // Order: sticky from shows.json first, then overrides.json on top (file wins on same key).
         MetadataOverrideStore overrides = MetadataOverrideStore.EMPTY;
+        PreviousEnrichmentSnapshot previous = PreviousEnrichmentSnapshot.EMPTY;
         if (parsedArguments.output() != null && parsedArguments.useMetadata()) {
             Path output = parsedArguments.output();
+            previous = JsonEnrichedShowSnapshot.load(output);
             Path overridesFile = parsedArguments.overridesFile() != null
                     ? parsedArguments.overridesFile()
                     : output.resolveSibling("overrides.json");
-            overrides = MetadataOverrideStore.load(overridesFile);
-            if (overrides.size() > 0) {
-                System.out.printf("Loaded %d manual override(s) from %s.%n", overrides.size(), overridesFile);
+            MetadataOverrideStore fileOverrides = MetadataOverrideStore.load(overridesFile);
+            int stickyCount = previous.manualOverrides().size();
+            overrides = fileOverrides.mergeWith(previous.manualOverrides());
+            if (fileOverrides.size() > 0) {
+                System.out.printf("Loaded %d manual override(s) from %s.%n", fileOverrides.size(), overridesFile);
+            }
+            if (stickyCount > 0) {
+                System.out.printf(
+                        "Merged %d MANUAL_OVERRIDE confirmation(s) from previous %s (manual override above all else).%n",
+                        stickyCount,
+                        output.getFileName());
             }
         }
-        
+
         List<Show> shows = new ShowBuilderService(diagnostics, overrides).build(events);
         System.out.printf("Imported %d watch events across %d shows.%n", events.size(), shows.size());
         if (parsedArguments.output() != null) {
@@ -73,7 +85,6 @@ public final class WatchTrackerApplication {
                 exporter.exportCsv(shows, output);
             } else {
                 if (parsedArguments.useMetadata()) {
-                    PreviousEnrichmentSnapshot previous = JsonEnrichedShowSnapshot.load(output);
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
                                     metadataProvider(parsedArguments.cacheDirectory()), diagnostics, overrides)
                             .enrich(shows, events, previous);

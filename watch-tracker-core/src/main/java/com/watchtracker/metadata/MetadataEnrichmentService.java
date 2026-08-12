@@ -658,18 +658,18 @@ public final class MetadataEnrichmentService {
         if (show.title().equals(event.canonicalShow())) {
             return true;
         }
-
+        
         // Consolidated episodes: event's canonical show is "Show Title: Episode X"
         // and show title is the base "Show Title"
         if (event.canonicalShow() != null && event.canonicalShow().startsWith(show.title() + ": ")) {
             return true;
         }
-
+        
         // Consolidated by override: event's raw title is in show's aliases
         if (show.aliases().contains(event.rawTitle())) {
             return true;
         }
-
+        
         return false;
     }
 
