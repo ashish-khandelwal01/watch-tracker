@@ -1,7 +1,7 @@
 [ {
   "showId" : "e91b944d-5703-31d6-9ccf-31b7d9c0b94c",
   "title" : "The Lady's Companion",
-  "aliases" : [ "The Lady's Companion: Lesson 2: Do Not Tell Lies", "The Lady's Companion: Lesson 1: Never Fall in Love" ],
+  "aliases" : [ "The Lady's Companion: Lesson 1: Never Fall in Love", "The Lady's Companion: Lesson 2: Do Not Tell Lies" ],
   "watchCount" : 2,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -11,45 +11,9 @@
     "confidence" : "MANUAL_OVERRIDE"
   }
 }, {
-  "showId" : "99594ea7-bd02-3fab-b745-b81b989fcab4",
-  "title" : "Gabriel Iglesias",
-  "aliases" : [ "Gabriel Iglesias: Legend of Fluffy", "Gabriel Iglesias: Stadium Fluffy" ],
-  "watchCount" : 2,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 185440,
-    "title" : "Gabriel Iglesias: Aloha Fluffy",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
-  "showId" : "fb729c84-66e1-3015-997b-bfc7cee17b4d",
-  "title" : "Predators",
-  "aliases" : [ "Predators: Polar Bear" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 1175836,
-    "title" : "Predators of the Wild: Polar Bear",
-    "confidence" : "FIRST_RESULT_FALLBACK"
-  }
-}, {
-  "showId" : "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
-  "title" : "Matt Rife",
-  "aliases" : [ "Matt Rife: Natural Selection", "Matt Rife: Lucid - A Crowd Work Special" ],
-  "watchCount" : 2,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 1296221,
-    "title" : "Matt Rife: Only Fans",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
   "showId" : "fb2564a3-08ff-347b-bd7b-b087524077d5",
   "title" : "Einsatzgruppen: The Nazi Death Squads",
-  "aliases" : [ "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)", "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)" ],
+  "aliases" : [ "Einsatzgruppen: The Nazi Death Squads: 1. The Graves (June-August 1941)", "Einsatzgruppen: The Nazi Death Squads: 2. Judenfrei (September-December 1941)" ],
   "watchCount" : 2,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -59,113 +23,15 @@
     "confidence" : "EXACT"
   }
 }, {
-  "showId" : "25442c53-c2c5-35f7-aeed-ea9f6d75de86",
-  "title" : "Five Star Chef",
-  "aliases" : [ "Five Star Chef: Episode 1", "Five Star Chef: Episode 2", "Five Star Chef: Episode 3", "Five Star Chef: Episode 4", "Five Star Chef: Episode 5", "Five Star Chef: Episode 6" ],
-  "watchCount" : 6,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 227890,
-    "title" : "Five Star Kitchen: Britain's Next Great Chef",
-    "confidence" : "FIRST_RESULT_FALLBACK"
-  }
-}, {
-  "showId" : "a760f703-c648-31bf-8b11-093702fb734b",
-  "title" : "The Man from U.N.C.L.E.",
-  "aliases" : [ "The Man from U.N.C.L.E." ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 210,
-    "title" : "The Man from U.N.C.L.E.",
-    "confidence" : "EXACT"
-  }
-}, {
-  "showId" : "b5998634-c34d-3970-b2b1-ccb34a3b0260",
-  "title" : "Jumanji",
-  "aliases" : [ "Jumanji: The Next Level" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 2118,
-    "title" : "Jumanji",
-    "confidence" : "EXACT"
-  }
-}, {
-  "showId" : "a26fe4ca-355b-34eb-b861-74d2691f22ec",
-  "title" : "Gabriel lglesias",
-  "aliases" : [ "Gabriel lglesias: I’m Sorry For What I Said When I Was Hungry" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH", "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TVMAZE",
-    "providerId" : 5338,
-    "title" : "Gabriel Iglesias Presents Stand Up Revolution",
-    "confidence" : "FIRST_RESULT_FALLBACK"
-  }
-}, {
   "showId" : "eea722d4-e5d7-35f4-9cb9-1207dd1b0713",
   "title" : "The Order",
-  "aliases" : [ "The Order: Season 1: Introduction to Ethics: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Finals: Part 2", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: Free Radicals, Part 2" ],
+  "aliases" : [ "The Order: Season 2: Free Radicals, Part 2", "The Order: Season 2: Free Radicals, Part 1", "The Order: Season 2: The Commons, Part 2", "The Order: Season 2: The Commons, Part 1", "The Order: Season 2: Fear Itself, Part 1", "The Order: Season 2: New World Order, Part 2", "The Order: Season 2: New World Order, Part 1", "The Order: Season 2: Spring Outbreak, Part 2", "The Order: Season 2: Spring Outbreak, Part 1", "The Order: Season 1: Finals: Part 1", "The Order: Season 2: Fear Itself, Part 2", "The Order: Season 1: Finals: Part 2", "The Order: Season 1: Hell Week: Part 1", "The Order: Season 1: Undeclared: Part 2", "The Order: Season 1: Undeclared: Part 1", "The Order: Season 1: Hell Week: Part 2", "The Order: Season 1: Homecoming: Part 2", "The Order: Season 1: Homecoming: Part 1", "The Order: Season 1: Introduction to Ethics: Part 2", "The Order: Season 1: Introduction to Ethics: Part 1" ],
   "watchCount" : 20,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
     "provider" : "TMDB",
     "providerId" : 82104,
     "title" : "The Order",
-    "confidence" : "EXACT"
-  }
-}, {
-  "showId" : "6ed715b5-417c-3e13-b325-c6e30e1bec4d",
-  "title" : "DreamWorks How to Train Your Dragon Legends: Play All Two",
-  "aliases" : [ "DreamWorks How to Train Your Dragon Legends: Play All Two: DreamWorks Dragons Short Stories" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 207516,
-    "title" : "How to Train Your Dragon: Legends",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
-  "showId" : "1d2544e6-15ab-3abf-aa51-658c33cbcdce",
-  "title" : "DreamWorks How to Train Your Dragon Legends",
-  "aliases" : [ "DreamWorks How to Train Your Dragon Legends: Book of Dragons", "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper" ],
-  "watchCount" : 2,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 207516,
-    "title" : "How to Train Your Dragon: Legends",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
-  "showId" : "eece3028-137a-3b3e-8057-b49c45c17b4f",
-  "title" : "DreamWorks Kung Fu Panda Awesome Secrets",
-  "aliases" : [ "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five", "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters" ],
-  "watchCount" : 2,
-  "reasons" : [ "NO_METADATA_MATCH" ],
-  "currentMatch" : null
-}, {
-  "showId" : "e148efdd-f441-3a7f-9a87-2eceed531c23",
-  "title" : "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two",
-  "aliases" : [ "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_METADATA_MATCH" ],
-  "currentMatch" : null
-}, {
-  "showId" : "d9fc1416-90ff-3b02-ab7f-15b533daac7f",
-  "title" : "Hustle",
-  "aliases" : [ "Hustle" ],
-  "watchCount" : 1,
-  "reasons" : [ "NO_PROGRESS_RESOLVED" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 3764,
-    "title" : "Hustle",
     "confidence" : "EXACT"
   }
 }, {
@@ -181,21 +47,9 @@
     "confidence" : "MANUAL_OVERRIDE"
   }
 }, {
-  "showId" : "81f2ade5-9bfd-3aa1-9f2d-ee498d8b1ac4",
-  "title" : "DEATH NOTE: Death Note",
-  "aliases" : [ "DEATH NOTE: Death Note: Rebirth" ],
-  "watchCount" : 1,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 13916,
-    "title" : "Death Note",
-    "confidence" : "CLOSEST_RELATED"
-  }
-}, {
   "showId" : "e2574b49-487b-34b3-a46a-af11b6aaa88a",
   "title" : "GAME ON: A Comedy Crossover Event",
-  "aliases" : [ "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?" ],
+  "aliases" : [ "GAME ON: A Comedy Crossover Event: Family Reunion: Remember the Family's Feud?", "GAME ON: A Comedy Crossover Event: Mr. Iglesias: Olympic Effort", "GAME ON: A Comedy Crossover Event: The Big Show Show: The Big Games", "GAME ON: A Comedy Crossover Event: Ashley Garcia: Pasadena 2020" ],
   "watchCount" : 4,
   "reasons" : [ "NO_PROGRESS_RESOLVED" ],
   "currentMatch" : {
@@ -203,17 +57,5 @@
     "providerId" : 107304,
     "title" : "GAME ON: A Comedy Crossover Event",
     "confidence" : "MANUAL_OVERRIDE"
-  }
-}, {
-  "showId" : "d7454aa0-13ed-3fe5-bc28-dadb6de085cb",
-  "title" : "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series",
-  "aliases" : [ "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Fight of the Century", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: The Walker Girl", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: Bootstraps", "Self Made: Inspired by the Life of Madam C.J. Walker: Limited Series: A Credit to the Race" ],
-  "watchCount" : 4,
-  "reasons" : [ "LOW_CONFIDENCE_MATCH" ],
-  "currentMatch" : {
-    "provider" : "TMDB",
-    "providerId" : 97539,
-    "title" : "Self Made: Inspired by the Life of Madam C.J. Walker",
-    "confidence" : "CLOSEST_RELATED"
   }
 } ]

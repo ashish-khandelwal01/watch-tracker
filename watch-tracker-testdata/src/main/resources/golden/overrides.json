@@ -1,3 +1,5 @@
 [
-  { "title": "Black Lightning", "provider": "TMDB", "mediaType": "Series", "providerId": 71663 }
+  { "title": "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters", "provider": "TMDB", "mediaType": "Movie", "providerId": 786624 },
+  { "title": "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five", "provider": "TMDB", "mediaType": "Movie", "providerId": 786624 },
+  { "title": "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets", "provider": "TMDB", "mediaType": "Movie", "providerId": 786624 }
 ]

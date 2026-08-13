@@ -12,7 +12,8 @@ public enum ReviewReason {
      * Metadata was found, but not via an exact title match (see {@link MatchConfidence}) — the
      * weaker tiers are where past real mismatches (e.g. "House, M.D." resolving to an unrelated
      * documentary short) have come from, so these are worth a second look even though most turn out
-     * fine.
+      * fine. Also applied when metadata type is {@code MOVIE} and the show has more than one raw
+     * alias, which often means distinct films were incorrectly grouped under one title.
      */
     LOW_CONFIDENCE_MATCH,
     /** Metadata was found, but no watched-episode progress could be resolved from it. */

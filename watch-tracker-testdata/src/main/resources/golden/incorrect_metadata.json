@@ -39,78 +39,51 @@
     },
     {
         "show": {
-            "id": "99594ea7-bd02-3fab-b745-b81b989fcab4",
-            "title": "Gabriel Iglesias",
+            "id": "c7a3a182-d4f4-330f-a50d-237cb550dd30",
+            "title": "Inheritors: Limited Series",
             "aliases": [
-                "Gabriel Iglesias: Stadium Fluffy",
-                "Gabriel Iglesias: Legend of Fluffy"
+                "Inheritors: Limited Series: Episode 9",
+                "Inheritors: Limited Series: Episode 8",
+                "Inheritors: Limited Series: Episode 7",
+                "Inheritors: Limited Series: Episode 6",
+                "Inheritors: Limited Series: Episode 5",
+                "Inheritors: Limited Series: Episode 4",
+                "Inheritors: Limited Series: Episode 3",
+                "Inheritors: Limited Series: Episode 2",
+                "Inheritors: Limited Series: Episode 1",
+                "Inheritors: Limited Series: Episode 12",
+                "Inheritors: Limited Series: Episode 11",
+                "Inheritors: Limited Series: Episode 10"
             ],
-            "type": "MOVIE",
-            "firstWatched": "2023-12-08T00:00:00",
-            "lastWatched": "2025-10-05T00:00:00",
+            "type": "LIMITED_SERIES",
+            "firstWatched": "2025-01-04T00:00:00",
+            "lastWatched": "2025-01-23T00:00:00",
             "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 2
+            "highestEpisodeSeen": 12,
+            "watchCount": 12
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 185440,
-            "title": "Gabriel Iglesias: Aloha Fluffy",
-            "type": "MOVIE",
+            "providerId": 48462,
+            "title": "The Heirs",
+            "type": "SERIES",
             "genres": [
                 "Comedy",
-                "TV Movie"
+                "Drama"
             ],
-            "overview": "ALOHAAAAA! Internationally acclaimed comedian, Gabriel Iglesias, returns to Comedy Central with his latest stand-up special taped at Honolulu’s Hawaii Theatre Center. Watch as Fluffy brings the house down yet again in this complete special with his unique and animated show that has made him popular among fans of all ages. Aloha Fluffy is sure to be a comedy classic, making this extended and uncensored special a must-own.",
-            "posterPath": "/4UX7xpNdPcE8wcK3eKjKgONlmQT.jpg",
-            "releaseDate": "2013-04-13",
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "CLOSEST_RELATED"
+            "overview": "After a chance encounter in LA, two teens from different social backgrounds reunite at an exclusive high school attended by Korea's über rich.",
+            "posterPath": "/n4RX9QVXjHbMB31TDWqqRLjshgu.jpg",
+            "releaseDate": "2013-10-09",
+            "totalEpisodes": 20,
+            "productionEnded": true,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
-        }
-    },
-    {
-        "show": {
-            "id": "fb729c84-66e1-3015-997b-bfc7cee17b4d",
-            "title": "Predators",
-            "aliases": [
-                "Predators: Polar Bear"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2024-12-21T00:00:00",
-            "lastWatched": "2024-12-21T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 1
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1175836,
-            "title": "Predators of the Wild: Polar Bear",
-            "type": "MOVIE",
-            "genres": [
-                "Documentary"
-            ],
-            "overview": "Polar bear… immensely powerful, ferociously cunning, lethally equipped for devastating exploitation of its frozen realm. Legendary for its endurance, hunting prowess and awesome strength, it is the largest and most formidable land predator of the planet’s most brutally unforgiving environment.  Venture into the trackless Arctic wastes to witness the uncanny survival strategies developed by this magnificent creature – tactics honed to a killing edge during 250,000 years of adaptation to its icy kingdom. See why the largest of these fearsome bears, weighing more than two full-grown lions, stands as the undisputed predatory monarch of a pristine, unconquered land where man still ventures at his peril.",
-            "posterPath": "/yYaO5ryNcbt1Wfeu1GmOEzP5fAP.jpg",
-            "releaseDate": "1993-01-01",
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "FIRST_RESULT_FALLBACK"
-        },
-        "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
+            "type": "LIMITED_SERIES",
+            "season": 1,
+            "episode": 12,
+            "provider": "NETFLIX",
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -154,48 +127,9 @@
     },
     {
         "show": {
-            "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
-            "title": "Matt Rife",
-            "aliases": [
-                "Matt Rife: Lucid - A Crowd Work Special",
-                "Matt Rife: Natural Selection"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2024-04-08T00:00:00",
-            "lastWatched": "2024-11-22T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 2
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1296221,
-            "title": "Matt Rife: Only Fans",
-            "type": "MOVIE",
-            "genres": [
-                "Comedy"
-            ],
-            "overview": "Comedian Matt Rife discusses his world of deceptive good looks, women and even a charismatic perspective of the world's more pressing topics.",
-            "posterPath": "/w6t5LTUA6Vq3AQ061Wl6ORes6EC.jpg",
-            "releaseDate": "2021-12-17",
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "CLOSEST_RELATED"
-        },
-        "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
-        }
-    },
-    {
-        "show": {
             "id": "eb632e99-1b64-31be-a504-27a182277a60",
             "title": "House, M.D.",
             "aliases": [
-                "House, M.D.: Season 7: Office Politics",
                 "House, M.D.: Season 6: Lockdown",
                 "House, M.D.: Season 7: You Must Remember This",
                 "House, M.D.: Season 6: The Down Low",
@@ -340,7 +274,8 @@
                 "House, M.D.: Season 5: Emancipation",
                 "House, M.D.: Season 4: Frozen",
                 "House, M.D.: Season 7: Unplanned Parenthood",
-                "House, M.D.: Season 4: Mirror Mirror"
+                "House, M.D.: Season 4: Mirror Mirror",
+                "House, M.D.: Season 7: Office Politics"
             ],
             "type": "SERIES",
             "firstWatched": "2024-02-13T00:00:00",
@@ -370,6 +305,44 @@
             "episode": 12,
             "provider": "TMDB",
             "status": "IN_PROGRESS"
+        }
+    },
+    {
+        "show": {
+            "id": "4282244d-78bf-326c-931c-65ca91156660",
+            "title": "Jawan: Extended Cut",
+            "aliases": [
+                "Jawan: Extended Cut"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-09-08T00:00:00",
+            "lastWatched": "2024-09-08T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 872906,
+            "title": "Jawan",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Thriller"
+            ],
+            "overview": "An emotional journey of a prison warden, driven by a personal vendetta while keeping up to a promise made years ago, recruits inmates to commit outrageous crimes that shed light on corruption and injustice, in an attempt to get even with his past,  and that leads him to an unexpected reunion.",
+            "posterPath": "/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg",
+            "releaseDate": "2023-09-07",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
         }
     },
     {
@@ -817,6 +790,43 @@
     },
     {
         "show": {
+            "id": "2af48ba2-8cbe-39c0-a31b-28d1c2c89091",
+            "title": "Matt Rife",
+            "aliases": [
+                "Matt Rife: Natural Selection"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-04-08T00:00:00",
+            "lastWatched": "2024-04-08T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1195988,
+            "title": "Matt Rife: Natural Selection",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "From his problem with protection crystals to his beef with social media trolls, comedian Matt Rife holds nothing back in this rollicking stand-up special.",
+            "posterPath": "/hnSCLaB4phSI2B4I3ErUlQ1IGLN.jpg",
+            "releaseDate": "2023-11-15",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "EXACT"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "9e9fe9fb-37bc-385a-9461-30f8d9793681",
             "title": "Merry Christmas (Hindi)",
             "aliases": [
@@ -1092,6 +1102,43 @@
     },
     {
         "show": {
+            "id": "99594ea7-bd02-3fab-b745-b81b989fcab4",
+            "title": "Gabriel Iglesias",
+            "aliases": [
+                "Gabriel Iglesias: Stadium Fluffy"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-12-08T00:00:00",
+            "lastWatched": "2023-12-08T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1011579,
+            "title": "Gabriel Iglesias: Stadium Fluffy",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "Gabriel “Fluffy” Iglesias makes history as the first comedian to perform at Dodger Stadium in his new special Stadium Fluffy: Live From Los Angeles. Filmed at Netflix Is a Joke: The Festival, Gabriel hilariously shares details about being a Los Angeles native, a recent attempt at extortion towards him, and where he holds the record for receiving the highest fine on stage.",
+            "posterPath": "/cf96HbBBy3x5R5Jc8qcS8i7qgzD.jpg",
+            "releaseDate": "2022-10-18",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "EXACT"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "88d2566e-365d-3cd8-b71c-a0e2621917ba",
             "title": "Raja, Rasoi aur Anya Kahaniyan",
             "aliases": [
@@ -1169,13 +1216,51 @@
             "releaseDate": "2023-06-08",
             "totalEpisodes": 6,
             "productionEnded": true,
-            "matchConfidence": "FIRST_RESULT_FALLBACK"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "SERIES",
             "season": 1,
             "episode": 6,
             "provider": "NETFLIX",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "c92e2c5b-989a-39b9-944c-172482427e72",
+            "title": "Jawan: Tamil Extended Cut",
+            "aliases": [
+                "Jawan: Tamil Extended Cut"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-11-07T00:00:00",
+            "lastWatched": "2023-11-07T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 872906,
+            "title": "Jawan",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Thriller"
+            ],
+            "overview": "An emotional journey of a prison warden, driven by a personal vendetta while keeping up to a promise made years ago, recruits inmates to commit outrageous crimes that shed light on corruption and injustice, in an attempt to get even with his past,  and that leads him to an unexpected reunion.",
+            "posterPath": "/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg",
+            "releaseDate": "2023-09-07",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
             "status": "COMPLETED"
         }
     },
@@ -1256,12 +1341,12 @@
     },
     {
         "show": {
-            "id": "a26fe4ca-355b-34eb-b861-74d2691f22ec",
-            "title": "Gabriel lglesias",
+            "id": "5d7836c9-3a59-37e8-87c6-5015e909b875",
+            "title": "Gabriel lglesias: I’m Sorry For What I Said When I Was Hungry",
             "aliases": [
                 "Gabriel lglesias: I’m Sorry For What I Said When I Was Hungry"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-06-11T00:00:00",
             "lastWatched": "2023-06-11T00:00:00",
             "highestSeasonSeen": null,
@@ -1269,21 +1354,27 @@
             "watchCount": 1
         },
         "metadata": {
-            "provider": "TVMAZE",
-            "providerId": 5338,
-            "title": "Gabriel Iglesias Presents Stand Up Revolution",
-            "type": "SERIES",
+            "provider": "TMDB",
+            "providerId": 429801,
+            "title": "Gabriel Iglesias: I'm Sorry for What I Said When I Was Hungry",
+            "type": "MOVIE",
             "genres": [
                 "Comedy"
             ],
-            "overview": "Gabriel Iglesias hosts Stand-Up Revolution, featuring performances by Fluffy's funniest up-and-coming comedian friends.",
-            "posterPath": "https://static.tvmaze.com/uploads/images/original_untouched/22/55325.jpg",
-            "releaseDate": "2011-10-06",
-            "totalEpisodes": 19,
-            "productionEnded": true,
-            "matchConfidence": "FIRST_RESULT_FALLBACK"
+            "overview": "Hawaiian-shirt enthusiast Gabriel \"Fluffy\" Iglesias finds the laughs in racist gift baskets, Prius-driving cops and all-female taco trucks.",
+            "posterPath": "/eOgTfgiIbrqVB9Ll0T5PtOD8RGb.jpg",
+            "releaseDate": "2016-12-20",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
-        "progress": null
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
     },
     {
         "show": {
@@ -1393,7 +1484,7 @@
             "releaseDate": "2010-11-15",
             "totalEpisodes": null,
             "productionEnded": null,
-            "matchConfidence": "CLOSEST_RELATED"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "MOVIE",
@@ -1405,18 +1496,17 @@
     },
     {
         "show": {
-            "id": "1d2544e6-15ab-3abf-aa51-658c33cbcdce",
-            "title": "DreamWorks How to Train Your Dragon Legends",
+            "id": "fe1abbee-7033-38d5-b19a-9c234809856c",
+            "title": "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper",
             "aliases": [
-                "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper",
-                "DreamWorks How to Train Your Dragon Legends: Book of Dragons"
+                "DreamWorks How to Train Your Dragon Legends: Legend of the Boneknapper"
             ],
             "type": "MOVIE",
             "firstWatched": "2023-01-16T00:00:00",
             "lastWatched": "2023-01-16T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
@@ -1433,7 +1523,160 @@
             "releaseDate": "2010-11-15",
             "totalEpisodes": null,
             "productionEnded": null,
-            "matchConfidence": "CLOSEST_RELATED"
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "777b589c-c99a-3d23-a8e4-8625b702e971",
+            "title": "DreamWorks How to Train Your Dragon Legends: Book of Dragons",
+            "aliases": [
+                "DreamWorks How to Train Your Dragon Legends: Book of Dragons"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-16T00:00:00",
+            "lastWatched": "2023-01-16T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 207516,
+            "title": "How to Train Your Dragon: Legends",
+            "type": "MOVIE",
+            "genres": [
+                "Family",
+                "Animation",
+                "Adventure"
+            ],
+            "overview": "How to Train Your Dragon: Legends is a DVD package that includes the shorts Legend of the Boneknapper Dragon, Gift of the Night Fury, and Book of Dragons. The first release that came out only contained Legend of the Boneknapper Dragon and Book of Dragon. A later version, titled How to Train Train Your Dragon: The Complete Shorts Collection, includes Dawn of the Dragon Racers.",
+            "posterPath": "/4kEVqHV5egVoSl8OhDMImJozSaj.jpg",
+            "releaseDate": "2010-11-15",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "bb4d6abb-889a-3156-942c-f98456cbaf34",
+            "title": "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters",
+            "aliases": [
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Masters"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-12-15T00:00:00",
+            "lastWatched": "2022-12-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 786624,
+            "title": "Kung Fu Panda:  The Awesome Secrets Collection",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family"
+            ],
+            "overview": "Collection containing \"Secrets Of The Scroll\",  \"Secrets Of The Masters\", and \"Secrets Of The Furious Five\".",
+            "posterPath": "/cCoscBHWxefxGDUewzHH5CCyVfc.jpg",
+            "releaseDate": "2013-08-27",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "6e12573e-3fff-3866-97a0-9db64eebd105",
+            "title": "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five",
+            "aliases": [
+                "DreamWorks Kung Fu Panda Awesome Secrets: Secrets of the Furious Five"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-12-15T00:00:00",
+            "lastWatched": "2022-12-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 786624,
+            "title": "Kung Fu Panda:  The Awesome Secrets Collection",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family"
+            ],
+            "overview": "Collection containing \"Secrets Of The Scroll\",  \"Secrets Of The Masters\", and \"Secrets Of The Furious Five\".",
+            "posterPath": "/cCoscBHWxefxGDUewzHH5CCyVfc.jpg",
+            "releaseDate": "2013-08-27",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "82b180db-5834-3930-b5e7-55df05b4105e",
+            "title": "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets",
+            "aliases": [
+                "DreamWorks Kung Fu Panda Awesome Secrets: Play All Two: Kung Fu Panda Awesome Secrets"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-12-15T00:00:00",
+            "lastWatched": "2022-12-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 786624,
+            "title": "Kung Fu Panda:  The Awesome Secrets Collection",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family"
+            ],
+            "overview": "Collection containing \"Secrets Of The Scroll\",  \"Secrets Of The Masters\", and \"Secrets Of The Furious Five\".",
+            "posterPath": "/cCoscBHWxefxGDUewzHH5CCyVfc.jpg",
+            "releaseDate": "2013-08-27",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "MOVIE",
@@ -1510,7 +1753,7 @@
             "releaseDate": "2006-10-04",
             "totalEpisodes": 37,
             "productionEnded": true,
-            "matchConfidence": "CLOSEST_RELATED"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "SERIES",

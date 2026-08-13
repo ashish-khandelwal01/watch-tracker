@@ -103,6 +103,85 @@ class ReviewQueueBuilderTest {
                 .containsExactly(ReviewReason.LOW_CONFIDENCE_MATCH, ReviewReason.NO_PROGRESS_RESOLVED);
     }
 
+    @Test
+    void flagsAMovieWithMultipleAliasesAsLowConfidence() {
+        // Exact provider match is not enough when several raw titles were folded into one movie
+        // aggregate — e.g. two Kingsman films sharing a franchise prefix.
+        ShowMetadata metadata = exactMatch();
+        Show multiAliasMovie = new Show(
+                UUID.randomUUID(),
+                "Kingsman",
+                Set.of("Kingsman: The Secret Service", "Kingsman: The Golden Circle"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                null,
+                null,
+                2);
+        EnrichedShow enriched = new EnrichedShow(
+                multiAliasMovie,
+                Optional.of(metadata),
+                Optional.of(new WatchProgress(ShowType.MOVIE, null, null, "TMDB")));
+
+        List<ReviewItem> queue = ReviewQueueBuilder.build(List.of(enriched));
+
+        assertThat(queue).hasSize(1);
+        assertThat(queue.get(0).reasons()).containsExactly(ReviewReason.LOW_CONFIDENCE_MATCH);
+        assertThat(queue.get(0).aliases()).hasSize(2);
+    }
+
+    @Test
+    void doesNotFlagAMovieWithASingleAliasWhenExactMatchAndProgressResolved() {
+        ShowMetadata metadata = exactMatch();
+        Show singleAlias = new Show(
+                UUID.randomUUID(),
+                "Inception",
+                Set.of("Inception"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        EnrichedShow enriched = new EnrichedShow(
+                singleAlias,
+                Optional.of(metadata),
+                Optional.of(new WatchProgress(ShowType.MOVIE, null, null, "TMDB")));
+
+        assertThat(ReviewQueueBuilder.build(List.of(enriched))).isEmpty();
+    }
+
+    @Test
+    void doesNotFlagASeriesWithMultipleAliasesSolelyForAliasCount() {
+        // Multi-alias is expected for series (episode titles). Only movies are flagged by this rule.
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB",
+                1,
+                "Dark",
+                ShowType.SERIES,
+                List.of(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                MatchConfidence.EXACT);
+        Show series = new Show(
+                UUID.randomUUID(),
+                "Dark",
+                Set.of("Dark: Chapter One", "Dark: Chapter Two"),
+                ShowType.UNKNOWN,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 2, 0, 0),
+                1,
+                2,
+                2);
+        EnrichedShow enriched = new EnrichedShow(
+                series, Optional.of(metadata), Optional.of(new WatchProgress(1, 2, "TMDB")));
+
+        assertThat(ReviewQueueBuilder.build(List.of(enriched))).isEmpty();
+    }
+
     private static ShowMetadata exactMatch() {
         return new ShowMetadata(
                 "TMDB", 1, "Clean Match", ShowType.MOVIE, List.of(), null, null, null, null, null, MatchConfidence.EXACT);

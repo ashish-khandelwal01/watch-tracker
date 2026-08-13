@@ -2222,6 +2222,43 @@
     },
     {
         "show": {
+            "id": "32717405-bb31-34f3-8c2a-ce9fa361e604",
+            "title": "Gabriel Iglesias: Legend of Fluffy",
+            "aliases": [
+                "Gabriel Iglesias: Legend of Fluffy"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2025-10-05T00:00:00",
+            "lastWatched": "2025-10-05T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1404382,
+            "title": "Gabriel Iglesias: Legend of Fluffy",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "From breaking stereotypes to home break-ins, Gabriel Iglesias brings comedy to life's unexpected twists in this stand-up special.",
+            "posterPath": "/rrirqMQQfsvOzq3VC6vIW804xBo.jpg",
+            "releaseDate": "2025-01-06",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "85b22409-2b08-31a7-a71c-1dc80941941f",
             "title": "100 Days My Prince: Limited Series",
             "aliases": [
@@ -3163,52 +3200,6 @@
     },
     {
         "show": {
-            "id": "c7a3a182-d4f4-330f-a50d-237cb550dd30",
-            "title": "Inheritors: Limited Series",
-            "aliases": [
-                "Inheritors: Limited Series: Episode 9",
-                "Inheritors: Limited Series: Episode 8",
-                "Inheritors: Limited Series: Episode 7",
-                "Inheritors: Limited Series: Episode 6",
-                "Inheritors: Limited Series: Episode 5",
-                "Inheritors: Limited Series: Episode 4",
-                "Inheritors: Limited Series: Episode 3",
-                "Inheritors: Limited Series: Episode 2",
-                "Inheritors: Limited Series: Episode 1",
-                "Inheritors: Limited Series: Episode 12",
-                "Inheritors: Limited Series: Episode 11",
-                "Inheritors: Limited Series: Episode 10"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2025-01-04T00:00:00",
-            "lastWatched": "2025-01-23T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": 12,
-            "watchCount": 12
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 1445539,
-            "title": "Inheritors",
-            "type": "MOVIE",
-            "genres": [],
-            "overview": "When the youngest sister is hospitalized after a suicide attempt, three generations of a Chinese American immigrant family grapple with her absence.",
-            "posterPath": "/kg77Otl7Bzjzk85QfLrD1xVAMZ2.jpg",
-            "releaseDate": null,
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "EXACT"
-        },
-        "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
-        }
-    },
-    {
-        "show": {
             "id": "610e8066-1dc0-3b19-8e5e-8df405b59b04",
             "title": "Orange Is the New Black",
             "aliases": [
@@ -3533,6 +3524,43 @@
     },
     {
         "show": {
+            "id": "fb729c84-66e1-3015-997b-bfc7cee17b4d",
+            "title": "Predators",
+            "aliases": [
+                "Predators: Polar Bear"
+            ],
+            "type": "DOCUMENTARY",
+            "firstWatched": "2024-12-21T00:00:00",
+            "lastWatched": "2024-12-21T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 215344,
+            "title": "Predators",
+            "type": "SERIES",
+            "genres": [
+                "Documentary"
+            ],
+            "overview": "Tom Hardy narrates this thrilling natural history series following five apex predators facing the ultimate test of survival in drastically changing environments across the globe.",
+            "posterPath": "/r8xCjuwOODzTK9bSAOsJT8YVlUg.jpg",
+            "releaseDate": "2022-12-11",
+            "totalEpisodes": 5,
+            "productionEnded": true,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "DOCUMENTARY",
+            "season": 1,
+            "episode": 2,
+            "provider": "TMDB",
+            "status": "IN_PROGRESS"
+        }
+    },
+    {
+        "show": {
             "id": "8c1eaf7e-d189-388b-b079-0685e3b49ac2",
             "title": "The Blacklist",
             "aliases": [
@@ -3784,10 +3812,46 @@
     },
     {
         "show": {
+            "id": "a6d65b0a-0217-3396-b564-deacaaa3e271",
+            "title": "Matt Rife: Lucid - A Crowd Work Special",
+            "aliases": [
+                "Matt Rife: Lucid - A Crowd Work Special"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2024-11-22T00:00:00",
+            "lastWatched": "2024-11-22T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 1318411,
+            "title": "Matt Rife: Lucid - A Crowd Work Special",
+            "type": "MOVIE",
+            "genres": [
+                "Comedy"
+            ],
+            "overview": "In Netflix's first-ever crowd work special, Matt Rife gets up close and personal with an unpredictable Charlotte audience to riff on all things dreams.",
+            "posterPath": "/5ObrP6RumYHRRoIiiyY5IaWs9dV.jpg",
+            "releaseDate": "2024-08-12",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "9bfbb6c2-885b-3c18-b5ff-315afd034f61",
             "title": "Lucifer",
             "aliases": [
-                "Lucifer: Season 1: Pilot",
                 "Lucifer: Season 3: Let Pinhead Sing!",
                 "Lucifer: Season 4: All About Eve",
                 "Lucifer: Season 4: Save Lucifer",
@@ -3879,7 +3943,8 @@
                 "Lucifer: Season 3: The Sinnerman",
                 "Lucifer: Season 2: Sin-Eater",
                 "Lucifer: Season 3: High School Poppycock",
-                "Lucifer: Season 2: Trip to Stabby Town"
+                "Lucifer: Season 2: Trip to Stabby Town",
+                "Lucifer: Season 1: Pilot"
             ],
             "type": "SERIES",
             "firstWatched": "2021-05-25T00:00:00",
@@ -5059,49 +5124,9 @@
     },
     {
         "show": {
-            "id": "64ddfc94-7630-37c3-85da-733127d4365d",
-            "title": "Jawan",
-            "aliases": [
-                "Jawan: Tamil Extended Cut",
-                "Jawan: Extended Cut"
-            ],
-            "type": "MOVIE",
-            "firstWatched": "2023-11-07T00:00:00",
-            "lastWatched": "2024-09-08T00:00:00",
-            "highestSeasonSeen": null,
-            "highestEpisodeSeen": null,
-            "watchCount": 2
-        },
-        "metadata": {
-            "provider": "TMDB",
-            "providerId": 872906,
-            "title": "Jawan",
-            "type": "MOVIE",
-            "genres": [
-                "Action",
-                "Thriller"
-            ],
-            "overview": "An emotional journey of a prison warden, driven by a personal vendetta while keeping up to a promise made years ago, recruits inmates to commit outrageous crimes that shed light on corruption and injustice, in an attempt to get even with his past,  and that leads him to an unexpected reunion.",
-            "posterPath": "/jFt1gS4BGHlK8xt76Y81Alp4dbt.jpg",
-            "releaseDate": "2023-09-07",
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "EXACT"
-        },
-        "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
-        }
-    },
-    {
-        "show": {
             "id": "3d594614-f445-36b0-8014-e9b77730b833",
             "title": "Friends",
             "aliases": [
-                "Friends: Season 9: The One with Rachel's Other Sister",
                 "Friends: Season 3: The One with the Race Car Bed",
                 "Friends: Season 2: The One with the List",
                 "Friends: Season 10: The One with Rachel's Going Away Party",
@@ -5331,7 +5356,8 @@
                 "Friends: Season 6: The One Where Phoebe Runs",
                 "Friends: Season 9: The One with the Male Nanny",
                 "Friends: Season 7: The One with Joey's New Brain",
-                "Friends: Season 4: The One with the Worst Best Man Ever"
+                "Friends: Season 4: The One with the Worst Best Man Ever",
+                "Friends: Season 9: The One with Rachel's Other Sister"
             ],
             "type": "SERIES",
             "firstWatched": "2021-03-27T00:00:00",
@@ -7591,7 +7617,6 @@
             "id": "6abe5549-1bf6-3a38-b310-6a1945ad631e",
             "title": "Dexter",
             "aliases": [
-                "Dexter: Season 2: Resistance Is Futile",
                 "Dexter: Season 3: About Last Night",
                 "Dexter: Season 3: Finding Freebo",
                 "Dexter: Season 3: All in the Family",
@@ -7627,7 +7652,8 @@
                 "Dexter: Season 4: Living the Dream",
                 "Dexter: Season 1: Popping Cherry",
                 "Dexter: Season 3: Si Se Puede",
-                "Dexter: Season 3: Turning Biminese"
+                "Dexter: Season 3: Turning Biminese",
+                "Dexter: Season 2: Resistance Is Futile"
             ],
             "type": "SERIES",
             "firstWatched": "2024-04-03T00:00:00",
@@ -7936,8 +7962,6 @@
             "id": "369a2600-663e-3391-90cc-4e2acc490561",
             "title": "The Big Bang Theory",
             "aliases": [
-                "The Big Bang Theory: Season 5: The Friendship Contraction",
-                "The Big Bang Theory: Season 1: The Jerusalem Duality",
                 "The Big Bang Theory: Season 2: The Cooper-Nowitzki Theorem",
                 "The Big Bang Theory: Season 6: The Proton Resurgence",
                 "The Big Bang Theory: Season 10: The Long Distance Dissonance",
@@ -8214,7 +8238,9 @@
                 "The Big Bang Theory: Season 10: The Property Division Collision",
                 "The Big Bang Theory: Season 12: The Propagation Proposition",
                 "The Big Bang Theory: Season 5: The Beta Test Initiation",
-                "The Big Bang Theory: Season 12: The Decision Reverberation"
+                "The Big Bang Theory: Season 12: The Decision Reverberation",
+                "The Big Bang Theory: Season 5: The Friendship Contraction",
+                "The Big Bang Theory: Season 1: The Jerusalem Duality"
             ],
             "type": "SERIES",
             "firstWatched": "2020-12-22T00:00:00",
@@ -9588,35 +9614,33 @@
     },
     {
         "show": {
-            "id": "ec0db187-98eb-362e-8d82-a3dd3d79af4b",
-            "title": "Top Gun",
+            "id": "83c87b5b-fd1b-3520-8727-26982f4ff4a0",
+            "title": "Top Gun: Maverick",
             "aliases": [
-                "Top Gun: Maverick",
-                "Top Gun"
+                "Top Gun: Maverick"
             ],
             "type": "MOVIE",
-            "firstWatched": "2023-01-05T00:00:00",
+            "firstWatched": "2024-01-01T00:00:00",
             "lastWatched": "2024-01-01T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 744,
-            "title": "Top Gun",
+            "providerId": 361743,
+            "title": "Top Gun: Maverick",
             "type": "MOVIE",
             "genres": [
                 "Action",
-                "Drama",
-                "Romance"
+                "Drama"
             ],
-            "overview": "For Lieutenant Pete 'Maverick' Mitchell and his friend and co-pilot Nick 'Goose' Bradshaw, being accepted into an elite training school for fighter pilots is a dream come true. But a tragedy, as well as personal demons, will threaten Pete's dreams of becoming an ace pilot.",
-            "posterPath": "/xUuHj3CgmZQ9P2cMaqQs4J0d4Zc.jpg",
-            "releaseDate": "1986-05-16",
+            "overview": "After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
+            "posterPath": "/n0YuM4f5lvGAP6MAW2kBIzugXnc.jpg",
+            "releaseDate": "2022-05-21",
             "totalEpisodes": null,
             "productionEnded": null,
-            "matchConfidence": "EXACT"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "MOVIE",
@@ -10667,7 +10691,7 @@
             "aliases": [
                 "The Man from U.N.C.L.E."
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-11-02T00:00:00",
             "lastWatched": "2023-11-02T00:00:00",
             "highestSeasonSeen": null,
@@ -10676,22 +10700,28 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 210,
+            "providerId": 203801,
             "title": "The Man from U.N.C.L.E.",
-            "type": "SERIES",
+            "type": "MOVIE",
             "genres": [
-                "Action & Adventure",
                 "Comedy",
-                "Sci-Fi & Fantasy"
+                "Action",
+                "Adventure"
             ],
-            "overview": "Agents Napoleon Solo and Illya Kuryakin work for a secret intelligence service working under the auspices of the U.N.\n\nTheir immediate superior is Mr. Waverly.\n\nTogether  they operate out of a secret base beneath the streets of New York City, and accesses through several cover business such as Del Floria's Tailor Shop and the Masque Club.\n\nThis secret intelligence service is called U.N.C.L.E.\n\nUnited Network Command for Law and Enforcement.",
-            "posterPath": "/a0nMOwNZXyJrMTPoaCzJJZeT0Yl.jpg",
-            "releaseDate": "1964-09-22",
-            "totalEpisodes": 105,
-            "productionEnded": true,
-            "matchConfidence": "EXACT"
+            "overview": "At the height of the Cold War, a mysterious criminal organization plans to use nuclear weapons and technology to upset the fragile balance of power between the United States and Soviet Union. CIA agent Napoleon Solo and KGB agent Illya Kuryakin are forced to put aside their hostilities and work together to stop the evildoers in their tracks. The duo's only lead is the daughter of a missing German scientist, whom they must find soon to prevent a global catastrophe.",
+            "posterPath": "/y5yZaForGSJbPD66Cvq9AT5WMAD.jpg",
+            "releaseDate": "2015-08-13",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
-        "progress": null
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
     },
     {
         "show": {
@@ -10812,12 +10842,12 @@
     },
     {
         "show": {
-            "id": "b5998634-c34d-3970-b2b1-ccb34a3b0260",
-            "title": "Jumanji",
+            "id": "94f68c7c-3e39-33db-8893-8e6bd969f387",
+            "title": "Jumanji: The Next Level",
             "aliases": [
                 "Jumanji: The Next Level"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2023-10-31T00:00:00",
             "lastWatched": "2023-10-31T00:00:00",
             "highestSeasonSeen": null,
@@ -10826,23 +10856,28 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 2118,
-            "title": "Jumanji",
-            "type": "SERIES",
+            "providerId": 512200,
+            "title": "Jumanji: The Next Level",
+            "type": "MOVIE",
             "genres": [
-                "Animation",
-                "Kids",
-                "Action & Adventure",
-                "Sci-Fi & Fantasy"
+                "Adventure",
+                "Comedy",
+                "Fantasy"
             ],
-            "overview": "Judy and Peter Shepherd are two kids that found a board game called \"Jumanji\". With each turn, the two of them are given a \"game clue\" and then sucked into a dangerous jungle until they solve their clue. There they meet Alan Parrish, who was trapped in the Jumanji jungle because he had never seen his clue.",
-            "posterPath": "/2s0v5wRdbJGBMrLHxr9WB2rPUJI.jpg",
-            "releaseDate": "1996-09-08",
-            "totalEpisodes": 40,
-            "productionEnded": true,
-            "matchConfidence": "EXACT"
+            "overview": "As the gang return to Jumanji to rescue one of their own, they discover that nothing is as they expect. The players will have to brave parts unknown and unexplored in order to escape the world’s most dangerous game.",
+            "posterPath": "/jyw8VKYEiM1UDzPB7NsisUgBeJ8.jpg",
+            "releaseDate": "2019-12-04",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
-        "progress": null
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
     },
     {
         "show": {
@@ -11205,7 +11240,6 @@
             "id": "6c0e7e2f-43dd-3ce9-8152-98c1002428f3",
             "title": "Travelers",
             "aliases": [
-                "Travelers: Season 3: David",
                 "Travelers: Season 3: Protocol Omega",
                 "Travelers: Season 2: 11:27",
                 "Travelers: Season 1: Bishop",
@@ -11238,7 +11272,8 @@
                 "Travelers: Season 2: U235",
                 "Travelers: Season 3: Ilsa",
                 "Travelers: Season 2: Ave Machina",
-                "Travelers: Season 1: Hall"
+                "Travelers: Season 1: Hall",
+                "Travelers: Season 3: David"
             ],
             "type": "SERIES",
             "firstWatched": "2023-08-28T00:00:00",
@@ -11486,7 +11521,6 @@
             "id": "76c3e002-d3c0-32bd-aa90-9366a8dc3845",
             "title": "Manifest",
             "aliases": [
-                "Manifest: Season 2: Emergency Exit",
                 "Manifest: Season 4: All-Call",
                 "Manifest: Season 4: Rendezvous",
                 "Manifest: Season 3: Precious Cargo",
@@ -11547,7 +11581,8 @@
                 "Manifest: Season 2: Grounded",
                 "Manifest: Season 3: Deadhead",
                 "Manifest: Season 1: Point of No Return",
-                "Manifest: Season 1: Estimated Time of Departure"
+                "Manifest: Season 1: Estimated Time of Departure",
+                "Manifest: Season 2: Emergency Exit"
             ],
             "type": "SERIES",
             "firstWatched": "2022-06-28T00:00:00",
@@ -12650,15 +12685,17 @@
             "id": "4b7ad801-c7df-3258-b43a-1891868e5fb1",
             "title": "Black Lightning",
             "aliases": [
+                "Black Lightning: Black Jesus",
                 "Black Lightning: The Resurrection",
-                "Black Lightning: Black Jesus"
+                "Black Lightning: LaWanda: The Book of Burial",
+                "Black Lightning: LaWanda: The Book of Hope"
             ],
             "type": "SERIES",
             "firstWatched": "2023-03-11T00:00:00",
             "lastWatched": "2023-03-12T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 4
         },
         "metadata": {
             "provider": "TMDB",
@@ -12675,7 +12712,7 @@
             "releaseDate": "2018-01-16",
             "totalEpisodes": 58,
             "productionEnded": true,
-            "matchConfidence": "EXACT"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "SERIES",
@@ -12999,6 +13036,45 @@
     },
     {
         "show": {
+            "id": "ec0db187-98eb-362e-8d82-a3dd3d79af4b",
+            "title": "Top Gun",
+            "aliases": [
+                "Top Gun"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2023-01-05T00:00:00",
+            "lastWatched": "2023-01-05T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 744,
+            "title": "Top Gun",
+            "type": "MOVIE",
+            "genres": [
+                "Action",
+                "Drama",
+                "Romance"
+            ],
+            "overview": "For Lieutenant Pete 'Maverick' Mitchell and his friend and co-pilot Nick 'Goose' Bradshaw, being accepted into an elite training school for fighter pilots is a dream come true. But a tragedy, as well as personal demons, will threaten Pete's dreams of becoming an ace pilot.",
+            "posterPath": "/xUuHj3CgmZQ9P2cMaqQs4J0d4Zc.jpg",
+            "releaseDate": "1986-05-16",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
             "id": "340e0b6b-1ec7-30f3-8be2-e00119b4f562",
             "title": "The Boss Baby: Back in Business",
             "aliases": [
@@ -13050,7 +13126,6 @@
             "id": "1a752bde-ac2d-3e4e-a598-be47491cbff6",
             "title": "Superstore",
             "aliases": [
-                "Superstore: Season 1: Mannequin",
                 "Superstore: Season 2: Back to Work",
                 "Superstore: Season 2: Halloween Theft",
                 "Superstore: Season 1: Wedding Day Sale",
@@ -13110,7 +13185,8 @@
                 "Superstore: Season 3: Viral Video",
                 "Superstore: Season 1: Demotion",
                 "Superstore: Season 2: Rebranding",
-                "Superstore: Season 2: Ladies' Lunch"
+                "Superstore: Season 2: Ladies' Lunch",
+                "Superstore: Season 1: Mannequin"
             ],
             "type": "SERIES",
             "firstWatched": "2022-12-15T00:00:00",
@@ -13460,10 +13536,9 @@
     },
     {
         "show": {
-            "id": "25bc131e-b22e-3175-8a22-cc94411faa53",
-            "title": "Kung Fu Panda",
+            "id": "eac7957c-52a1-3102-a823-f9da12377fc8",
+            "title": "Kung Fu Panda: Secrets of the Scroll",
             "aliases": [
-                "Kung Fu Panda",
                 "Kung Fu Panda: Secrets of the Scroll"
             ],
             "type": "MOVIE",
@@ -13471,7 +13546,46 @@
             "lastWatched": "2022-12-15T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 2
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 381693,
+            "title": "Kung Fu Panda: Secrets of the Scroll",
+            "type": "MOVIE",
+            "genres": [
+                "Animation",
+                "Family",
+                "Comedy"
+            ],
+            "overview": "As Po looks for his lost action figures, the story of how the panda inadvertently helped create the Furious Five is told.",
+            "posterPath": "/t5a7bKi9rJkLIPzA7XlrxdCrchQ.jpg",
+            "releaseDate": "2016-01-05",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "25bc131e-b22e-3175-8a22-cc94411faa53",
+            "title": "Kung Fu Panda",
+            "aliases": [
+                "Kung Fu Panda"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2022-12-15T00:00:00",
+            "lastWatched": "2022-12-15T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
@@ -13662,7 +13776,7 @@
             "aliases": [
                 "Hustle"
             ],
-            "type": "SERIES",
+            "type": "MOVIE",
             "firstWatched": "2022-12-06T00:00:00",
             "lastWatched": "2022-12-06T00:00:00",
             "highestSeasonSeen": null,
@@ -13671,23 +13785,27 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 3764,
+            "providerId": 705861,
             "title": "Hustle",
-            "type": "SERIES",
+            "type": "MOVIE",
             "genres": [
-                "Comedy",
-                "Crime",
                 "Drama",
-                "Mystery"
+                "Comedy"
             ],
-            "overview": "A motley group of London con artists pull of a series of daring and intricate stings.",
-            "posterPath": "/xty7kinvhVH3RzMdjNQSpJj2pEm.jpg",
-            "releaseDate": "2004-02-24",
-            "totalEpisodes": 48,
-            "productionEnded": true,
-            "matchConfidence": "EXACT"
+            "overview": "After discovering a once-in-a-lifetime player with a rocky past abroad, a down on his luck basketball scout takes it upon himself to bring the phenom to the States without his team's approval. Against the odds, they have one final shot to prove they have what it takes to make it in the NBA.",
+            "posterPath": "/xWic7kPq13oRxYjbGLApXCnc7pz.jpg",
+            "releaseDate": "2022-06-03",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
-        "progress": null
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
     },
     {
         "show": {
@@ -14106,7 +14224,6 @@
             "id": "5f7aa944-423d-32b7-9a93-bc3456064b9b",
             "title": "S.W.A.T.",
             "aliases": [
-                "S.W.A.T.: Season 4: Fracture",
                 "S.W.A.T.: Season 4: Whistleblower",
                 "S.W.A.T.: Season 5: Madrugada",
                 "S.W.A.T.: Season 1: Octane",
@@ -14211,7 +14328,8 @@
                 "S.W.A.T.: Season 3: Knockout",
                 "S.W.A.T.: Season 2: Inheritance",
                 "S.W.A.T.: Season 3: Funny Money",
-                "S.W.A.T.: Season 5: Old School Cool"
+                "S.W.A.T.: Season 5: Old School Cool",
+                "S.W.A.T.: Season 4: Fracture"
             ],
             "type": "SERIES",
             "firstWatched": "2022-08-21T00:00:00",
@@ -15501,7 +15619,6 @@
             "id": "d5145a13-a165-3957-abe4-fb8d3354147b",
             "title": "Money Heist",
             "aliases": [
-                "Money Heist: Part 3: We're Back",
                 "Money Heist: Part 1: Episode 13",
                 "Money Heist: Part 1: Episode 10",
                 "Money Heist: Part 1: Episode 11",
@@ -15530,7 +15647,8 @@
                 "Money Heist: Part 1: Episode 3",
                 "Money Heist: Part 1: Episode 2",
                 "Money Heist: Part 1: Episode 1",
-                "Money Heist: Part 3: Aikido"
+                "Money Heist: Part 3: Aikido",
+                "Money Heist: Part 3: We're Back"
             ],
             "type": "SERIES",
             "firstWatched": "2021-09-15T00:00:00",
@@ -16592,7 +16710,6 @@
             "id": "922eba9a-688d-30f8-9d9b-5c7e29be8a66",
             "title": "Two and a Half Men",
             "aliases": [
-                "Two and a Half Men: Alan Harper, Frontier Chiropractor",
                 "Two and a Half Men: Season 2: Smell the Umbrella Stand",
                 "Two and a Half Men: Season 2: A Bag Full of Jawea",
                 "Two and a Half Men: Just Like Buffalo",
@@ -16665,7 +16782,8 @@
                 "Two and a Half Men: Season 2: Squab, Squab, Squab, Squab, Squab",
                 "Two and a Half Men: Season 2: Go Get Mommy's Bra",
                 "Two and a Half Men: Season 3: Sleep Tight, Puddin' Pop",
-                "Two and a Half Men: No Sniffing, No Wowing"
+                "Two and a Half Men: No Sniffing, No Wowing",
+                "Two and a Half Men: Alan Harper, Frontier Chiropractor"
             ],
             "type": "SERIES",
             "firstWatched": "2021-05-11T00:00:00",
@@ -19231,36 +19349,112 @@
     },
     {
         "show": {
-            "id": "cbb53f91-67aa-381b-9359-ea7f8e22b4f6",
-            "title": "The Lord of the Rings",
+            "id": "7ec20133-028f-3895-9fe1-9c1c3ddff8db",
+            "title": "The Lord of the Rings: The Return of the King",
             "aliases": [
-                "The Lord of the Rings: The Return of the King",
-                "The Lord of the Rings: The Fellowship of the Ring",
-                "The Lord of the Rings: The Two Towers"
+                "The Lord of the Rings: The Return of the King"
             ],
             "type": "MOVIE",
-            "firstWatched": "2020-12-29T00:00:00",
+            "firstWatched": "2020-12-30T00:00:00",
             "lastWatched": "2020-12-30T00:00:00",
             "highestSeasonSeen": null,
             "highestEpisodeSeen": null,
-            "watchCount": 3
+            "watchCount": 1
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 123,
-            "title": "The Lord of the Rings",
+            "providerId": 122,
+            "title": "The Lord of the Rings: The Return of the King",
             "type": "MOVIE",
             "genres": [
                 "Adventure",
-                "Animation",
-                "Fantasy"
+                "Fantasy",
+                "Action"
             ],
-            "overview": "Young Hobbit Frodo Baggins is thrown into an amazing adventure when he's tasked with destroying the One Ring, created by the dark lord Sauron. Frodo must travel in a small fellowship of nine warriors and accomplices. But it won't be an easy journey for the Fellowship of the Ring, on the ultimate quest to rid Middle-earth of evil.",
-            "posterPath": "/liW0mjvTyLs7UCumaHhx3PpU4VT.jpg",
-            "releaseDate": "1978-11-15",
+            "overview": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determine the outcome--one member of the Fellowship of the Ring is revealed as the noble heir to the throne of the Kings of Men. Yet, the sole hope for triumph over evil lies with a brave hobbit, Frodo, who, accompanied by his loyal friend Sam and the hideous, wretched Gollum, ventures deep into the very dark heart of Mordor on his seemingly impossible quest to destroy the Ring of Power.​",
+            "posterPath": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+            "releaseDate": "2003-12-17",
             "totalEpisodes": null,
             "productionEnded": null,
-            "matchConfidence": "EXACT"
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "7341a4c4-8e3a-3a24-bf7c-00c5253402b6",
+            "title": "The Lord of the Rings: The Two Towers",
+            "aliases": [
+                "The Lord of the Rings: The Two Towers"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-12-30T00:00:00",
+            "lastWatched": "2020-12-30T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 121,
+            "title": "The Lord of the Rings: The Two Towers",
+            "type": "MOVIE",
+            "genres": [
+                "Adventure",
+                "Fantasy",
+                "Action"
+            ],
+            "overview": "Frodo Baggins and the other members of the Fellowship continue on their sacred quest to destroy the One Ring--but on separate paths. Their destinies lie at two towers--Orthanc Tower in Isengard, where the corrupt wizard Saruman awaits, and Sauron's fortress at Barad-dur, deep within the dark lands of Mordor. Frodo and Sam are trekking to Mordor to destroy the One Ring of Power while Gimli, Legolas and Aragorn search for the orc-captured Merry and Pippin. All along, nefarious wizard Saruman awaits the Fellowship members at the Orthanc Tower in Isengard.",
+            "posterPath": "/5VTN0pR8gcqV3EPUHHfMGnJYN9L.jpg",
+            "releaseDate": "2002-12-18",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
+        },
+        "progress": {
+            "type": "MOVIE",
+            "season": null,
+            "episode": null,
+            "provider": "TMDB",
+            "status": "COMPLETED"
+        }
+    },
+    {
+        "show": {
+            "id": "082f42ae-f692-3bb5-88d3-b304a24fc762",
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "aliases": [
+                "The Lord of the Rings: The Fellowship of the Ring"
+            ],
+            "type": "MOVIE",
+            "firstWatched": "2020-12-29T00:00:00",
+            "lastWatched": "2020-12-29T00:00:00",
+            "highestSeasonSeen": null,
+            "highestEpisodeSeen": null,
+            "watchCount": 1
+        },
+        "metadata": {
+            "provider": "TMDB",
+            "providerId": 120,
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "type": "MOVIE",
+            "genres": [
+                "Adventure",
+                "Fantasy",
+                "Action"
+            ],
+            "overview": "Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it from falling into the hands of its evil creator. Along the way, a fellowship is formed to protect the ringbearer and make sure that the ring arrives at its final destination: Mt. Doom, the only place where it can be destroyed.",
+            "posterPath": "/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+            "releaseDate": "2001-12-18",
+            "totalEpisodes": null,
+            "productionEnded": null,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "MOVIE",
@@ -19280,7 +19474,7 @@
                 "The Gift: Season 1: Episode 1",
                 "The Gift: Season 1: Episode 4"
             ],
-            "type": "MOVIE",
+            "type": "SERIES",
             "firstWatched": "2020-10-02T00:00:00",
             "lastWatched": "2020-12-28T00:00:00",
             "highestSeasonSeen": 1,
@@ -19289,27 +19483,27 @@
         },
         "metadata": {
             "provider": "TMDB",
-            "providerId": 328425,
+            "providerId": 96348,
             "title": "The Gift",
-            "type": "MOVIE",
+            "type": "SERIES",
             "genres": [
-                "Thriller",
                 "Mystery",
-                "Drama"
+                "Drama",
+                "Sci-Fi & Fantasy"
             ],
-            "overview": "Simon and Robyn are a young married couple whose life is going as planned until a chance run-in with Simon's high school acquaintance sends their world into a tailspin.",
-            "posterPath": "/kH3qLP8pn68Xq5XwvmPkCyaAU7W.jpg",
-            "releaseDate": "2015-07-31",
-            "totalEpisodes": null,
-            "productionEnded": null,
-            "matchConfidence": "EXACT"
+            "overview": "A painter in Istanbul embarks on a personal journey as she unearths universal secrets about an Anatolian archaeological site and its link to her past.",
+            "posterPath": "/lQasevgdY0sEc4KHWmIWAxxdM1J.jpg",
+            "releaseDate": "2019-12-27",
+            "totalEpisodes": 24,
+            "productionEnded": true,
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
-            "type": "MOVIE",
-            "season": null,
-            "episode": null,
-            "provider": "TMDB",
-            "status": "COMPLETED"
+            "type": "SERIES",
+            "season": 1,
+            "episode": 4,
+            "provider": "NETFLIX",
+            "status": "IN_PROGRESS"
         }
     },
     {
@@ -20051,7 +20245,7 @@
             "releaseDate": "2020-03-20",
             "totalEpisodes": 4,
             "productionEnded": true,
-            "matchConfidence": "CLOSEST_RELATED"
+            "matchConfidence": "MANUAL_OVERRIDE"
         },
         "progress": {
             "type": "LIMITED_SERIES",

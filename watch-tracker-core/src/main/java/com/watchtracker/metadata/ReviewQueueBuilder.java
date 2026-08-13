@@ -1,5 +1,6 @@
 package com.watchtracker.metadata;
 
+import com.watchtracker.model.ShowType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,14 @@ public final class ReviewQueueBuilder {
                         || metadata.matchConfidence() == MatchConfidence.MANUAL_OVERRIDE;
                 if (metadata.matchConfidence() != null && !isTrustedMatch) {
                     reasons.add(ReviewReason.LOW_CONFIDENCE_MATCH);
+                }
+                // A movie with more than one raw alias often means distinct films were grouped under
+                // one franchise title (e.g. two Kingsman movies). Flag for review even when the
+                // provider match itself was exact or manually overridden.
+                if (metadata.type() == ShowType.MOVIE && enriched.show().aliases().size() > 1) {
+                    if (!reasons.contains(ReviewReason.LOW_CONFIDENCE_MATCH)) {
+                        reasons.add(ReviewReason.LOW_CONFIDENCE_MATCH);
+                    }
                 }
                 if (enriched.progress().isEmpty()) {
                     reasons.add(ReviewReason.NO_PROGRESS_RESOLVED);
