@@ -1087,6 +1087,163 @@ class MetadataEnrichmentServiceTest {
 
 
     @Test
+    void fallsBackToStrippedPartSuffixWhenTheFullEpisodeTitleDoesNotResolve() {
+        // Reproduces "The Order": Netflix records each half of a two-part episode as its own row,
+        // with a ", Part N" / ": Part N" suffix baked into the extracted episode title by
+        // TitleNormalizer's CONTAINER_TITLE pattern (see the doc comment on resolveNamedEpisode).
+        // The provider's own guide has no such split — its episode is just "Homecoming" — so the
+        // full-title lookup must fail before the stripped-title fallback ever fires.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "The Order",
+                Set.of("The Order: Season 1: Homecoming: Part 1"),
+                ShowType.SERIES,
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                1,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "The Order: Season 1: Homecoming: Part 1",
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                "Netflix",
+                "The Order",
+                1,
+                null,
+                "Homecoming: Part 1",
+                true);
+        ShowMetadata metadata =
+                new ShowMetadata("TMDB", 82104, "The Order", ShowType.SERIES, List.of("Drama"), null, null, null);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty()) {
+            @Override
+            public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+                idScopedCalls++;
+                // The full, unstripped title never matches; only the stripped one does.
+                return "Homecoming".equals(episodeTitle) ? Optional.of(new WatchProgress(1, 1, "TMDB")) : Optional.empty();
+            }
+        };
+        RecordingDiagnosticsCollector diagnostics = new RecordingDiagnosticsCollector();
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, diagnostics)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(new WatchProgress(1, 1, "TMDB"));
+        // Called twice: once with the full "Homecoming: Part 1" (misses), once with the stripped
+        // "Homecoming" (hits) — confirms the fallback only fires after the full title fails, not
+        // instead of trying it.
+        assertThat(provider.idScopedCalls).isEqualTo(2);
+        assertThat(diagnostics.entries)
+                .filteredOn(e -> e.stage() == DiagnosticsStage.EPISODE_RESOLVER)
+                .anySatisfy(e -> {
+                    @SuppressWarnings("unchecked")
+                    java.util.Map<String, Object> output = (java.util.Map<String, Object>) e.output();
+                    assertThat(output).containsEntry("resolutionPath", "providerId-strippedPart");
+                });
+    }
+
+    @Test
+    void fallsBackToParenthesizedPartNumberWhenTheStrippedTitleAlsoDoesNotResolve() {
+        // Reproduces the real, confirmed "The Order" behavior: TMDb's own episode name isn't a
+        // bare stripped title ("Hell Week") — it's "Hell Week (1)", the base title plus the part
+        // number in parentheses, no "Part" word at all. A plain stripped title genuinely does not
+        // match TMDb's data here (verified directly against themoviedb.org/tv/82104/season/1), so
+        // this fallback has to reformat the number in, not just remove it.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "The Order",
+                Set.of("The Order: Season 1: Hell Week: Part 1"),
+                ShowType.SERIES,
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                1,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "The Order: Season 1: Hell Week: Part 1",
+                LocalDateTime.of(2020, 12, 12, 0, 0),
+                "Netflix",
+                "The Order",
+                1,
+                null,
+                "Hell Week: Part 1",
+                true);
+        ShowMetadata metadata =
+                new ShowMetadata("TMDB", 82104, "The Order", ShowType.SERIES, List.of("Drama"), null, null, null);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty()) {
+            @Override
+            public Optional<WatchProgress> resolveEpisode(long providerId, int season, String episodeTitle) {
+                idScopedCalls++;
+                // Neither the full title nor the bare stripped title match — only TMDb's real
+                // "Base (N)" convention does.
+                return "Hell Week (1)".equals(episodeTitle)
+                        ? Optional.of(new WatchProgress(1, 1, "TMDB"))
+                        : Optional.empty();
+            }
+        };
+        RecordingDiagnosticsCollector diagnostics = new RecordingDiagnosticsCollector();
+
+        EnrichedShow result = new MetadataEnrichmentService(provider, diagnostics)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        assertThat(result.progress()).contains(new WatchProgress(1, 1, "TMDB"));
+        // Three attempts: full "Hell Week: Part 1" (miss), stripped "Hell Week" (miss),
+        // parenthesized "Hell Week (1)" (hit).
+        assertThat(provider.idScopedCalls).isEqualTo(3);
+        assertThat(diagnostics.entries)
+                .filteredOn(e -> e.stage() == DiagnosticsStage.EPISODE_RESOLVER)
+                .anySatisfy(e -> {
+                    @SuppressWarnings("unchecked")
+                    java.util.Map<String, Object> output = (java.util.Map<String, Object>) e.output();
+                    assertThat(output).containsEntry("resolutionPath", "providerId-parenthesizedPart");
+                });
+    }
+
+    @Test
+    void doesNotRetryWithAStrippedTitleWhenTheFullTitleHasNoPartSuffix() {
+        // A title with no trailing ", Part N" has nothing to strip, so stripTrailingPart returns
+        // null and no second attempt is made — confirms the fallback is additive, not a behavior
+        // change for the common case.
+        Show show = new Show(
+                UUID.randomUUID(),
+                "Lockwood & Co.",
+                Set.of("Lockwood & Co.: This Will Be Us"),
+                ShowType.SERIES,
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                null,
+                null,
+                1);
+        WatchEvent event = new WatchEvent(
+                UUID.randomUUID(),
+                "Lockwood & Co.: This Will Be Us",
+                LocalDateTime.of(2024, 1, 1, 0, 0),
+                "Netflix",
+                "Lockwood & Co.",
+                null,
+                null,
+                "This Will Be Us",
+                true);
+        ShowMetadata metadata = new ShowMetadata(
+                "TMDB", 213241, "Lockwood & Co.", ShowType.SERIES, List.of("Sci-Fi & Fantasy"), null, null, null);
+        EpisodeResolutionRecordingProvider provider = new EpisodeResolutionRecordingProvider(
+                Optional.of(metadata), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+
+        new MetadataEnrichmentService(provider)
+                .enrich(List.of(show), List.of(event), PreviousEnrichmentSnapshot.EMPTY)
+                .getFirst();
+
+        // Only the scoped and any-season attempts with the untouched title — no third/fourth call.
+        assertThat(provider.idScopedCalls).isEqualTo(1);
+        assertThat(provider.idAnySeasonCalls).isEqualTo(1);
+    }
+
+    @Test
     void recordsEpisodeResolverFailureInDiagnosticsWhenNamedEpisodeCannotBeMatched() {
         Show show = new Show(
                 UUID.randomUUID(),

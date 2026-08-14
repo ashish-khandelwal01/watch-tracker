@@ -13,6 +13,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /** Enriches already-grouped shows without changing raw import data. */
@@ -711,6 +712,16 @@ public final class MetadataEnrichmentService {
      *
      * <p>When no metadata is available, a single cleaned-title lookup is used (scoped then
      * any-season).
+     *
+     * <p>If every attempt with the full episode title fails, and the title ends in a trailing
+     * ", Part N" / ": Part N" split-viewing marker (Netflix sometimes records a single provider
+     * episode as two watched "parts", e.g. "Free Radicals, Part 2", when the provider's own guide
+     * has no such split — see {@code TitleNormalizer}'s {@code CONTAINER_TITLE} pattern, which
+     * keeps this suffix as part of the extracted episode title verbatim), the same scoped/any-season
+     * attempts are retried once more with that suffix stripped. This is a strict superset of the
+     * unstripped attempts — it only ever recovers a match the full-title search already missed, so a
+     * title without this suffix, or one that already resolved on the full title, is completely
+     * unaffected.
      */
     private Optional<WatchProgress> resolveNamedEpisode(
             Show show, NamedEpisode named, ShowType progType, Optional<ShowMetadata> metadata) {
@@ -736,6 +747,35 @@ public final class MetadataEnrichmentService {
             }
             if (resolved.isPresent()) {
                 resolutionPath = "providerId";
+            } else {
+                String stripped = stripTrailingPart(named.episodeTitle());
+                if (stripped != null) {
+                    searched.put("strippedEpisodeTitle", stripped);
+                    if (named.season() != null) {
+                        resolved = resolveEpisodeSafely(providerId, named.season(), stripped);
+                    }
+                    if (resolved.isEmpty()) {
+                        resolved = resolveEpisodeAnySeasonSafely(providerId, stripped);
+                    }
+                    if (resolved.isPresent()) {
+                        resolutionPath = "providerId-strippedPart";
+                    }
+                }
+                if (resolved.isEmpty()) {
+                    String parenthesized = withParenthesizedPartNumber(named.episodeTitle());
+                    if (parenthesized != null) {
+                        searched.put("parenthesizedEpisodeTitle", parenthesized);
+                        if (named.season() != null) {
+                            resolved = resolveEpisodeSafely(providerId, named.season(), parenthesized);
+                        }
+                        if (resolved.isEmpty()) {
+                            resolved = resolveEpisodeAnySeasonSafely(providerId, parenthesized);
+                        }
+                        if (resolved.isPresent()) {
+                            resolutionPath = "providerId-parenthesizedPart";
+                        }
+                    }
+                }
             }
         } else {
             String lookupTitle = lookupTitleForResolution(show.title(), metadata);
@@ -748,6 +788,35 @@ public final class MetadataEnrichmentService {
             }
             if (resolved.isPresent()) {
                 resolutionPath = "lookupTitle";
+            } else {
+                String stripped = stripTrailingPart(named.episodeTitle());
+                if (stripped != null) {
+                    searched.put("strippedEpisodeTitle", stripped);
+                    if (named.season() != null) {
+                        resolved = resolveEpisodeSafely(lookupTitle, named.season(), stripped);
+                    }
+                    if (resolved.isEmpty()) {
+                        resolved = resolveEpisodeAnySeasonSafely(lookupTitle, stripped);
+                    }
+                    if (resolved.isPresent()) {
+                        resolutionPath = "lookupTitle-strippedPart";
+                    }
+                }
+                if (resolved.isEmpty()) {
+                    String parenthesized = withParenthesizedPartNumber(named.episodeTitle());
+                    if (parenthesized != null) {
+                        searched.put("parenthesizedEpisodeTitle", parenthesized);
+                        if (named.season() != null) {
+                            resolved = resolveEpisodeSafely(lookupTitle, named.season(), parenthesized);
+                        }
+                        if (resolved.isEmpty()) {
+                            resolved = resolveEpisodeAnySeasonSafely(lookupTitle, parenthesized);
+                        }
+                        if (resolved.isPresent()) {
+                            resolutionPath = "lookupTitle-parenthesizedPart";
+                        }
+                    }
+                }
             }
         }
 
@@ -771,6 +840,86 @@ public final class MetadataEnrichmentService {
         }
         diagnostics.failure(DiagnosticsStage.EPISODE_RESOLVER, show.title(), "Episode title not found", searched);
         return Optional.empty();
+    }
+
+    // Matches a trailing ", Part N" / ": Part N" / " Part N" split-viewing marker — digits or a
+    // spelled-out number up to twenty, covering the realistic range for how many parts Netflix
+    // would split a single episode's viewing into. Deliberately narrow (only a trailing "Part N",
+    // not "Chapter"/"Book"/etc., which TitleNormalizer's own patterns already treat as meaningful
+    // season/container markers rather than noise) so this can't strip something that was actually
+    // part of a real episode title.
+    private static final Pattern TRAILING_PART_SUFFIX = Pattern.compile(
+            "(?i)^(?<base>.+?)\\s*[,:]?\\s*part\\s+(?<number>[0-9]+|one|two|three|four|five|six|seven|eight|nine|ten"
+                    + "|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\\s*$");
+
+    private static final java.util.Map<String, Integer> SPELLED_OUT_NUMBERS = java.util.Map.ofEntries(
+            java.util.Map.entry("one", 1),
+            java.util.Map.entry("two", 2),
+            java.util.Map.entry("three", 3),
+            java.util.Map.entry("four", 4),
+            java.util.Map.entry("five", 5),
+            java.util.Map.entry("six", 6),
+            java.util.Map.entry("seven", 7),
+            java.util.Map.entry("eight", 8),
+            java.util.Map.entry("nine", 9),
+            java.util.Map.entry("ten", 10),
+            java.util.Map.entry("eleven", 11),
+            java.util.Map.entry("twelve", 12),
+            java.util.Map.entry("thirteen", 13),
+            java.util.Map.entry("fourteen", 14),
+            java.util.Map.entry("fifteen", 15),
+            java.util.Map.entry("sixteen", 16),
+            java.util.Map.entry("seventeen", 17),
+            java.util.Map.entry("eighteen", 18),
+            java.util.Map.entry("nineteen", 19),
+            java.util.Map.entry("twenty", 20));
+
+    /**
+     * Strips a trailing ", Part N" (or similar) suffix from an episode title, when present.
+     *
+     * @param episodeTitle the raw episode title
+     * @return the title with the suffix removed, or {@code null} if there was no such suffix (the
+     *     caller should not retry resolution in that case — the full-title attempt already covered
+     *     it)
+     */
+    private static String stripTrailingPart(String episodeTitle) {
+        if (episodeTitle == null) {
+            return null;
+        }
+        Matcher matcher = TRAILING_PART_SUFFIX.matcher(episodeTitle.trim());
+        return matcher.matches() ? matcher.group("base").trim() : null;
+    }
+
+    /**
+     * Rewrites a trailing ", Part N" suffix into {@code "Base (N)"}, when present — the convention
+     * TMDb actually uses for a multi-part episode (e.g. "Hell Week (1)", "Hell Week (2)"), confirmed
+     * against a real title page. This is a distinct fallback from {@link #stripTrailingPart}: a
+     * plain stripped title with no part number at all ("Hell Week") also fails to match, since
+     * TMDb's own episode name still carries the number, just in parentheses rather than after the
+     * word "Part".
+     *
+     * @param episodeTitle the raw episode title
+     * @return the reformatted title, or {@code null} if there was no "Part N" suffix to rewrite, or
+     *     the captured number couldn't be parsed
+     */
+    private static String withParenthesizedPartNumber(String episodeTitle) {
+        if (episodeTitle == null) {
+            return null;
+        }
+        Matcher matcher = TRAILING_PART_SUFFIX.matcher(episodeTitle.trim());
+        if (!matcher.matches()) {
+            return null;
+        }
+        String token = matcher.group("number").toLowerCase(Locale.ROOT);
+        Integer number = SPELLED_OUT_NUMBERS.get(token);
+        if (number == null) {
+            try {
+                number = Integer.parseInt(token);
+            } catch (NumberFormatException exception) {
+                return null;
+            }
+        }
+        return matcher.group("base").trim() + " (" + number + ")";
     }
 
     /** Resolves an episode by title; provider failures are treated as misses. */
