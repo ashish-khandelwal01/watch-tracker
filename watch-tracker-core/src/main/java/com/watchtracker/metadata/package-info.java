@@ -1,2 +1,2 @@
-/** Imports watch history from external services into {@link com.watchtracker.model.WatchEvent}s. */
-package com.watchtracker.importer;
+/** Optional external metadata providers, enrichment services, and caches. */
+package com.watchtracker.metadata;
