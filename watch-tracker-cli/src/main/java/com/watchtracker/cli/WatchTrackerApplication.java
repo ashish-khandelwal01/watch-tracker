@@ -18,6 +18,9 @@ import com.watchtracker.metadata.ReviewQueueBuilder;
 import com.watchtracker.model.Show;
 import com.watchtracker.model.WatchEvent;
 import com.watchtracker.normalizer.TitleNormalizer;
+import com.watchtracker.importer.TraktHistoryImporter;
+import com.watchtracker.metadata.OverrideDataExporter;
+import com.watchtracker.metadata.RevokedOverrideStore;
 import com.watchtracker.parser.NetflixCsvParser;
 import com.watchtracker.service.ShowBuilderService;
 import java.nio.file.Path;
@@ -43,33 +46,65 @@ public final class WatchTrackerApplication {
                 ? new JsonDiagnosticsCollector()
                 : new NoOpDiagnosticsCollector();
 
-        List<WatchEvent> events = new NetflixCsvParser()
-                .parse(parsedArguments.input()).stream()
-                        .map(new TitleNormalizer(diagnostics)::normalize)
-                        .toList();
+        TitleNormalizer normalizer = new TitleNormalizer(diagnostics);
+        List<WatchEvent> events = new java.util.ArrayList<>(
+                new NetflixCsvParser().parse(parsedArguments.input()).stream()
+                        .map(normalizer::normalize)
+                        .toList());
+
+        // Trakt = optional multi-OTT history going forward (not a metadata catalogue for Netflix).
+        if (parsedArguments.traktHistoryFile() != null) {
+            List<WatchEvent> traktEvents = new TraktHistoryImporter()
+                    .parseFile(parsedArguments.traktHistoryFile()).stream()
+                    .map(normalizer::normalize)
+                    .toList();
+            events.addAll(traktEvents);
+            System.out.printf(
+                    "Merged %d Trakt history event(s) from %s.%n",
+                    traktEvents.size(),
+                    parsedArguments.traktHistoryFile());
+        } else if (parsedArguments.useTrakt()) {
+            List<WatchEvent> traktEvents = new TraktHistoryImporter()
+                    .fetchHistory(System.getenv("TRAKT_CLIENT_ID"), System.getenv("TRAKT_ACCESS_TOKEN"))
+                    .stream()
+                    .map(normalizer::normalize)
+                    .toList();
+            events.addAll(traktEvents);
+            System.out.printf("Merged %d Trakt history event(s) from API.%n", traktEvents.size());
+        }
+        events = List.copyOf(events);
         
-        // Load overrides + prior MANUAL_OVERRIDE rows early so ShowBuilderService consolidates
-        // under human-confirmed titles, and enrichment treats those confirms above search.
-        // Order: sticky from shows.json first, then overrides.json on top (file wins on same key).
+        // Sticky from shows.json first (minus revoked), then overrides.json on top (file wins).
         MetadataOverrideStore overrides = MetadataOverrideStore.EMPTY;
         PreviousEnrichmentSnapshot previous = PreviousEnrichmentSnapshot.EMPTY;
+        RevokedOverrideStore revoked = RevokedOverrideStore.EMPTY;
         if (parsedArguments.output() != null && parsedArguments.useMetadata()) {
             Path output = parsedArguments.output();
             previous = JsonEnrichedShowSnapshot.load(output);
             Path overridesFile = parsedArguments.overridesFile() != null
                     ? parsedArguments.overridesFile()
                     : output.resolveSibling("overrides.json");
+            Path revokedFile = parsedArguments.revokedFile() != null
+                    ? parsedArguments.revokedFile()
+                    : output.resolveSibling("revoked-overrides.json");
+            revoked = RevokedOverrideStore.load(revokedFile);
             MetadataOverrideStore fileOverrides = MetadataOverrideStore.load(overridesFile);
-            int stickyCount = previous.manualOverrides().size();
-            overrides = fileOverrides.mergeWith(previous.manualOverrides());
+            var stickyFilter = revoked.filterSticky(previous.manualOverrides());
+            overrides = fileOverrides.mergeWith(stickyFilter.kept());
             if (fileOverrides.size() > 0) {
                 System.out.printf("Loaded %d manual override(s) from %s.%n", fileOverrides.size(), overridesFile);
             }
-            if (stickyCount > 0) {
+            if (stickyFilter.kept().size() > 0) {
                 System.out.printf(
                         "Merged %d MANUAL_OVERRIDE confirmation(s) from previous %s (manual override above all else).%n",
-                        stickyCount,
+                        stickyFilter.kept().size(),
                         output.getFileName());
+            }
+            if (stickyFilter.droppedCount() > 0) {
+                System.out.printf(
+                        "Dropped %d sticky confirmation(s) listed in %s.%n",
+                        stickyFilter.droppedCount(),
+                        revokedFile.getFileName());
             }
         }
 
@@ -86,7 +121,10 @@ public final class WatchTrackerApplication {
             } else {
                 if (parsedArguments.useMetadata()) {
                     List<EnrichedShow> enriched = new MetadataEnrichmentService(
-                                    metadataProvider(parsedArguments.cacheDirectory()), diagnostics, overrides)
+                                    metadataProvider(parsedArguments.cacheDirectory()),
+                                    diagnostics,
+                                    overrides,
+                                    revoked)
                             .enrich(shows, events, previous);
 
                     exporter.exportEnrichedJson(enriched, output);
@@ -98,6 +136,22 @@ public final class WatchTrackerApplication {
                     System.out.printf(
                             "Review queue written to %s (%d of %d shows flagged for manual review).%n",
                             reviewQueueFile, reviewQueue.size(), enriched.size());
+
+                    Path overrideDataFile = output.resolveSibling("override_data.json");
+                    var overrideData = OverrideDataExporter.extract(enriched);
+                    try {
+                        new OverrideDataExporter().export(enriched, overrideDataFile);
+                        System.out.printf(
+                                "Override data (MANUAL_OVERRIDE source of truth) written to %s (%d entr%s).%n",
+                                overrideDataFile,
+                                overrideData.size(),
+                                overrideData.size() == 1 ? "y" : "ies");
+                    } catch (java.io.IOException exception) {
+                        System.err.printf(
+                                "Failed to write override data to %s: %s%n",
+                                overrideDataFile,
+                                exception.getMessage());
+                    }
                 } else {
                     exporter.exportJson(shows, output);
                 }
@@ -120,12 +174,21 @@ public final class WatchTrackerApplication {
     private static void usage() {
         System.err.println(
                 "Usage: watch-tracker <netflix.csv> [shows.json|shows.csv] [--metadata] [--cache <directory>] "
-                        + "[--overrides <file>] [--diagnostics [<directory>]]");
+                        + "[--overrides <file>] [--revoked <file>] [--trakt] [--trakt-history <file>] "
+                        + "[--diagnostics [<directory>]]");
     }
 
     /** Immutable parsing result for the command-line interface. */
     private record Arguments(
-            Path input, Path output, boolean useMetadata, Path cacheDirectory, Path diagnosticsFile, Path overridesFile) {
+            Path input,
+            Path output,
+            boolean useMetadata,
+            Path cacheDirectory,
+            Path diagnosticsFile,
+            Path overridesFile,
+            Path revokedFile,
+            boolean useTrakt,
+            Path traktHistoryFile) {
         private static final Path DEFAULT_CACHE = Path.of(".watch-tracker", "metadata-cache");
         private static final Path DEFAULT_DIAGNOSTICS = Path.of("build", "diagnostics");
 
@@ -137,9 +200,13 @@ public final class WatchTrackerApplication {
             Path cache = DEFAULT_CACHE;
             Path diagnostics = null;
             Path overrides = null;
+            Path revoked = null;
+            boolean useTrakt = false;
+            Path traktHistory = null;
             for (int index = 1; index < values.length; index++) {
                 switch (values[index]) {
                     case "--metadata", "--tmdb" -> metadata = true;
+                    case "--trakt" -> useTrakt = true;
                     case "--diagnostics" -> {
                         diagnostics = DEFAULT_DIAGNOSTICS;
                         if (index + 1 < values.length && !values[index + 1].startsWith("--")) {
@@ -158,6 +225,18 @@ public final class WatchTrackerApplication {
                         }
                         overrides = Path.of(values[index]);
                     }
+                    case "--revoked" -> {
+                        if (++index == values.length) {
+                            throw new IllegalArgumentException("--revoked requires a file path");
+                        }
+                        revoked = Path.of(values[index]);
+                    }
+                    case "--trakt-history" -> {
+                        if (++index == values.length) {
+                            throw new IllegalArgumentException("--trakt-history requires a file path");
+                        }
+                        traktHistory = Path.of(values[index]);
+                    }
                     default -> {
                         if (values[index].startsWith("--") || output != null) {
                             throw new IllegalArgumentException("Unknown or duplicate argument: " + values[index]);
@@ -174,7 +253,8 @@ public final class WatchTrackerApplication {
                             .endsWith(".csv")) {
                 throw new IllegalArgumentException("Metadata enrichment is available only for JSON output");
             }
-            return new Arguments(input, output, metadata, cache, diagnostics, overrides);
+            return new Arguments(
+                    input, output, metadata, cache, diagnostics, overrides, revoked, useTrakt, traktHistory);
         }
     }
 }

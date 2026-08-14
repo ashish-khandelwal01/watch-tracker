@@ -101,6 +101,23 @@ public record ShowMetadata(
                 null);
     }
 
+
+    /** Copy with only matchConfidence replaced (e.g. when a manual override is revoked). */
+    public ShowMetadata withMatchConfidence(MatchConfidence matchConfidence) {
+        return new ShowMetadata(
+                provider,
+                providerId,
+                title,
+                type,
+                genres,
+                overview,
+                posterPath,
+                releaseDate,
+                totalEpisodes,
+                productionEnded,
+                matchConfidence);
+    }
+
     private static String requireText(String value, String field) {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException(field + " must not be blank");
