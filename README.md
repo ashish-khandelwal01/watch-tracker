@@ -142,3 +142,31 @@ Example diagnostics output for a show:
   ]
 }
 ```
+
+## 1. override_data.json
+Written next to shows.json after every `--metadata` run. All MANUAL_OVERRIDE rows.
+Human still edits **overrides.json**. Recover: `cp override_data.json overrides.json`.
+
+## 2. ProgressResolver
+Progress / episode resolution extracted from MetadataEnrichmentService.
+
+## 3. revoked-overrides.json
+```json
+["The Lady's Companion", { "title": "Kingsman" }]
+```
+Or `--revoked path.json`. Sticky merge skips these; MANUAL_OVERRIDE demoted → review queue LOW_CONFIDENCE.
+
+## 4. Trakt = history importer (not metadata)
+Netflix CSV = complete past. Trakt = optional multi-OTT going forward.
+```bash
+--trakt-history file.json
+# or live:
+export TRAKT_CLIENT_ID=... TRAKT_ACCESS_TOKEN=...
+--trakt
+```
+Metadata still TMDb/TVMaze.
+
+## CLI usage extras
+```
+[--overrides <file>] [--revoked <file>] [--trakt] [--trakt-history <file>]
+```
