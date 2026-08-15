@@ -1,7 +1,18 @@
+apply plugin: 'maven-publish'
+
 dependencies {
     api libs.commons.csv
     api libs.slf4j.api
     implementation libs.jackson.databind
     implementation libs.jackson.jsr310
     implementation libs.jackson.jdk8
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            artifactId = 'watch-tracker-core'
+        }
+    }
 }
