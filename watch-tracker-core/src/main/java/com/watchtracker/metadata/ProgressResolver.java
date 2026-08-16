@@ -166,6 +166,7 @@ public final class ProgressResolver {
      * IN_PROGRESS, not COMPLETED: more of the story is still to come, so calling it complete would
      * be a false claim even though every currently-available episode has been watched.
      */
+
     static CompletionStatus completionStatus(int distinctWatched, Optional<ShowMetadata> metadata) {
         Integer total = metadata.map(ShowMetadata::totalEpisodes).orElse(null);
         if (total == null || total <= 0) {

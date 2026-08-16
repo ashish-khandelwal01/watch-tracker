@@ -39,6 +39,7 @@
         .badge-warn { background: #3f1d1d; color: var(--warn); }
         .badge-none { background: var(--card); color: var(--soft); }
         .empty { color: var(--muted); padding: 2rem 0; }
+        .reason { font-size: 0.75rem; color: var(--warn); }
     </style>
 </head>
 <body>
@@ -63,7 +64,7 @@
            th:text="'Manual override (' + ${manualCount} + ')'">Manual</a>
     </nav>
 
-    <p class="empty" th:if="${shows.isEmpty()}">No shows in this filter. Import a Netflix history CSV to get started.</p>
+    <p class="empty" th:if="${shows.isEmpty()}">No shows in this filter.</p>
 
     <table th:if="${!shows.isEmpty()}">
         <thead>
@@ -74,6 +75,7 @@
                 <th>Progress</th>
                 <th>Watches</th>
                 <th>Match</th>
+                <th>Review</th>
             </tr>
         </thead>
         <tbody>
@@ -97,6 +99,7 @@
                           th:text="${show.matchConfidence()}">FUZZY</span>
                     <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
                 </td>
+                <td class="reason" th:text="${show.reviewReasonsLabel()}">NO_PROGRESS_RESOLVED</td>
             </tr>
         </tbody>
     </table>

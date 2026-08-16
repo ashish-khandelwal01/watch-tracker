@@ -83,7 +83,8 @@ public final class MetadataOverrideStore {
                 continue;
             }
             String title = raw.title().trim();
-            byTitle.put(title, new MetadataOverride(title, raw.provider(), mediaType.get(), raw.providerId()));
+            byTitle.put(title, new MetadataOverride(title, raw.provider(), mediaType.get(), raw.providerId(),
+                    raw.progressSeason(), raw.progressEpisode()));
         }
         return new MetadataOverrideStore(Map.copyOf(byTitle));
     }
@@ -208,7 +209,8 @@ public final class MetadataOverrideStore {
                 continue;
             }
             String title = raw.title().trim();
-            merged.put(title, new MetadataOverride(title, raw.provider(), mediaType.get(), raw.providerId()));
+            merged.put(title, new MetadataOverride(title, raw.provider(), mediaType.get(), raw.providerId(),
+                    raw.progressSeason(), raw.progressEpisode()));
         }
         // …then file overrides win on the same key.
         merged.putAll(byTitle);

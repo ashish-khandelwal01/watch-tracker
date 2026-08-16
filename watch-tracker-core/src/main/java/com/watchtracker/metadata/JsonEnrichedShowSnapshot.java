@@ -192,15 +192,24 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
                 continue;
             }
             String mediaType = md.type() == ShowType.MOVIE ? "movie" : "tv";
-            // Provider title consolidates "Show: Lesson N" rows under "Show".
+            Integer pSeason = null;
+            Integer pEpisode = null;
+            if (enriched.progress().isPresent()
+                    && "MANUAL_OVERRIDE".equals(enriched.progress().get().provider())) {
+                WatchProgress wp = enriched.progress().get();
+                pSeason = wp.season();
+                pEpisode = wp.episode();
+            }
             if (md.title() != null && !md.title().isBlank()) {
-                result.add(new MetadataOverride(md.title().trim(), md.provider(), mediaType, md.providerId()));
+                result.add(new MetadataOverride(
+                        md.title().trim(), md.provider(), mediaType, md.providerId(), pSeason, pEpisode));
             }
             String showTitle = enriched.show().title();
             if (showTitle != null
                     && !showTitle.isBlank()
                     && (md.title() == null || !showTitle.equalsIgnoreCase(md.title().trim()))) {
-                result.add(new MetadataOverride(showTitle.trim(), md.provider(), mediaType, md.providerId()));
+                result.add(new MetadataOverride(
+                        showTitle.trim(), md.provider(), mediaType, md.providerId(), pSeason, pEpisode));
             }
         }
         return List.copyOf(result);

@@ -9,13 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * Library list: posters, progress, confidence, and filters (all / review / manual).
- */
+/** Library list with posters, progress, and CLI-parity review filter. */
 @Controller
 public class DashboardController {
-    private static final List<String> CONFIDENT = List.of("EXACT", "MANUAL_OVERRIDE");
-
     private final EnrichedShowMongoRepository repository;
     private final ShowViewFactory showViewFactory;
 

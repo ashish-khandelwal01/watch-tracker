@@ -421,7 +421,7 @@ public final class MetadataEnrichmentService {
         // search failed.
         metadata = demoteIfRevoked(show, metadata);
         ShowType progressType = metadata.isPresent() ? progressTypeFor(mdType, metadata.get()) : mdType;
-        Optional<WatchProgress> progress = progressResolver.resolve(show, events, progressType, metadata);
+        Optional<WatchProgress> progress = resolveProgressWithOverride(show, events, progressType, metadata);
         Show finalShow = metadata.isPresent() ? withType(show, mdType) : show;
         return new EnrichedShow(finalShow, metadata, progress);
 
@@ -477,7 +477,7 @@ public final class MetadataEnrichmentService {
         progressResolver.seedSeriesMappings(show.title(), md);
         ShowType mdType = resolveShowType(show, md);
         ShowType progressType = progressTypeFor(mdType, md);
-        Optional<WatchProgress> progress = progressResolver.resolve(show, events, progressType, meta);
+        Optional<WatchProgress> progress = resolveProgressWithOverride(show, events, progressType, meta);
         return new EnrichedShow(withType(show, mdType), meta, progress);
     }
 
@@ -641,7 +641,32 @@ public final class MetadataEnrichmentService {
         return Optional.empty();
     }
 
-    /** True when nothing that could affect provider resolution has changed since the previous run. */
+    /**
+     * Prefer a human season/episode pin from {@link MetadataOverride} when metadata exists;
+     * otherwise automatic resolution. Status always comes from totalEpisodes — never from the
+     * override file.
+     */
+    private Optional<WatchProgress> resolveProgressWithOverride(
+            Show show, List<WatchEvent> events, ShowType progressType, Optional<ShowMetadata> meta) {
+        Optional<WatchProgress> pinned =
+                ProgressPins.fromOverride(show, overrides.forShow(show.title(), show.aliases()), meta);
+        if (pinned.isPresent()) {
+            WatchProgress wp = pinned.get();
+            diagnostics.success(
+                    DiagnosticsStage.PROGRESS_BUILDER,
+                    show.title(),
+                    "Applied manual progress pin (status from totalEpisodes)",
+                    null,
+                    java.util.Map.of(
+                            "season", wp.season() == null ? "n/a" : wp.season(),
+                            "episode", wp.episode() == null ? "n/a" : wp.episode(),
+                            "status", wp.status() == null ? "n/a" : wp.status().name()));
+            return pinned;
+        }
+        return progressResolver.resolve(show, events, progressType, meta);
+    }
+
+
     private static boolean unchangedSincePrevious(Show current, Show previous) {
         return current.watchCount() == previous.watchCount()
                 && Objects.equals(current.highestSeasonSeen(), previous.highestSeasonSeen())

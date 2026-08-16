@@ -2,10 +2,7 @@ package com.watchtracker.web.dashboard;
 
 import java.util.List;
 
-/**
- * Read model for library list and detail pages — built from an {@code EnrichedShow} payload in
- * Mongo so templates never parse JSON themselves.
- */
+/** Read model for library list and detail pages. */
 public record ShowView(
         String id,
         String title,
@@ -27,14 +24,21 @@ public record ShowView(
         String firstWatched,
         String lastWatched,
         Integer highestSeasonSeen,
-        Integer highestEpisodeSeen) {
+        Integer highestEpisodeSeen,
+        List<String> reviewReasons) {
 
     public boolean needsReview() {
-        return matchConfidence == null
-                || (!"EXACT".equals(matchConfidence) && !"MANUAL_OVERRIDE".equals(matchConfidence));
+        return reviewReasons != null && !reviewReasons.isEmpty();
     }
 
     public boolean hasPoster() {
         return posterUrlSmall != null && !posterUrlSmall.isBlank();
+    }
+
+    public String reviewReasonsLabel() {
+        if (reviewReasons == null || reviewReasons.isEmpty()) {
+            return "";
+        }
+        return String.join(", ", reviewReasons);
     }
 }

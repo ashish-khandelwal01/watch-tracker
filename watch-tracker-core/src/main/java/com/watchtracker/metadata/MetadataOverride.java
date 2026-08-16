@@ -4,13 +4,34 @@ package com.watchtracker.metadata;
  * A human-confirmed correction pointing a show at a specific provider entity, bypassing title
  * search entirely.
  *
- * @param title the key used to find matching shows — typically the canonical title or a raw alias
- *     copied from {@link ReviewItem}. Matching is exact on title/alias, or a colon-prefix on the
- *     canonical title (see {@link MetadataOverrideStore})
- * @param provider which provider this id belongs to: {@code "TMDB"} or {@code "TVMAZE"}
- * @param mediaType {@code "movie"} or {@code "tv"} (case-insensitive); {@code "series"} is accepted
- *     as a synonym for {@code "tv"}. Meaningful only for TMDB (its id space is split by media
- *     type), ignored for TVMAZE. Unrecognized values cause the override to be skipped at load time.
- * @param providerId the provider-specific identifier for the correct entity
+ * <p>Optional {@code progressSeason} / {@code progressEpisode} pin the highest provider position
+ * when automatic episode-title resolution cannot map Netflix titles. Completion status is
+ * <b>not</b> set here — it is always derived from {@link ShowMetadata#totalEpisodes()} (and
+ * production-ended) the same way automatic progress is. Progress pins are ignored when metadata
+ * is missing: there is no total to compare against and no trusted type.
+ *
+ * @param title the key used to find matching shows
+ * @param provider {@code "TMDB"} or {@code "TVMAZE"}
+ * @param mediaType {@code "movie"} or {@code "tv"} ({@code "series"} → {@code "tv"})
+ * @param providerId the provider-specific identifier
+ * @param progressSeason highest provider season (series only; both season and episode required)
+ * @param progressEpisode highest provider episode (series only)
  */
-public record MetadataOverride(String title, String provider, String mediaType, long providerId) {}
+public record MetadataOverride(
+        String title,
+        String provider,
+        String mediaType,
+        long providerId,
+        Integer progressSeason,
+        Integer progressEpisode) {
+
+    /** Metadata-only override (no progress pin). */
+    public MetadataOverride(String title, String provider, String mediaType, long providerId) {
+        this(title, provider, mediaType, providerId, null, null);
+    }
+
+    /** True when both season and episode are set for a series progress pin. */
+    public boolean hasProgressPin() {
+        return progressSeason != null && progressEpisode != null;
+    }
+}
