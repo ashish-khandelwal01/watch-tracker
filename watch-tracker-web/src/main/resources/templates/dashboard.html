@@ -1,61 +1,104 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>watch-tracker</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Library — Watch Tracker</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 2rem auto; max-width: 960px; color: #1a1a1a; }
-        h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
-        .subtitle { color: #666; margin-top: 0; margin-bottom: 1.5rem; }
+        :root {
+            color-scheme: light dark;
+            --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9bb4;
+            --accent: #3d8bfd; --line: #2a3548;
+            --ok: #3dd68c; --warn: #f87171; --soft: #94a3b8;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem 2rem 3rem; background: var(--bg); color: var(--text); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem 1.5rem; margin-bottom: 1.25rem; }
+        h1 { font-size: 1.5rem; margin: 0; }
+        .subtitle { color: var(--muted); margin: 0; }
+        nav.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+        nav.filters a {
+            padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid var(--line);
+            color: var(--muted); font-size: 0.9rem;
+        }
+        nav.filters a.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .links { margin-left: auto; }
         table { width: 100%; border-collapse: collapse; }
-        th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }
-        th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #888; }
-        .badge { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.75rem; }
-        .badge-confident { background: #e6f4ea; color: #1e7d34; }
-        .badge-review { background: #fdecea; color: #b3261e; }
-        .badge-none { background: #f1f1f1; color: #888; }
-        section { margin-bottom: 2.5rem; }
+        th, td { text-align: left; padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+        th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .poster { width: 46px; height: 69px; object-fit: cover; border-radius: 4px; background: var(--card); display: block; }
+        .poster-ph { width: 46px; height: 69px; border-radius: 4px; background: var(--card); display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.65rem; }
+        .title a { color: var(--text); font-weight: 600; }
+        .title a:hover { color: var(--accent); }
+        .muted { color: var(--muted); font-size: 0.85rem; }
+        .badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+        .badge-ok { background: #14301f; color: var(--ok); }
+        .badge-warn { background: #3f1d1d; color: var(--warn); }
+        .badge-none { background: var(--card); color: var(--soft); }
+        .empty { color: var(--muted); padding: 2rem 0; }
     </style>
 </head>
 <body>
-    <h1>watch-tracker</h1>
-    <p class="subtitle" th:text="${totalCount} + ' shows persisted'">0 shows persisted</p>
+    <header>
+        <div>
+            <h1>watch-tracker</h1>
+            <p class="subtitle"
+               th:text="${totalCount} + ' shows · ' + ${needsReviewCount} + ' need review · ' + ${manualCount} + ' manual'">
+                0 shows
+            </p>
+        </div>
+        <div class="links">
+            <a href="/import">Import Netflix CSV</a>
+        </div>
+    </header>
 
-    <section th:if="${!needsReview.isEmpty()}">
-        <h2>Needs review (<span th:text="${needsReview.size()}">0</span>)</h2>
-        <table>
-            <thead>
-                <tr><th>Title</th><th>Match confidence</th></tr>
-            </thead>
-            <tbody>
-                <tr th:each="show : ${needsReview}">
-                    <td th:text="${show.title()}">Title</td>
-                    <td>
-                        <span class="badge badge-review" th:if="${show.matchConfidence() != null}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
-                        <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <nav class="filters">
+        <a th:href="@{/(filter=all)}" th:classappend="${filter == 'all'} ? ' active'">All</a>
+        <a th:href="@{/(filter=review)}" th:classappend="${filter == 'review'} ? ' active'"
+           th:text="'Needs review (' + ${needsReviewCount} + ')'">Needs review</a>
+        <a th:href="@{/(filter=manual)}" th:classappend="${filter == 'manual'} ? ' active'"
+           th:text="'Manual override (' + ${manualCount} + ')'">Manual</a>
+    </nav>
 
-    <section>
-        <h2>All shows</h2>
-        <table>
-            <thead>
-                <tr><th>Title</th><th>Match confidence</th></tr>
-            </thead>
-            <tbody>
-                <tr th:each="show : ${shows}">
-                    <td th:text="${show.title()}">Title</td>
-                    <td>
-                        <span class="badge badge-confident" th:if="${show.matchConfidence() == 'EXACT' or show.matchConfidence() == 'MANUAL_OVERRIDE'}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
-                        <span class="badge badge-review" th:if="${show.matchConfidence() != null and show.matchConfidence() != 'EXACT' and show.matchConfidence() != 'MANUAL_OVERRIDE'}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
-                        <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <p class="empty" th:if="${shows.isEmpty()}">No shows in this filter. Import a Netflix history CSV to get started.</p>
+
+    <table th:if="${!shows.isEmpty()}">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Progress</th>
+                <th>Watches</th>
+                <th>Match</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="show : ${shows}">
+                <td style="width:56px">
+                    <img class="poster" th:if="${show.hasPoster()}" th:src="${show.posterUrlSmall()}" th:alt="${show.title()}"/>
+                    <div class="poster-ph" th:unless="${show.hasPoster()}">—</div>
+                </td>
+                <td class="title">
+                    <a th:href="@{/shows/{id}(id=${show.id()})}" th:text="${show.title()}">Title</a>
+                </td>
+                <td class="muted" th:text="${show.showType() != null ? show.showType() : '—'}">SERIES</td>
+                <td class="muted" th:text="${show.progressSummary()}">S1 E1</td>
+                <td class="muted" th:text="${show.watchCount()}">1</td>
+                <td>
+                    <span class="badge badge-ok"
+                          th:if="${show.matchConfidence() == 'EXACT' or show.matchConfidence() == 'MANUAL_OVERRIDE'}"
+                          th:text="${show.matchConfidence()}">EXACT</span>
+                    <span class="badge badge-warn"
+                          th:if="${show.matchConfidence() != null and show.matchConfidence() != 'EXACT' and show.matchConfidence() != 'MANUAL_OVERRIDE'}"
+                          th:text="${show.matchConfidence()}">FUZZY</span>
+                    <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

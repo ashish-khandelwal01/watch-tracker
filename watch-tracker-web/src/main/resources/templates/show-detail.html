@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${show.title()} + ' — Watch Tracker'">Show — Watch Tracker</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9bb4;
+            --accent: #3d8bfd; --line: #2a3548; --ok: #3dd68c; --warn: #f87171;
+        }
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem 2rem 3rem; background: var(--bg); color: var(--text); max-width: 56rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        nav { margin-bottom: 1.25rem; }
+        .layout { display: grid; grid-template-columns: 220px 1fr; gap: 1.75rem; }
+        @media (max-width: 640px) { .layout { grid-template-columns: 1fr; } }
+        .poster { width: 100%; max-width: 220px; border-radius: 8px; background: var(--card); display: block; }
+        .poster-ph { width: 220px; height: 330px; border-radius: 8px; background: var(--card); display: flex; align-items: center; justify-content: center; color: var(--muted); }
+        h1 { margin: 0 0 0.5rem; font-size: 1.75rem; }
+        .meta-line { color: var(--muted); margin: 0 0 1rem; font-size: 0.95rem; }
+        .badge { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+        .badge-ok { background: #14301f; color: var(--ok); }
+        .badge-warn { background: #3f1d1d; color: var(--warn); }
+        .badge-none { background: var(--card); color: var(--muted); }
+        h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 1.5rem 0 0.5rem; }
+        .overview { line-height: 1.55; color: var(--text); }
+        dl { display: grid; grid-template-columns: 9rem 1fr; gap: 0.35rem 1rem; margin: 0; }
+        dt { color: var(--muted); }
+        dd { margin: 0; }
+        ul.aliases { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+        .genres { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .genres span { background: var(--card); padding: 0.2rem 0.55rem; border-radius: 999px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <nav><a href="/">← Library</a></nav>
+
+    <div class="layout">
+        <div>
+            <img class="poster" th:if="${show.hasPoster()}" th:src="${show.posterUrlLarge()}" th:alt="${show.title()}"/>
+            <div class="poster-ph" th:unless="${show.hasPoster()}">No poster</div>
+        </div>
+        <div>
+            <h1 th:text="${show.title()}">Title</h1>
+            <p class="meta-line">
+                <span th:text="${show.showType() != null ? show.showType() : 'Unknown type'}">SERIES</span>
+                <span th:if="${show.releaseDate() != null}" th:text="' · ' + ${show.releaseDate()}"></span>
+                <span th:if="${show.watchCount() > 0}" th:text="' · ' + ${show.watchCount()} + ' watches'"></span>
+            </p>
+            <p>
+                <span class="badge badge-ok"
+                      th:if="${show.matchConfidence() == 'EXACT' or show.matchConfidence() == 'MANUAL_OVERRIDE'}"
+                      th:text="${show.matchConfidence()}">EXACT</span>
+                <span class="badge badge-warn"
+                      th:if="${show.matchConfidence() != null and show.matchConfidence() != 'EXACT' and show.matchConfidence() != 'MANUAL_OVERRIDE'}"
+                      th:text="${show.matchConfidence()}">FUZZY</span>
+                <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
+            </p>
+
+            <h2 th:if="${show.overview() != null}">Overview</h2>
+            <p class="overview" th:if="${show.overview() != null}" th:text="${show.overview()}">Overview</p>
+
+            <h2 th:if="${!show.genres().isEmpty()}">Genres</h2>
+            <div class="genres" th:if="${!show.genres().isEmpty()}">
+                <span th:each="g : ${show.genres()}" th:text="${g}">Drama</span>
+            </div>
+
+            <h2>Progress</h2>
+            <dl>
+                <dt>Summary</dt>
+                <dd th:text="${show.progressSummary()}">—</dd>
+                <dt>Provider S/E</dt>
+                <dd th:text="${show.progressSeason() != null ? 'S' + show.progressSeason() + ' E' + show.progressEpisode() : '—'}">—</dd>
+                <dt>Completion</dt>
+                <dd th:text="${show.completionStatus() != null ? show.completionStatus() : '—'}">—</dd>
+                <dt>From titles</dt>
+                <dd th:text="${show.highestSeasonSeen() != null or show.highestEpisodeSeen() != null ? 'S' + show.highestSeasonSeen() + ' E' + show.highestEpisodeSeen() : '—'}">—</dd>
+                <dt>First watched</dt>
+                <dd th:text="${show.firstWatched() != null ? show.firstWatched() : '—'}">—</dd>
+                <dt>Last watched</dt>
+                <dd th:text="${show.lastWatched() != null ? show.lastWatched() : '—'}">—</dd>
+            </dl>
+
+            <h2>Provider</h2>
+            <dl>
+                <dt>Provider</dt>
+                <dd th:text="${show.provider() != null ? show.provider() : '—'}">TMDB</dd>
+                <dt>Provider id</dt>
+                <dd th:text="${show.providerId() != null ? show.providerId() : '—'}">0</dd>
+            </dl>
+
+            <h2 th:if="${!show.aliases().isEmpty()}">Aliases</h2>
+            <ul class="aliases" th:if="${!show.aliases().isEmpty()}">
+                <li th:each="a : ${show.aliases()}" th:text="${a}">alias</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

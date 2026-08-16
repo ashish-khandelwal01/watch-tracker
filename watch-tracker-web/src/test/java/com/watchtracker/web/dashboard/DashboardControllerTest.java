@@ -1,5 +1,7 @@
 package com.watchtracker.web.dashboard;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -25,33 +27,34 @@ class DashboardControllerTest {
     @MockBean
     private EnrichedShowMongoRepository repository;
 
-    @Test
-    void listsAllShowsAndSplitsOutNeedsReview() throws Exception {
-        EnrichedShowDocument exact = document("Dark", "EXACT");
-        EnrichedShowDocument fuzzy = document("Dark Matter", "FUZZY");
-        EnrichedShowDocument unmatched = document("Unmatched Show", null);
+    @MockBean
+    private ShowViewFactory showViewFactory;
 
-        when(repository.findAllByOrderByTitleAsc()).thenReturn(List.of(exact, fuzzy, unmatched));
-        when(repository.findByMatchConfidenceNotInOrMatchConfidenceIsNull(List.of("EXACT", "MANUAL_OVERRIDE")))
-                .thenReturn(List.of(fuzzy, unmatched));
+    @Test
+    void listsShowsWithFilterAll() throws Exception {
+        EnrichedShowDocument doc = document("Dark", "EXACT");
+        ShowView view = view("id-1", "Dark", "EXACT", false);
+        when(repository.findAllByOrderByTitleAsc()).thenReturn(List.of(doc));
+        when(showViewFactory.fromDocuments(anyList())).thenReturn(List.of(view));
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("dashboard"))
-                .andExpect(model().attribute("totalCount", 3))
-                .andExpect(model().attribute("shows", List.of(exact, fuzzy, unmatched)))
-                .andExpect(model().attribute("needsReview", List.of(fuzzy, unmatched)));
+                .andExpect(model().attribute("totalCount", 1))
+                .andExpect(model().attribute("filter", "all"));
     }
 
     @Test
-    void handlesEmptyLibrary() throws Exception {
+    void filterReview() throws Exception {
+        ShowView ok = view("1", "Dark", "EXACT", false);
+        ShowView bad = view("2", "X", null, true);
         when(repository.findAllByOrderByTitleAsc()).thenReturn(List.of());
-        when(repository.findByMatchConfidenceNotInOrMatchConfidenceIsNull(List.of("EXACT", "MANUAL_OVERRIDE")))
-                .thenReturn(List.of());
+        when(showViewFactory.fromDocuments(anyList())).thenReturn(List.of(ok, bad));
 
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/").param("filter", "review"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("totalCount", 0));
+                .andExpect(model().attribute("filter", "review"))
+                .andExpect(model().attribute("needsReviewCount", 1L));
     }
 
     private static EnrichedShowDocument document(String title, String matchConfidence) {
@@ -62,5 +65,30 @@ class DashboardControllerTest {
                 matchConfidence,
                 "{}",
                 Instant.now());
+    }
+
+    private static ShowView view(String id, String title, String confidence, boolean needsReview) {
+        return new ShowView(
+                id,
+                title,
+                List.of(),
+                confidence,
+                "SERIES",
+                null,
+                null,
+                null,
+                List.of(),
+                null,
+                null,
+                null,
+                "—",
+                null,
+                null,
+                null,
+                1,
+                null,
+                null,
+                null,
+                null);
     }
 }

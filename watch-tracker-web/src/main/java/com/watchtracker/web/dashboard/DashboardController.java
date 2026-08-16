@@ -3,44 +3,55 @@ package com.watchtracker.web.dashboard;
 import com.watchtracker.web.persistence.EnrichedShowDocument;
 import com.watchtracker.web.persistence.EnrichedShowMongoRepository;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Read-only overview of what's currently persisted in MongoDB.
- *
- * <p>This is the "thin web UI for review" from the README roadmap, in its earliest useful form:
- * list everything, flag what looks unresolved. It intentionally works off the indexed document
- * fields ({@code title}, {@code aliases}, {@code matchConfidence}) rather than deserializing the
- * full {@code EnrichedShow} payload — the listing doesn't need episode progress or provider
- * metadata detail, so there's no reason to pay for parsing it. A per-show detail page that does
- * need that detail would go through {@code MongoPreviousEnrichmentSnapshot} instead.
- *
- * <p>Not a replacement for {@code review-queue.json}: this has no visibility into missing progress
- * or the specific reason a show needs attention, only whether its stored match confidence looks
- * uncertain. See {@link EnrichedShowMongoRepository} for the exact (cruder) definition in use
- * here.
+ * Library list: posters, progress, confidence, and filters (all / review / manual).
  */
 @Controller
 public class DashboardController {
-    private static final List<String> CONFIDENT_MATCH_TYPES = List.of("EXACT", "MANUAL_OVERRIDE");
+    private static final List<String> CONFIDENT = List.of("EXACT", "MANUAL_OVERRIDE");
 
     private final EnrichedShowMongoRepository repository;
+    private final ShowViewFactory showViewFactory;
 
-    public DashboardController(EnrichedShowMongoRepository repository) {
+    public DashboardController(EnrichedShowMongoRepository repository, ShowViewFactory showViewFactory) {
         this.repository = repository;
+        this.showViewFactory = showViewFactory;
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        List<EnrichedShowDocument> shows = repository.findAllByOrderByTitleAsc();
-        List<EnrichedShowDocument> needsReview =
-                repository.findByMatchConfidenceNotInOrMatchConfidenceIsNull(CONFIDENT_MATCH_TYPES);
+    public String dashboard(
+            @RequestParam(value = "filter", defaultValue = "all") String filter, Model model) {
+        List<EnrichedShowDocument> allDocs = repository.findAllByOrderByTitleAsc();
+        List<ShowView> all = showViewFactory.fromDocuments(allDocs);
 
-        model.addAttribute("totalCount", shows.size());
-        model.addAttribute("needsReview", needsReview);
+        String normalized = filter == null ? "all" : filter.trim().toLowerCase(Locale.ROOT);
+        List<ShowView> shows =
+                switch (normalized) {
+                    case "review" -> all.stream().filter(ShowView::needsReview).toList();
+                    case "manual" -> all.stream()
+                            .filter(s -> "MANUAL_OVERRIDE".equals(s.matchConfidence()))
+                            .toList();
+                    default -> {
+                        normalized = "all";
+                        yield all;
+                    }
+                };
+
+        long needsReviewCount = all.stream().filter(ShowView::needsReview).count();
+        long manualCount =
+                all.stream().filter(s -> "MANUAL_OVERRIDE".equals(s.matchConfidence())).count();
+
         model.addAttribute("shows", shows);
+        model.addAttribute("totalCount", all.size());
+        model.addAttribute("needsReviewCount", needsReviewCount);
+        model.addAttribute("manualCount", manualCount);
+        model.addAttribute("filter", normalized);
         return "dashboard";
     }
 }
