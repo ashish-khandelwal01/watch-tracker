@@ -4,6 +4,7 @@ import com.watchtracker.web.config.ImportProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * Entry point for the web module.
@@ -11,9 +12,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * <p>Depends only on {@code watch-tracker-core}. Import/enrichment is triggered from the web UI
  * ({@code /import}) using the same core services as the CLI; results go to MongoDB. The CLI is
  * not invoked and is not modified.
+ *
+ * <p>{@code @EnableAsync} backs the background import job runner (see {@code
+ * web.importer.ImportJobRunner}) — enrichment can involve live TMDb/TVMaze calls, so it must not
+ * run inside the request thread of {@code POST /import}.
  */
 @SpringBootApplication
 @EnableConfigurationProperties(ImportProperties.class)
+@EnableAsync
 public class WatchTrackerWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(WatchTrackerWebApplication.class, args);

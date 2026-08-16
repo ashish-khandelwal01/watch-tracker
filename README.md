@@ -15,7 +15,7 @@ metadata — not Trakt.
 | `watch-tracker-core` | Parsing, normalization, grouping, enrichment, export |
 | `watch-tracker-cli` | Thin adapter: args → core → files / exit codes |
 | `watch-tracker-testdata` | Fixtures and golden JSON for tests |
-| `watch-tracker-web` | Reserved for a future UI (empty on purpose) |
+| `watch-tracker-web` | Spring Boot app: MongoDB persistence, background CSV import, dashboard |
 
 Pipeline:
 
@@ -265,10 +265,11 @@ the normalizer, show builder, and enrichment pipeline (same pattern as
 
 ## Roadmap (not required for daily Netflix use)
 
-- Deeper Trakt sync (dedupe by id, OAuth UX when a web module exists)
-- ~~Persistence beyond JSON files~~ — `watch-tracker-web` now has a working MongoDB-backed
-  `PreviousEnrichmentSnapshot`; see its README for what's done vs. still open (mainly: nothing
-  triggers a run from the web module yet).
+- Deeper Trakt sync (dedupe by id, OAuth UX now that a web module exists)
+- ~~Persistence beyond JSON files~~ — `watch-tracker-web` has a working MongoDB-backed
+  `PreviousEnrichmentSnapshot` and a background-job import flow (`POST /import` → runs the core
+  pipeline off the request thread → writes to Mongo); see its README for details.
 - Thin web UI for review / overrides — a read-only dashboard exists; write actions (approving a
   match, editing an override) are not built.
+- Real auth for the web module — `SecurityConfig` is still a documented permit-all placeholder.
 - Additional importers if useful platforms appear

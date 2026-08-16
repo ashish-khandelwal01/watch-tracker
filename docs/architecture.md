@@ -14,12 +14,12 @@ watch-tracker/
 ├── watch-tracker-core      # library: domain + pipeline
 ├── watch-tracker-cli       # application: main + arg parsing
 ├── watch-tracker-testdata  # golden fixtures on the test classpath
-└── watch-tracker-web       # reserved; depends on core when implemented
+└── watch-tracker-web       # Spring Boot app: MongoDB persistence + background import + dashboard
 ```
 
 Dependency rule: **cli → core**, never core → cli. Testdata is consumed by tests only.
-Web, when added, should also depend only on core (same rule as an automation runner
-depending on a framework library).
+**web → core**, same rule, same as cli; web never depends on or invokes cli. See
+`watch-tracker-web/README.md` for that module's status in detail.
 
 ## Core packages
 

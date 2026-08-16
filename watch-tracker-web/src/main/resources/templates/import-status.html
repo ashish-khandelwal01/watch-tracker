@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta th:if="${job != null and job.state().name() == 'RUNNING'}" http-equiv="refresh" content="2"/>
+    <title>Import status — Watch Tracker</title>
+    <style>
+        :root { color-scheme: light dark; --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9bb4; --accent: #3d8bfd; --err: #f87171; --ok: #4ade80; }
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: var(--bg); color: var(--text); max-width: 40rem; }
+        a { color: var(--accent); }
+        h1 { font-size: 1.4rem; margin-top: 0; }
+        p.muted { color: var(--muted); font-size: 0.95rem; }
+        nav { margin-bottom: 1.5rem; }
+        .status { margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: 6px; background: var(--card); }
+        .status.running { border-left: 3px solid var(--accent); }
+        .status.completed { border-left: 3px solid var(--ok); }
+        .status.failed { border-left: 3px solid var(--err); }
+        dl { margin: 0.75rem 0 0; }
+        dt { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+        dd { margin: 0; font-size: 1.05rem; }
+        .spinner { display: inline-block; width: 0.9em; height: 0.9em; border: 2px solid var(--muted); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 0.5em; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <nav><a href="/">← Dashboard</a></nav>
+    <h1>Import status</h1>
+
+    <div th:if="${notFound}" class="status failed">
+        <p class="muted">No job found with this id — the server may have restarted since it ran.</p>
+    </div>
+
+    <div th:if="${job != null}" th:switch="${job.state().name()}">
+
+        <div th:case="'RUNNING'" class="status running">
+            <p><span class="spinner"></span>Running — parsing, normalizing, and enriching. This page refreshes automatically.</p>
+            <p class="muted" th:text="'Started ' + ${job.submittedAt()}">Started</p>
+        </div>
+
+        <div th:case="'COMPLETED'" class="status completed">
+            <p><strong>Done.</strong> <span th:text="${job.result().get().message()}">Import complete.</span></p>
+            <dl>
+                <dt>Events parsed</dt><dd th:text="${job.result().get().eventCount()}">0</dd>
+                <dt>Shows built</dt><dd th:text="${job.result().get().showCount()}">0</dd>
+                <dt>Matched to metadata</dt><dd th:text="${job.result().get().enrichedWithMetadata()}">0</dd>
+                <dt>Needs review</dt><dd th:text="${job.result().get().reviewCount()}">0</dd>
+            </dl>
+            <p style="margin-top:1rem"><a href="/">View dashboard →</a></p>
+        </div>
+
+        <div th:case="'FAILED'" class="status failed">
+            <p><strong>Import failed.</strong></p>
+            <p th:text="${job.errorMessage().get()}">Error</p>
+            <p style="margin-top:1rem"><a href="/import">Try again →</a></p>
+        </div>
+
+    </div>
+</body>
+</html>

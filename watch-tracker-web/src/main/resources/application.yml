@@ -4,6 +4,9 @@ spring:
   data:
     mongodb:
       uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/watch-tracker}
+      # Spring Data MongoDB defaults this to false; without it, @Indexed on EnrichedShowDocument
+      # (title, matchConfidence) is documentation only and no index is ever created.
+      auto-index-creation: true
   thymeleaf:
     cache: false
 
