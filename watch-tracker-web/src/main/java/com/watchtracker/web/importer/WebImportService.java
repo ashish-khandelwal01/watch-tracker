@@ -94,8 +94,9 @@ public class WebImportService {
         List<EnrichedShow> enriched;
         if (withMetadata) {
             Path cacheDir = importProperties.getCacheDirectory() != null
-                    ? importProperties.getCacheDirectory()
-                    : Path.of(".watch-tracker", "metadata-cache");
+                    ? importProperties.getCacheDirectory().toAbsolutePath().normalize()
+                    : Path.of(".watch-tracker", "metadata-cache").toAbsolutePath().normalize();
+            LOGGER.info("Metadata cache directory: {}", cacheDir);
             MetadataProvider provider = new CachingMetadataProvider(
                     MetadataProvider.from(MetadataProperties.fromSystem()), new FileMetadataCache(cacheDir));
             enriched = new MetadataEnrichmentService(provider, diagnostics, overrides, revoked)
