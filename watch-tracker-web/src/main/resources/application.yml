@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: watch-tracker-web
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/watch-tracker}
+  thymeleaf:
+    cache: false
+
+server:
+  port: ${PORT:8080}
+
+# Web-only import defaults (CLI unchanged). Override paths to your overrides.json if you use one.
+watchtracker:
+  import:
+    cache-directory: ${WATCHTRACKER_CACHE:.watch-tracker/metadata-cache}
+    overrides-file: /Users/Ashish/Documents/watch-tracker/watch-tracker-testdata/src/main/resources/golden/overrides.json
+    # revoked-file: /Users/Ashish/Documents/watch-tracker/revoked-overrides.json
+
+logging:
+  level:
+    com.watchtracker: INFO

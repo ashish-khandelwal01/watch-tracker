@@ -7,6 +7,8 @@ slf4j = "2.0.16"
 spotless = "7.0.2"
 checkstyle = "10.21.1"
 jacoco = "0.8.12"
+springBoot = "3.4.1"
+springDependencyManagement = "1.1.7"
 
 [libraries]
 commons-csv = { module = "org.apache.commons:commons-csv", version.ref = "commonsCsv" }
@@ -21,3 +23,5 @@ assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }

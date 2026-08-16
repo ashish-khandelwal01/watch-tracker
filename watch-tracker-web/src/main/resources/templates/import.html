@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Import — Watch Tracker</title>
+    <style>
+        :root { color-scheme: light dark; --bg: #0f1419; --card: #1a2332; --text: #e7ecf3; --muted: #8b9bb4; --accent: #3d8bfd; --err: #f87171; }
+        body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; background: var(--bg); color: var(--text); max-width: 40rem; }
+        a { color: var(--accent); }
+        h1 { font-size: 1.4rem; margin-top: 0; }
+        p.muted { color: var(--muted); font-size: 0.95rem; }
+        label { display: block; margin-top: 1rem; font-weight: 600; }
+        input[type=text] { width: 100%; padding: 0.6rem 0.75rem; margin-top: 0.35rem; border-radius: 6px; border: 1px solid #334; background: var(--card); color: var(--text); box-sizing: border-box; }
+        .row { margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        button { margin-top: 1.5rem; padding: 0.65rem 1.25rem; border: none; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; cursor: pointer; }
+        button:hover { filter: brightness(1.08); }
+        .error { margin-top: 1rem; padding: 0.75rem 1rem; background: #3f1d1d; color: var(--err); border-radius: 6px; }
+        nav { margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+    <nav><a href="/">← Dashboard</a></nav>
+    <h1>Import Netflix history</h1>
+    <p class="muted">
+        Runs the same pipeline as the CLI (parse → normalize → group → optional metadata)
+        inside this web app and saves results to MongoDB. The CLI is not called.
+    </p>
+    <p class="muted">
+        Path must be readable by the server process (this machine). Example:
+        <code>/Users/Ashish/Downloads/NetflixViewingHistory.csv</code>
+    </p>
+
+    <div class="error" th:if="${error}" th:text="${error}">Error</div>
+
+    <form method="post" action="/import">
+        <label for="csvPath">CSV file path</label>
+        <input id="csvPath" name="csvPath" type="text"
+               th:value="${csvPath}"
+               placeholder="/absolute/path/to/NetflixViewingHistory.csv"
+               required/>
+
+        <div class="row">
+            <input id="withMetadata" name="withMetadata" type="checkbox" value="true"
+                   th:checked="${withMetadata}"/>
+            <label for="withMetadata" style="margin:0;font-weight:500">Enrich with TMDb / TVMaze metadata</label>
+        </div>
+
+        <button type="submit">Run import</button>
+    </form>
+</body>
+</html>

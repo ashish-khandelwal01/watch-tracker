@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>watch-tracker</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 2rem auto; max-width: 960px; color: #1a1a1a; }
+        h1 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+        .subtitle { color: #666; margin-top: 0; margin-bottom: 1.5rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }
+        th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #888; }
+        .badge { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.75rem; }
+        .badge-confident { background: #e6f4ea; color: #1e7d34; }
+        .badge-review { background: #fdecea; color: #b3261e; }
+        .badge-none { background: #f1f1f1; color: #888; }
+        section { margin-bottom: 2.5rem; }
+    </style>
+</head>
+<body>
+    <h1>watch-tracker</h1>
+    <p class="subtitle" th:text="${totalCount} + ' shows persisted'">0 shows persisted</p>
+
+    <section th:if="${!needsReview.isEmpty()}">
+        <h2>Needs review (<span th:text="${needsReview.size()}">0</span>)</h2>
+        <table>
+            <thead>
+                <tr><th>Title</th><th>Match confidence</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="show : ${needsReview}">
+                    <td th:text="${show.title()}">Title</td>
+                    <td>
+                        <span class="badge badge-review" th:if="${show.matchConfidence() != null}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
+                        <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>All shows</h2>
+        <table>
+            <thead>
+                <tr><th>Title</th><th>Match confidence</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="show : ${shows}">
+                    <td th:text="${show.title()}">Title</td>
+                    <td>
+                        <span class="badge badge-confident" th:if="${show.matchConfidence() == 'EXACT' or show.matchConfidence() == 'MANUAL_OVERRIDE'}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
+                        <span class="badge badge-review" th:if="${show.matchConfidence() != null and show.matchConfidence() != 'EXACT' and show.matchConfidence() != 'MANUAL_OVERRIDE'}" th:text="${show.matchConfidence()}">CONFIDENCE</span>
+                        <span class="badge badge-none" th:if="${show.matchConfidence() == null}">no match</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

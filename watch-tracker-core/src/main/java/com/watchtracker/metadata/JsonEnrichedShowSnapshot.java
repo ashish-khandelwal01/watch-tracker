@@ -95,8 +95,13 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
     /**
      * Scoring: exact title (largest), exact alias hit, then colon-prefix relationship. Zero means
      * no relationship — the candidate must not be used.
+     *
+     * <p>Public so other {@link PreviousEnrichmentSnapshot} implementations (e.g. a MongoDB-backed
+     * one in {@code watch-tracker-web}) can reuse the same precedence rules instead of duplicating
+     * this algorithm — see {@link #manualOverridesFrom} for the same reasoning applied to override
+     * rehydration.
      */
-    static int matchScore(Show current, Show prior) {
+    public static int matchScore(Show current, Show prior) {
         String currentTitle = normalizeKey(current.title());
         String priorTitle = normalizeKey(prior.title());
         if (currentTitle.isEmpty() || priorTitle.isEmpty()) {
@@ -163,6 +168,20 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
      */
     @Override
     public List<MetadataOverride> manualOverrides() {
+        return manualOverridesFrom(all);
+    }
+
+    /**
+     * Rebuilds {@link MetadataOverride} entries from any list of prior enrichment rows marked
+     * {@link MatchConfidence#MANUAL_OVERRIDE}, regardless of what backs the snapshot they came
+     * from (a JSON export here, or a MongoDB collection in {@code watch-tracker-web}). Extracted
+     * as a public static helper so that reasoning is defined once and shared, rather than
+     * re-implemented per storage backend.
+     *
+     * @param all every prior enrichment row available to the snapshot
+     * @return overrides derived from prior MANUAL_OVERRIDE rows; empty when none
+     */
+    public static List<MetadataOverride> manualOverridesFrom(List<EnrichedShow> all) {
         List<MetadataOverride> result = new ArrayList<>();
         for (EnrichedShow enriched : all) {
             if (enriched.metadata().isEmpty()) {
@@ -186,5 +205,4 @@ public final class JsonEnrichedShowSnapshot implements PreviousEnrichmentSnapsho
         }
         return List.copyOf(result);
     }
-
 }

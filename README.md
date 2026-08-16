@@ -266,6 +266,9 @@ the normalizer, show builder, and enrichment pipeline (same pattern as
 ## Roadmap (not required for daily Netflix use)
 
 - Deeper Trakt sync (dedupe by id, OAuth UX when a web module exists)
-- Persistence beyond JSON files
-- Thin web UI for review / overrides
+- ~~Persistence beyond JSON files~~ — `watch-tracker-web` now has a working MongoDB-backed
+  `PreviousEnrichmentSnapshot`; see its README for what's done vs. still open (mainly: nothing
+  triggers a run from the web module yet).
+- Thin web UI for review / overrides — a read-only dashboard exists; write actions (approving a
+  match, editing an override) are not built.
 - Additional importers if useful platforms appear
