@@ -29,11 +29,23 @@ public final class CachingMetadataProvider implements MetadataProvider {
     public Optional<ShowMetadata> findByTitle(String title) {
         Optional<ShowMetadata> cached = cache.get(title);
         if (cached.isPresent()) {
+            cached.ifPresent(this::cacheById);
             return cached;
         }
         Optional<ShowMetadata> found = delegate.findByTitle(title);
-        found.ifPresent(metadata -> cache.put(title, metadata));
+        found.ifPresent(metadata -> {
+            cache.put(title, metadata);
+            cacheById(metadata);
+        });
         return found;
+    }
+
+    private void cacheById(ShowMetadata metadata) {
+        if (metadata == null || metadata.providerId() <= 0 || metadata.provider() == null) {
+            return;
+        }
+        String mediaType = metadata.type() == com.watchtracker.model.ShowType.MOVIE ? "movie" : "tv";
+        cache.putById(metadata.provider(), mediaType, metadata.providerId(), metadata);
     }
 
     /**
@@ -46,6 +58,11 @@ public final class CachingMetadataProvider implements MetadataProvider {
      */
     public Optional<ShowMetadata> getFromCache(String title) {
         return cache.get(title);
+    }
+
+    /** Writes an id-keyed cache entry (e.g. after recovering an override from the title cache). */
+    public void putById(String provider, String mediaType, long providerId, ShowMetadata metadata) {
+        cache.putById(provider, mediaType, providerId, metadata);
     }
 
     /**
@@ -126,19 +143,30 @@ public final class CachingMetadataProvider implements MetadataProvider {
     }
 
     /**
-     * Finds metadata by provider id directly from the delegate, without consulting the persistent
-     * title-keyed cache. An override lookup is an explicit, human-confirmed request for one exact
-     * entity — serving a cached entry keyed by some title that predates the correction would defeat
-     * the point, so this always goes straight to the delegate.
+     * Finds metadata by provider id using an id-keyed cache entry, then the network delegate.
+     * Manual overrides call this path; caching by id is what makes overrides work offline after
+     * a successful online resolve (title cache alone is not consulted here, so a wrong title-keyed
+     * row cannot override a human-confirmed id).
      *
      * @param provider which provider's id space this is
      * @param mediaType {@code "movie"} or {@code "tv"}, meaningful only to TMDb
      * @param providerId the provider-specific identifier
-     * @return the delegate's result
+     * @return cached or freshly retrieved metadata
      */
     @Override
     public Optional<ShowMetadata> findById(String provider, String mediaType, long providerId) {
-        return delegate.findById(provider, mediaType, providerId);
+        Optional<ShowMetadata> cached = cache.getById(provider, mediaType, providerId);
+        if (cached.isPresent()) {
+            return cached;
+        }
+        Optional<ShowMetadata> found = delegate.findById(provider, mediaType, providerId);
+        found.ifPresent(metadata -> {
+            cache.putById(provider, mediaType, providerId, metadata);
+            if (metadata.title() != null && !metadata.title().isBlank()) {
+                cache.put(metadata.title(), metadata);
+            }
+        });
+        return found;
     }
 
     /**

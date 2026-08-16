@@ -64,6 +64,44 @@ public final class FileMetadataCache {
     }
 
     /**
+     * Returns cached metadata for a provider id lookup (used by manual overrides offline).
+     *
+     * @param provider provider name (e.g. TMDB)
+     * @param mediaType {@code movie} or {@code tv}
+     * @param providerId provider-specific id
+     * @return cached metadata, if present
+     */
+    public Optional<ShowMetadata> getById(String provider, String mediaType, long providerId) {
+        Path entry = idEntry(provider, mediaType, providerId);
+        if (!Files.isRegularFile(entry)) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(mapper.readValue(entry.toFile(), ShowMetadata.class));
+        } catch (IOException exception) {
+            throw new IllegalStateException("Unable to read metadata cache entry " + entry, exception);
+        }
+    }
+
+    /**
+     * Persists metadata keyed by provider id so {@code findById} / overrides work offline.
+     *
+     * @param provider provider name (e.g. TMDB)
+     * @param mediaType {@code movie} or {@code tv}
+     * @param providerId provider-specific id
+     * @param metadata metadata to persist
+     */
+    public void putById(String provider, String mediaType, long providerId, ShowMetadata metadata) {
+        try {
+            Files.createDirectories(directory);
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(idEntry(provider, mediaType, providerId).toFile(), metadata);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Unable to write metadata cache", exception);
+        }
+    }
+
+    /**
      * Returns a cached episode position for a show, season, and episode title, when present.
      *
      * @param showTitle canonical show title
@@ -197,6 +235,24 @@ public final class FileMetadataCache {
     private Path entry(String title) {
         return directory.resolve(hash(title) + ".json");
     }
+
+    private Path idEntry(String provider, String mediaType, long providerId) {
+        String key = "id::" + normalizeProvider(provider) + "::" + normalizeMediaType(mediaType) + "::" + providerId;
+        return entry(key);
+    }
+
+    /** Same rules as TMDb lookup: only {@code movie} vs {@code tv} (series → tv). */
+    static String normalizeMediaType(String mediaType) {
+        if (mediaType != null && "movie".equalsIgnoreCase(mediaType.trim())) {
+            return "movie";
+        }
+        return "tv";
+    }
+
+    static String normalizeProvider(String provider) {
+        return provider == null ? "" : provider.trim().toUpperCase(java.util.Locale.ROOT);
+    }
+
 
     /** Produces a stable, filesystem-safe SHA-256 key. */
     private static String hash(String value) {

@@ -75,10 +75,18 @@ public class WebImportService {
                 revokedFile != null ? RevokedOverrideStore.load(revokedFile) : RevokedOverrideStore.EMPTY;
         MetadataOverrideStore fileOverrides =
                 overridesFile != null ? MetadataOverrideStore.load(overridesFile) : MetadataOverrideStore.EMPTY;
+        if (overridesFile != null) {
+            LOGGER.info("Loaded {} override(s) from {}", fileOverrides.size(), overridesFile.toAbsolutePath());
+        } else {
+            LOGGER.warn("No watchtracker.import.overrides-file configured — grouping/enrichment will differ from CLI");
+        }
 
         PreviousEnrichmentSnapshot previous = MongoPreviousEnrichmentSnapshot.load(repository);
         var stickyFilter = revoked.filterSticky(previous.manualOverrides());
         MetadataOverrideStore overrides = fileOverrides.mergeWith(stickyFilter.kept());
+        if (stickyFilter.kept().size() > 0) {
+            LOGGER.info("Merged {} sticky MANUAL_OVERRIDE(s) from Mongo", stickyFilter.kept().size());
+        }
 
         List<Show> shows = new ShowBuilderService(diagnostics, overrides).build(events);
         LOGGER.info("Imported {} events across {} shows from {}", events.size(), shows.size(), csvPath);

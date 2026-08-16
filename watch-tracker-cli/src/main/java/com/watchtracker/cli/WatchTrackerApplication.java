@@ -166,8 +166,12 @@ public final class WatchTrackerApplication {
 
     /** Creates the opt-in provider selected by metadata configuration. */
     private static MetadataProvider metadataProvider(Path cacheDirectory) {
+        Path cache = cacheDirectory == null
+                ? Path.of(".watch-tracker", "metadata-cache").toAbsolutePath().normalize()
+                : cacheDirectory.toAbsolutePath().normalize();
+        System.out.printf("Metadata cache directory: %s%n", cache);
         return new CachingMetadataProvider(
-                MetadataProvider.from(MetadataProperties.fromSystem()), new FileMetadataCache(cacheDirectory));
+                MetadataProvider.from(MetadataProperties.fromSystem()), new FileMetadataCache(cache));
     }
 
     /** Prints the command-line usage contract to standard error. */

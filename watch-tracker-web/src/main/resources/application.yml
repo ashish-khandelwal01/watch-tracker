@@ -13,7 +13,7 @@ server:
 # Web-only import defaults (CLI unchanged). Override paths to your overrides.json if you use one.
 watchtracker:
   import:
-    cache-directory: ${WATCHTRACKER_CACHE:.watch-tracker/metadata-cache}
+    cache-directory: /Users/Ashish/Documents/watch-tracker/.watch-tracker/metadata-cache
     overrides-file: /Users/Ashish/Documents/watch-tracker/watch-tracker-testdata/src/main/resources/golden/overrides.json
     # revoked-file: /Users/Ashish/Documents/watch-tracker/revoked-overrides.json
 

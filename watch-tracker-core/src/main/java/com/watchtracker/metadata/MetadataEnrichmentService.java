@@ -568,6 +568,11 @@ public final class MetadataEnrichmentService {
         try {
             Optional<ShowMetadata> resolved = provider.findById(o.provider(), o.mediaType(), o.providerId());
             if (resolved.isEmpty()) {
+                // Offline / cold id-cache: reuse a title-cache hit only when providerId matches the
+                // override, then stamp MANUAL_OVERRIDE so sticky/override_data stay correct.
+                resolved = findCachedOverrideMetadata(show, o);
+            }
+            if (resolved.isEmpty()) {
                 diagnostics.failure(
                         DiagnosticsStage.METADATA_PROVIDER,
                         show.title(),
@@ -585,6 +590,55 @@ public final class MetadataEnrichmentService {
                     "Manual override lookup failed: " + exception.getMessage() + "; falling back to normal resolution");
             return Optional.empty();
         }
+    }
+
+    /**
+     * When {@code findById} misses (offline and id-cache not yet populated), accept a title-keyed
+     * cache entry only if it is the same provider entity the human overrode.
+     */
+    private Optional<ShowMetadata> findCachedOverrideMetadata(Show show, MetadataOverride override) {
+        if (!(provider instanceof CachingMetadataProvider caching)) {
+            return Optional.empty();
+        }
+        java.util.LinkedHashSet<String> keys = new java.util.LinkedHashSet<>();
+        if (show.title() != null && !show.title().isBlank()) {
+            keys.add(show.title().trim());
+        }
+        if (show.aliases() != null) {
+            for (String alias : show.aliases()) {
+                if (alias != null && !alias.isBlank()) {
+                    keys.add(alias.trim());
+                }
+            }
+        }
+        if (override.title() != null && !override.title().isBlank()) {
+            keys.add(override.title().trim());
+        }
+        for (String key : keys) {
+            Optional<ShowMetadata> cached = caching.getFromCache(key);
+            if (cached.isEmpty()) {
+                continue;
+            }
+            ShowMetadata md = cached.get();
+            if (md.providerId() != override.providerId()) {
+                continue;
+            }
+            if (override.provider() != null
+                    && md.provider() != null
+                    && !override.provider().equalsIgnoreCase(md.provider())) {
+                continue;
+            }
+            diagnostics.info(
+                    DiagnosticsStage.METADATA_PROVIDER,
+                    show.title(),
+                    "Manual override satisfied from title cache (id=" + override.providerId() + ")");
+            ShowMetadata stamped = md.matchConfidence() == MatchConfidence.MANUAL_OVERRIDE
+                    ? md
+                    : md.withMatchConfidence(MatchConfidence.MANUAL_OVERRIDE);
+            caching.putById(override.provider(), override.mediaType(), override.providerId(), stamped);
+            return Optional.of(stamped);
+        }
+        return Optional.empty();
     }
 
     /** True when nothing that could affect provider resolution has changed since the previous run. */
